@@ -277,8 +277,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 .v-selection-control-group {
   flex-direction: row;
-  margin-top: -15px;
-  margin-bottom: -10px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 610px) {
@@ -323,13 +322,19 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   width: 60%;
   border-radius: 12px;
 }
-
-.docs-radio .radio-small {
-  flex: 1;
+.docs-radio {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* расстояние между радио */
+  margin-top: -15px;
+  margin-bottom: -10px;
 }
 
-.docs-radio .radio-large {
-  flex: 2;
+.docs-radio .v-radio {
+  flex: none; /* не растягиваем */
+  display: inline-flex;
+  align-items: center;
+  padding: 0 15px 0 0;
 }
 
 .docs-radio .v-radio .v-label,
