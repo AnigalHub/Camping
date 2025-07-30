@@ -132,7 +132,7 @@
                       rounded="lg" clearable v-maska="'#########'" />
 
                     <v-select v-model="person.tentType" :items="tentTypes" item-title="title" item-value="value"
-                      label="Палатка" variant="outlined" density="comfortable" rounded="lg" />
+                      label="Глэмпинг" variant="outlined" density="comfortable" rounded="lg" />
                   </div>
                   <div class="grid-inputs">
                     <div>
@@ -142,15 +142,6 @@
                       </div>
                       <v-text-field v-model="person.animals" :disabled="!person.isAnimals"
                         :class="{ 'input-disable': !person.isAnimals }" label="Количество животных" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-maska="'#########'" />
-                    </div>
-                    <div>
-                      <div class="d-flex align-center rent">
-                        <Switch v-model="person.isHouse" :tumbler="person.isHouse" :disable="false" :form="true" />
-                        <v-label @click="person.isHouse = !person.isHouse" class="me-2">Аренда домика:</v-label>
-                      </div>
-                      <v-text-field v-model="person.house" :disabled="!person.isHouse"
-                        :class="{ 'input-disable': !person.isHouse }" label="Номер домика" variant="outlined"
                         density="comfortable" rounded="lg" clearable v-maska="'#########'" />
                     </div>
                     <div>
@@ -194,7 +185,7 @@ const persons = reactive([createPerson()]);
 const price = ref(null);
 
 const tentTypes = [
-  { title: "Своя", value: "own" },
+  { title: "Без аренды", value: "own" },
   { title: "Стандарт", value: "standard" },
   { title: "Семейная", value: "family" },
   { title: "Премиум", value: "premium" },
@@ -220,7 +211,6 @@ function createPerson() {
     surname: "", name: "", patronymic: "", date: "", phone: "", object: null,
     isCars: false, cars: "",
     isAnimals: false, animals: null,
-    isHouse: null, house: false,
     tentType: "own",
     startDate: null, endDate: null, price: null,
     dateMenu: false, startDateMenu: false, endDateMenu: false,
@@ -272,7 +262,7 @@ const onDocDateSelect = (val, index, docType) => {
 
 const isChanged = computed(() =>
   persons.some(p => p.surname || p.name || p.patronymic || p.date || p.phone || p.object ||
-    (p.isCars && p.cars) || (p.isAnimals && p.animals) || (p.house && p.isHouse) ||
+    (p.isCars && p.cars) || (p.isAnimals && p.animals) || 
     p.startDate || p.endDate || p.price
   )
 );

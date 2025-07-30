@@ -137,15 +137,6 @@
           </div>
           <div>
             <div class="d-flex align-center rent">
-              <Switch v-model="object.isHouse" :tumbler="object.isHouse" :disable="false" :form="true" />
-              <v-label @click="object.isHouse = !object.isHouse" class="me-2">Аренда домика:</v-label>
-            </div>
-            <v-text-field v-model="object.house" :disabled="!object.isHouse"
-              :class="{ 'input-disable': !object.isHouse }" label="Номер домика" variant="outlined"
-              density="comfortable" rounded="lg" clearable v-maska="'#########'" />
-          </div>
-          <div>
-            <div class="d-flex align-center rent">
               <Switch v-model="object.isCars" :tumbler="object.isCars" :disable="false" :form="true" />
               <v-label class="me-2" @click="object.isCars = !object.isCars">Транспорт:</v-label>
             </div>

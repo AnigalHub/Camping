@@ -29,7 +29,7 @@
               </div>
             </template>
             <template v-else-if="col.key === 'tent'">
-              {{ isTent(item.tentType) }}
+              {{ item.tentType === "own" ? "—" : isTent(item.tentType)   }}
             </template>
             <template v-else-if="col.key === 'date'">
               {{ formatDate(item.date) }}
@@ -130,7 +130,7 @@ const formatDate = date => date ? date.split("T")[0].split("-").reverse().join("
 
 const isTent = value => {
   const tentTypes = [
-    { title: "Своя", value: "own" },
+    { title: "Без аренды", value: "own" },
     { title: "Стандарт", value: "standard" },
     { title: "Семейная", value: "family" },
     { title: "Премиум", value: "premium" },

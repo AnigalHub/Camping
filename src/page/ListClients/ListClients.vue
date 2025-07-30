@@ -18,8 +18,7 @@ const headers = [
   { label: "Телефон", key: "phone" },
   { label: "Даты", key: "dateStay" },
   { label: "Транспорт", key: "cars" },
-  { label: "Домик", key: "house" },
-  { label: "Палатка", key: "tent" },
+  { label: "Глэмпинг", key: "tent" },
   { label: "Животные", key: "animals" },
   { label: "Поляна", key: "object" },
   { label: "Сумма", key: "price" },
@@ -45,13 +44,23 @@ const compareFio = (a, b) =>
     r !== 0 ?
       r : (a[f] || "").localeCompare(b[f] || ""), 0);
 
+
 const sortedItems = computed(() => {
+  const tentOrder = ["own", "standard", "family", "premium"];     
+  
   if (!sortKey.value) return items.value;
+
   const sorted = [...items.value].sort((a, b) => {
     if (sortKey.value === "fio") return compareFio(a, b);
     if (sortKey.value === "dateStay") return new Date(a.endDate) - new Date(b.endDate);
+    if (sortKey.value === "tent") {
+      const aIndex = tentOrder.indexOf(a.tentType ?? "own");
+      const bIndex = tentOrder.indexOf(b.tentType ?? "own");
+      return aIndex - bIndex;
+    }
     return String(a[sortKey.value] ?? "").localeCompare(String(b[sortKey.value] ?? ""));
   });
+
   return sortDirection.value === "asc" ? sorted : sorted.reverse();
 });
 </script>

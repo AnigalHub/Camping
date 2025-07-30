@@ -22,7 +22,7 @@ watch(sort, v => emit("update:sort", v));
 const route = useRoute();
 const base = [
   { title: "ФИО", key: "fio", dir: "asc", value: "fio_asc" },
-  { title: "Аренда дома", key: "house", dir: "desc", value: "house_desc" },
+  { title: "Аренда глэмпинга", key: "tent", dir: "desc", value: "tent_desc" },
   { title: "Транспорт", key: "cars", dir: "desc", value: "cars_desc" },
   { title: "Животные", key: "animals", dir: "desc", value: "animals_desc" },
 ];

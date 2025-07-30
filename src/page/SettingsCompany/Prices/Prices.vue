@@ -10,8 +10,6 @@
                 rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.animal" label="За животное" variant="outlined" density="comfortable"
                 rounded="lg" clearable v-maska="'#########'" />
-              <v-text-field v-model="prices.house" label="За аренду домика" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.tent" label="За аренду палатки (Стандарт 2+1)" variant="outlined" density="comfortable"
                 rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.familyTent" label="За аренду палатки (Семейная 2+1)" variant="outlined" density="comfortable"
@@ -48,7 +46,6 @@ const originalPrices = ref(JSON.parse(JSON.stringify(prices)));
 const normalize = (obj) => ({
   person: Number(obj.person),
   animal: Number(obj.animal),
-  house: Number(obj.house),
   transport: Number(obj.transport),
   smallTransport: Number(obj.smallTransport),
 });
