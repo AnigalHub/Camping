@@ -6,7 +6,7 @@
     @click="goRoute"
   >
     <div class="d-flex align-start text-start card-header">
-      <v-icon color="#debe7e" size="33">mdi-cog-outline</v-icon>
+      <v-icon color="#debe7e" size="33">mdi-cog</v-icon>
       <h2>Управление лагерем и тарифами</h2>
     </div>
     <div class="d-flex align-center card-wrapper">

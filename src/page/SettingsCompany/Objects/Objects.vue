@@ -21,11 +21,11 @@
                       <v-text-field v-model="obj.description" label="Описание" variant="outlined" density="comfortable"
                         rounded="lg" clearable />
                       <v-text-field v-model="obj.coordinations" label="Координаты объекта" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="['##.######, ##.######']" />
+                        density="comfortable" rounded="lg" clearable v-maska="['##.######, ##.######']" />
                       <v-text-field v-model="obj.people" label="Количество мест" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                        density="comfortable" rounded="lg" clearable v-maska="'#########'" />
                       <v-text-field v-model="obj.cars" label="Количество парковочных мест" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                        density="comfortable" rounded="lg" clearable v-maska="'#########'" />
                     </div>
                   </v-expansion-panel-text>
                 </v-expansion-panel>

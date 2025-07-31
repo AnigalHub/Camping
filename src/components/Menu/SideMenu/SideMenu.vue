@@ -32,12 +32,13 @@ const router = useRouter();
 const route = useRoute();
 
 const menus = [
-  { icon: "mdi-account-plus-outline", title: "Регистрация клиентов", route: "AddClients" },
-  { icon: "mdi-account-group-outline", title: "Список клиентов", route: "ListClients" },
+  { icon: "mdi-account-multiple-plus-outline", title: "Регистрация клиентов", route: "AddClients" },
+  { icon: "mdi-human-male-female-child", title: "Список клиентов", route: "ListClients" },
   { icon: "mdi-calendar-clock-outline", title: "Ближайшие выезды", route: "Trips" },
-  { icon: "mdi-tent", title: "Свободные поляны", route: "MapObjects" },
+  { icon: "mdi-grass", title: "Свободные поляны", route: "MapObjects" },
+  // { icon: "mdi-tent", title: "Арендуемые палатки", route: "" },
   { icon: "mdi-cash-multiple", title: "Учет расходов", route: "AdditionalCosts" },
-  { icon: "mdi-cog-outline", title: "Настройки, тарифы", route: "SettingsCompany" },
+  { icon: "mdi-cog", title: "Настройки, тарифы", route: "SettingsCompany" },
 ];
 
 const localDrawer = ref(props.drawer);

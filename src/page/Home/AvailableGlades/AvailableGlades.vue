@@ -6,7 +6,7 @@
     @click="goRoute"
   >
     <div class="d-flex align-start text-start card-header">
-      <v-icon color="#debe7e" size="33">mdi-tent</v-icon>
+      <v-icon color="#debe7e" size="33">mdi-grass</v-icon>
       <h2>Свободные поляны</h2>
     </div>
     <div class="position-absolute decor-wave-and-orbits">

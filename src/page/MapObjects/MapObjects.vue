@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <Title :title="title" :icon="'mdi-tent'" class="title" />
+      <Title :title="title"/>
       <Search :sort="sortOption" @update:sort="onSortChanged" @search="onSearch" />
       <div class="block">
         <div class="grid-container">

@@ -6,7 +6,7 @@
     @click="goRoute"
     >
     <div class="d-flex align-center card-header">
-      <v-icon color="#debe7e" size="33">mdi-calendar-clock-outline</v-icon>
+      <v-icon color="#debe7e" size="33">mdi-truck-outline</v-icon>
       <h2>Ближайшие выезды</h2>
     </div>
     <div class="card-text">

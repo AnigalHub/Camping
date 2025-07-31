@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <Title :title="title" icon="mdi-calendar-clock-outline" />
+      <Title :title="title"/>
       <v-card style="position:relative;z-index:2; padding: 10px 0 !important;">
         <div class="tabs-container desktop-only">
           <div class="tabs-switch tabs-custom">

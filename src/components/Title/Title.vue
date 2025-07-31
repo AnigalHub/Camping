@@ -1,6 +1,6 @@
 <template>
   <div class="block-title">
-    <button v-if="showBack" class="back-btn" @click="goBack">
+    <button class="back-btn" @click="goBack">
       <v-icon color="#fff" size="22">mdi-arrow-left</v-icon>
     </button>
     <div class="title-wrapper">
@@ -13,7 +13,6 @@
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
-  showBack: { type: Boolean, default: true },
   title: { type: String, default: '' },
 })
 

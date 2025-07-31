@@ -7,21 +7,21 @@
             <h3 class="form-subtitle">Цены</h3>
             <div class="grid-inputs">
               <v-text-field v-model="prices.person" label="За человека" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-mask="'#########'" />
+                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.animal" label="За животное" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-mask="'#########'" />
+                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.house" label="За аренду домика" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-mask="'#########'" />
+                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.tent" label="За аренду палатки (Стандарт 2+1)" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-mask="'#########'" />
+                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.familyTent" label="За аренду палатки (Семейная 2+1)" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-mask="'#########'" />
+                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.premiumTent" label="За аренду палатки (Премиум тент-хаус)" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-mask="'#########'" />
+                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.transport" label="За транспорт" variant="outlined" density="comfortable"
-                rounded="lg" clearable v-mask="'#########'" />
+                rounded="lg" clearable v-maska="'#########'" />
               <v-text-field v-model="prices.smallTransport" label="За мелкий транспорт" variant="outlined" density="comfortable" 
-              rounded="lg" clearable v-mask="'#########'" />
+              rounded="lg" clearable v-maska="'#########'" />
             </div>
             <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
           </v-form>

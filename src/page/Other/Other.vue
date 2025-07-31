@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <Title :title="title" :icon="'mdi-dots-grid'" />
+      <Title :title="title"/>
       <div v-for="(block, i) in blocks" :key="i" class="block" @click="goRoute(block.route)">
         <div class="d-flex align-center card-header">
           <v-icon color="#debe7e" size="33">{{ block.icon }}</v-icon>
@@ -21,7 +21,7 @@ const router = useRouter();
 const title = "Прочее";
 const blocks = [
   {
-    icon: "mdi-tent",
+    icon: "mdi-grass",
     title: "Свободные поляны",
     description: "Уютные и просторные поляны, где можно разбить палаточный лагерь, насладиться отдыхом на свежем воздухе и провести разнообразные активности всей семьей.",
     route: "MapObjects"

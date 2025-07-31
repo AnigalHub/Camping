@@ -1,7 +1,7 @@
 <template>
   <div class="client">
     <v-container>
-      <Title :title="title" :icon="'mdi-account-plus-outline'" />
+      <Title :title="title"/>
       <div class="content">
         <v-card elevation="2" class="wrapper_content pa-6">
           <v-form v-model="valid" @submit.prevent="saveForm">

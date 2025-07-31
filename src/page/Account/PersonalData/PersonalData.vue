@@ -45,7 +45,7 @@
               density="comfortable"
               rounded="lg"
               clearable
-              v-mask="'+7 (###) ###-##-##'"
+              v-maska="'+7 (###) ###-##-##'"
             />
             <v-btn
               class="btn-page"
