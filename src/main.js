@@ -12,7 +12,8 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
-import 'maska'
+
+import { vMaska } from 'maska/vue'
 
 // Styles
 import 'unfonts.css'
@@ -23,7 +24,7 @@ import { store } from './store'
 const app = createApp(App)
 
 // Vue.use(VueTheMask)
-
+app.directive('maska', vMaska)
 
 registerPlugins(app)
 

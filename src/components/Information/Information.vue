@@ -22,7 +22,7 @@
               @update:model-value="val => onDateSelect(val, 'date')" />
           </v-menu>
           <v-text-field v-model="object.phone" label="Телефон" variant="outlined" density="comfortable" rounded="lg"
-            clearable :disabled="disable" v-mask="'+7 (###) ###-##-##'" />
+            clearable :disabled="disable" v-maska="'+7 (###) ###-##-##'" />
         </div>
         <hr />
       </div>
@@ -36,9 +36,9 @@
       <!-- Паспорт -->
       <div v-if="object.selectedDoc === 'passport'">
         <div class="grid-inputs">
-          <v-text-field v-model="object.passport.seriesDocument" label="Серия" v-mask="'####'" variant="outlined"
+          <v-text-field v-model="object.passport.seriesDocument" label="Серия" v-maska="'####'" variant="outlined"
             density="comfortable" rounded="lg" clearable :disabled="disable" />
-          <v-text-field v-model="object.passport.numberDocument" label="Номер" v-mask="'######'" variant="outlined"
+          <v-text-field v-model="object.passport.numberDocument" label="Номер" v-maska="'######'" variant="outlined"
             density="comfortable" rounded="lg" clearable :disabled="disable" />
           <!-- Дата выдачи документа -->
           <v-menu v-model="object.dateMenuDocument" :close-on-content-click="false" transition="scale-transition"
@@ -51,7 +51,7 @@
             <v-date-picker v-model="object.dateDocumentInternal" locale="ru" hide-header
               @update:model-value="onPassportDateSelect" />
           </v-menu>
-          <v-text-field v-model="object.passport.codeDocument" label="Код подразделения" v-mask="'###-###'"
+          <v-text-field v-model="object.passport.codeDocument" label="Код подразделения" v-maska="'###-###'"
             variant="outlined" density="comfortable" rounded="lg" clearable :disabled="disable" />
           <v-text-field v-model="object.passport.cityDocument" label="Место рождения" variant="outlined"
             density="comfortable" rounded="lg" clearable :disabled="disable" />
@@ -120,7 +120,7 @@
         <h3 class="form-subtitle">Дополнительные данные</h3>
         <div class="grid-inputs">
           <v-text-field v-model="object.object" label="Поляна" variant="outlined" density="comfortable" rounded="lg"
-            clearable v-mask="'#########'" />
+            clearable v-maska="'#########'" />
 
           <v-select v-model="object.tentType" :items="tentTypes" item-title="title" item-value="value" label="Палатка"
             variant="outlined" density="comfortable" rounded="lg" />
@@ -133,7 +133,7 @@
             </div>
             <v-text-field v-model="object.animals" :disabled="!object.isAnimals"
               :class="{ 'input-disable': !object.isAnimals }" label="Количество животных" variant="outlined"
-              density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+              density="comfortable" rounded="lg" clearable v-maska="'#########'" />
           </div>
           <div>
             <div class="d-flex align-center rent">
@@ -142,29 +142,19 @@
             </div>
             <v-text-field v-model="object.house" :disabled="!object.isHouse"
               :class="{ 'input-disable': !object.isHouse }" label="Номер домика" variant="outlined"
-              density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+              density="comfortable" rounded="lg" clearable v-maska="'#########'" />
           </div>
-        </div>
-        <div class="grid-inputs">
-          <div class="d-flex align-center rent">
-            <Switch v-model="object.isCars" :tumbler="object.isCars" :disable="false" :form="true" />
-            <v-label class="me-2" @click="object.isCars = !object.isCars">Транспорт:</v-label>
+          <div>
+            <div class="d-flex align-center rent">
+              <Switch v-model="object.isCars" :tumbler="object.isCars" :disable="false" :form="true" />
+              <v-label class="me-2" @click="object.isCars = !object.isCars">Транспорт:</v-label>
+            </div>
+            <v-text-field v-model="object.cars" label="Номер транспорта" :disabled="!object.isCars" variant="outlined"
+              density="comfortable" rounded="lg" clearable v-maska="carMask" />
           </div>
-        </div>
-        <div class="grid-inputs">
-          <v-select v-model="object.transportType" label="Тип" :items="transportTypes" :disabled="!object.isCars"
-            item-title="title" item-value="value" density="comfortable" variant="outlined" rounded="lg"
-            class="small-select" />
-          <v-text-field v-if="object.transportType === 'car'" v-model="object.cars" label="Номер"
-            :disabled="!object.isCars" variant="outlined" density="comfortable" rounded="lg" clearable />
-          <v-text-field v-else v-model="object.cars" label="Номер" :disabled="!object.isCars" variant="outlined"
-            density="comfortable" rounded="lg" v-maska="'A###AA###'" :maska-tokens="{
-              A: { pattern: /[А-ЯЁ]/i },
-              '#': { pattern: /\\d/ }
-            }" />
         </div>
         <hr />
-        <h3 class="form-subtitle result">Стоимость: </h3><span>{{ object.price }}</span>
+        <h3 class="form-subtitle result">Стоимость: </h3><span>{{ object.price?.toLocaleString("ru-RU") }}</span>
       </div>
     </v-form>
     <!-- Кнопки -->
@@ -194,6 +184,20 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["close", "submit"]);
+
+const carMask = {
+  mask: value => {
+    if (!value) return 'A###AA###'
+    const first = value[0]
+    if (/[А-ЯЁ]/i.test(first)) return 'A###AA###'
+    if (/\d/.test(first)) return '####AA##'
+    return 'A###AA###'
+  },
+  tokens: {
+    A: { pattern: /[А-ЯЁ]/i, transform: v => v.toUpperCase() },
+    '#': { pattern: /\d/ }
+  }
+}
 
 // ==== Форматирование dd.mm.yyyy ====
 function formatDate(val) {
@@ -269,10 +273,6 @@ watch(() => props.object.birth.dateDocument, val => {
   props.object.birth.dateInternal = parseDate(val);
 });
 
-const transportTypes = [
-  { title: "Машина / Автодом", value: "car" },
-  { title: "Мотоцикл", value: "motorcycle" },
-];
 const tentTypes = [
   { title: "Своя", value: "own" },
   { title: "Стандарт", value: "standard" },

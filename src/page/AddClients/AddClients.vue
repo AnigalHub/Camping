@@ -34,7 +34,7 @@
                         @update:model-value="val => onDateSelect(val, index, 'date')" />
                     </v-menu>
                     <v-text-field v-model="person.phone" label="Телефон" variant="outlined" density="comfortable"
-                      rounded="lg" clearable v-mask="'+7 (###) ###-##-##'" />
+                      rounded="lg" clearable v-maska="'+7 (###) ###-##-##'" />
                   </div>
                   <hr />
                   <!-- Документы -->
@@ -129,7 +129,7 @@
                   <h3 class="form-subtitle">Дополнительные данные</h3>
                   <div class="grid-inputs">
                     <v-text-field v-model="person.object" label="Поляна" variant="outlined" density="comfortable"
-                      rounded="lg" clearable v-mask="'#########'" />
+                      rounded="lg" clearable v-maska="'#########'" />
 
                     <v-select v-model="person.tentType" :items="tentTypes" item-title="title" item-value="value"
                       label="Палатка" variant="outlined" density="comfortable" rounded="lg" />
@@ -142,7 +142,7 @@
                       </div>
                       <v-text-field v-model="person.animals" :disabled="!person.isAnimals"
                         :class="{ 'input-disable': !person.isAnimals }" label="Количество животных" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                        density="comfortable" rounded="lg" clearable v-maska="'#########'" />
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
@@ -151,24 +151,16 @@
                       </div>
                       <v-text-field v-model="person.house" :disabled="!person.isHouse"
                         :class="{ 'input-disable': !person.isHouse }" label="Номер домика" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                        density="comfortable" rounded="lg" clearable v-maska="'#########'" />
                     </div>
-                  </div>
-                  <div class="grid-inputs">
-                    <div class="d-flex align-center rent">
-                      <Switch v-model="person.isCars" :tumbler="person.isCars" :disable="false" :form="true" />
-                      <v-label class="me-2" @click="person.isCars = !person.isCars">Транспорт:</v-label>
+                    <div>
+                      <div class="d-flex align-center rent">
+                        <Switch v-model="person.isCars" :tumbler="person.isCars" :disable="false" :form="true" />
+                        <v-label class="me-2" @click="person.isCars = !person.isCars">Транспорт:</v-label>
+                      </div>
+                      <v-text-field v-model="person.cars" label="Номер транспорта" :disabled="!person.isCars" variant="outlined"
+                      density="comfortable" rounded="lg" clearable v-maska="carMask" />
                     </div>
-                  </div>
-                  <div class="grid-inputs">
-                    <v-select v-model="person.transportType" label="Тип" :items="transportTypes"
-                      :disabled="!person.isCars" item-title="title" item-value="value" density="comfortable"
-                      variant="outlined" rounded="lg" class="small-select" />
-                    <v-text-field v-if="person.transportType === 'car'" v-model="person.cars" label="Номер"
-                      :disabled="!person.isCars" variant="outlined" density="comfortable" rounded="lg" clearable
-                      v-mask="'S###SS###'" />
-                    <v-text-field v-else v-model="person.cars" label="Номер" :disabled="!person.isCars"
-                      variant="outlined" density="comfortable" rounded="lg" clearable v-mask="'####SS##'" />
                   </div>
                   <hr />
                   <h3 class="form-subtitle result">Стоимость: </h3><span>0</span>
@@ -201,10 +193,6 @@ const openedPanel = ref([0]);
 const persons = reactive([createPerson()]);
 const price = ref(null);
 
-const transportTypes = [
-  { title: "Машина / Автодом", value: "car" },
-  { title: "Мотоцикл", value: "motorcycle" },
-];
 const tentTypes = [
   { title: "Своя", value: "own" },
   { title: "Стандарт", value: "standard" },
@@ -212,16 +200,28 @@ const tentTypes = [
   { title: "Премиум", value: "premium" },
 ];
 
+const carMask = {
+  mask: value => {
+    if (!value) return 'A###AA###'
+    const first = value[0]
+    if (/[А-ЯЁ]/i.test(first))  return 'A###AA###'
+    if (/\d/.test(first)) return '####AA##'
+    return 'A###AA###'
+  },
+  tokens: {
+    A: { pattern: /[А-ЯЁ]/i, transform: v => v.toUpperCase() },
+    '#': { pattern: /\d/ }
+  }
+}
 
 function createPerson() {
   const emptyDoc = { seriesDocument: "", numberDocument: "", issuedDocument: "", cityDocument: "", dateDocument: "", dateInternal: null, dateMenu: false };
   return {
     surname: "", name: "", patronymic: "", date: "", phone: "", object: null,
-    isCars: false, cars: null,
+    isCars: false, cars: "",
     isAnimals: false, animals: null,
     isHouse: null, house: false,
     tentType: "own",
-    transportType: "car",
     startDate: null, endDate: null, price: null,
     dateMenu: false, startDateMenu: false, endDateMenu: false,
     dateInternal: null, startDateInternal: null, endDateInternal: null,
