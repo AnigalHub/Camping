@@ -30,7 +30,7 @@ import AvailableGlades from "./AvailableGlades/AvailableGlades.vue";
 import CampManagement from "./CampManagement/CampManagement.vue";
 
 const windowWidth = ref(window.innerWidth);
-const isDesktop = computed(() => windowWidth.value >= 1125);
+const isDesktop = computed(() => windowWidth.value >= 1150);
 
 function onResize() {
   windowWidth.value = window.innerWidth;

@@ -20,14 +20,16 @@
         <tr v-for="(item, index) in paginatedItems" :key="index">
           <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :data-label="col.label" :class="[
             col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
-            col.key === 'buttons' ? 'bg-buttons' : '']"
-          >
+            col.key === 'buttons' ? 'bg-buttons' : '']">
             <template v-if="col.key === 'fio'">
               <div class="fio-wrapper">
                 <span>{{ item.surname }}</span>
                 <span>{{ item.name }}</span>
                 <span>{{ item.patronymic }}</span>
               </div>
+            </template>
+            <template v-else-if="col.key === 'tent'">
+              {{ isTent(item.tentType) }}
             </template>
             <template v-else-if="col.key === 'date'">
               {{ formatDate(item.date) }}
@@ -68,13 +70,16 @@
             </template>
             <template v-else-if="showButtons && col.key === 'buttons'">
               <div class="buttons-wrapper">
-                <v-btn v-if="route.name !== 'AdditionalCosts'" icon="mdi-file-document" variant="text" size="small" class="document-btn btn"
-                  v-tooltip:top="'Документы'" @click="onModalDocuments('documents', item, true)" />
+                <v-btn v-if="route.name !== 'AdditionalCosts'" icon="mdi-file-document" variant="text" size="small"
+                  class="document-btn btn" v-tooltip:top="'Документы'"
+                  @click="onModalDocuments('documents', item, true)" />
                 <v-btn icon="mdi-pencil" variant="text" size="small" class="edit-btn btn" v-tooltip:top="'Изменить'"
                   @click="onModalDocuments('edit', item)" />
-                <v-btn v-if="route.name === 'ListClients' || route.name === 'AdditionalCosts'" icon="mdi-delete" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
+                <v-btn v-if="route.name === 'ListClients' || route.name === 'AdditionalCosts'" icon="mdi-delete"
+                  variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
                   @click="onModalDocuments('delete', item, true)" />
-                <v-btn v-if="route.name === 'Trips'" icon="mdi-truck-fast" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Выехал'"/>
+                <v-btn v-if="route.name === 'Trips'" icon="mdi-truck-fast" variant="text" size="small"
+                  class="delete-btn btn" v-tooltip:top="'Выехал'" />
               </div>
             </template>
             <template v-else>
@@ -123,6 +128,16 @@ const showButtons = computed(() => props.headers.some(row => row.some(col => col
 // Форматирование даты
 const formatDate = date => date ? date.split("T")[0].split("-").reverse().join(".") : "—";
 
+const isTent = value => {
+  const tentTypes = [
+    { title: "Своя", value: "own" },
+    { title: "Стандарт", value: "standard" },
+    { title: "Семейная", value: "family" },
+    { title: "Премиум", value: "premium" },
+  ];
+  return tentTypes.find(item => item.value === value)?.title || "—";
+}
+
 // Пагинация
 const currentPage = ref(1);
 const pageSize = 10;
@@ -156,19 +171,19 @@ const onModalDocuments = async (name, item, disable) => {
     if (index !== -1) {
       props.items[index] = { ...updated };
     }
-    
+
     resolve();
   };
 
-  if(route.name === 'AdditionalCosts'){
-     await callModalWindow(store, {
+  if (route.name === 'AdditionalCosts') {
+    await callModalWindow(store, {
       name: "Expenses",
       component: Expenses,
       props: { name, object: copy, disable },
       params: { onSubmit },
     });
   }
-  else{
+  else {
     await callModalWindow(store, {
       name: "Information",
       component: Information,
@@ -203,7 +218,7 @@ const updateColumnWidths = () => {
 
 // Отслеживаем ресайз и обновление данных
 const windowWidth = ref(window.innerWidth);
-const isDesktop = computed(() => windowWidth.value >= 1125);
+const isDesktop = computed(() => windowWidth.value >= 1150);
 
 const handleResize = () => windowWidth.value = window.innerWidth;
 
@@ -306,7 +321,7 @@ watch(() => props.items, updateColumnWidths, { deep: true });
 }
 
 .v-table tbody td {
-  font-size: 1rem;
+  font-size: .95rem;
 }
 
 .button-label {
@@ -356,7 +371,7 @@ watch(() => props.items, updateColumnWidths, { deep: true });
   background: #fff !important;
   color: #104155;
   -webkit-text-stroke: .2px #104155;
-  font-size: 1rem;
+  font-size: .96rem;
   letter-spacing: .4px;
   font-family: var(--font-family-text);
   font-weight: 500;
@@ -408,10 +423,11 @@ watch(() => props.items, updateColumnWidths, { deep: true });
 }
 
 /* --- Адаптив под карточки --- */
-@media (max-width: 1125px) {
+@media (max-width: 1150px) {
   .v-table>.v-table__wrapper>table>tbody>tr:hover {
     background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, .1);  transform: scale(1.025);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    transform: scale(1.025);
   }
 
   .v-table {

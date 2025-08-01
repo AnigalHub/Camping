@@ -72,12 +72,13 @@ useTabsSlider(tabs, tab, tabRefs, sliderStyle, true);
 const headers = [[
   { label: "ФИО", key: "fio" },
   { label: "Телефон", key: "phone" },
-  { label: "Проживание", key: "dateStay" },
+  { label: "Даты", key: "dateStay" },
   { label: "Транспорт", key: "cars" },
-  { label: "Дом", key: "house" },
+  { label: "Домик", key: "house" },
+  { label: "Палатка", key: "tent" },
   { label: "Животные", key: "animals" },
   { label: "Поляна", key: "object" },
-  { label: "Стоимость", key: "price" },
+  { label: "Сумма", key: "price" },
   { label: "", key: "buttons" }
 ]];
 

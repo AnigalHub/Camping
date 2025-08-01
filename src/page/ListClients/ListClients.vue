@@ -14,16 +14,17 @@ import itemsData from "./../../../public/data/clients.json";
 const title = "Список клиентов";
 const headers = [
   [
-    { label: "ФИО", key: "fio" },
-    { label: "Телефон", key: "phone" },
-    { label: "Проживание", key: "dateStay" },
-    { label: "Транспорт", key: "cars" },
-    { label: "Дом", key: "house" },
-    { label: "Животные", key: "animals" },
-    { label: "Поляна", key: "object" },
-    { label: "Стоимость", key: "price" },
-    { label: "", key: "buttons" },
-  ],
+  { label: "ФИО", key: "fio" },
+  { label: "Телефон", key: "phone" },
+  { label: "Даты", key: "dateStay" },
+  { label: "Транспорт", key: "cars" },
+  { label: "Домик", key: "house" },
+  { label: "Палатка", key: "tent" },
+  { label: "Животные", key: "animals" },
+  { label: "Поляна", key: "object" },
+  { label: "Сумма", key: "price" },
+  { label: "", key: "buttons" },
+]
 ];
 
 const items = ref(itemsData);

@@ -1,12 +1,12 @@
 [
-  { 
-    "id":"ff8abcd7-c877-4292-8309-ce6ecafbe7c0",
+  {
+    "id": "ff8abcd7-c877-4292-8309-ce6ecafbe7c0",
     "surname": "Иванов",
     "name": "Константин",
     "patronymic": "Иванович",
     "date": "1971-08-15T00:00:00.000+00:00",
-    "selectedDoc":"birth",
-    "passport":{
+    "selectedDoc": "birth",
+    "passport": {
       "seriesDocument": "",
       "numberDocument": "",
       "codeDocument": "",
@@ -14,38 +14,40 @@
       "cityDocument": "",
       "dateDocument": ""
     },
-    "birth":{
+    "birth": {
       "seriesDocument": "4511",
       "numberDocument": "278534",
       "dateDocument": "1971-09-15T00:00:00.000+00:00",
-      "actNumberDocument":"1245",
+      "actNumberDocument": "1245",
       "cityDocument": "РОССИЯ, город Москва",
       "issuedDocument": "Отделом УФМС России по гор. Москве по району Отрадное"
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "phone": "+79039004578",
     "startDate": "2025-12-01T00:00:00.000+00:00",
     "endDate": "2025-12-10T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
-    "cars": "Х765СС750",
-    "animal": true,
+    "tentType": "family",
+    "isCars": true,
+    "cars": "6765СС50",
+    "transportType": "motorcycle",
+    "isAnimals": true,
     "animals": 2,
     "object": 7,
     "price": 2500
   },
   {
-    "id":"5cbc68d2-6f0f-4b05-95b5-20801bfd7452",
+    "id": "5cbc68d2-6f0f-4b05-95b5-20801bfd7452",
     "surname": "Алексеева",
     "name": "Мария",
     "patronymic": "Павловна",
     "date": "1980-04-14T00:00:00.000+00:00",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4518",
       "numberDocument": "364363",
       "codeDocument": "770-087",
@@ -53,780 +55,82 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "1980-05-15T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "phone": "+79068124233",
     "startDate": "2025-12-02T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": true,
+    "isHouse": true,
     "house": 2,
-    "car": false,
+    "tentType": "own",
+    "isCars": false,
+    "transportType": null,
     "cars": null,
-    "animal": false,
+    "isAnimals": false,
     "animals": null,
     "object": 1,
     "price": 5000
   },
   {
-    "id":"b7de23b6-c2fb-43c6-884e-0063ad228af2",
+    "id": "b7de23b6-c2fb-43c6-884e-0063ad228af2",
     "surname": "Алексеев",
     "name": "Артем",
     "patronymic": "Викторович",
     "date": "2000-08-18T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
-       "seriesDocument": "4512",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
       "issuedDocument": "Отделом УФМС России по гор. Москве по району Медведково",
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-12-02T00:00:00.000+00:00",
     "endDate": "2025-12-12T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "Н122АК150",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"ad0fbf03-66f4-473c-9d4e-3935d1517249",
+    "id": "ad0fbf03-66f4-473c-9d4e-3935d1517249",
     "surname": "Романова",
     "name": "Татьяна",
     "patronymic": "Александровна",
     "date": "1999-08-21T00:00:00.000+00:00",
     "phone": "+79251542184",
-    "selectedDoc":"passport",
-    "passport":{
-       "seriesDocument": "4513",
-      "numberDocument": "274242",
-      "codeDocument": "770-082",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Перово",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1999-08-23T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-07T00:00:00.000+00:00",
-    "endDate": "2025-12-12T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": true,
-    "animals": 1,
-    "object": 2,
-    "price": 7500
-  },
-  {
-    "id":"6b379513-555b-4c11-9167-4537c797e69e",
-    "surname": "Петров",
-    "name": "Илья",
-    "patronymic": "Павлович",
-    "date": "1986-06-16T00:00:00.000+00:00",
-    "phone": "+79251445456",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4511",
-      "numberDocument": "732524",
-      "codeDocument": "770-083",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бибирево",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1986-06-15T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-02T00:00:00.000+00:00",
-    "endDate": "2025-12-14T00:00:00.000+00:00",
-    "car": true,
-    "cars": "С521КК77",
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 2,
-    "price": 3000
-  },
-  {
-    "id":"6c4522cf-e47c-4a08-9e23-8119b19cb45f",
-    "surname": "Кузнецов",
-    "name": "Роман",
-    "patronymic": "Иванович",
-    "date": "1995-06-07T00:00:00.000+00:00",
-    "phone": "+79259202678",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4511",
-      "numberDocument": "622421",
-      "codeDocument": "770-081",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Отрадное",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1995-07-07T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-14T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": true,
-    "house": 3,
-    "animal": false,
-    "animals": null,
-    "object": 7,
-    "price": 2500
-  },
-  {
-    "id":"e71c479a-4387-4ba0-820f-da0a3ad115a0",
-    "surname": "Мирзаева",
-    "name": "Диана",
-    "patronymic": "Сергеевна",
-    "date": "1993-02-08T00:00:00.000+00:00",
-    "phone": "+79148816500",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4511",
-      "numberDocument": "452642",
-      "codeDocument": "770-088",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бутово",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1993-03-15T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-02T00:00:00.000+00:00",
-    "endDate": "2025-12-15T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 9,
-    "price": 1500
-  },
-  {
-    "id":"511bed6d-cdc2-4a6f-9167-842934a00c3c",
-    "surname": "Котов",
-    "name": "Павел",
-    "patronymic": "Юрьевич",
-    "date": "1992-08-03T00:00:00.000+00:00",
-    "phone": "+79037260448",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4517",
-      "numberDocument": "785343",
-      "codeDocument": "770-082",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Вешняки",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1992-08-11T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-10T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": true,
-    "animals": 2,
-    "object": 4,
-    "price": 1500
-  },
-  {
-    "id":"35cea510-ae07-498a-a6a1-f30c10cad07a",
-    "surname": "Петухов",
-    "name": "Иван",
-    "patronymic": "Николаевич",
-    "date": "1995-03-10T00:00:00.000+00:00",
-    "phone": "+79688373539",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4518",
-      "numberDocument": "112255",
-      "codeDocument": "770-085",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бирюлево-Восточное",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1995-03-115T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-03T00:00:00.000+00:00",
-    "endDate": "2025-12-11T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 3,
-    "price": 8000
-  },
-  {
-    "id":"a8351e38-ac38-4a44-9fdc-c503847dd4ba",
-    "surname": "Арзаева",
-    "name": "Кристина",
-    "patronymic": "Сергеевна",
-    "date": "1986-10-11T00:00:00.000+00:00",
-    "phone": "+79106295047",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4511",
-      "numberDocument": "865443",
-      "codeDocument": "770-083",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Измайлово",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1986-10-25T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-08T00:00:00.000+00:00",
-    "endDate": "2025-12-10T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": true,
-    "house": 5,
-    "animal": false,
-    "animals": null,
-    "object": 8,
-    "price": 10000
-  },
-  {
-    "id":"ee773521-92ce-46cb-8e49-da88683d9798",
-    "surname": "Кислов",
-    "name": "Петр",
-    "patronymic": "Павлович",
-    "date": "1988-05-12T00:00:00.000+00:00",
-    "phone": "+79263472779",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4512",
-      "numberDocument": "241522",
-      "codeDocument": "770-089",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Новокосино",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1988-05-17T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-02T00:00:00.000+00:00",
-    "endDate": "2025-12-17T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 1,
-    "price": 1000
-  },
-  {
-    "id":"f27693e4-b824-45d6-8673-9d1ae1d1d47e",
-    "surname": "Попов",
-    "name": "Александр",
-    "patronymic": "Михайлович",
-    "date": "1990-04-10T00:00:00.000+00:00",
-    "phone": "+79168371011",
-    "selectedDoc":"passport",
-    "passport":{
-       "seriesDocument": "4500",
-      "numberDocument": "200564",
-      "codeDocument": "770-080",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Рублево",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1990-04-19T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-16T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": true,
-    "animals": 1,
-    "object": 9,
-    "price": 12500
-  },
-  {
-    "id":"d58425db-0dcd-4c1f-bde2-662e7c888e55",
-    "surname": "Михайлов",
-    "name": "Аресений",
-    "patronymic": "Иванович",
-    "date": "1991-05-18T00:00:00.000+00:00",
-    "phone": "+79671335013",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4510",
-      "numberDocument": "200534",
-      "codeDocument": "770-081",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Косино",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1991-05-29T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-11-30T00:00:00.000+00:00",
-    "endDate": "2025-12-10T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 8,
-    "price": 2000
-  },
-  {
-    "id":"e18164d9-ce3a-45d0-92a9-bfa802f7688b",
-    "surname": "Уткина",
-    "name": "Светлана",
-    "patronymic": "Витальевна",
-    "date": "1994-01-20T00:00:00.000+00:00",
-    "phone": "+79162493723",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4519",
-      "numberDocument": "377334",
-      "codeDocument": "770-087",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Жулебино",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1994-03-15T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-11T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 7,
-    "price": 1500
-  },
-  {
-    "id":"851f9a39-2d1a-4fa9-9c63-b1685a3cc07d",
-    "surname": "Рябова",
-    "name": "Ольга",
-    "patronymic": "Николаевна",
-    "date": "1992-01-20T00:00:00.000+00:00",
-    "phone": "+79199203419",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4511",
-      "numberDocument": "3387312",
-      "codeDocument": "770-082",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бутово",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1992-02-11T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-12T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 7,
-    "price": 1500
-  },
-  {
-    "id":"ad98c798-6bfa-4cc7-a78e-039850d9d1c6",
-    "surname": "Рябов",
-    "name": "Олег",
-    "patronymic": "Викторович",
-    "date": "1992-01-20T00:00:00.000+00:00",
-    "phone": "+79199203419",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4511",
-      "numberDocument": "3387312",
-      "codeDocument": "770-082",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бутово",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1992-02-11T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-13T00:00:00.000+00:00",
-    "car": true,
-    "cars": "С802ЕК197",
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 7,
-    "price": 1500
-  },
-  {
-    "id":"20ff5170-16a8-4e0b-b247-758f53dd7c1b",
-    "surname": "Лобанов",
-    "name": "Глеб",
-    "patronymic": "Викторович",
-    "date": "1991-04-10T00:00:00.000+00:00",
-    "phone": "+79168371011",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4500",
-      "numberDocument": "200564",
-      "codeDocument": "770-080",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Рублево",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1991-05-19T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-13T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": true,
-    "animals": 1,
-    "object": 9,
-    "price": 12500
-  },
-  {
-    "id":"e00f65cf-fc5d-47ee-980b-9f4678965998",
-    "surname": "Семенов",
-    "name": "Даниил",
-    "patronymic": "Павлович",
-    "date": "2000-08-18T00:00:00.000+00:00",
-    "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4512",
-      "numberDocument": "255634",
-      "codeDocument": "770-089",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Медведково",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "2000-09-21T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-02T00:00:00.000+00:00",
-    "endDate": "2025-12-14T00:00:00.000+00:00",
-    "home": false,
-    "house": null,
-    "car": true,
-    "cars": "Н122АК150",
-    "animal": true,
-    "animals": 1,
-    "object": 3,
-    "price": 1500
-  },
-  {
-    "id":"51a52d8d-86e0-4415-a711-c276c4d6aa3d",
-    "surname": "Мальцева",
-    "name": "Маргарита",
-    "patronymic": "Александровна",
-    "date": "1980-04-14T00:00:00.000+00:00",
-    "phone": "+79068124233",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4518",
-      "numberDocument": "364363",
-      "codeDocument": "770-087",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Гольяново",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1980-05-15T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-15T00:00:00.000+00:00",
-    "home": true,
-    "house": 6,
-    "car": false,
-    "cars": null,
-    "animal": false,
-    "animals": null,
-    "object": 1,
-    "price": 5000
-  },
-  {
-    "id":"35ac3777-1b99-4f8a-b263-865924e5fd5f",
-    "surname": "Егорова",
-    "name": "Анна",
-    "patronymic": "Владимировна",
-    "date": "1992-08-03T00:00:00.000+00:00",
-    "phone": "+79037260448",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4517",
-      "numberDocument": "785343",
-      "codeDocument": "770-082",
-      "issuedDocument": "Отделом УФМС России по гор. Москве по району Вешняки",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1992-08-11T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-01T00:00:00.000+00:00",
-    "endDate": "2025-12-16T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": true,
-    "animals": 2,
-    "object": 4,
-    "price": 1500
-  },
-  {
-    "id":"bb7065d7-ccec-456a-8405-0a9c16f6ad0a",
-    "surname": "Кисегач",
-    "name": "Ирина",
-    "patronymic": "Романовна",
-    "date": "1995-03-10T00:00:00.000+00:00",
-    "phone": "+79688373539",
-    "selectedDoc":"passport",
-    "passport":{
-      "seriesDocument": "4518",
-      "numberDocument": "112255",
-      "codeDocument": "770-085",
-      "issuedDocument":"Отделом УФМС России по гор. Москве по району Бирюлево-Восточное",
-      "cityDocument": "РОССИЯ, город Москва",
-      "dateDocument": "1995-03-115T00:00:00.000+00:00"
-    },
-     "birth":{
-      "seriesDocument": "",
-      "numberDocument": "",
-      "dateDocument": "",
-      "actNumberDocument":"",
-      "cityDocument": "",
-      "issuedDocument": ""
-    },
-    "other":{
-      "typeDocument":"",
-      "dataDocument": ""
-    },
-    "startDate": "2025-12-03T00:00:00.000+00:00",
-    "endDate": "2025-12-17T00:00:00.000+00:00",
-    "car": false,
-    "cars": null,
-    "home": false,
-    "house": null,
-    "animal": false,
-    "animals": null,
-    "object": 3,
-    "price": 8000
-  },
-  {
-    "id":"ece2f1ea-48c2-43f6-af9c-02dade5f428a",
-    "surname": "Титова",
-    "name": "София",
-    "patronymic": "Борисовна",
-    "date": "1999-08-21T00:00:00.000+00:00",
-    "phone": "+79251542184",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4513",
       "numberDocument": "274242",
       "codeDocument": "770-082",
@@ -834,38 +138,778 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "1999-08-23T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
-    "startDate": "2025-12-03T00:00:00.000+00:00",
-    "endDate": "2025-12-18T00:00:00.000+00:00",
-    "car": false,
+    "startDate": "2025-12-07T00:00:00.000+00:00",
+    "endDate": "2025-12-12T00:00:00.000+00:00",
+    "isCars": false,
     "cars": null,
-    "home": false,
+    "transportType": null,
+    "isHouse": false,
     "house": null,
-    "animal": true,
+    "tentType": "own",
+    "isAnimals": true,
     "animals": 1,
     "object": 2,
     "price": 7500
   },
   {
-    "id":"0361a085-6063-4ebe-9525-da2137085065",
+    "id": "6b379513-555b-4c11-9167-4537c797e69e",
+    "surname": "Петров",
+    "name": "Илья",
+    "patronymic": "Павлович",
+    "date": "1986-06-16T00:00:00.000+00:00",
+    "phone": "+79251445456",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4511",
+      "numberDocument": "732524",
+      "codeDocument": "770-083",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бибирево",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1986-06-15T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-02T00:00:00.000+00:00",
+    "endDate": "2025-12-14T00:00:00.000+00:00",
+    "isCars": true,
+    "cars": "С521КК77",
+    "transportType": "car",
+    "isHouse": false,
+    "house": null,
+    "tentType": "standard",
+    "isAnimals": false,
+    "animals": null,
+    "object": 2,
+    "price": 3000
+  },
+  {
+    "id": "6c4522cf-e47c-4a08-9e23-8119b19cb45f",
+    "surname": "Кузнецов",
+    "name": "Роман",
+    "patronymic": "Иванович",
+    "date": "1995-06-07T00:00:00.000+00:00",
+    "phone": "+79259202678",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4511",
+      "numberDocument": "622421",
+      "codeDocument": "770-081",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Отрадное",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1995-07-07T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-14T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": true,
+    "house": 3,
+    "tentType": "standard",
+    "isAnimals": false,
+    "animals": null,
+    "object": 7,
+    "price": 2500
+  },
+  {
+    "id": "e71c479a-4387-4ba0-820f-da0a3ad115a0",
+    "surname": "Мирзаева",
+    "name": "Диана",
+    "patronymic": "Сергеевна",
+    "date": "1993-02-08T00:00:00.000+00:00",
+    "phone": "+79148816500",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4511",
+      "numberDocument": "452642",
+      "codeDocument": "770-088",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бутово",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1993-03-15T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-02T00:00:00.000+00:00",
+    "endDate": "2025-12-15T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 9,
+    "price": 1500
+  },
+  {
+    "id": "511bed6d-cdc2-4a6f-9167-842934a00c3c",
+    "surname": "Котов",
+    "name": "Павел",
+    "patronymic": "Юрьевич",
+    "date": "1992-08-03T00:00:00.000+00:00",
+    "phone": "+79037260448",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4517",
+      "numberDocument": "785343",
+      "codeDocument": "770-082",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Вешняки",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1992-08-11T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-10T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "premium",
+    "isAnimals": true,
+    "animals": 2,
+    "object": 4,
+    "price": 1500
+  },
+  {
+    "id": "35cea510-ae07-498a-a6a1-f30c10cad07a",
+    "surname": "Петухов",
+    "name": "Иван",
+    "patronymic": "Николаевич",
+    "date": "1995-03-10T00:00:00.000+00:00",
+    "phone": "+79688373539",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4518",
+      "numberDocument": "112255",
+      "codeDocument": "770-085",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бирюлево-Восточное",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1995-03-115T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-03T00:00:00.000+00:00",
+    "endDate": "2025-12-11T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 3,
+    "price": 8000
+  },
+  {
+    "id": "a8351e38-ac38-4a44-9fdc-c503847dd4ba",
+    "surname": "Арзаева",
+    "name": "Кристина",
+    "patronymic": "Сергеевна",
+    "date": "1986-10-11T00:00:00.000+00:00",
+    "phone": "+79106295047",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4511",
+      "numberDocument": "865443",
+      "codeDocument": "770-083",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Измайлово",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1986-10-25T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-08T00:00:00.000+00:00",
+    "endDate": "2025-12-10T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": true,
+    "house": 5,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 8,
+    "price": 10000
+  },
+  {
+    "id": "ee773521-92ce-46cb-8e49-da88683d9798",
+    "surname": "Кислов",
+    "name": "Петр",
+    "patronymic": "Павлович",
+    "date": "1988-05-12T00:00:00.000+00:00",
+    "phone": "+79263472779",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4512",
+      "numberDocument": "241522",
+      "codeDocument": "770-089",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Новокосино",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1988-05-17T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-02T00:00:00.000+00:00",
+    "endDate": "2025-12-17T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 1,
+    "price": 1000
+  },
+  {
+    "id": "f27693e4-b824-45d6-8673-9d1ae1d1d47e",
+    "surname": "Попов",
+    "name": "Александр",
+    "patronymic": "Михайлович",
+    "date": "1990-04-10T00:00:00.000+00:00",
+    "phone": "+79168371011",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4500",
+      "numberDocument": "200564",
+      "codeDocument": "770-080",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Рублево",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1990-04-19T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-16T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "family",
+    "isAnimals": true,
+    "animals": 1,
+    "object": 9,
+    "price": 12500
+  },
+  {
+    "id": "d58425db-0dcd-4c1f-bde2-662e7c888e55",
+    "surname": "Михайлов",
+    "name": "Аресений",
+    "patronymic": "Иванович",
+    "date": "1991-05-18T00:00:00.000+00:00",
+    "phone": "+79671335013",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4510",
+      "numberDocument": "200534",
+      "codeDocument": "770-081",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Косино",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1991-05-29T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-11-30T00:00:00.000+00:00",
+    "endDate": "2025-12-10T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "family",
+    "isAnimals": false,
+    "animals": null,
+    "object": 8,
+    "price": 2000
+  },
+  {
+    "id": "e18164d9-ce3a-45d0-92a9-bfa802f7688b",
+    "surname": "Уткина",
+    "name": "Светлана",
+    "patronymic": "Витальевна",
+    "date": "1994-01-20T00:00:00.000+00:00",
+    "phone": "+79162493723",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4519",
+      "numberDocument": "377334",
+      "codeDocument": "770-087",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Жулебино",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1994-03-15T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-11T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 7,
+    "price": 1500
+  },
+  {
+    "id": "851f9a39-2d1a-4fa9-9c63-b1685a3cc07d",
+    "surname": "Рябова",
+    "name": "Ольга",
+    "patronymic": "Николаевна",
+    "date": "1992-01-20T00:00:00.000+00:00",
+    "phone": "+79199203419",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4511",
+      "numberDocument": "3387312",
+      "codeDocument": "770-082",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бутово",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1992-02-11T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-12T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 7,
+    "price": 1500
+  },
+  {
+    "id": "ad98c798-6bfa-4cc7-a78e-039850d9d1c6",
+    "surname": "Рябов",
+    "name": "Олег",
+    "patronymic": "Викторович",
+    "date": "1992-01-20T00:00:00.000+00:00",
+    "phone": "+79199203419",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4511",
+      "numberDocument": "3387312",
+      "codeDocument": "770-082",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бутово",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1992-02-11T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-13T00:00:00.000+00:00",
+    "isCars": true,
+    "cars": "С802ЕК197",
+    "transportType": "cars",
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 7,
+    "price": 1500
+  },
+  {
+    "id": "20ff5170-16a8-4e0b-b247-758f53dd7c1b",
+    "surname": "Лобанов",
+    "name": "Глеб",
+    "patronymic": "Викторович",
+    "date": "1991-04-10T00:00:00.000+00:00",
+    "phone": "+79168371011",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4500",
+      "numberDocument": "200564",
+      "codeDocument": "770-080",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Рублево",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1991-05-19T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-13T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": true,
+    "animals": 1,
+    "object": 9,
+    "price": 12500
+  },
+  {
+    "id": "e00f65cf-fc5d-47ee-980b-9f4678965998",
+    "surname": "Семенов",
+    "name": "Даниил",
+    "patronymic": "Павлович",
+    "date": "2000-08-18T00:00:00.000+00:00",
+    "phone": "+79501674030",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4512",
+      "numberDocument": "255634",
+      "codeDocument": "770-089",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Медведково",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "2000-09-21T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-02T00:00:00.000+00:00",
+    "endDate": "2025-12-14T00:00:00.000+00:00",
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isCars": true,
+    "cars": "Н122АК150",
+    "transportType": "car",
+    "isAnimals": true,
+    "animals": 1,
+    "object": 3,
+    "price": 1500
+  },
+  {
+    "id": "51a52d8d-86e0-4415-a711-c276c4d6aa3d",
+    "surname": "Мальцева",
+    "name": "Маргарита",
+    "patronymic": "Александровна",
+    "date": "1980-04-14T00:00:00.000+00:00",
+    "phone": "+79068124233",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4518",
+      "numberDocument": "364363",
+      "codeDocument": "770-087",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Гольяново",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1980-05-15T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-15T00:00:00.000+00:00",
+    "isHouse": true,
+    "house": 6,
+    "tentType": "own",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isAnimals": false,
+    "animals": null,
+    "object": 1,
+    "price": 5000
+  },
+  {
+    "id": "35ac3777-1b99-4f8a-b263-865924e5fd5f",
+    "surname": "Егорова",
+    "name": "Анна",
+    "patronymic": "Владимировна",
+    "date": "1992-08-03T00:00:00.000+00:00",
+    "phone": "+79037260448",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4517",
+      "numberDocument": "785343",
+      "codeDocument": "770-082",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Вешняки",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1992-08-11T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-01T00:00:00.000+00:00",
+    "endDate": "2025-12-16T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "premium",
+    "isAnimals": true,
+    "animals": 2,
+    "object": 4,
+    "price": 1500
+  },
+  {
+    "id": "bb7065d7-ccec-456a-8405-0a9c16f6ad0a",
+    "surname": "Кисегач",
+    "name": "Ирина",
+    "patronymic": "Романовна",
+    "date": "1995-03-10T00:00:00.000+00:00",
+    "phone": "+79688373539",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4518",
+      "numberDocument": "112255",
+      "codeDocument": "770-085",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Бирюлево-Восточное",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1995-03-115T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-03T00:00:00.000+00:00",
+    "endDate": "2025-12-17T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": false,
+    "animals": null,
+    "object": 3,
+    "price": 8000
+  },
+  {
+    "id": "ece2f1ea-48c2-43f6-af9c-02dade5f428a",
+    "surname": "Титова",
+    "name": "София",
+    "patronymic": "Борисовна",
+    "date": "1999-08-21T00:00:00.000+00:00",
+    "phone": "+79251542184",
+    "selectedDoc": "passport",
+    "passport": {
+      "seriesDocument": "4513",
+      "numberDocument": "274242",
+      "codeDocument": "770-082",
+      "issuedDocument": "Отделом УФМС России по гор. Москве по району Перово",
+      "cityDocument": "РОССИЯ, город Москва",
+      "dateDocument": "1999-08-23T00:00:00.000+00:00"
+    },
+    "birth": {
+      "seriesDocument": "",
+      "numberDocument": "",
+      "dateDocument": "",
+      "actNumberDocument": "",
+      "cityDocument": "",
+      "issuedDocument": ""
+    },
+    "other": {
+      "typeDocument": "",
+      "dataDocument": ""
+    },
+    "startDate": "2025-12-03T00:00:00.000+00:00",
+    "endDate": "2025-12-18T00:00:00.000+00:00",
+    "isCars": false,
+    "cars": null,
+    "transportType": null,
+    "isHouse": false,
+    "house": null,
+    "tentType": "own",
+    "isAnimals": true,
+    "animals": 1,
+    "object": 2,
+    "price": 7500
+  },
+  {
+    "id": "0361a085-6063-4ebe-9525-da2137085065",
     "surname": "Енжаева",
     "name": "Яна",
     "patronymic": "Андреева",
     "date": "2000-08-18T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -873,38 +917,40 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "М653АЛ750",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"ea92d7f4-a7fe-4adf-9d1a-51744269978c",
+    "id": "ea92d7f4-a7fe-4adf-9d1a-51744269978c",
     "surname": "Чучелкчина",
     "name": "Елена",
     "patronymic": "Викторовна",
     "date": "1973-08-09T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -912,38 +958,40 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "Г693ТТ150",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"0ef37f99-1568-42f9-ac59-aeb657de6295",
+    "id": "0ef37f99-1568-42f9-ac59-aeb657de6295",
     "surname": "Чучелкчин",
     "name": "Константин",
     "patronymic": "Владимирович",
     "date": "1973-08-09T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -951,38 +999,40 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "Т192УУ150",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"bfeb4834-5099-40e3-9e0c-4ecda1a9b126",
+    "id": "bfeb4834-5099-40e3-9e0c-4ecda1a9b126",
     "surname": "Чучелкчин",
     "name": "Константин",
     "patronymic": "Владимирович",
     "date": "1973-08-09T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -990,38 +1040,40 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "standard",
+    "isCars": true,
     "cars": "Н356АВ150",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"7e4ff306-d448-4c64-bdd2-c5e82da43e28",
+    "id": "7e4ff306-d448-4c64-bdd2-c5e82da43e28",
     "surname": "Чучелкчина",
     "name": "Анна",
     "patronymic": "Владимировна",
     "date": "1973-08-09T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -1029,38 +1081,40 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "Т953ЕК197",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"8948ead7-c778-424b-be9a-c4a0593b3e05",
+    "id": "8948ead7-c778-424b-be9a-c4a0593b3e05",
     "surname": "Чучелкчин",
     "name": "Сергей",
     "patronymic": "Владимирович",
     "date": "1973-08-09T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -1068,38 +1122,40 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "Р985АП177",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"13c08bb5-6fc7-43f6-a52e-7e0e026e0603",
+    "id": "13c08bb5-6fc7-43f6-a52e-7e0e026e0603",
     "surname": "Чучелкчин",
     "name": "Егор",
     "patronymic": "Владимирович",
     "date": "1973-08-09T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -1107,38 +1163,40 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": false,
+    "isHouse": false,
     "house": null,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "М567ЕН197",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500
   },
   {
-    "id":"bf0fa766-4eaa-43cf-b2ce-9eb6b80fcd7e",
+    "id": "bf0fa766-4eaa-43cf-b2ce-9eb6b80fcd7e",
     "surname": "Чучелкчин",
     "name": "Владимир",
     "patronymic": "Сергеевич",
     "date": "1973-08-09T00:00:00.000+00:00",
     "phone": "+79501674030",
-    "selectedDoc":"passport",
-    "passport":{
+    "selectedDoc": "passport",
+    "passport": {
       "seriesDocument": "4512",
       "numberDocument": "255634",
       "codeDocument": "770-089",
@@ -1146,25 +1204,27 @@
       "cityDocument": "РОССИЯ, город Москва",
       "dateDocument": "2000-09-21T00:00:00.000+00:00"
     },
-     "birth":{
+    "birth": {
       "seriesDocument": "",
       "numberDocument": "",
       "dateDocument": "",
-      "actNumberDocument":"",
+      "actNumberDocument": "",
       "cityDocument": "",
       "issuedDocument": ""
     },
-    "other":{
-      "typeDocument":"",
+    "other": {
+      "typeDocument": "",
       "dataDocument": ""
     },
     "startDate": "2025-11-30T00:00:00.000+00:00",
     "endDate": "2025-12-11T00:00:00.000+00:00",
-    "home": true,
+    "isHouse": true,
     "house": 4,
-    "car": true,
+    "tentType": "own",
+    "isCars": true,
     "cars": "С352ГР150",
-    "animal": true,
+    "transportType": "car",
+    "isAnimals": true,
     "animals": 1,
     "object": 3,
     "price": 1500

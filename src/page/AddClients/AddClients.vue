@@ -127,38 +127,48 @@
                   <hr />
                   <!-- Дополнительные данные -->
                   <h3 class="form-subtitle">Дополнительные данные</h3>
-                  <div class="grid-boolean">
+                  <div class="grid-inputs">
+                    <v-text-field v-model="person.object" label="Поляна" variant="outlined" density="comfortable"
+                      rounded="lg" clearable v-mask="'#########'" />
+
+                    <v-select v-model="person.tentType" :items="tentTypes" item-title="title" item-value="value"
+                      label="Палатка" variant="outlined" density="comfortable" rounded="lg" />
+                  </div>
+                  <div class="grid-inputs">
                     <div>
-                      <v-text-field v-model="person.object" label="Номер поляны" variant="outlined"
+                      <div class="d-flex align-center rent">
+                        <Switch v-model="person.isAnimals" :tumbler="person.isAnimals" :disable="false" :form="true" />
+                        <v-label class="me-2" @click="person.isAnimals = !person.isAnimals">Животные:</v-label>
+                      </div>
+                      <v-text-field v-model="person.animals" :disabled="!person.isAnimals"
+                        :class="{ 'input-disable': !person.isAnimals }" label="Количество животных" variant="outlined"
                         density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
-                        <v-label class="me-2" @click="person.car = !person.car">Транспорт:</v-label>
-                        <Switch v-model="person.car" :tumbler="person.car" :disable="false" :form="true" />
-                        <v-text-field v-if="person.car" v-model="person.cars" :disabled="!person.car"
-                          :class="{ 'input-disable': !person.car }" label="Номер транспорта" variant="outlined"
-                          density="comfortable" rounded="lg" clearable />
+                        <Switch v-model="person.isHouse" :tumbler="person.isHouse" :disable="false" :form="true" />
+                        <v-label @click="person.isHouse = !person.isHouse" class="me-2">Аренда домика:</v-label>
                       </div>
+                      <v-text-field v-model="person.house" :disabled="!person.isHouse"
+                        :class="{ 'input-disable': !person.isHouse }" label="Номер домика" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
-                    <div>
-                      <div class="d-flex align-center rent">
-                        <v-label @click="person.home = !person.home" class="me-2">Аренда домика:</v-label>
-                        <Switch v-model="person.home" :tumbler="person.house" :disable="false" :form="true" />
-                        <v-text-field v-if="person.home" v-model="person.house" :disabled="!person.home"
-                          :class="{ 'input-disable': !person.home }" label="Номер домика" variant="outlined"
-                          density="comfortable" rounded="lg" clearable v-mask="'#########'" />
-                      </div>
+                  </div>
+                  <div class="grid-inputs">
+                    <div class="d-flex align-center rent">
+                      <Switch v-model="person.isCars" :tumbler="person.isCars" :disable="false" :form="true" />
+                      <v-label class="me-2" @click="person.isCars = !person.isCars">Транспорт:</v-label>
                     </div>
-                    <div>
-                      <div class="d-flex align-center rent">
-                        <v-label class="me-2" @click="person.animal = !person.animal">Животные:</v-label>
-                        <Switch v-model="person.animal" :tumbler="person.animal" :disable="false" :form="true" />
-                        <v-text-field v-if="person.animal" v-model="person.animals" :disabled="!person.animal"
-                          :class="{ 'input-disable': !person.animal }" label="Количество животных" variant="outlined"
-                          density="comfortable" rounded="lg" clearable v-mask="'#########'" />
-                      </div>
-                    </div>
+                  </div>
+                  <div class="grid-inputs">
+                    <v-select v-model="person.transportType" label="Тип" :items="transportTypes"
+                      :disabled="!person.isCars" item-title="title" item-value="value" density="comfortable"
+                      variant="outlined" rounded="lg" class="small-select" />
+                    <v-text-field v-if="person.transportType === 'car'" v-model="person.cars" label="Номер"
+                      :disabled="!person.isCars" variant="outlined" density="comfortable" rounded="lg" clearable
+                      v-mask="'S###SS###'" />
+                    <v-text-field v-else v-model="person.cars" label="Номер" :disabled="!person.isCars"
+                      variant="outlined" density="comfortable" rounded="lg" clearable v-mask="'####SS##'" />
                   </div>
                   <hr />
                   <h3 class="form-subtitle result">Стоимость: </h3><span>0</span>
@@ -191,11 +201,27 @@ const openedPanel = ref([0]);
 const persons = reactive([createPerson()]);
 const price = ref(null);
 
+const transportTypes = [
+  { title: "Машина / Автодом", value: "car" },
+  { title: "Мотоцикл", value: "motorcycle" },
+];
+const tentTypes = [
+  { title: "Своя", value: "own" },
+  { title: "Стандарт", value: "standard" },
+  { title: "Семейная", value: "family" },
+  { title: "Премиум", value: "premium" },
+];
+
+
 function createPerson() {
   const emptyDoc = { seriesDocument: "", numberDocument: "", issuedDocument: "", cityDocument: "", dateDocument: "", dateInternal: null, dateMenu: false };
   return {
     surname: "", name: "", patronymic: "", date: "", phone: "", object: null,
-    car: false, cars: null, animal: false, animals: null, house: false, home: null,
+    isCars: false, cars: null,
+    isAnimals: false, animals: null,
+    isHouse: null, house: false,
+    tentType: "own",
+    transportType: "car",
     startDate: null, endDate: null, price: null,
     dateMenu: false, startDateMenu: false, endDateMenu: false,
     dateInternal: null, startDateInternal: null, endDateInternal: null,
@@ -246,7 +272,7 @@ const onDocDateSelect = (val, index, docType) => {
 
 const isChanged = computed(() =>
   persons.some(p => p.surname || p.name || p.patronymic || p.date || p.phone || p.object ||
-    (p.car && p.cars) || (p.animal && p.animals) || (p.house && p.home) ||
+    (p.isCars && p.cars) || (p.isAnimals && p.animals) || (p.house && p.isHouse) ||
     p.startDate || p.endDate || p.price
   )
 );
@@ -287,6 +313,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 <style scoped>
 @import "./../../../public/form.css";
+
 
 .content {
   margin-top: 20px;
@@ -352,7 +379,7 @@ span {
   }
 }
 
-@media (max-width: 1125px) {
+@media (max-width: 1150px) {
 
   .content,
   .wrapper_content {
@@ -373,7 +400,8 @@ span {
     padding: 10px 0;
   }
 
-  .grid-inputs, .grid-boolean {
+  .grid-inputs,
+  .grid-boolean {
     grid-template-columns: 1fr;
   }
 }
