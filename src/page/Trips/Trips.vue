@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <Title :title="title" icon="mdi-calendar-clock-outline" />
-      <v-card style="min-height:85vh;position:relative;z-index:2; padding: 10px 0 !important;">
+      <v-card style="position:relative;z-index:2; padding: 10px 0 !important;">
         <div class="tabs-container desktop-only">
           <div class="tabs-switch tabs-custom">
             <div class="tabs-slider" :style="sliderStyle"></div>
@@ -147,9 +147,10 @@ const filteredSortedItems = computed(() => {
 }
 
 @media (max-width: 700px) {
-  .search_block{
+  .search_block {
     margin-top: 0;
   }
+  
   .no_data {
     margin-top: 5px;
   }

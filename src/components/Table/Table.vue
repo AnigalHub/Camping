@@ -1,5 +1,8 @@
 <template>
   <div class="content">
+    <!-- <v-btn v-if="!isDesktop" prepend-icon="mdi-truck-fast" variant="text" size="small" class="d-flex btn-departed">
+      Показать всех выехавших
+    </v-btn> -->
     <v-table fixed-header striped="even" ref="tableRef">
       <thead ref="theadRef">
         <template v-for="(headerRow, rowIndex) in headers" :key="rowIndex">
@@ -17,8 +20,8 @@
         <tr v-for="(item, index) in paginatedItems" :key="index">
           <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :data-label="col.label" :class="[
             col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
-            col.key === 'buttons' ? 'bg-buttons' : ''
-          ]">
+            col.key === 'buttons' ? 'bg-buttons' : '']"
+          >
             <template v-if="col.key === 'fio'">
               <div class="fio-wrapper">
                 <span>{{ item.surname }}</span>
@@ -107,6 +110,7 @@ const route = useRoute();
 const props = defineProps({ headers: Array, items: Array });
 const store = useStore();
 const Information = shallowRef(loadComponent("Information"));
+const Expenses = shallowRef(loadComponent("Expenses"));
 
 const tableRef = ref(null);
 const tbodyRef = ref(null);
@@ -148,7 +152,7 @@ const onModalDocuments = async (name, item, disable) => {
     //обновление объекта (строки таблицы)
 
     //ниже временное не серверное решение
-    const index = props.items.findIndex(i => i.name === updated.name);
+    const index = props.items.findIndex(i => i.id === updated.id);
     if (index !== -1) {
       props.items[index] = { ...updated };
     }
@@ -156,12 +160,22 @@ const onModalDocuments = async (name, item, disable) => {
     resolve();
   };
 
-  await callModalWindow(store, {
-    name: "Information",
-    component: Information,
-    props: { name, object: copy, disable },
-    params: { onSubmit },
-  });
+  if(route.name === 'AdditionalCosts'){
+     await callModalWindow(store, {
+      name: "Expenses",
+      component: Expenses,
+      props: { name, object: copy, disable },
+      params: { onSubmit },
+    });
+  }
+  else{
+    await callModalWindow(store, {
+      name: "Information",
+      component: Information,
+      props: { name, object: copy, disable },
+      params: { onSubmit },
+    });
+  }
 };
 
 // Ширина колонок
@@ -218,6 +232,23 @@ watch(() => props.items, updateColumnWidths, { deep: true });
 </style>
 
 <style scoped>
+.btn-departed {
+  background: #ffffff;
+  font-family: var(--font-family);
+  font-size: 1.1rem;
+  color: #c0392b;
+  font-weight: 800;
+  border: 1.6px solid #c0392b;
+  border-radius: 12px;
+  padding: 10px 22px;
+  letter-spacing: .5px;
+  opacity: .7;
+  text-transform: none !important;
+  min-height: 46px;
+  min-width: 100%;
+  margin-bottom: 15px;
+}
+
 .page-input {
   width: 40px;
   height: 30px;
