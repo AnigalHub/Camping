@@ -9,7 +9,7 @@
               @click:outside="closeDateMenuOutside">
               <template #activator="{ props }">
                 <v-text-field 
-                  v-model="date" 
+                  v-model="object.date" 
                   v-bind="props" 
                   label="Дата" 
                   placeholder="дд.мм.гггг" 
@@ -32,7 +32,7 @@
               ></v-date-picker>
             </v-menu>
             <v-textarea 
-              v-model="name" 
+              v-model="object.text" 
               label="Наименование" 
               placeholder="Введите наименование и причины расходов"
               variant="outlined" 
@@ -46,7 +46,7 @@
               clearable
             ></v-textarea>
             <v-text-field 
-              v-model="price" 
+              v-model="object.price" 
               label="Стоимость" 
               placeholder="Введите сумму" 
               variant="outlined"
@@ -72,19 +72,20 @@
 import ExpensesSvg from "./svg/expenses.vue";
 import { ref, onMounted, computed } from "vue";
 
-const date = ref("");
+const object = ref({
+  text: "",
+  date: "",
+  price: "",
+});
+
 const dateMenu = ref(false);
 const dateInternal = ref(null);
 
-const name = ref("");
-const price = ref("");
-const valid = ref(false);
-
 const isChanged = computed(() => {
   return (
-    date.value &&
-    name.value &&
-    price.value
+    object.value.date &&
+    object.value.text &&
+    object.value.price
   );
 });
 
@@ -104,18 +105,17 @@ onMounted(() => {
   const mm = String(today.getMonth() + 1).padStart(2, "0");
   const dd = String(today.getDate()).padStart(2, "0");
   dateInternal.value = `${yyyy}-${mm}-${dd}`;
-  updateDate(dateInternal.value); // выставляем в поле
+  updateDate(dateInternal.value);
 });
 
-
-// Форматирование даты для отображения
+// Форматирование даты
 function updateDate(val) {
   if (!val) return;
   const d = new Date(val);
   const dd = d.getDate().toString().padStart(2, "0");
   const mm = (d.getMonth() + 1).toString().padStart(2, "0");
   const yyyy = d.getFullYear();
-  date.value = `${dd}.${mm}.${yyyy}`;
+  object.date.value = `${dd}.${mm}.${yyyy}`;
 }
 
 // Закрытие меню при выборе даты
@@ -130,20 +130,11 @@ function closeDateMenuOutside() {
 
 // Маска для цены
 function onPriceInput(e) {
-  price.value = e.target.value.replace(/[^\d]/g, "");
+  object.value.price = e.target.value.replace(/[^\d]/g, "");
 }
 
-function saveForm() {
-  if (valid.value) {
-    console.log({
-      date: date.value,
-      name: name.value,
-      price: price.value,
-    });
-    alert("Форма успешно сохранена!");
-  }
-}
 </script>
+
 
 <style scoped>
 @import "../../../../public/form.css";
