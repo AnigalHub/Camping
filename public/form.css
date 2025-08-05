@@ -124,8 +124,11 @@ hr {
 }
 
 .grid-inputs {
-  display: grid;
   grid-template-columns: 1fr 1fr; 
+}
+
+.grid-inputs, .grid-boolean  {
+  display: grid;
   gap: 0 16px;
 }
 
@@ -142,7 +145,7 @@ hr {
 }
 
 @media (max-width: 780px) {
-  .grid-inputs {
+  .grid-inputs, .grid-boolean {
     grid-template-columns: 1fr;
   }
 }

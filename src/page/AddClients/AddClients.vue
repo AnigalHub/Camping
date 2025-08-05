@@ -54,8 +54,9 @@
                       <v-menu v-model="person.passport.dateMenu" :close-on-content-click="false"
                         transition="scale-transition" offset-y>
                         <template #activator="{ props }">
-                          <v-text-field v-model="person.passport.dateDocument" v-bind="props" label="Дата выдачи" readonly
-                            variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable />
+                          <v-text-field v-model="person.passport.dateDocument" v-bind="props" label="Дата выдачи"
+                            readonly variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar"
+                            rounded="lg" clearable />
                         </template>
                         <v-date-picker v-model="person.passport.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'passport')" />
@@ -71,21 +72,22 @@
                   <!-- Свидетельство о рождении -->
                   <div v-if="person.selectedDoc === 'birth'">
                     <div class="grid-inputs">
-                      <v-text-field v-model="person.birth.seriesDocument" label="Серия" variant="outlined" density="comfortable"
-                        rounded="lg" clearable />
-                      <v-text-field v-model="person.birth.numberDocument" label="Номер" variant="outlined" density="comfortable"
-                        rounded="lg" clearable />
+                      <v-text-field v-model="person.birth.seriesDocument" label="Серия" variant="outlined"
+                        density="comfortable" rounded="lg" clearable />
+                      <v-text-field v-model="person.birth.numberDocument" label="Номер" variant="outlined"
+                        density="comfortable" rounded="lg" clearable />
                       <v-menu v-model="person.birth.dateMenu" :close-on-content-click="false"
                         transition="scale-transition" offset-y>
                         <template #activator="{ props }">
                           <v-text-field v-model="person.birth.dateDocument" v-bind="props" label="Дата выдачи" readonly
-                            variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable />
+                            variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg"
+                            clearable />
                         </template>
                         <v-date-picker v-model="person.birth.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'birth')" />
                       </v-menu>
-                      <v-text-field v-model="person.birth.actNumberDocument" label="Номер акта о рождении" variant="outlined"
-                        density="comfortable" rounded="lg" clearable />
+                      <v-text-field v-model="person.birth.actNumberDocument" label="Номер акта о рождении"
+                        variant="outlined" density="comfortable" rounded="lg" clearable />
                       <v-text-field v-model="person.birth.cityDocument" label="Место рождения" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
                     </div>
@@ -125,17 +127,26 @@
                   <hr />
                   <!-- Дополнительные данные -->
                   <h3 class="form-subtitle">Дополнительные данные</h3>
-                  <div class="grid-inputs">
-                    <v-text-field v-model="person.object" label="Номер поляны" variant="outlined" density="comfortable"
-                      rounded="lg" clearable v-mask="'#########'" />
-                  </div>
-                  <div class="grid-inputs">
+                  <div class="grid-boolean">
+                    <div>
+                      <v-text-field v-model="person.object" label="Номер поляны" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                    </div>
                     <div>
                       <div class="d-flex align-center rent">
                         <v-label class="me-2" @click="person.car = !person.car">Транспорт:</v-label>
                         <Switch v-model="person.car" :tumbler="person.car" :disable="false" :form="true" />
                         <v-text-field v-if="person.car" v-model="person.cars" :disabled="!person.car"
                           :class="{ 'input-disable': !person.car }" label="Номер транспорта" variant="outlined"
+                          density="comfortable" rounded="lg" clearable />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="d-flex align-center rent">
+                        <v-label @click="person.home = !person.home" class="me-2">Аренда домика:</v-label>
+                        <Switch v-model="person.home" :tumbler="person.house" :disable="false" :form="true" />
+                        <v-text-field v-if="person.home" v-model="person.house" :disabled="!person.home"
+                          :class="{ 'input-disable': !person.home }" label="Номер домика" variant="outlined"
                           density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                       </div>
                     </div>
@@ -145,15 +156,6 @@
                         <Switch v-model="person.animal" :tumbler="person.animal" :disable="false" :form="true" />
                         <v-text-field v-if="person.animal" v-model="person.animals" :disabled="!person.animal"
                           :class="{ 'input-disable': !person.animal }" label="Количество животных" variant="outlined"
-                          density="comfortable" rounded="lg" clearable v-mask="'#########'" />
-                      </div>
-                    </div>
-                    <div>
-                      <div class="d-flex align-center rent">
-                        <v-label @click="person.home = !person.home" class="me-2">Аренда домика:</v-label>
-                        <Switch v-model="person.home" :tumbler="person.house" :disable="false" :form="true" />
-                        <v-text-field v-if="person.home" v-model="person.house" :disabled="!person.home"
-                          :class="{ 'input-disable': !person.home }" label="Номер домика" variant="outlined"
                           density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                       </div>
                     </div>
@@ -258,13 +260,15 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 }
 
 .v-selection-control-group {
-  flex-direction: row ;
+  flex-direction: row;
+  margin-top: -15px;
+  margin-bottom: -10px;
 }
 
 @media (max-width: 610px) {
   .v-selection-control-group {
-  flex-direction: column;
-}
+    flex-direction: column;
+  }
 }
 
 .client .v-expansion-panel-text__wrapper {
@@ -279,8 +283,6 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .v-expansion-panel--active:not(:first-child) {
   margin-top: 0 !important;
 }
-
-
 </style>
 
 <style scoped>
@@ -292,8 +294,8 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   height: 76.5vh;
 }
 
-.wrapper_content{
-  overflow: auto; 
+.wrapper_content {
+  overflow: auto;
   height: 74vh;
 }
 
@@ -322,6 +324,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   float: left;
   margin-right: 5px;
 }
+
 .result_block .result:first-of-type {
   margin-top: 10px;
 }
@@ -335,6 +338,10 @@ span {
   font-weight: 500;
 }
 
+.grid-boolean {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .grid-inputs {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -346,20 +353,22 @@ span {
 }
 
 @media (max-width: 1100px) {
-  .content, .wrapper_content {
+
+  .content,
+  .wrapper_content {
     height: auto;
   }
 }
 
 @media (max-width: 600px) {
-  .result_block{
+  .result_block {
     padding: 5px 10px;
   }
 
   .result_block {
     width: 100%;
   }
-  
+
   .content {
     padding: 10px 0;
   }

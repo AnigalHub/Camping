@@ -63,25 +63,26 @@
       <div v-if="object.selectedDoc === 'birth'">
         <div class="grid-inputs">
           <v-text-field v-model="object.birth.seriesDocument" label="Серия" variant="outlined" density="comfortable"
-            rounded="lg" clearable />
+            rounded="lg" clearable :disabled="disable" />
           <v-text-field v-model="object.birth.numberDocument" label="Номер" variant="outlined" density="comfortable"
-            rounded="lg" clearable />
+            rounded="lg" clearable :disabled="disable" />
           <v-menu v-model="object.birth.dateMenu" :close-on-content-click="false" transition="scale-transition"
             offset-y>
             <template #activator="{ props }">
               <v-text-field v-model="object.birth.dateDocument" v-bind="props" label="Дата выдачи" readonly
-                variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable />
+                variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable
+                :disabled="disable" />
             </template>
             <v-date-picker v-model="object.birth.dateInternal" locale="ru" hide-header
               @update:model-value="onBirthDateSelect" />
           </v-menu>
           <v-text-field v-model="object.birth.actNumberDocument" label="Номер акта о рождении" variant="outlined"
-            density="comfortable" rounded="lg" clearable />
+            density="comfortable" rounded="lg" clearable :disabled="disable" />
           <v-text-field v-model="object.birth.cityDocument" label="Место рождения" variant="outlined"
-            density="comfortable" rounded="lg" clearable />
+            density="comfortable" rounded="lg" clearable :disabled="disable" />
         </div>
         <v-text-field v-model="object.birth.issuedDocument" label="Место государственной регистрации" variant="outlined"
-          density="comfortable" rounded="lg" clearable />
+          density="comfortable" rounded="lg" clearable :disabled="disable" />
       </div>
       <!-- Иное -->
       <div v-if="object.selectedDoc === 'other'">
@@ -114,6 +115,44 @@
               @update:model-value="val => onDateSelect(val, 'endDate')" />
           </v-menu>
         </div>
+        <hr />
+        <!-- Дополнительные данные -->
+        <h3 class="form-subtitle">Дополнительные данные</h3>
+        <div class="grid-boolean">
+          <div>
+            <v-text-field v-model="object.object" label="Номер поляны" variant="outlined" density="comfortable"
+              rounded="lg" clearable v-mask="'#########'" :disabled="disable" />
+          </div>
+          <div>
+            <div class="d-flex align-center rent">
+              <v-label class="me-2" @click="!disable && (object.car = !object.car)">Транспорт:</v-label>
+              <Switch v-model="object.car" :tumbler="object.car" :disable="disable" :form="true" />
+              <v-text-field v-if="object.car" v-model="object.cars" :disable="disable"
+                :class="{ 'input-disable': !object.car }" label="Номер транспорта" variant="outlined"
+                density="comfortable" rounded="lg" clearable />
+            </div>
+          </div>
+          <div>
+            <div class="d-flex align-center rent">
+              <v-label @click="!disable && (object.home = !object.home)" class="me-2">Аренда домика:</v-label>
+              <Switch v-model="object.home" :tumbler="object.home" :disabled="disable" :form="true" />
+              <v-text-field v-if="object.home" v-model="object.house" :disable="disable"
+                :class="{ 'input-disable': !object.home }" label="Номер домика" variant="outlined" density="comfortable"
+                rounded="lg" clearable v-mask="'#########'" />
+            </div>
+          </div>
+          <div>
+            <div class="d-flex align-center rent">
+              <v-label class="me-2" @click="!disable && (object.animal = !object.animal)">Животные:</v-label>
+              <Switch v-model="object.animal" :tumbler="object.animal" :disable="disable" :form="true" />
+              <v-text-field v-if="object.animal" v-model="object.animals" :disabled="disable"
+                :class="{ 'input-disable': !object.animal }" label="Количество животных" variant="outlined"
+                density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+            </div>
+          </div>
+        </div>
+        <hr />
+        <h3 class="form-subtitle result">Стоимость: </h3><span>{{ object.price }}</span>
       </div>
     </v-form>
     <!-- Кнопки -->
@@ -237,6 +276,8 @@ const title = computed(() => {
 
 .v-selection-control-group {
   flex-direction: row;
+  margin-top: -15px;
+  margin-bottom: -10px;
 }
 
 @media (max-width: 610px) {
@@ -249,6 +290,21 @@ const title = computed(() => {
 <style scoped>
 @import "./../../../public/form.css";
 
+.rent {
+  height: 60px;
+}
+
+.rent .v-switch {
+  margin-right: 10px;
+}
+
+.result_block {
+  padding: 10px 15px;
+  border: 1.5px solid #4a90e2;
+  margin: 5px auto 20px;
+  width: 60%;
+  border-radius: 12px;
+}
 
 .docs-radio .radio-small {
   flex: 1;
@@ -263,9 +319,30 @@ const title = computed(() => {
   white-space: nowrap;
 }
 
+.result {
+  float: left;
+  margin-right: 5px;
+}
+
+.result_block .result:first-of-type {
+  margin-top: 10px;
+}
+
+span {
+  color: #2d9ac5 !important;
+  font-family: var(--font-family) !important;
+  font-size: 2rem;
+  margin: 7px auto 0;
+  display: block;
+  font-weight: 500;
+}
 
 .grid-inputs {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-boolean {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 @media (max-width: 992px) {
