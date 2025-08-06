@@ -1,161 +1,92 @@
 <template>
-  <h2 v-html="title"></h2>
-  <v-form>
-    <!-- Личные данные -->
-    <div v-if="name !== 'documents'">
-      <h3 class="form-subtitle">Личные данные</h3>
+  <div>
+    <h2 v-html="title"></h2>
+    <v-form>
+      <!-- Личные данные -->
+      <div v-if="name !== 'documents'">
+        <h3 class="form-subtitle">Личные данные</h3>
+        <div class="grid-inputs">
+          <v-text-field v-model="object.surname" label="Фамилия" :disabled="disable" variant="outlined"
+            density="comfortable" rounded="lg" clearable />
+          <v-text-field v-model="object.name" label="Имя" :disabled="disable" variant="outlined" density="comfortable"
+            rounded="lg" clearable />
+          <v-text-field v-model="object.patronymic" label="Отчество" :disabled="disable" variant="outlined"
+            density="comfortable" rounded="lg" clearable />
+          <!-- Дата рождения -->
+          <v-menu v-model="object.dateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
+            <template #activator="{ props }">
+              <v-text-field v-model="object.date" v-bind="props" label="Дата рождения" readonly variant="outlined"
+                density="comfortable" rounded="lg" prepend-inner-icon="mdi-calendar" :disabled="disable" clearable />
+            </template>
+            <v-date-picker v-model="object.dateInternal" locale="ru" hide-header
+              @update:model-value="val => onDateSelect(val, 'date')" />
+          </v-menu>
+          <v-text-field v-model="object.phone" label="Телефон" variant="outlined" density="comfortable" rounded="lg"
+            clearable :disabled="disable" v-mask="'+7 (###) ###-##-##'" />
+        </div>
+        <hr />
+      </div>
+      <!-- Документы -->
+      <h3 v-if="name !== 'documents'" class="form-subtitle">Документы</h3>
       <div class="grid-inputs">
-        <v-text-field v-model="object.surname" label="Фамилия" :disabled="name === 'delete'" variant="outlined" density="comfortable" rounded="lg" clearable />
-        <v-text-field v-model="object.name" label="Имя" :disabled="name === 'delete'" variant="outlined" density="comfortable" rounded="lg" clearable />
-        <v-text-field v-model="object.patronymic" label="Отчество" :disabled="name === 'delete'" variant="outlined" density="comfortable" rounded="lg" clearable />
-
-        <!-- Дата рождения -->
-        <v-menu v-model="object.dateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
+        <v-text-field v-model="object.seriesDocument" label="Серия" v-mask="'####'" variant="outlined"
+          density="comfortable" rounded="lg" clearable :disabled="disable" />
+        <v-text-field v-model="object.numberDocument" label="Номер" v-mask="'######'" variant="outlined"
+          density="comfortable" rounded="lg" clearable :disabled="disable" />
+        <!-- Дата выдачи документа -->
+        <v-menu v-model="object.dateMenuDocument" :close-on-content-click="false" transition="scale-transition"
+          offset-y>
           <template #activator="{ props }">
-            <v-text-field
-              v-model="object.date"
-              v-bind="props"
-              label="Дата рождения"
-              readonly
-              variant="outlined"
-              density="comfortable"
-              rounded="lg"
-              prepend-inner-icon="mdi-calendar"
-              :disabled="name === 'delete'"
-              clearable
-            />
+            <v-text-field v-model="object.dateDocument" v-bind="props" label="Дата выдачи" readonly variant="outlined"
+              prepend-inner-icon="mdi-calendar" density="comfortable" rounded="lg" clearable :disabled="disable" />
           </template>
-          <v-date-picker
-            v-model="object.dateInternal"
-            locale="ru"
-            hide-header
-            @update:model-value="val => onDateSelect(val, 'date')"
-          />
+          <v-date-picker v-model="object.dateDocumentInternal" locale="ru" hide-header
+            @update:model-value="val => onDateSelect(val, 'dateDocument')" />
         </v-menu>
-
-        <v-text-field
-          v-model="object.phone"
-          label="Телефон"
-          variant="outlined"
-          density="comfortable"
-          rounded="lg"
-          clearable
-          :disabled="name === 'delete'"
-          v-mask="'+7 (###) ###-##-##'"
-        />
+        <v-text-field v-model="object.codeDocument" label="Код подразделения" v-mask="'###-###'" variant="outlined"
+          density="comfortable" rounded="lg" clearable :disabled="disable" />
+        <v-text-field v-model="object.cityDocument" label="Место рождения" variant="outlined" density="comfortable"
+          rounded="lg" clearable :disabled="disable" />
       </div>
-      <hr />
-    </div>
+      <v-text-field v-model="object.issuedDocument" label="Кем выдан" variant="outlined" density="comfortable"
+        rounded="lg" clearable :disabled="disable" />
+      <!-- Даты проживания -->
+      <div v-if="name !== 'documents'">
+        <hr />
+        <h3 class="form-subtitle">Даты проживания</h3>
+        <div class="grid-inputs">
+          <!-- Дата въезда -->
+          <v-menu v-model="object.startDateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
+            <template #activator="{ props }">
+              <v-text-field v-model="object.startDate" v-bind="props" label="Дата въезда" readonly variant="outlined"
+                density="comfortable" rounded="lg" :disabled="disable" prepend-inner-icon="mdi-calendar" clearable />
+            </template>
+            <v-date-picker v-model="object.startDateInternal" locale="ru" hide-header
+              @update:model-value="val => onDateSelect(val, 'startDate')" />
+          </v-menu>
 
-    <!-- Документы -->
-    <h3 class="form-subtitle">Документы</h3>
-    <div class="grid-inputs">
-      <v-text-field v-model="object.seriesDocument" label="Серия" v-mask="'####'" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
-      <v-text-field v-model="object.numberDocument" label="Номер" v-mask="'######'" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
-
-      <!-- Дата выдачи документа -->
-      <v-menu v-model="object.dateMenuDocument" :close-on-content-click="false" transition="scale-transition" offset-y>
-        <template #activator="{ props }">
-          <v-text-field
-            v-model="object.dateDocument"
-            v-bind="props"
-            label="Дата выдачи"
-            readonly
-            variant="outlined"
-            prepend-inner-icon="mdi-calendar"
-            density="comfortable"
-            rounded="lg"
-            clearable
-            :disabled="name === 'documents' || name === 'delete'"
-          />
-        </template>
-        <v-date-picker
-          v-model="object.dateDocumentInternal"
-          locale="ru"
-          hide-header
-          @update:model-value="val => onDateSelect(val, 'dateDocument')"
-        />
-      </v-menu>
-
-      <v-text-field v-model="object.codeDocument" label="Код подразделения" v-mask="'###-###'" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
-      <v-text-field v-model="object.cityDocument" label="Место рождения" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
-    </div>
-
-    <v-text-field
-      v-model="object.issuedDocument"
-      label="Кем выдан"
-      variant="outlined"
-      density="comfortable"
-      rounded="lg"
-      clearable
-      :disabled="name === 'documents' || name === 'delete'"
-    />
-
-    <!-- Даты проживания -->
-    <div v-if="name !== 'documents'">
-      <hr />
-      <h3 class="form-subtitle">Даты проживания</h3>
-      <div class="grid-inputs">
-        <!-- Дата въезда -->
-        <v-menu v-model="object.startDateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
-          <template #activator="{ props }">
-            <v-text-field
-              v-model="object.startDate"
-              v-bind="props"
-              label="Дата въезда"
-              readonly
-              variant="outlined"
-              density="comfortable"
-              rounded="lg"
-              :disabled="name === 'delete'"
-              prepend-inner-icon="mdi-calendar"
-              clearable
-            />
-          </template>
-          <v-date-picker
-            v-model="object.startDateInternal"
-            locale="ru"
-            hide-header
-            @update:model-value="val => onDateSelect(val, 'startDate')"
-          />
-        </v-menu>
-
-        <!-- Дата выезда -->
-        <v-menu v-model="object.endDateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
-          <template #activator="{ props }">
-            <v-text-field
-              v-model="object.endDate"
-              v-bind="props"
-              label="Дата выезда"
-              readonly
-              variant="outlined"
-              density="comfortable"
-              rounded="lg"
-              :disabled="name === 'delete'"
-              prepend-inner-icon="mdi-calendar"
-              clearable
-            />
-          </template>
-          <v-date-picker
-            v-model="object.endDateInternal"
-            locale="ru"
-            hide-header
-            @update:model-value="val => onDateSelect(val, 'endDate')"
-          />
-        </v-menu>
+          <!-- Дата выезда -->
+          <v-menu v-model="object.endDateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
+            <template #activator="{ props }">
+              <v-text-field v-model="object.endDate" v-bind="props" label="Дата выезда" readonly variant="outlined"
+                density="comfortable" rounded="lg" :disabled="disable" prepend-inner-icon="mdi-calendar" clearable />
+            </template>
+            <v-date-picker v-model="object.endDateInternal" locale="ru" hide-header
+              @update:model-value="val => onDateSelect(val, 'endDate')" />
+          </v-menu>
+        </div>
       </div>
-    </div>
-  </v-form>
-
-  <!-- Кнопки -->
-  <div class="btn-wrapper">
-    <div class="btn-block">
-      <v-btn v-if="name === 'edit'" class="btn-page" @click="emit('close')">Сохранить</v-btn>
-      <div v-if="name === 'delete'" class="btn-delete">
-        <v-btn class="btn-page" @click="emit('close')">Да</v-btn>
-        <v-btn class="btn-page" @click="emit('close')">Нет</v-btn>
+    </v-form>
+    <!-- Кнопки -->
+    <div class="btn-wrapper">
+      <div class="btn-block">
+        <v-btn v-if="name === 'edit'" class="btn-page" @click="emit('close')">Сохранить</v-btn>
+        <div v-if="name === 'delete'" class="btn-delete">
+          <v-btn class="btn-page" @click="emit('close')">Да</v-btn>
+          <v-btn class="btn-page" @click="emit('close')">Нет</v-btn>
+        </div>
+        <v-btn v-if="name === 'documents'" class="btn-page" @click="emit('close')">Ок</v-btn>
       </div>
-      <v-btn v-if="name === 'documents'" class="btn-page" @click="emit('close')">Ок</v-btn>
     </div>
   </div>
 </template>
@@ -165,7 +96,11 @@ import { computed, watch } from "vue";
 
 const props = defineProps({
   name: String,
-  object: Object
+  object: Object,
+  disable: {
+    type: Boolean,
+    default: false,
+  }
 });
 const emit = defineEmits(["close"]);
 
@@ -239,6 +174,7 @@ function onDateSelect(val, field) {
 
 <style scoped>
 @import "./../../../public/form.css";
+
 .grid-inputs {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -311,15 +247,18 @@ h2 {
   border-top: var(--border-bottom-content-modal);
   margin: 15px auto 10px;
 }
+
 .btn-block {
   width: 50%;
   margin: 0 auto 10px;
 }
+
 .btn-delete {
   display: flex;
   justify-content: center;
   gap: 15px;
 }
+
 .btn-delete .v-btn {
   flex: 1;
 }
