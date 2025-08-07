@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="isDialogOpen" max-width="600" persistent class="modal-block">
+  <v-dialog v-model="isDialogOpen" max-width="725" persistent class="modal-block">
     <v-card :class="[classCss]">
       <v-card-title v-if="!hideHeader" class="d-flex justify-space-between align-center">
         <span>{{ title }}</span>

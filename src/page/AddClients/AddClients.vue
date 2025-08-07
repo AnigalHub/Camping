@@ -55,17 +55,17 @@
                         transition="scale-transition" offset-y>
                         <template #activator="{ props }">
                           <v-text-field v-model="person.passport.date" v-bind="props" label="Дата выдачи" readonly
-                            variant="outlined" density="comfortable" rounded="lg" clearable />
+                            variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable />
                         </template>
                         <v-date-picker v-model="person.passport.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'passport')" />
                       </v-menu>
                       <v-text-field v-model="person.passport.code" label="Код подразделения" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
-                      <v-text-field v-model="person.passport.issuedDocument" label="Кем выдан" variant="outlined"
+                      <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
                     </div>
-                    <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
+                    <v-text-field v-model="person.passport.issuedDocument" label="Кем выдан" variant="outlined"
                       density="comfortable" rounded="lg" clearable />
                   </div>
                   <!-- Свидетельство о рождении -->

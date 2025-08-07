@@ -1,19 +1,153 @@
 <template>
   <h2 v-html="title"></h2>
-
   <v-form>
-    <v-row dense>
-      <v-col v-for="(label, key) in filteredObject" :key="key" :cols="12" 
-        :md="isWideField(key) ? 12 : 4">
-        <v-text-field v-if="isISODate(model[key])" v-model="model[key]" type="date" variant="outlined"
-          :label="label" rounded="lg" class="small-margin" :disabled="disable" />
-        <v-text-field v-else-if="maskForField(key)" v-model="model[key]" :label="label" variant="outlined" rounded="lg"
-          class="small-margin" :disabled="disable" v-mask="maskForField(key)" @input="onInput(key)" />
-        <v-text-field v-else v-model="model[key]" :label="label" variant="outlined" rounded="lg" class="small-margin"
-          :disabled="disable" />
-      </v-col>
-    </v-row>
+    <!-- Личные данные -->
+    <div v-if="name !== 'documents'">
+      <h3 class="form-subtitle">Личные данные</h3>
+      <div class="grid-inputs">
+        <v-text-field v-model="object.surname" label="Фамилия" :disabled="name === 'delete'" variant="outlined" density="comfortable" rounded="lg" clearable />
+        <v-text-field v-model="object.name" label="Имя" :disabled="name === 'delete'" variant="outlined" density="comfortable" rounded="lg" clearable />
+        <v-text-field v-model="object.patronymic" label="Отчество" :disabled="name === 'delete'" variant="outlined" density="comfortable" rounded="lg" clearable />
+
+        <!-- Дата рождения -->
+        <v-menu v-model="object.dateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
+          <template #activator="{ props }">
+            <v-text-field
+              v-model="object.date"
+              v-bind="props"
+              label="Дата рождения"
+              readonly
+              variant="outlined"
+              density="comfortable"
+              rounded="lg"
+              prepend-inner-icon="mdi-calendar"
+              :disabled="name === 'delete'"
+              clearable
+            />
+          </template>
+          <v-date-picker
+            v-model="object.dateInternal"
+            locale="ru"
+            hide-header
+            @update:model-value="val => onDateSelect(val, 'date')"
+          />
+        </v-menu>
+
+        <v-text-field
+          v-model="object.phone"
+          label="Телефон"
+          variant="outlined"
+          density="comfortable"
+          rounded="lg"
+          clearable
+          :disabled="name === 'delete'"
+          v-mask="'+7 (###) ###-##-##'"
+        />
+      </div>
+      <hr />
+    </div>
+
+    <!-- Документы -->
+    <h3 class="form-subtitle">Документы</h3>
+    <div class="grid-inputs">
+      <v-text-field v-model="object.seriesDocument" label="Серия" v-mask="'####'" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
+      <v-text-field v-model="object.numberDocument" label="Номер" v-mask="'######'" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
+
+      <!-- Дата выдачи документа -->
+      <v-menu v-model="object.dateMenuDocument" :close-on-content-click="false" transition="scale-transition" offset-y>
+        <template #activator="{ props }">
+          <v-text-field
+            v-model="object.dateDocument"
+            v-bind="props"
+            label="Дата выдачи"
+            readonly
+            variant="outlined"
+            prepend-inner-icon="mdi-calendar"
+            density="comfortable"
+            rounded="lg"
+            clearable
+            :disabled="name === 'documents' || name === 'delete'"
+          />
+        </template>
+        <v-date-picker
+          v-model="object.dateDocumentInternal"
+          locale="ru"
+          hide-header
+          @update:model-value="val => onDateSelect(val, 'dateDocument')"
+        />
+      </v-menu>
+
+      <v-text-field v-model="object.codeDocument" label="Код подразделения" v-mask="'###-###'" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
+      <v-text-field v-model="object.cityDocument" label="Место рождения" variant="outlined" density="comfortable" rounded="lg" clearable :disabled="name === 'documents' || name === 'delete'" />
+    </div>
+
+    <v-text-field
+      v-model="object.issuedDocument"
+      label="Кем выдан"
+      variant="outlined"
+      density="comfortable"
+      rounded="lg"
+      clearable
+      :disabled="name === 'documents' || name === 'delete'"
+    />
+
+    <!-- Даты проживания -->
+    <div v-if="name !== 'documents'">
+      <hr />
+      <h3 class="form-subtitle">Даты проживания</h3>
+      <div class="grid-inputs">
+        <!-- Дата въезда -->
+        <v-menu v-model="object.startDateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
+          <template #activator="{ props }">
+            <v-text-field
+              v-model="object.startDate"
+              v-bind="props"
+              label="Дата въезда"
+              readonly
+              variant="outlined"
+              density="comfortable"
+              rounded="lg"
+              :disabled="name === 'delete'"
+              prepend-inner-icon="mdi-calendar"
+              clearable
+            />
+          </template>
+          <v-date-picker
+            v-model="object.startDateInternal"
+            locale="ru"
+            hide-header
+            @update:model-value="val => onDateSelect(val, 'startDate')"
+          />
+        </v-menu>
+
+        <!-- Дата выезда -->
+        <v-menu v-model="object.endDateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
+          <template #activator="{ props }">
+            <v-text-field
+              v-model="object.endDate"
+              v-bind="props"
+              label="Дата выезда"
+              readonly
+              variant="outlined"
+              density="comfortable"
+              rounded="lg"
+              :disabled="name === 'delete'"
+              prepend-inner-icon="mdi-calendar"
+              clearable
+            />
+          </template>
+          <v-date-picker
+            v-model="object.endDateInternal"
+            locale="ru"
+            hide-header
+            @update:model-value="val => onDateSelect(val, 'endDate')"
+          />
+        </v-menu>
+      </div>
+    </div>
   </v-form>
+
+  <!-- Кнопки -->
   <div class="btn-wrapper">
     <div class="btn-block">
       <v-btn v-if="name === 'edit'" class="btn-page" @click="emit('close')">Сохранить</v-btn>
@@ -27,170 +161,96 @@
 </template>
 
 <script setup>
-import { reactive, computed, watch } from "vue";
+import { computed, watch } from "vue";
 
 const props = defineProps({
-  name: { type: String, default: "" },
-  object: { type: Object, default: () => ({}) },
-  disable: { type: Boolean, default: false },
+  name: String,
+  object: Object
 });
-
 const emit = defineEmits(["close"]);
 
-/* -------------------- ПЕРЕВОД ИМЕН ПОЛЕЙ -------------------- */
-
-const fieldMappingsDisable = {
-  surname: "Фамилия",
-  name: "Имя",
-  patronymic: "Отчество",
-  date: "Дата рождения",
-  seriesDocument: "Серия",
-  numberDocument: "Номер",
-  codeDocument: "Код подразделения",
-  dateDocument: "Дата выдачи",
-  cityDocument: "Место жительства",
-  issuedDocument: "Кем выдан",
-};
-const fieldMappings = {
-  phone: "Телефон",
-  startDate: "Дата въезда",
-  endDate: "Дата выезда",
-  house: "Аренда домика",
-  object: "Поляна",
-  cars: "Транспорт",
-  animals: "Животные",
-  price: "Стоимость",
-};
-
-const names = [
-  { value: "documents", name: "Документы" },
-  { value: "edit", name: "Изменение данных" },
-  { value: "delete", name: "Удалить запись ?" },
-];
-
 const title = computed(() => {
-  return names.find((el) => el.value === props.name)?.name;
-});
-/* -------------------- ФИЛЬТРАЦИЯ -------------------- */
-
-const filteredObject = computed(() => {
-  const mapping =
-    props.name === "documents"
-      ? fieldMappingsDisable
-      : { ...fieldMappingsDisable, ...fieldMappings };
-
-  return Object.keys(mapping).reduce((acc, key) => {
-    if (props.object.hasOwnProperty(key)) acc[key] = mapping[key];
-    return acc;
-  }, {});
+  if (props.name === "documents") return "Документы";
+  if (props.name === "edit") return "Изменение данных";
+  if (props.name === "delete") return "Удалить запись ?";
+  return "";
 });
 
-/* -------------------- ЛОКАЛЬНАЯ МОДЕЛЬ -------------------- */
-const model = reactive({});
-
-for (const key in props.object) {
-  const value = props.object[key];
-
-  if (["date", "dateDocument", "startDate", "endDate"].includes(key)) {
-    // преобразуем ISO → DD.MM.YYYY
-    if (isISODate(value)) {
-      const [y, m, d] = value.substring(0, 10).split("-");
-      model[key] = `${d}.${m}.${y}`;
-    } else {
-      model[key] = value;
-    }
-  } else if (isISODate(value)) {
-    model[key] = value.substring(0, 10);
+// Форматирование dd.mm.yyyy
+function formatDate(val) {
+  if (!val) return "";
+  let d;
+  if (val instanceof Date) {
+    d = val;
+  } else if (typeof val === "string" && /^\d{4}-\d{2}-\d{2}/.test(val)) {
+    // ISO формат
+    d = new Date(val);
+  } else if (typeof val === "string" && /^\d{2}\.\d{2}\.\d{4}$/.test(val)) {
+    // Уже форматированная дата
+    return val;
   } else {
-    model[key] = value;
+    return "";
   }
+  return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
 }
 
-/* -------------------- СИНХРОНИЗАЦИЯ -------------------- */
-
-watch(
-  () => model,
-  (val) => {
-    for (const key in val) {
-      if (["date", "dateDocument", "startDate", "endDate"].includes(key)) {
-        const v = val[key];
-        if (v && /^\d{2}\.\d{2}\.\d{4}$/.test(v)) {
-          const [d, m, y] = v.split(".");
-          props.object[key] = `${y}-${m}-${d}T00:00:00`;
-        }
-        continue;
-      }
-
-      if (isISODate(props.object[key])) {
-        props.object[key] = val[key] ? val[key] + "T00:00:00" : null;
-      } else {
-        props.object[key] = val[key];
-      }
+// Парсинг из dd.mm.yyyy или Date
+function parseDate(val) {
+  if (!val) return null;
+  if (val instanceof Date) return val;
+  if (typeof val === "string") {
+    if (/^\d{2}\.\d{2}\.\d{4}$/.test(val)) {
+      const [dd, mm, yyyy] = val.split(".");
+      return new Date(`${yyyy}-${mm}-${dd}`);
+    } else if (/^\d{4}-\d{2}-\d{2}/.test(val)) {
+      return new Date(val);
     }
-  },
-  { deep: true }
-);
-
-/* -------------------- МАСКИ -------------------- */
-
-function maskForField(key) {
-  switch (key) {
-    case "phone":
-      return "+7 (###) ###-##-##";
-    case "seriesDocument":
-      return "####";
-    case "numberDocument":
-      return "######";
-    case "codeDocument":
-      return "###-###";
-    case "price":
-      return "################";
-    case "object":
-    case "animals":
-      return "############";
-    case "cars":
-      return ["####SS##", "S###SS###"];
-    case "startDate":
-    case "endDate":
-      return "##.##.####";
-    default:
-      return null;
   }
+  return null;
 }
 
+// Инициализация внутренних дат
+["date", "dateDocument", "startDate", "endDate"].forEach(field => {
+  const original = props.object[field];
+  props.object[`${field}Internal`] = parseDate(original);
+  props.object[field] = formatDate(original);
+});
 
-function onInput(key) {
-  if (key === "cars" && model[key]) {
-    model[key] = model[key].toUpperCase();
-  }
+// Обновление даты при выборе
+function onDateSelect(val, field) {
+  props.object[`${field}Internal`] = val;
+  props.object[field] = formatDate(val);
 }
 
-/* -------------------- Проверка ISO -------------------- */
-
-function isISODate(value) {
-  return (
-    typeof value === "string" &&
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value)
-  );
-}
-
-/* -------------------- Широкие поля -------------------- */
-
-function isWideField(key) {
-  return key === "issuedDocument" ;
-}
+// Слежение за изменением даты извне
+["date", "dateDocument", "startDate", "endDate"].forEach(field => {
+  watch(() => props.object[field], val => {
+    props.object[`${field}Internal`] = parseDate(val);
+  });
+});
 </script>
 
 <style>
 .v-field--disabled {
   opacity: 0.65 !important;
+  background: #a1a1a30d;
 }
 </style>
 
 <style scoped>
+@import "./../../../public/form.css";
+.grid-inputs {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 992px) {
+  .grid-inputs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .v-form {
-  height: max-content;
-  padding: 0 0 20px 0;
+  padding: 0 0 0 5px !important;
 }
 
 h2 {
@@ -251,39 +311,16 @@ h2 {
   border-top: var(--border-bottom-content-modal);
   margin: 15px auto 10px;
 }
-
 .btn-block {
   width: 50%;
   margin: 0 auto 10px;
 }
-
 .btn-delete {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 15px;
 }
-
 .btn-delete .v-btn {
   flex: 1;
-  max-width: 47%;
-}
-
-@media (max-width: 960px) {
-  .btn-block {
-    width: 70%;
-  }
-}
-
-@media (max-width: 500px) {
-  .v-form {
-    margin-top: 0.2px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .btn-block {
-    width: 100%;
-  }
 }
 </style>
