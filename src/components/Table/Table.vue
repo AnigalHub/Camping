@@ -84,14 +84,14 @@
       </tbody>
     </v-table>
     <div v-if="isDesktop" class="pagination">
-      <v-btn icon :disabled="currentPage === 1" @click="prevPage" class="pagination-btn">
-        <v-icon>mdi-chevron-left</v-icon>
+      <v-btn icon="mdi-chevron-left" variant="text" size="small" class="pagination-btn" v-tooltip:top="'Предыдущие'"
+        :disabled="currentPage === 1" @click="prevPage"  >
       </v-btn>
       <v-text-field v-model.number="inputPage" @keyup.enter="goToPage" type="number" :min="1" :max="totalPages"
         class="page-input" hide-details density="compact" />
       <span class="page-info">из {{ totalPages }}</span>
-      <v-btn icon :disabled="currentPage === totalPages" @click="nextPage" class="pagination-btn">
-        <v-icon>mdi-chevron-right</v-icon>
+      <v-btn icon="mdi-chevron-right" variant="text" size="small" class="pagination-btn" v-tooltip:top="'Следующие'"
+        :disabled="currentPage === totalPages" @click="nextPage">
       </v-btn>
     </div>
   </div>

@@ -126,7 +126,7 @@ export default defineComponent({
 </script>
 
 <style>
- .v-btn--icon {
+.v-dialog .v-btn--icon {
   box-shadow: none !important;
   background: transparent !important;
 } 
