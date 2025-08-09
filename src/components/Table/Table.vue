@@ -1,32 +1,24 @@
 <template>
   <div class="content">
-    <v-table fixed-header striped="even">
-      <thead>
+    <v-table fixed-header striped="even" ref="tableRef">
+      <thead ref="theadRef">
         <template v-for="(headerRow, rowIndex) in headers" :key="rowIndex">
           <tr>
-            <th
-              v-for="(col, colIndex) in headerRow"
-              :key="colIndex"
-              :colspan="col.colspan || 1"
-              :rowspan="col.rowspan || 1"
-              class="text-center"
-            >
+            <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
+              :rowspan="col.rowspan || 1" class="text-center" :style="col.key === 'buttons' ?
+                { width: '40px' } :
+                { width: columnWidths[colIndex] + 'px' }">
               {{ col.label }}
             </th>
           </tr>
         </template>
       </thead>
-      <tbody>
+      <tbody ref="tbodyRef">
         <tr v-for="(item, index) in paginatedItems" :key="index">
-          <td
-            v-for="(col, colIndex) in flatColumns"
-            :key="colIndex"
-            :data-label="col.label"
-            :class="[
-              col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
-              col.key === 'buttons' ? 'bg-buttons' : ''
-            ]"
-          >
+          <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :data-label="col.label" :class="[
+            col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
+            col.key === 'buttons' ? 'bg-buttons' : ''
+          ]">
             <template v-if="col.key === 'fio'">
               <div class="fio-wrapper">
                 <span>{{ item.surname }}</span>
@@ -76,14 +68,11 @@
             </template>
             <template v-else-if="showButtons && col.key === 'buttons'">
               <div class="buttons-wrapper">
-                <v-btn icon="mdi-file-document" variant="text" size="small"
-                  class="document-btn btn" v-tooltip:top="'Документы'"
-                  @click="onModalDocuments('documents', item, true)" />
-                <v-btn icon="mdi-pencil" variant="text" size="small"
-                  class="edit-btn btn" v-tooltip:top="'Изменить'"
+                <v-btn icon="mdi-file-document" variant="text" size="small" class="document-btn btn"
+                  v-tooltip:top="'Документы'" @click="onModalDocuments('documents', item, true)" />
+                <v-btn icon="mdi-pencil" variant="text" size="small" class="edit-btn btn" v-tooltip:top="'Изменить'"
                   @click="onModalDocuments('edit', item)" />
-                <v-btn icon="mdi-delete" variant="text" size="small"
-                  class="delete-btn btn" v-tooltip:top="'Удалить'"
+                <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
                   @click="onModalDocuments('delete', item, true)" />
               </div>
             </template>
@@ -94,26 +83,13 @@
         </tr>
       </tbody>
     </v-table>
-
-    <!-- Пагинация -->
     <div v-if="isDesktop" class="pagination">
       <v-btn icon :disabled="currentPage === 1" @click="prevPage" class="pagination-btn">
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
-
-      <v-text-field
-        v-model.number="inputPage"
-        @keyup.enter="goToPage"
-        type="number"
-        :min="1"
-        :max="totalPages"
-        class="page-input"
-        hide-details
-        density="compact"
-      ></v-text-field>
-
+      <v-text-field v-model.number="inputPage" @keyup.enter="goToPage" type="number" :min="1" :max="totalPages"
+        class="page-input" hide-details density="compact" />
       <span class="page-info">из {{ totalPages }}</span>
-
       <v-btn icon :disabled="currentPage === totalPages" @click="nextPage" class="pagination-btn">
         <v-icon>mdi-chevron-right</v-icon>
       </v-btn>
@@ -122,68 +98,89 @@
 </template>
 
 <script setup>
-import { shallowRef, ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
+import { shallowRef, ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from "vue";
 import Switch from "../Switch/Switch.vue";
-import { callModalWindow } from "./../../utils/callModalWindow";
-import { loadComponent } from "./../../utils/loadComponent";
+import { callModalWindow } from "../../utils/callModalWindow";
+import { loadComponent } from "../../utils/loadComponent";
 import { useStore } from "vuex";
 
-const props = defineProps({
-  headers: Array,
-  items: Array
-});
-
+const props = defineProps({ headers: Array, items: Array });
 const store = useStore();
 const Information = shallowRef(loadComponent("Information"));
 
-const flatColumns = computed(() =>
-  props.headers.flatMap((row) => row.filter((col) => col.key))
-);
+const tableRef = ref(null);
+const tbodyRef = ref(null);
+const columnWidths = ref({});
 
-const showButtons = computed(() =>
-  props.headers.some((row) => row.some((col) => col.key === "buttons"))
-);
+// Вычисляем все колонки и наличие кнопок
+const flatColumns = computed(() => props.headers.flatMap(row => row.filter(col => col.key)));
+const showButtons = computed(() => props.headers.some(row => row.some(col => col.key === "buttons")));
 
-function formatDate(date) {
-  return date ? date.split("T")[0].split("-").reverse().join(".") : "—";
-}
-// пагинация
+// Форматирование даты
+const formatDate = date => date ? date.split("T")[0].split("-").reverse().join(".") : "—";
+
+// Пагинация
 const currentPage = ref(1);
 const pageSize = 10;
 const inputPage = ref(currentPage.value);
-
-watch(currentPage, val => inputPage.value = val);
 
 const totalPages = computed(() => Math.ceil(props.items.length / pageSize));
 const paginatedItems = computed(() => {
   const start = (currentPage.value - 1) * pageSize;
   return props.items.slice(start, start + pageSize);
 });
+watch(currentPage, val => inputPage.value = val);
 
-function prevPage() { if (currentPage.value > 1) currentPage.value--; }
-function nextPage() { if (currentPage.value < totalPages.value) currentPage.value++; }
-function goToPage() {
+const prevPage = () => currentPage.value > 1 && currentPage.value--;
+const nextPage = () => currentPage.value < totalPages.value && currentPage.value++;
+const goToPage = () => {
   if (inputPage.value < 1) inputPage.value = 1;
   if (inputPage.value > totalPages.value) inputPage.value = totalPages.value;
   currentPage.value = inputPage.value;
-}
+};
 
-async function onModalDocuments(name, object, disable) {
-  await callModalWindow(store, {
-    name: "Information",
-    component: Information,
-    props: { name, object, disable }
+// Модальное окно
+const onModalDocuments = async (name, object, disable) => {
+  await callModalWindow(store, { name: "Information", component: Information, props: { name, object, disable } });
+};
+
+// Ширина колонок
+const updateColumnWidths = () => {
+  nextTick(() => {
+    const tbody = tbodyRef.value;
+    if (!tbody) return;
+
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+    if (!rows.length) return;
+
+    const colCount = rows[0].children.length;
+    const widths = Array(colCount).fill(0);
+
+    rows.forEach(row => {
+      Array.from(row.children).forEach((cell, index) => {
+        const w = cell.scrollWidth;
+        if (w > widths[index]) widths[index] = w;
+      });
+    });
+
+    columnWidths.value = Object.fromEntries(widths.map((w, i) => [i, w]));
   });
-}
+};
 
+// Отслеживаем ресайз и обновление данных
 const windowWidth = ref(window.innerWidth);
 const isDesktop = computed(() => windowWidth.value >= 1200);
-function onResize() { windowWidth.value = window.innerWidth; }
-onMounted(() => window.addEventListener("resize", onResize));
-onBeforeUnmount(() => window.removeEventListener("resize", onResize));
+
+const handleResize = () => windowWidth.value = window.innerWidth;
+
+onMounted(() => {
+  updateColumnWidths();
+  window.addEventListener("resize", handleResize);
+});
+
+onBeforeUnmount(() => window.removeEventListener("resize", handleResize));
+watch(() => props.items, updateColumnWidths, { deep: true });
 </script>
-
-
 
 <style>
 .page-input .v-field__slot {
@@ -199,6 +196,7 @@ onBeforeUnmount(() => window.removeEventListener("resize", onResize));
   margin-top: -5px !important;
 }
 </style>
+
 <style scoped>
 .page-input {
   width: 40px;

@@ -133,7 +133,10 @@ export default defineComponent({
 
 .modal-block .v-card{
   background: var(--background-modal) !important;
-  overflow: hidden !important;
   border-radius: 12px !important;
+}
+
+.v-dialog > .v-overlay__content > .v-card{
+  border-radius: 20px !important;
 }
 </style>
