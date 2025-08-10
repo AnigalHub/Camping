@@ -17,7 +17,7 @@
         </template>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" :key="index">
+        <tr v-for="(item, index) in paginatedItems" :key="index">
           <td
             v-for="(col, colIndex) in flatColumns"
             :key="colIndex"
@@ -94,11 +94,35 @@
         </tr>
       </tbody>
     </v-table>
+
+    <!-- Пагинация -->
+    <div v-if="isDesktop" class="pagination">
+      <v-btn icon :disabled="currentPage === 1" @click="prevPage" class="pagination-btn">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+
+      <v-text-field
+        v-model.number="inputPage"
+        @keyup.enter="goToPage"
+        type="number"
+        :min="1"
+        :max="totalPages"
+        class="page-input"
+        hide-details
+        density="compact"
+      ></v-text-field>
+
+      <span class="page-info">из {{ totalPages }}</span>
+
+      <v-btn icon :disabled="currentPage === totalPages" @click="nextPage" class="pagination-btn">
+        <v-icon>mdi-chevron-right</v-icon>
+      </v-btn>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed, shallowRef } from "vue";
+import { shallowRef, ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import Switch from "../Switch/Switch.vue";
 import { callModalWindow } from "./../../utils/callModalWindow";
 import { loadComponent } from "./../../utils/loadComponent";
@@ -123,6 +147,26 @@ const showButtons = computed(() =>
 function formatDate(date) {
   return date ? date.split("T")[0].split("-").reverse().join(".") : "—";
 }
+// пагинация
+const currentPage = ref(1);
+const pageSize = 10;
+const inputPage = ref(currentPage.value);
+
+watch(currentPage, val => inputPage.value = val);
+
+const totalPages = computed(() => Math.ceil(props.items.length / pageSize));
+const paginatedItems = computed(() => {
+  const start = (currentPage.value - 1) * pageSize;
+  return props.items.slice(start, start + pageSize);
+});
+
+function prevPage() { if (currentPage.value > 1) currentPage.value--; }
+function nextPage() { if (currentPage.value < totalPages.value) currentPage.value++; }
+function goToPage() {
+  if (inputPage.value < 1) inputPage.value = 1;
+  if (inputPage.value > totalPages.value) inputPage.value = totalPages.value;
+  currentPage.value = inputPage.value;
+}
 
 async function onModalDocuments(name, object, disable) {
   await callModalWindow(store, {
@@ -131,9 +175,76 @@ async function onModalDocuments(name, object, disable) {
     props: { name, object, disable }
   });
 }
+
+const windowWidth = ref(window.innerWidth);
+const isDesktop = computed(() => windowWidth.value >= 1200);
+function onResize() { windowWidth.value = window.innerWidth; }
+onMounted(() => window.addEventListener("resize", onResize));
+onBeforeUnmount(() => window.removeEventListener("resize", onResize));
 </script>
 
+
+
+<style>
+.page-input .v-field__slot {
+  padding: 0 !important;
+}
+
+.page-input .v-field__input {
+  padding: 0 !important;
+  text-align: center;
+}
+
+.pagination .v-input--density-compact .v-field--no-label {
+  margin-top: -5px !important;
+}
+</style>
 <style scoped>
+.page-input {
+  width: 40px;
+  height: 30px;
+  min-width: 40px;
+  min-height: 30px;
+  margin-top: -5px;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+.pagination-btn {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 50%;
+  background-color: #6c92a4;
+  color: #fff;
+  box-shadow: none !important;
+}
+
+.pagination-btn:hover {
+  background-color: #5d7c8a;
+}
+
+.pagination-btn:disabled {
+  background-color: rgb(170, 201, 246);
+  color: #fff;
+}
+
+.page-info {
+  font-weight: 500;
+  color: #104155;
+}
+
 .date-line {
   display: none;
 }
@@ -237,8 +348,10 @@ async function onModalDocuments(name, object, disable) {
   -webkit-backdrop-filter: var(--filter-background-table);
   background: var(--background-table) !important;
   border-radius: var(--border-radius-table) !important;
-  height: 98% !important;
+  height: 90% !important;
   transition: all 0.25s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr:hover {
@@ -378,7 +491,6 @@ async function onModalDocuments(name, object, disable) {
 .btn {
   opacity: 0.65;
   transition: 0.2s;
-  margin-left: 2.5px;
   margin-top: -2px;
   border-radius: 10px;
 }

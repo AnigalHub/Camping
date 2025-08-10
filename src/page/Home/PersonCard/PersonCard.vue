@@ -42,6 +42,12 @@ function goRoute() {
   background: linear-gradient(165deg, rgb(245 248 238), rgb(237 242 248 / 87%)) !important;
   backdrop-filter: blur(8px);
   border: 1px solid #006c9a3b;
+  transition: transform .3s ease, filter .3s ease;
+}
+
+.profile-card:hover {
+  transform: scale(1.025);
+  filter: contrast(102%);
 }
 
 .profile:hover .text-caption{

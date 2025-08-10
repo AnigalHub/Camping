@@ -49,12 +49,12 @@ const onSelectChanged = () => {
 </script>
 
 <style>
-.v-field--variant-solo {
+.search-bar .v-field--variant-solo {
   box-shadow: none !important;
   transition: 0.3s;
 }
 
-.v-field--variant-solo:hover {
+.search-bar  .v-field--variant-solo:hover {
   box-shadow: 0 0 0 2px rgba(16, 65, 85, 0.15),
     2px 2px 10px rgba(17, 44, 18, 0.1) !important;
   transform: translateY(-1px);
@@ -64,7 +64,7 @@ const onSelectChanged = () => {
   border-radius: 12px !important;
 }
 
-.v-field__prepend-inner {
+.search-bar  .v-field__prepend-inner {
   color: #0d3646 !important;
 }
 </style>

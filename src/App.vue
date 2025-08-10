@@ -112,7 +112,7 @@ html, body, #app {
 .btn-home {
   color: #2b4754;
   border: 1.5px solid #547c8f;
-  opacity: .75;
+  opacity: .9;
   box-shadow: none;
 }
 

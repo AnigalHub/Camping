@@ -29,7 +29,7 @@
         cols="12"
         md="6"
       >
-        <Glade :place="place" :number="i" />
+        <Glade :place="place" :number="i" class="glade"/>
       </v-col>
     </v-row>
     <div class="d-flex align-center card-footer mt-4">
@@ -90,6 +90,11 @@ const topTwo = sortedPlaces.slice(0, 2);
 
 .card:hover {
   transform: scale(1.025);
+  filter: contrast(110%);
+}
+
+.card:hover .glade{
+  filter: contrast(100%);
 }
 
 .card:hover .card-footer {
