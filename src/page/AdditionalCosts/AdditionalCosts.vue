@@ -36,7 +36,8 @@
 </template>
 
 <script setup>
-import { shallowRef, ref, nextTick, onMounted, onBeforeUnmount, watch } from "vue";
+import { shallowRef, ref } from "vue";
+import { useTabsSlider } from "./../../utils/useTabsSlider.js";
 import AddExpenses from "./AddExpenses/AddExpenses.vue";
 import ListExpenses from "./ListExpenses/ListExpenses.vue";
 
@@ -53,32 +54,7 @@ const tab = shallowRef(tabs[0].value);
 const tabRefs = ref([]);
 const sliderStyle = ref({});
 
-const updateSlider = () => {
-  nextTick(() => {
-    const activeIndex = tabs.findIndex((t) => t.value === tab.value);
-    const el = tabRefs.value[activeIndex]?.$el ?? tabRefs.value[activeIndex];
-    if (!el) return;
-
-    const rect = el.getBoundingClientRect();
-    const parentRect = el.parentElement.getBoundingClientRect();
-
-    sliderStyle.value = {
-      width: `${rect.width}px`,
-      transform: `translateX(${rect.left - parentRect.left}px)`
-    };
-  });
-};
-
-onMounted(() => {
-  updateSlider();
-  window.addEventListener("resize", updateSlider);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", updateSlider);
-});
-
-watch(tab, updateSlider);
+useTabsSlider(tabs, tab, tabRefs, sliderStyle);
 </script>
 
 
