@@ -54,15 +54,15 @@
 </template>
 
 <script setup>
-import { shallowRef, ref, nextTick, onMounted, watch } from "vue";
+import { shallowRef, ref, nextTick, onMounted, onBeforeUnmount, watch } from "vue";
 import Company from "./Company/Company.vue";
 import Prices from "./Prices/Prices.vue";
 import Objects from "./Objects/Objects.vue";
 
-
 defineOptions({
   name: "SettingsCompany",
 });
+
 const title = "Настройки, тарифы";
 
 const tabs = [
@@ -72,24 +72,34 @@ const tabs = [
 ];
 
 const tab = shallowRef(tabs[0].value);
-
 const tabRefs = ref([]);
 const sliderStyle = ref({});
 
 const updateSlider = () => {
   nextTick(() => {
     const activeIndex = tabs.findIndex((t) => t.value === tab.value);
-    const el = tabRefs.value[activeIndex]?.$el || tabRefs.value[activeIndex];
-    if (el) {
-      sliderStyle.value = {
-        width: `${el.offsetWidth}px`,
-        transform: `translateX(${el.offsetLeft}px)`,
-      };
-    }
+    const el = tabRefs.value[activeIndex]?.$el ?? tabRefs.value[activeIndex];
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const parentRect = el.parentElement.getBoundingClientRect();
+
+    sliderStyle.value = {
+      width: `${rect.width}px`,
+      transform: `translateX(${rect.left - parentRect.left}px)`
+    };
   });
 };
 
-onMounted(updateSlider);
+onMounted(() => {
+  updateSlider();
+  window.addEventListener("resize", updateSlider);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateSlider);
+});
+
 watch(tab, updateSlider);
 </script>
 

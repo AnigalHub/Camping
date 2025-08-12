@@ -37,7 +37,7 @@
 
 <script setup>
 import itemsData from './../../../public/data/clients.json';
-import { ref, computed, shallowRef, nextTick, watch, onMounted } from "vue";
+import { ref, computed, shallowRef, nextTick, watch, onMounted, onBeforeUnmount } from "vue";
 
 defineOptions({ name: "Trips" });
 
@@ -65,16 +65,18 @@ const sliderStyle = ref({});
 const updateSlider = () => {
   nextTick(() => {
     const activeIndex = tabs.indexOf(tab.value);
-    const el = tabRefs.value[activeIndex]?.$el || tabRefs.value[activeIndex];
-    if (el) {
-      sliderStyle.value = {
-        width: `${el.offsetWidth}px`,
-        transform: `translateX(${el.offsetLeft}px)`,
-      };
-    }
+    const el = tabRefs.value[activeIndex]?.$el ?? tabRefs.value[activeIndex];
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const parentRect = el.parentElement.getBoundingClientRect();
+
+    sliderStyle.value = {
+      width: `${rect.width}px`,
+      transform: `translateX(${rect.left - parentRect.left}px)`
+    };
   });
 };
-onMounted(updateSlider);
 watch(tab, updateSlider);
 
 const headers = [[
@@ -100,7 +102,17 @@ const onSearchChanged = ({ sortKey: key, sortDirection: dir, fromSelect }) => {
   sortDirection.value = dir || "asc";
 };
 
-onMounted(() => { searchSort.value = null; });
+// onMounted(() => { searchSort.value = null; });
+
+onMounted(() => {
+  searchSort.value = null;
+  updateSlider();
+  window.addEventListener('resize', updateSlider);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateSlider);
+});
 
 const compareFio = (a, b) =>
   ["surname", "name", "patronymic"].reduce((r, f) =>

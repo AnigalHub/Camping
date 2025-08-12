@@ -51,15 +51,13 @@
 </template>
 
 <script setup>
-import { shallowRef, ref, nextTick, onMounted, watch } from "vue";
+import { shallowRef, ref, nextTick, onMounted, onBeforeUnmount, watch } from "vue";
 import PersonalData from "./PersonalData/PersonalData.vue";
 import ChangePassword from "./ChangePassword/ChangePassword.vue";
 
-defineOptions({
-  name: 'Account'
-})
+defineOptions({ name: 'Account' });
 
-const title = 'Учетная запись'
+const title = 'Учетная запись';
 
 const tabs = [
   { value: "Персональные данные" },
@@ -73,19 +71,31 @@ const sliderStyle = ref({});
 const updateSlider = () => {
   nextTick(() => {
     const activeIndex = tabs.findIndex((t) => t.value === tab.value);
-    const el = tabRefs.value[activeIndex]?.$el || tabRefs.value[activeIndex];
-    if (el) {
-      sliderStyle.value = {
-        width: `${el.offsetWidth}px`,
-        transform: `translateX(${el.offsetLeft}px)`,
-      };
-    }
+    const el = tabRefs.value[activeIndex]?.$el ?? tabRefs.value[activeIndex];
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const parentRect = el.parentElement.getBoundingClientRect();
+
+    sliderStyle.value = {
+      width: `${rect.width}px`,
+      transform: `translateX(${rect.left - parentRect.left}px)`
+    };
   });
 };
 
-onMounted(updateSlider);
+onMounted(() => {
+  updateSlider();
+  window.addEventListener("resize", updateSlider);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateSlider);
+});
+
 watch(tab, updateSlider);
 </script>
+
 <style scoped>
 @import "./../../../public/tabs.css";
 </style>
