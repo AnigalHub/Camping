@@ -11,6 +11,7 @@
 </template>
 
 <script setup>
+import organization from './../../../../public/data/organization.json';
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const route = useRoute();
@@ -19,7 +20,7 @@ function isActive(name) { return route.name === name; }
 const allButtons = [
   { icon: "mdi-account-plus-outline", label: "Регистрация", route: "AddClients" },
   { icon: "mdi-account-group-outline", label: "Список клиентов", route: "ListClients" },
-  { img: "/favicon.png", route: "Home" },
+  { img: organization.img, route: "Home" },
   { icon: "mdi-calendar-clock-outline", label: "Ближайшие выезды", route: "Trips" },
   { icon: "mdi-dots-grid", label: "Прочее", route: "Other" },
 ];

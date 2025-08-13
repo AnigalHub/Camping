@@ -3,11 +3,11 @@
     <v-app-bar-nav-icon @click="toggleDrawer" />
     <v-toolbar-title class="d-flex align-center logo-block">
       <div class="d-flex cursor-pointer" @click="router.push({ name: 'Home' })">
-        <img src="./../../../../public/favicon.png" alt="логотип" class="logo" />
+        <img :src="organization.img" alt="логотип" class="logo" />
         <v-toolbar-title class="d-flex align-center">
-          <h1 class="d-inline-block text-center title">Ромашка</h1>
+          <h1 class="d-inline-block text-center title">{{ organization.name }}</h1>
           <div class="text-center slogan">
-            «Кемпинг у моря — природа, которой хочется делиться!»
+           {{ organization.slogan }}
           </div>
         </v-toolbar-title>
       </div>
@@ -23,6 +23,7 @@
 </template>
 
 <script setup>
+import organization from './../../../../public/data/organization.json';
 import { useRouter } from "vue-router";
 const router = useRouter();
 

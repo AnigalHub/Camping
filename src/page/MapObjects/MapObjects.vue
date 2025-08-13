@@ -65,7 +65,7 @@ const onSearch = ({ search }) => {
 <style scoped>
 .block {
   height: 70vh;
-  padding: 0 5px 20px 15px;
+  padding: 0 5px 0 15px;
   overflow: auto;
   margin-left: -18px;
   margin-top: -5px;
@@ -79,6 +79,10 @@ const onSearch = ({ search }) => {
 }
 
 @media (max-width: 600px) {
+  .block {
+    margin-left: -15px;
+  }
+
   .grid-container {
     grid-template-columns: 1fr;
   }

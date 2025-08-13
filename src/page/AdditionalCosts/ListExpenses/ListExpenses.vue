@@ -49,6 +49,6 @@ const sortedItems = computed(() => {
 </script>
 
 <style scoped>
-.content { height: 60vh; }
+.content { height: 62vh; }
 .list { min-height: 58vh; }
 </style>

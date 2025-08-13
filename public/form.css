@@ -131,7 +131,8 @@ hr {
 
 .v-col-9{
   overflow: auto;
-  max-height: 65vh;
+  max-height: none;
+  height: 65vh;
 }
 
 @media (max-width: 600px) {
@@ -148,19 +149,17 @@ hr {
 
 @media (max-width:780px) {
   .v-col-9{
-    overflow: visible; /* вместо none */
+    overflow: visible;
     max-height: none;
     height: auto;
     flex: 0 0 100%;
     max-width: 100%;
   }
+
   .custom-text{
     padding: 10px 0;
   }
-  .v-col-9{
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
+
   .content-icons{
     display: none;
   }

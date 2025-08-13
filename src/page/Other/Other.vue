@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <Title :title="title" :icon="'mdi-dots-grid'"/>
+      <Title :title="title" :icon="'mdi-dots-grid'" />
       <div v-for="(block, i) in blocks" :key="i" class="block" @click="goRoute(block.route)">
         <div class="d-flex align-center card-header">
           <v-icon color="#debe7e" size="33">{{ block.icon }}</v-icon>
@@ -20,34 +20,34 @@ const router = useRouter();
 
 const title = "Прочее";
 const blocks = [
-  { 
-    icon: "mdi-tent", 
-    title: "Свободные поляны", 
-    description: "Уютные и просторные поляны, где можно разбить палаточный лагерь, насладиться отдыхом на свежем воздухе и провести разнообразные активности всей семьей.", 
-    route: "MapObjects" 
+  {
+    icon: "mdi-tent",
+    title: "Свободные поляны",
+    description: "Уютные и просторные поляны, где можно разбить палаточный лагерь, насладиться отдыхом на свежем воздухе и провести разнообразные активности всей семьей.",
+    route: "MapObjects"
   },
-  { 
-    icon: "mdi-cash-multiple", 
-    title: "Учет расходов", 
-    description: "Фиксация всех затрат на содержание лагеря: аренда и уборка, уход за территорией и любые другие предоставляемые услуги и сервисы.", 
-    route: "AdditionalCosts" 
+  {
+    icon: "mdi-cash-multiple",
+    title: "Учет расходов",
+    description: "Фиксация всех затрат на содержание лагеря: аренда и уборка, уход за территорией и любые другие предоставляемые услуги и сервисы.",
+    route: "AdditionalCosts"
   },
-  { 
-    icon: "mdi-cog-outline", 
-    title: "Настройки, тарифы", 
-    description: "Управление всеми параметрами кемпинга — настройки, тарифы и объекты кемпинга. Все правки автоматически применяются во всех разделах системы.", 
-    route: "SettingsCompany" 
+  {
+    icon: "mdi-cog-outline",
+    title: "Настройки, тарифы",
+    description: "Управление всеми параметрами кемпинга — настройки, тарифы и объекты кемпинга. Все правки автоматически применяются во всех разделах системы.",
+    route: "SettingsCompany"
   },
-  { 
-    icon: "mdi-account-outline", 
-    title: "Учетная запись", 
-    description: "Настройка всех персональных данных, контактной информации и параметров безопасности вашего профиля для удобного и безопасного использования системы.", 
-    route: "Account" 
+  {
+    icon: "mdi-account-outline",
+    title: "Учетная запись",
+    description: "Настройка всех персональных данных, контактной информации и параметров безопасности вашего профиля для удобного и безопасного использования системы.",
+    route: "Account"
   },
-  { 
-    icon: "mdi-exit-to-app", 
-    title: "Выход", 
-    route: "" 
+  {
+    icon: "mdi-exit-to-app",
+    title: "Выход",
+    route: ""
   },
 ];
 function goRoute(name) {
@@ -69,18 +69,20 @@ function goRoute(name) {
   transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
 }
 
-.block:hover{
+.block:hover {
   transform: scale(1.025);
   box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
 
-.block:last-child{
-  min-height: 30px;  
+.block:last-child {
+  min-height: 30px;
   background: #faf7f3;
+  padding: 10px;
   border: 1.5px solid #f0ad29;
+  margin-bottom: 30px;
 }
 
-.block:last-child:hover{
+.block:last-child:hover {
   background: #fff8ec;
   border: 1.5px solid #f0ad29;
 }
