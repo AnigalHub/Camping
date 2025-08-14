@@ -10,7 +10,6 @@
             :key="index" 
             :place="place" 
             :number="index" 
-            :rightLayout="true"
           />
         </div>
       </div>

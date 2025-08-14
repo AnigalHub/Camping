@@ -1,7 +1,10 @@
 <template>
-  <div class="place-card" :class="{ 'card-layout': rightLayout }"
-    :style="{ border: route.name === 'Home' ? `1.5px solid ${place.color}` : '' }">
-    <div class="layout" :class="{ 'right-layout': rightLayout }">
+  <div 
+    class="place-card" 
+    :class="cardClasses"
+    :style="{ border: route.name === 'Home' ? `1.5px solid ${place.color}` : '' }"
+  >
+    <div class="layout" :class="{ 'right-layout': useRightLayout }">
       <div class="left-content">
         <div class="header">
           <div class="number-badge" :style="{ border: `1.8px solid ${place.color}`, color: place.color }">
@@ -11,7 +14,7 @@
             <v-icon :color="place.color" size="35" class="title-icon">{{ place.icon }}</v-icon>
             <h3 class="title">{{ place.name }}</h3>
           </div>
-          <div v-if="rightLayout" class="right-tools">
+          <div v-if="showRightTools" class="right-tools">
             <div class="map-button map-button-right" @click="openOnMap(place.coordinations)">
               <div class="map-icon-wrap icon-block">
                 <v-icon size="30" color="#6d8f3c" class="map-icon-animated">mdi-map-marker</v-icon>
@@ -23,8 +26,7 @@
         </div>
         <div class="desc-wrap">
           <p class="description">{{ place.description }}</p>
-          <div v-if="rightLayout" class="coords coords_page"
-            @click="copyCoords(place.coordinations, number)">
+          <div v-if="showCoordsPage" class="coords coords_page" @click="copyCoords(place.coordinations, number)">
             <span>{{ place.coordinations }}</span>
             <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
           </div>
@@ -33,8 +35,7 @@
           <div class="progress-item">
             <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
             <span>{{ place.person }}/{{ place.people }}</span>
-            <v-progress-linear :model-value="showPercent(place.person, place.people)" color="#8AB539" height="9"
-              rounded />
+            <v-progress-linear :model-value="showPercent(place.person, place.people)" color="#8AB539" height="9" rounded />
           </div>
           <div class="progress-item">
             <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
@@ -42,14 +43,12 @@
             <v-progress-linear :model-value="showPercent(place.car, place.cars)" color="#B5B5B5" height="9" rounded />
           </div>
         </div>
-        <div v-if="!rightLayout" class="d-flex mt-2 block_buttons">
-          <div :class="[route.name === 'Home' ? 'coords_home' : 'coords_page', 'coords']"
-            @click="copyCoords(place.coordinations, number)">
+        <div v-if="showBottomButtons" class="d-flex mt-2 block_buttons">
+          <div class="coords" :class="bottomCoordsClass" @click="copyCoords(place.coordinations, number)">
             <span>{{ place.coordinations }}</span>
             <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
           </div>
-          <div :class="[route.name === 'Home' ? 'map-button_home' : 'map-button_page', 'map-button']"
-            @click="openOnMap(place.coordinations)">
+          <div class="map-button" :class="bottomMapClass" @click="openOnMap(place.coordinations)">
             <div class="map-icon-wrap">
               <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
               <div class="ping"></div>
@@ -62,39 +61,53 @@
   </div>
 </template>
 
-
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-
 const props = defineProps({
   number: Number,
   place: Object,
-  rightLayout: { type: Boolean, default: false }
 });
+
+const windowWidth = ref(window.innerWidth);
+const isMobile = computed(() => windowWidth.value <= 600);
+
+function onResize() {
+  windowWidth.value = window.innerWidth;
+}
+onMounted(() => window.addEventListener('resize', onResize));
+onBeforeUnmount(() => window.removeEventListener('resize', onResize));
 
 const copiedIndex = ref(null);
 
 const copyCoords = async (coords, index) => {
   await navigator.clipboard.writeText(coords);
   copiedIndex.value = index;
-  setTimeout(() => (copiedIndex.value = null), 1500);
+  setTimeout(() => copiedIndex.value = null, 1500);
 };
 
-const showPercent = (value, max) => {
-  return Math.round((value / max) * 100);
-}
+const showPercent = (value, max) => Math.round((value / max) * 100);
 
 const openOnMap = coords => {
   const [lat, lng] = coords.split(',').map(c => c.trim());
-  window.open(
-    `https://yandex.ru/maps/?ll=${lng},${lat}&pt=${lng},${lat},pm2rdm&z=15`,
-    '_blank'
-  );
+  window.open(`https://yandex.ru/maps/?ll=${lng},${lat}&pt=${lng},${lat},pm2rdm&z=15`, '_blank');
 };
+
+const useRightLayout = computed(() => route.name !== 'Home' && !isMobile.value);
+const showRightTools = useRightLayout;
+const showCoordsPage = useRightLayout;
+const showBottomButtons = computed(() => route.name === 'Home' || isMobile.value);
+
+const cardClasses = computed(() => ({
+  'card-layout': useRightLayout.value
+}));
+
+const bottomCoordsClass = computed(() => (route.name === 'Home' || isMobile.value) ? 'coords_home' : 'coords_page');
+const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) ? 'map-button_home' : 'map-button_page');
 </script>
+
 
 
 <style scoped>
