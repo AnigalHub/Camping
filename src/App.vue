@@ -110,7 +110,8 @@ html, body, #app {
 }
 
 .btn-home {
-  border: 1.5px solid #547c8f;
+  color: #2b4754;
+  border: 1.6px solid #547c8f;
   opacity: .75;
   box-shadow: none;
 }

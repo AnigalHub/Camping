@@ -13,9 +13,16 @@
           </div>
         </div>
         <div class="mobile-tabs mobile-only">
-          <button class="arrow" @click="prevTab">‹</button>
-          <div class="mobile-tab-label">{{ tab }}</div>
-          <button class="arrow" @click="nextTab">›</button>
+          <div class="mobile-tabs-wrapper">
+            <button 
+              v-for="(item, i) in tabs" 
+              :key="i" 
+              :class="['mobile-tab', { active: tab === item.value }]"
+              @click="tab = item.value"
+            >
+              {{ item.value }}
+            </button>
+          </div>
         </div>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="(item, i) in tabs" :key="i" :value="item.value">

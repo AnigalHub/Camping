@@ -258,7 +258,13 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 }
 
 .v-selection-control-group {
-  flex-direction: row !important;
+  flex-direction: row ;
+}
+
+@media (max-width: 610px) {
+  .v-selection-control-group {
+  flex-direction: column;
+}
 }
 
 .client .v-expansion-panel-text__wrapper {
@@ -273,13 +279,15 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .v-expansion-panel--active:not(:first-child) {
   margin-top: 0 !important;
 }
+
+
 </style>
 
 <style scoped>
 @import "./../../../public/form.css";
 
 .content {
-  margin-top: 25px;
+  margin-top: 20px;
   padding: 20px 10px;
   height: 76.5vh;
 }

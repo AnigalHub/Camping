@@ -35,11 +35,13 @@ function goRoute() {
 .profile-card {
   position: relative;
   overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 2px 2px 8px rgb(136 145 136 / 12%) !important;
   margin-bottom: 32px;
+  filter: blur(-3px);
   border-radius: 15px !important;
-  background: linear-gradient(165deg, rgba(255,255,255,.96), rgba(255,255,255,.92)) !important;
+  background: linear-gradient(165deg, rgb(245 248 238), rgb(237 242 248 / 87%)) !important;
   backdrop-filter: blur(8px);
-  border: .65px solid #006c9a38;
+  border: 1px solid #006c9a3b;
 }
 
 .decor-layer {
@@ -58,24 +60,30 @@ function goRoute() {
 }
 
 .orbit1 {
-  width: 260px; height: 260px;
-  top: -140px; right: -150px;
-  border-color: rgba(0,107,153,.55);
+  width: 260px;
+  height: 260px;
+  top: -140px;
+  right: -150px;
+  border-color: rgba(0, 107, 153, .55);
 }
 
 .orbit2 {
-  width: 85px; height: 85px;
-  bottom: -8px; left: -11px;
-  border-color: #749339d3;
+  width: 85px;
+  height: 85px;
+  bottom: -8px;
+  left: -11px;
+  border-color: rgb(174 191 142);
   animation: floatAnim 4.5s ease-in-out infinite;
 }
 
 .orbit-ring {
   position: absolute;
-  width: 130px; height: 130px;
-  top: 15%; left: 90%;
+  width: 130px;
+  height: 130px;
+  top: 15%;
+  left: 90%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(0,107,153,.08), transparent);
+  background: radial-gradient(circle, rgba(0, 107, 153, .08), transparent);
   filter: blur(15px);
   border-radius: 50%;
   animation: ringPulse 3s ease-in-out infinite;
@@ -83,21 +91,23 @@ function goRoute() {
 
 .icon-main,
 .icon-exit {
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  background: #fff;
+  background: #f5f9ef;
   box-shadow: none !important;
 }
 
 .icon-main {
   width: 50px !important;
   height: 50px !important;
-  border: 1.7px solid #afd56885;
-  animation: floatAnim 4.5s ease-in-out infinite;
+  border: 1.7px solid #cde0ac;
+  animation: floatAnim-84d4b824 4.5s ease-in-out infinite;
 }
 
 .icon-main i {
-  color: #afd568d3;
+  color: rgb(174 191 142);
 }
 
 .icon-exit {
@@ -105,31 +115,66 @@ function goRoute() {
   height: 42px !important;
   min-width: 42px !important;
   border: 1.5px solid #547c8f87;
-  background: #f3f8fa82 !important;
+  background: #e9f0f6 !important;
 }
 
 .icon-exit i {
-  color: rgba(60,95,150,0.75);
+  color: rgba(60, 95, 150, 0.75);
 }
 
 @keyframes ringPulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .7; }
-  50% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: .7;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 1;
+  }
 }
 
 @keyframes orbitSpin {
-  0% { transform: rotate(0deg); opacity: .7; }
-  50% { opacity: 1; }
-  100% { transform: rotate(360deg); opacity: .7; }
+  0% {
+    transform: rotate(0deg);
+    opacity: .7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: .7;
+  }
 }
 
 @keyframes floatAnim {
-  0%, 100% { transform: scale(1); opacity: .7; }
-  50% { transform: scale(1.05); opacity: 1; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: .7;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 850px) {
-  .profile-card { margin-bottom: 20px; }
-  .orbit1, .orbit2, .orbit-ring { opacity: .35; }
+  .profile-card {
+    margin-bottom: 20px;
+  }
+
+  .orbit1,
+  .orbit2,
+  .orbit-ring {
+    opacity: .35;
+  }
 }
 </style>

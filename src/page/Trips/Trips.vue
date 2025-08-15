@@ -14,14 +14,17 @@
           </div>
         </div>
         <div class="mobile-tabs mobile-only">
-          <button class="arrow" @click="prevTab">‹</button>
-          <div class="mobile-tab-label">{{ tab }}</div>
-          <button class="arrow" @click="nextTab">›</button>
+          <div class="mobile-tabs-wrapper" ref="mobileTabsWrapper">
+            <button v-for="(item, i) in tabs" :key="item" :class="['mobile-tab', { active: tab === item }]"
+              @click="tab = item">
+              {{ i === 0 ? 'Сегодня' : i === 1 ? 'Завтра' : item }}
+            </button>
+          </div>
         </div>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
             <div v-if="filteredSortedItems.length">
-              <Search v-model:sort="searchSort" @search="onSearchChanged" />
+              <Search v-model:sort="searchSort" @search="onSearchChanged" class="search_block"/>
               <Table :headers="headers" :items="filteredSortedItems" />
             </div>
             <div v-else class="no_data">Данных за день нет.</div>
@@ -159,5 +162,14 @@ const filteredSortedItems = computed(() => {
   height: 71vh;
   padding: 15px;
   margin-top: 10px;
+}
+
+@media (max-width: 700px) {
+  .search_block{
+    margin-top: 0;
+  }
+  .no_data {
+    margin-top: 5px;
+  }
 }
 </style>
