@@ -42,8 +42,7 @@
 
   /* Карточки под контент*/
   --background-content-card: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8));
-  --box-shadow-content-card: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
+  --box-shadow-content-card: none;
   --border-radius-content-card: 15px;
 
   /* Карточки внутри контента*/

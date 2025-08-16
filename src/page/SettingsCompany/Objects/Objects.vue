@@ -116,6 +116,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
 
 .v-expansion-panel-title {
   padding: 8px 16px !important;
+  background: #edeef050;
 }
 
 .v-expansion-panel--active:not(:first-child) {

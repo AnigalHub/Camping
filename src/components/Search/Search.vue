@@ -43,7 +43,7 @@ watch(sort, v => emit("update:sort", v));
 const route = useRoute();
 
 const base = [
-  { title: "ФИО (А→Я)", key: "fio", dir: "asc", value: "fio_asc" },
+  { title: "ФИО", key: "fio", dir: "asc", value: "fio_asc" },
   { title: "Аренда", key: "house", dir: "desc", value: "house_desc" },
   { title: "Транспорт", key: "cars", dir: "desc", value: "cars_desc" },
   { title: "Животные", key: "animals", dir: "desc", value: "animals_desc" },
@@ -52,7 +52,7 @@ const base = [
 const sortOptions =
   route.name === "AdditionalCosts"
     ? [
-        { title: "Наименование (А→Я)", key: "text", dir: "asc", value: "text_asc" },
+        { title: "Наименование", key: "text", dir: "asc", value: "text_asc" },
         { title: "Дата (недавние)", key: "date", dir: "desc", value: "date_desc" },
         { title: "Цена ↑", key: "price", dir: "asc", value: "price_asc" },
         { title: "Цена ↓", key: "price", dir: "desc", value: "price_desc" },
@@ -80,8 +80,7 @@ const onSelectChanged = () => {
 
 <style>
 .v-field--variant-solo {
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3),
-              2px 2px 8px rgba(17, 44, 18, 0.08) !important;
+  box-shadow: none !important;
   transition: 0.3s;
 }
 .v-field--variant-solo:hover {
@@ -91,6 +90,9 @@ const onSelectChanged = () => {
 }
 .search-bar .v-field--variant-solo {
   border-radius: 12px !important;
+}
+.v-field__prepend-inner{
+  color: #0d3646 !important;
 }
 </style>
 
@@ -153,6 +155,7 @@ const onSelectChanged = () => {
   .search-bar {
     padding: 6px 0 !important;
     border-radius: 10px;
+    margin: 10px 0 15px;
     gap: 6px !important;
   }
   .search-input :deep(.v-field__input),

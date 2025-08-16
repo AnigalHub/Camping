@@ -267,6 +267,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 .v-expansion-panel-title {
   padding: 8px 16px !important;
+  background: #edeef050;
 }
 
 .v-expansion-panel--active:not(:first-child) {
@@ -278,9 +279,9 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 @import "./../../../public/form.css";
 
 .content {
-  margin-top: 15px;
+  margin-top: 25px;
   padding: 20px 10px;
-  height: 78vh;
+  height: 76.5vh;
 }
 
 .wrapper_content{
@@ -352,7 +353,7 @@ span {
   }
   
   .content {
-    padding: 15px 10px;
+    padding: 10px 0;
   }
 
   .grid-inputs {
