@@ -42,7 +42,7 @@ function goRoute(name) {
   align-items: center;
   background: rgba(245, 250, 255, 0.8);
   backdrop-filter: blur(6px);
-  border: 1px solid rgb(52 113 206 / 50%);
+  border: 1px solid rgb(52 113 206 / 35%);
   border-radius: 28px;
   padding: 10px 8px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.15), 2px 2px 8px rgba(17, 44, 18, 0.14);
@@ -71,10 +71,17 @@ function goRoute(name) {
   justify-content: center;
 }
 
+.icons:hover{
+  border: 1px solid rgba(60, 95, 150, 0.25);
+}
+
+.menu-btn.active .icons {
+  border: 1px solid rgb(240 173 41 / 31%);
+}
+
 .icons:hover,
 .menu-btn.active .icons {
   background: #fff;
-  border: 1px solid rgb(240 173 41);
   transform: scale(1.25);
 }
 
@@ -84,7 +91,7 @@ function goRoute(name) {
 }
 
 .menu-btn.active img {
-  filter: drop-shadow(0 3px 15px rgba(241, 221, 167, 0.65));
+  filter: drop-shadow(0 3px 15px rgba(200, 220, 240, 0.95));
   transform: scale(1.65);
 }
 
