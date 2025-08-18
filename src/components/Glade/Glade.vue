@@ -1,6 +1,6 @@
 <template>
   <div class="place-card" :class="{ 'card-layout': rightLayout }"
-    :style="{ border: route.name === 'Home' ? `1.6px solid ${place.color}` : '' }">
+    :style="{ border: route.name === 'Home' ? `1.5px solid ${place.color}` : '' }">
     <div class="layout" :class="{ 'right-layout': rightLayout }">
       <div class="left-content">
         <div class="header">

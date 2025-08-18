@@ -17,7 +17,7 @@ const headers = [
     { label: "ФИО", key: "fio" },
     { label: "Телефон", key: "phone" },
     { label: "Проживание", key: "dateStay" },
-    { label: "Аренда домика", key: "house" },
+    { label: "Домик", key: "house" },
     { label: "Транспорт", key: "cars" },
     { label: "Животные", key: "animals" },
     { label: "Поляна", key: "object" },
@@ -54,14 +54,6 @@ const sortedItems = computed(() => {
   return sortDirection.value === "asc" ? sorted : sorted.reverse();
 });
 </script>
-
-<style scoped>
-.content {
-  height: 70vh;
-}
-</style>
-
-
 
 <style scoped>
 .content {

@@ -254,7 +254,7 @@ async function onModalDocuments(name, object, disable) {
 }
 
 /* --- Адаптив под карточки --- */
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
   .v-table {
     margin: 0;
   }

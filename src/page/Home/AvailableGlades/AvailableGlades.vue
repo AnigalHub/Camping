@@ -131,7 +131,7 @@ h2::after {
 .orbit {
   border-radius: 50%;
   border: 1.58px dashed rgba(138, 181, 57);
-  animation: orbitRotate 270s linear infinite;
+  animation: orbitSpin 240s linear infinite;
   z-index: 0;
 }
 
@@ -149,6 +149,12 @@ h2::after {
   bottom: -150px;
   left: -200px;
   animation-duration: 16s;
+}
+
+@keyframes orbitSpin {
+  0% { transform: rotate(0deg); opacity: .7; }
+  50% { opacity: 1; }
+  100% { transform: rotate(360deg); opacity: .7; }
 }
 
 @media screen and (max-width: 850px) {

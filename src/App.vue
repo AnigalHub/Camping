@@ -126,7 +126,7 @@ html, body, #app {
 .btn-page{
   background: #547c8f;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
+  box-shadow: none;
 }
 
 .btn-page:hover {
@@ -159,7 +159,7 @@ html, body, #app {
 .content,
 .block-title,
 .v-list-item, 
-.place-card, .block {
+.place-card, .block, .profile-card {
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
