@@ -129,6 +129,11 @@ hr {
   gap: 0 16px;
 }
 
+.v-col-9{
+  overflow: auto;
+  height: 65vh;
+}
+
 @media (max-width: 600px) {
   .btn-page{
     width: 90%;
@@ -142,6 +147,10 @@ hr {
 }
 
 @media (max-width:780px) {
+  .v-col-9{
+    overflow: none;
+    height: auto;
+  }
   .custom-text{
     padding: 10px 0;
   }

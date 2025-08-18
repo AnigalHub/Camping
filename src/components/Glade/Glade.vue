@@ -104,7 +104,7 @@ const openOnMap = coords => {
 
 .place-card {
   background: #fff;
-  border-radius: 18px;
+  border-radius: 15px;
   padding: 18px 20px;
   margin: 5px 8px 10px;
   position: relative;

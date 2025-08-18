@@ -3,7 +3,7 @@
     <v-container>
       <Title :title="title" :icon="'mdi-account-plus-outline'" />
       <div class="content">
-        <v-card elevation="2" style="overflow: auto; height: 74vh;" class="wrapper_content pa-6">
+        <v-card elevation="2" class="wrapper_content pa-6">
           <v-form v-model="valid" @submit.prevent="saveForm">
             <v-expansion-panels v-model="openedPanel" multiple>
               <v-expansion-panel class="custom-panel" v-for="(person, index) in persons" :key="index">
@@ -283,6 +283,11 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   height: 78vh;
 }
 
+.wrapper_content{
+  overflow: auto; 
+  height: 74vh;
+}
+
 .result_block {
   padding: 10px 15px;
   border: 1.5px solid #4a90e2;
@@ -328,6 +333,12 @@ span {
 @media (max-width: 992px) {
   .grid-inputs {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .content, .wrapper_content {
+    height: auto;
   }
 }
 

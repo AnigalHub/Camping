@@ -53,14 +53,24 @@ onBeforeUnmount(() => {
 
 <style>
 @import "./../public/style.css";
+html, body, #app {
+  height: 100%;
+}
+@media (max-width: 1100px) {
+  .content, .wrapper_content, .v-table, .block{
+    height: auto !important;
+    min-height: 75vh;
+  }
+}
 
 .v-input__details {
   padding: 3px !important;
 }
 
 /**Фон страниц */
-.v-application__wrap{
+.v-application__wrap, html{
   background: var(--background-color-page) !important;
+  min-height: 100vh;
 }
 
 .wrapper>* {

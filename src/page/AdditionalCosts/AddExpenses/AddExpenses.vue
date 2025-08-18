@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <v-row dense align="stretch">
-      <v-col cols="9" style="overflow: auto;height: 65vh;">
+      <v-col cols="9">
         <v-card class="pa-6" elevation="2">
           <v-form>
             <h3 class="form-subtitle">Траты по лагерю</h3>

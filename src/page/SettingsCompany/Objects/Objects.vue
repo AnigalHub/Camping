@@ -1,8 +1,8 @@
 <template>
   <div class="content objects">
     <v-row dense align="stretch">
-     <v-col cols="9" style="height: 65vh;">
-        <div class="wrapper_content" ref="scrollContainer" style="overflow: auto; height: 100%;">
+     <v-col cols="9">
+        <div class="wrapper_content" ref="scrollContainer" >
           <v-card class="pa-6" elevation="2">
             <v-form v-model="valid" @submit.prevent="saveForm">
               <v-expansion-panels v-model="openedPanel" multiple>

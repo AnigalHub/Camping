@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <Title :title="title" :icon="'mdi-account-outline'"/>
-       <v-card style="height: 87vh">
+       <v-card style="padding: 10px 0 !important;">
         <div class="tabs-container desktop-only">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
