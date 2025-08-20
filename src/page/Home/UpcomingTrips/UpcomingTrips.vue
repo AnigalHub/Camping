@@ -9,7 +9,7 @@
       <v-icon color="#debe7e" size="33">mdi-calendar-clock-outline</v-icon>
       <h2>Ближайшие выезды</h2>
     </div>
-    <div class="card-text ma-5">
+    <div class="card-text">
       Общее количество гостей, транспортных средств и глэмпингов, покидающих
       территорию лагеря в течение дня:
     </div>
@@ -25,8 +25,10 @@
       <v-col cols="4" class="d-flex justify-center">
         <v-card flat class="pa-4 text-center position-relative date-block">
           <component :is="CalendarSvg" width="50px" class="mx-auto" />
-          <div class="day mt-2">{{ today[0] }} {{ months[today[1]] }}</div>
-          <div class="today">Сегодня</div>
+          <div class="date-info">
+            <div class="day">{{ today[0] }} {{ months[today[1]] }}</div>
+            <div class="today">Сегодня</div>
+          </div>
         </v-card>
       </v-col>
     </v-row>
@@ -125,6 +127,7 @@ h2::after {
   color: #505050;
   width: 60%;
   line-height: 1.45;
+  margin: 20px;
 }
 
 .numbers {
@@ -166,7 +169,6 @@ h2::after {
   width: 100%;
   background: #fff;
   box-shadow: 1px 1px 1px 1px #d9d8d8 !important;
-  margin-top: -45%;
   padding: 16px !important;
   transition: transform .4s ease, box-shadow .4s ease;
 }
@@ -255,7 +257,7 @@ h2::after {
 
   50% {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.025);
   }
 }
 
@@ -279,13 +281,118 @@ h2::after {
   }
 }
 
+.date-block {
+  position: relative;
+  border-radius: 15px;
+  margin-top: -45%;
+  width: 100%;
+  background: #fff;
+  box-shadow: 1px 1px 1px 1px #d9d8d8 !important;
+  padding: 16px;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
 @media (max-width: 960px) {
   h2 {
     font-size: 1.3rem;
   }
 
+  .card-text {
+    width: 65%;
+  }
+
   .numbers {
     font-size: 60px;
+  }
+
+  .numbers-text {
+    font-size: 30px;
+  }
+
+  .day {
+    font-size: 30px;
+  }
+}
+
+
+@media (max-width: 767px) {
+
+  .v-row {
+    flex-direction: column-reverse;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .v-col-8,
+  .v-col-4 {
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    justify-content: center;
+  }
+
+  .card-text {
+    width: 100%;
+    text-align: left;
+    margin: 20px 0;
+  }
+
+  .numbers {
+    font-size: 50px;
+  }
+
+  .numbers-text {
+    font-size: 26px;
+    margin-top: -5%;
+  }
+
+  .day {
+    font-size: 24px;
+    width: 110%;
+  }
+
+  .date-block {
+    width: max-content;
+    margin: 0 auto;
+    padding: 14px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .date-block svg {
+    flex-shrink: 0;
+    width: 50px !important;
+  }
+
+  .date-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .numbers {
+    font-size: 44px;
+  }
+
+  .numbers-text {
+    font-size: 22px;
+    margin-top: -3%;
+  }
+
+  .day {
+    font-size: 22px;
+    width: 130%;
+  }
+
+  .today {
+    font-size: 16px;
   }
 }
 </style>

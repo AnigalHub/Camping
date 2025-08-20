@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-between">
+  <div class="d-flex justify-space-between responsive-blocks">
     <v-card
       v-for="(button, index) in buttons"
       :key="index"
@@ -236,5 +236,35 @@ function goRoute(name) {
 
 .card-2 .dashed-ring {
   border-color: rgba(240, 173, 41, .9);
+}
+
+@media screen and (max-width: 1200px) {
+
+  .responsive-blocks {
+    flex-direction: column;
+  }
+
+  .card-1 {
+    margin-bottom: 32px;
+  }
+
+  .card-2 .card-header {
+    flex-direction: row-reverse;
+  }
+
+  .card-2 .dashed-ring {
+    left: -180px;
+  }
+
+  .btn-home {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .btn-home {
+    width: 100%;
+    margin-top: 15px;
+  }
 }
 </style>

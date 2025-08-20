@@ -91,8 +91,8 @@ const isChanged = computed(() => JSON.stringify(person) !== JSON.stringify(origi
 }
 
 hr {
-  margin-top: 10px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .v-card {

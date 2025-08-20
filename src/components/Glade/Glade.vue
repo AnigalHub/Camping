@@ -1,16 +1,10 @@
 <template>
-  <div 
-    class="place-card" 
-    :class="{ 'card-layout': rightLayout }"
-    :style="{ border: route.name === 'Home' ? `1.6px solid ${place.color}` : '' }"
-  >
+  <div class="place-card" :class="{ 'card-layout': rightLayout }"
+    :style="{ border: route.name === 'Home' ? `1.6px solid ${place.color}` : '' }">
     <div class="layout" :class="{ 'right-layout': rightLayout }">
       <div class="left-content">
         <div class="header">
-          <div 
-            class="number-badge" 
-            :style="{ border: `1.8px solid ${place.color}`, color: place.color }"
-          >
+          <div class="number-badge" :style="{ border: `1.8px solid ${place.color}`, color: place.color }">
             {{ number + 1 }}
           </div>
           <div class="title-wrap">
@@ -29,7 +23,8 @@
         </div>
         <div class="desc-wrap">
           <p class="description">{{ place.description }}</p>
-          <div v-if="rightLayout" class="coords coords-inline" @click="copyCoords(place.coordinations, number)">
+          <div v-if="rightLayout" class="coords coords_page"
+            @click="copyCoords(place.coordinations, number)">
             <span>{{ place.coordinations }}</span>
             <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
           </div>
@@ -37,25 +32,30 @@
         <div class="progress-section">
           <div class="progress-item">
             <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
-            <span>{{ place.person }}/{{ place.people  }}</span>
-            <v-progress-linear :model-value="showPercent(place.person,place.people)" color="#8AB539" height="9" rounded />
+            <span>{{ place.person }}/{{ place.people }}</span>
+            <v-progress-linear :model-value="showPercent(place.person, place.people)" color="#8AB539" height="9"
+              rounded />
           </div>
           <div class="progress-item">
             <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
-            <span>{{ place.car }}/{{ place.cars  }}</span>
-            <v-progress-linear :model-value="showPercent(place.car,place.cars)" color="#B5B5B5" height="9" rounded />
+            <span>{{ place.car }}/{{ place.cars }}</span>
+            <v-progress-linear :model-value="showPercent(place.car, place.cars)" color="#B5B5B5" height="9" rounded />
           </div>
         </div>
-        <div v-if="!rightLayout" class="coords" @click="copyCoords(place.coordinations, number)">
-          <span>{{ place.coordinations }}</span>
-          <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
-        </div>
-        <div v-if="!rightLayout" class="map-button" @click="openOnMap(place.coordinations)">
-          <div class="map-icon-wrap">
-            <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
-            <div class="ping"></div>
+        <div v-if="!rightLayout" class="d-flex mt-2 block_buttons">
+          <div :class="[route.name === 'Home' ? 'coords_home' : 'coords_page', 'coords']"
+            @click="copyCoords(place.coordinations, number)">
+            <span>{{ place.coordinations }}</span>
+            <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
           </div>
-          <span>Открыть на картах</span>
+          <div :class="[route.name === 'Home' ? 'map-button_home' : 'map-button_page', 'map-button']"
+            @click="openOnMap(place.coordinations)">
+            <div class="map-icon-wrap">
+              <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
+              <div class="ping"></div>
+            </div>
+            <span>Открыть на картах</span>
+          </div>
         </div>
       </div>
     </div>
@@ -109,12 +109,11 @@ const openOnMap = coords => {
   margin: 5px 8px 10px;
   position: relative;
   transition: .35s;
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .08);
+  /* box-shadow: inset 0 0 6px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .08); */
 }
 
 .place-card:hover {
   transform: translateY(-4px);
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, .8), 2px 2px 8px rgba(17, 44, 18, .2);
 }
 
 .header,
@@ -196,9 +195,41 @@ const openOnMap = coords => {
   animation: float 3s ease-in-out infinite;
 }
 
+.coords_home,
+.map-button_home {
+  background: transparent;
+  border: 1.5px solid #547c8f;
+}
+
+.coords_home:hover,
+.map-button_home:hover {
+  transform: translateY(-2px);
+  background: #e9eff9;
+}
+
+.coords_page {
+  margin: 0;
+  min-width: 170px;
+  min-height: 20px !important;
+  background: transparent;
+  color: #6f9233;
+  border: 1.5px solid #6f9233;
+  width: auto !important;
+}
+
+.map-button-right {
+  background: rgba(117, 153, 48, .08);
+}
+
+.coords_page:hover,
+.map-button_page:hover {
+  transform: translateY(-2px);
+  transform: scale(1.025);
+  background: rgba(117, 153, 48, .16);
+}
+
 .coords,
 .map-button {
-  background: rgba(117, 153, 48, .08);
   border-radius: 12px;
   transition: .3s;
   cursor: pointer;
@@ -208,7 +239,6 @@ const openOnMap = coords => {
 }
 
 .coords {
-  margin-top: 18px;
   padding: 8px 12px;
   gap: 8px;
   float: left;
@@ -217,10 +247,6 @@ const openOnMap = coords => {
   width: 50%;
 }
 
-.coords:hover {
-  background: rgba(117, 153, 48, .16);
-  transform: translateX(-3px);
-}
 
 .coords span {
   font-size: .92rem;
@@ -229,14 +255,11 @@ const openOnMap = coords => {
 }
 
 .map-button {
-  margin-top: 20px;
+  width: 50%;
   padding: 8px 10px;
   gap: 10px;
 }
 
-.map-button:hover {
-  background: rgba(117, 153, 48, .16);
-}
 
 .map-icon-animated {
   animation: bounce 2s infinite ease-in-out;
@@ -270,16 +293,6 @@ const openOnMap = coords => {
   gap: 12px;
 }
 
-.coords-inline {
-  margin: 0;
-  min-width: 170px;
-  min-height: 20px;
-  background: transparent;
-  color: #6f9233;
-  border: 1.5px solid #6f9233;
-  width: auto;
-}
-
 .right-tools {
   display: flex;
   flex-direction: column;
@@ -293,6 +306,8 @@ const openOnMap = coords => {
   right: 0;
   display: flex;
   min-width: 200px;
+  width: auto;
+  margin-top: 20px;
   height: 40px;
   padding: 10px 14px;
   border-radius: 0 18px 0 0;
@@ -306,7 +321,7 @@ const openOnMap = coords => {
 
 .map-button-right:hover {
   background: linear-gradient(135deg, rgba(117, 153, 48, .18), rgba(117, 153, 48, .28));
-  transform: scale(1.05);
+  transform: scale(1.025);
   transform: translateX(0px);
 }
 
@@ -354,6 +369,23 @@ const openOnMap = coords => {
   100% {
     transform: scale(1.8);
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 900px) {
+
+
+  .coords_home {
+    margin-bottom: 10px;
+  }
+
+  .coords_home,
+  .map-button_home {
+    width: 100%;
+  }
+
+  .block_buttons {
+    flex-direction: column;
   }
 }
 </style>

@@ -70,4 +70,40 @@ h2::after {
   color: #505050;
   line-height: 1.45;
 }
+
+/* ------- КНОПКА ------- */
+
+.btn-home {
+  align-self: flex-end;
+  margin-top: auto;
+  margin-bottom: 5px;
+  width: 180px;
+  font-weight: 600;
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 850px) {
+  .card-text {
+    margin: 20px 15px;
+  }
+
+  .btn-home {
+    width: 55%;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 600px) {
+  .btn-home {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 960px) {
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+
 </style>

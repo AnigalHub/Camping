@@ -258,20 +258,9 @@ h2::after {
     opacity: 1
   }
 }
-
-@media (max-width:960px) {
-  .card-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .svg-block {
-    width: 100%;
-    height: 120px;
-  }
-
-  .decor-line {
-    display: none;
+@media (max-width: 960px) {
+  h2 {
+    font-size: 1.3rem;
   }
 }
 </style>

@@ -111,7 +111,7 @@ onBeforeUnmount(() => {
 
 .v-card:hover .btn-home {
   transform: translateY(-2px);
-  transform: scale(1.05);
+  transform: scale(1.025);
   box-shadow: none;
   background: #e9eff9;
   opacity: 1;
@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
 .content,
 .block-title,
 .v-list-item, 
-.place-card {
+.place-card, .block {
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
@@ -176,7 +176,7 @@ onBeforeUnmount(() => {
 }
 
 .v-form {
-  padding: 10px 10px 0 !important;
+  padding: 10px 0 0 !important;
   margin-top: -20px;
 }
 

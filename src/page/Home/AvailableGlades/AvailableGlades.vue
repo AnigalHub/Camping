@@ -90,7 +90,6 @@ const topTwo = sortedPlaces.slice(0, 2);
 
 .card:hover {
   transform: scale(1.025);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
 
 .card:hover .card-footer {
@@ -150,5 +149,11 @@ h2::after {
   bottom: -150px;
   left: -200px;
   animation-duration: 16s;
+}
+
+@media (max-width: 960px) {
+  h2 {
+    font-size: 1.3rem;
+  }
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <div class="content-wrapper-home">
     <div class="wrapper">
-      <v-container class="pt-10" min-height="100vh">
+      <v-container class="pt-8" min-height="100vh">
         <MainBlocks />
-        <div class="d-flex align-stretch justify-space-between pt-8 ga-8">
-          <div style="width: 75%">
+        <div class="d-flex align-stretch justify-space-between pt-8 ga-8 responsive-blocks">
+          <div class="trips-block">
             <UpcomingTrips class="h-100" />
           </div>
-          <div style="width: 25%">
+          <div class="expense-block">
             <ExpenseTracker class="h-100" />
           </div>
         </div>
@@ -32,5 +32,38 @@ import CampManagement from "./CampManagement/CampManagement.vue";
   min-height: 100vh;
   height: auto;
   padding-bottom: 20px;
+}
+
+
+
+.trips-block {
+  width: 75%;
+}
+
+.expense-block {
+  width: 25%;
+}
+
+/* Адаптив для маленьких экранов */
+@media screen and (min-width: 850px) and (max-width: 1300px) {
+  .trips-block {
+    width: 70%;
+  }
+
+  .expense-block {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 850px) {
+  .responsive-blocks{
+    flex-direction: column;
+  }
+  .trips-block {
+    width: 100%;
+  }
+
+  .expense-block {
+    width: 100%;
+  }
 }
 </style>
