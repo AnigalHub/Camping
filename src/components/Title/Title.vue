@@ -90,7 +90,6 @@ function goBack() {
 
 .title-wrapper:hover .icon-wrapper{
   background: #fff8ec;
-  transform: scale(1.05);
 }
 
 /* --- ИКОНКА + ТЕКСТ --- */

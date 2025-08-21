@@ -37,7 +37,7 @@ const toggleDrawer = () => {
 };
 
 const menus = [
-  { icon: "mdi-account-outline", name: "Учетная запись", route: "Settings" },
+  { icon: "mdi-account-outline", name: "Учетная запись", route: "Account" },
   { icon: "mdi-exit-to-app", name: "Выход", route: "Exit" },
 ];
 

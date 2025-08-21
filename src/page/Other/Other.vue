@@ -42,7 +42,7 @@ const blocks = [
     icon: "mdi-account-outline", 
     title: "Учетная запись", 
     description: "Настройка всех персональных данных, контактной информации и параметров безопасности вашего профиля для удобного и безопасного использования системы.", 
-    route: "Settings" 
+    route: "Account" 
   },
   { 
     icon: "mdi-exit-to-app", 
@@ -77,12 +77,12 @@ function goRoute(name) {
 .block:last-child{
   min-height: 30px;  
   background: #faf7f3;
-  border: 1.7px solid #f0ad29;
+  border: 1.5px solid #f0ad29;
 }
 
 .block:last-child:hover{
   background: #fff8ec;
-  border: 1.7px solid #f0ad29;
+  border: 1.5px solid #f0ad29;
 }
 
 .card-header {

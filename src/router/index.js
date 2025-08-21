@@ -7,7 +7,7 @@ const AddClients = () => import('@/page/AddClients/AddClients.vue')
 const ListClients = () => import('@/page/ListClients/ListClients.vue')
 const Trips = () => import('@/page/Trips/Trips.vue')
 const SettingsCompany = () => import('@/page/SettingsCompany/SettingsCompany.vue')
-const Settings = () => import('@/page/Settings/Settings.vue')
+const Account = () => import('@/page/Account/Account.vue')
 const Other = () => import('@/page/Other/Other.vue')
 
 const routes = [
@@ -27,7 +27,7 @@ const routes = [
   { name: 'ListClients', path: '/listclients', component: ListClients },
   { name: 'Trips', path: '/trips', component: Trips },
   { name: 'SettingsCompany', path: '/settingscompany', component: SettingsCompany },
-  { name: 'Settings', path: '/settings', component: Settings },
+  { name: 'Account', path: '/account', component: Account },
   { name: 'Other', path: '/other', component: Other}
 ]
 
