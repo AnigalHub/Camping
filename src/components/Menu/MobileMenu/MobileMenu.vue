@@ -22,7 +22,7 @@ const allButtons = [
   { img: "/favicon.png", route: "Home" },
 
   { icon: "mdi-calendar-clock-outline", label: "Ближайшие выезды", route: "Trips" },
-  { icon: "mdi-dots-grid", label: "Прочее", route: "Trips" },
+  { icon: "mdi-dots-grid", label: "Прочее", route: "Other" },
 ];
 
 function goRoute(name) {
@@ -70,19 +70,20 @@ function goRoute(name) {
 i {
   margin-top: 8px;
   padding: 10px;
-  font-size: 35px;
+  font-size: 30px;
   height: 35px;
   width: 35px;
+  -webkit-text-stroke: .45px #9a6f1b;
 }
 
 .img-icon {
   width: 50px;
   height: 50px;
-  transform: scale(1.8);
+  transform: scale(1.6);
   object-fit: contain;
 }
 
 .img-icon:hover{
-  transform: scale(1.8) rotate(45deg);
+  transform: scale(1.6) rotate(45deg);
 }
 </style>

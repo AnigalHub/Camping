@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <Title :title="title" />
+      <Title :title="title" :icon="'mdi-account-outline'"/>
       <div class="block-table">
         <v-row dense align="stretch">
           <v-col cols="9">
@@ -45,7 +45,7 @@ defineOptions({
   name: 'Settings'
 })
 
-const title = 'Настройка аккаунта'
+const title = 'Учетная запись'
 
 const login = ref('')
 const currentPassword = ref('')

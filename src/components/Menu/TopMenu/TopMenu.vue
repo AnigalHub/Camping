@@ -24,18 +24,20 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+const router = useRouter();
 
 const props = defineProps({
   drawer: Boolean,
 });
+
 const emit = defineEmits(["toggle-drawer"]);
-const router = useRouter();
+
 const toggleDrawer = () => {
   emit("toggle-drawer");
 };
 
 const menus = [
-  { icon: "mdi-cog", name: "Настройки", route: "Settings" },
+  { icon: "mdi-account-outline", name: "Учетная запись", route: "Settings" },
   { icon: "mdi-exit-to-app", name: "Выход", route: "Exit" },
 ];
 

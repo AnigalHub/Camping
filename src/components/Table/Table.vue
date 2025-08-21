@@ -301,7 +301,7 @@ async function onModalDocuments(name, object, disable) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 20px;
-    padding: 0 20px 20px 0 !important;
+    padding: 0 5px 20px 0 !important;
   }
 
   /** добавить переменные */

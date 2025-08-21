@@ -1,6 +1,6 @@
 <template>
   <div class="block-title">
-    <button class="back-btn" @click="goBack">
+    <button v-if="showBack" class="back-btn" @click="goBack">
       <v-icon color="#fff" size="22">mdi-arrow-left</v-icon>
     </button>
     <div class="title-wrapper">
@@ -18,6 +18,10 @@
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
+  showBack: {
+    type: Boolean,
+    default: () => true,
+  },
   title: {
     type: String,
     default: () => '',
@@ -44,6 +48,7 @@ function goBack() {
   margin: 15px 0 5px;
 }
 
+/* --- КНОПКА НАЗАД --- */
 .back-btn {
   width: 38px;
   height: 38px;
@@ -52,6 +57,7 @@ function goBack() {
   background: #f0ad29;
   transition: .25s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+  flex-shrink: 0;
 }
 
 .back-btn:hover {
@@ -63,8 +69,8 @@ function goBack() {
   transform: scale(.95);
 }
 
+/* --- ОБЁРТКА ЗАГОЛОВКА --- */
 .title-wrapper {
-
   padding: 6px 18px;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, .05);
@@ -72,6 +78,10 @@ function goBack() {
   box-shadow: 0 2px 6px rgba(0, 0, 0, .05), inset 0 1px 1px rgba(255, 255, 255, .6);
   transition: .3s;
   backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .title-wrapper:hover {
@@ -83,10 +93,12 @@ function goBack() {
   transform: scale(1.05);
 }
 
+/* --- ИКОНКА + ТЕКСТ --- */
 .icon-with-title {
   display: flex;
   align-items: center;
   gap: 14px;
+  overflow: hidden;
 }
 
 .icon-wrapper {
@@ -100,6 +112,7 @@ function goBack() {
   border: 2px solid #f0ad29;
   box-shadow: 0 1px 2px rgba(0, 0, 0, .05), inset 0 1px 2px rgba(0, 0, 0, .03);
   transition: .3s;
+  flex-shrink: 0;
 }
 
 .icon {
@@ -107,6 +120,7 @@ function goBack() {
   font-size: 26px;
 }
 
+/* --- ТЕКСТ --- */
 .title-animated {
   font-family: var(--font-family-title);
   font-size: 1.35rem;
@@ -115,6 +129,10 @@ function goBack() {
   background: linear-gradient(90deg, #494c54, #7b6f5e, #494c54);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title-animated::after {
@@ -127,4 +145,83 @@ function goBack() {
   border-radius: 3px;
   background: #f0ad29;
 }
+
+
+/* ============================
+    А Д А П Т И В Н О С Т Ь
+=============================== */
+
+/* --- Планшеты --- */
+@media (max-width: 900px) {
+  .title-animated {
+    font-size: 1.15rem;
+  }
+  .icon-wrapper {
+    width: 38px;
+    height: 38px;
+  }
+  .icon {
+    font-size: 22px;
+  }
+  .back-btn {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* --- Телефоны --- */
+@media (max-width: 600px) {
+  .block-title {
+    gap: 10px;
+    margin: 10px 0 5px;
+  }
+
+  .title-wrapper {
+    padding: 6px 10px;
+  }
+
+  .icon-with-title {
+    gap: 10px;
+  }
+
+  .icon-wrapper {
+    width: 34px;
+    height: 34px;
+    border-width: 1.5px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .title-animated {
+    font-size: 1rem;
+  }
+
+  .title-animated::after {
+    width: 45px;
+  }
+
+  .back-btn {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* --- Маленькие телефоны 360px --- */
+@media (max-width: 400px) {
+  .title-animated {
+    font-size: 0.9rem;
+  }
+
+  .icon-wrapper {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+}
+
 </style>

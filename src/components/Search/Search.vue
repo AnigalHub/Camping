@@ -146,4 +146,73 @@ const onSearch = () => emit("search", { search: search.value, sort: sort.value }
     gap: 20px;
   }
 }
+
+/* --------------------------
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ
+--------------------------- */
+
+/* Телефоны до 600px */
+@media (max-width: 600px) {
+
+  .search-bar {
+    padding: 6px 0 !important;
+    border-radius: 10px;
+    gap: 6px !important;
+  }
+
+  .search-input :deep(.v-field__input),
+  .filter-select :deep(.v-field__input) {
+    min-height: 45px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .search-controls {
+    flex-direction: column;
+    gap: 14px !important;
+    margin-top: 6px !important;
+  }
+
+  .btn-page {
+    min-height: 45px !important;
+    font-size: 0.9rem !important;
+    padding: 4px 10px !important;
+  }
+
+  .filter-select {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .search-input {
+    min-width: 100%;
+  }
+}
+
+/* Маленькие телефоны 360–400px */
+@media (max-width: 400px) {
+
+  .search-bar {
+    padding: 4px 0 !important;
+    border-radius: 8px;
+  }
+
+  .search-controls {
+    gap: 12px !important;
+  }
+
+  .search-input :deep(.v-field__input),
+  .filter-select :deep(.v-field__input) {
+    min-height: 40px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .btn-page {
+    min-height: 34px !important;
+    padding: 3px 8px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
 </style>
