@@ -8,6 +8,7 @@ const ListClients = () => import('@/page/ListClients/ListClients.vue')
 const Trips = () => import('@/page/Trips/Trips.vue')
 const SettingsCompany = () => import('@/page/SettingsCompany/SettingsCompany.vue')
 const Settings = () => import('@/page/Settings/Settings.vue')
+const Other = () => import('@/page/Other/Other.vue')
 
 const routes = [
   // {
@@ -27,6 +28,7 @@ const routes = [
   { name: 'Trips', path: '/trips', component: Trips },
   { name: 'SettingsCompany', path: '/settingscompany', component: SettingsCompany },
   { name: 'Settings', path: '/settings', component: Settings },
+  { name: 'Other', path: '/other', component: Other}
 ]
 
 export const router = createRouter({
