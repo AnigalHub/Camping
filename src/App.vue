@@ -16,8 +16,6 @@
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { useStore } from "vuex";
 import { loadComponent } from "./utils/loadComponent";
-import { loadGoogleFonts } from './utils/fontLoader';
-import { extractUsedFonts } from './utils/fontScanner';
 
 const Modal = loadComponent("Modal");
 const store = useStore();
@@ -45,10 +43,6 @@ function isModalVisible(name) {
 
 onMounted(async () => {
     window.addEventListener("resize", onResize);
-  await nextTick();
-  const usedFonts = extractUsedFonts();
-  // загрузка найденных шрифтов на https://fonts.google.com/
-  loadGoogleFonts(usedFonts);
 }); 
 
 onBeforeUnmount(() => {
