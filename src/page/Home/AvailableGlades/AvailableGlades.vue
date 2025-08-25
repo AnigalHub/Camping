@@ -40,19 +40,23 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
 const goRoute = () => router.push({ name: "MapObjects" });
 import places from './../../../../public/data/places.json';
 
+const sortOption = ref({ key: "places", dir: "asc" }); // сортировка по умолчанию
+const dir = sortOption.value.dir === "asc" ? 1 : -1;
+
 function sortPlacesByOccupancy(places) {
   return places
     .slice()
     .sort((a, b) => {
-      const aRate = (a.person / a.maxperson) + (a.car / a.maxcar);
-      const bRate = (b.person / b.maxperson) + (b.car / b.maxcar);
-      return bRate - aRate; 
+     const freeA = (a.maxperson - a.person) + (a.maxcar - a.car);
+      const freeB = (b.maxperson - b.person) + (b.maxcar - b.car);
+      return (freeA - freeB) * dir;
     });
 }
 const sortedPlaces = sortPlacesByOccupancy(places);

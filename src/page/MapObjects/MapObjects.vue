@@ -26,17 +26,23 @@ defineOptions({ name: 'MapObjects' });
 const title = 'Свободные поляны';
 
 /** Состояние сортировки */
-const sortOption = ref({ key: "places", dir: "asc" }); // сортировка по умолчанию
-
+const sortOption = ref({ key: "combined", dir: "asc" });
 /** Массив мест */
 const places = ref([...placesData]);
 
 /** Сортированный массив */
 const sortedPlaces = computed(() => {
   if (!sortOption.value) return places.value;
+
+  const key = sortOption.value.key;
+  const dir = sortOption.value.dir === "asc" ? 1 : -1;
+
   return [...places.value].sort((a, b) => {
-    const key = sortOption.value.key;
-    const dir = sortOption.value.dir === "asc" ? 1 : -1;
+    if (key === "combined") {
+      const freeA = (a.maxperson - a.person) + (a.maxcar - a.car);
+      const freeB = (b.maxperson - b.person) + (b.maxcar - b.car);
+      return (freeA - freeB) * dir;
+    }
     return (a[key] - b[key]) * dir;
   });
 });

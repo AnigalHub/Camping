@@ -52,6 +52,7 @@ const sortOptions =
     ]
     : route.name === "MapObjects"
       ? [
+        { title: "Свободные места и парковка", key: "combined", dir: "asc", value: "combined_asc" },
         { title: "Свободные места", key: "person", dir: "asc", value: "person_asc" },
         { title: "Свободная парковка", key: "car", dir: "asc", value: "car_asc" },
       ]
