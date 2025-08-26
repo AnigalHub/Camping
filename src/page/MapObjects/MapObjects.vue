@@ -2,10 +2,16 @@
   <div>
     <v-container>
       <Title :title="title" :icon="'mdi-tent'" class="title" />
-      <Search />
+      <Search :sort="sortOption" @update:sort="onSortChanged" @search="onSearch" />
       <div class="block">
         <div class="grid-container">
-          <Glade v-for="(place, index) in places" :key="index" :place="place" :number="index" :rightLayout="true"/>
+          <Glade 
+            v-for="(place, index) in sortedPlaces" 
+            :key="index" 
+            :place="place" 
+            :number="index" 
+            :rightLayout="true"
+          />
         </div>
       </div>
     </v-container>
@@ -13,9 +19,42 @@
 </template>
 
 <script setup>
-import places from './../../../public/data/places.json';
-defineOptions({ name: 'MapObjects' })
+import { ref, computed, watch } from "vue";
+import placesData from './../../../public/data/places.json';
+
+defineOptions({ name: 'MapObjects' });
 const title = 'Свободные поляны';
+
+/** Состояние сортировки */
+const sortOption = ref({ key: "places", dir: "asc" }); // сортировка по умолчанию
+
+/** Массив мест */
+const places = ref([...placesData]);
+
+/** Сортированный массив */
+const sortedPlaces = computed(() => {
+  if (!sortOption.value) return places.value;
+  return [...places.value].sort((a, b) => {
+    const key = sortOption.value.key;
+    const dir = sortOption.value.dir === "asc" ? 1 : -1;
+    return (a[key] - b[key]) * dir;
+  });
+});
+
+/** Обработчик смены сортировки из Search */
+const onSortChanged = (newSort) => {
+  if (!newSort) return;
+  sortOption.value = { key: newSort.key, dir: newSort.dir };
+};
+
+/** Обработчик поиска (при необходимости) */
+const onSearch = ({ search }) => {
+  // Если нужен фильтр по названию
+  if (!search) return;
+  places.value = [...placesData].filter(p => 
+    p.name.toLowerCase().includes(search.toLowerCase())
+  );
+};
 </script>
 
 <style scoped>
@@ -39,5 +78,4 @@ const title = 'Свободные поляны';
     grid-template-columns: 1fr;
   }
 }
-
 </style>

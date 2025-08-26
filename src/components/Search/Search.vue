@@ -17,7 +17,7 @@
         item-title="title" 
         item-value="value" 
         return-object
-        label="Сортировать" 
+        label="Сортировать по:" 
         variant="solo" 
         density="comfortable" 
         rounded="lg" 
@@ -38,12 +38,8 @@ const props = defineProps({ sort: Object });
 const emit = defineEmits(["update:sort", "search"]);
 
 const search = ref("");
-const sort = ref(props.sort);
-watch(() => props.sort, v => (sort.value = v));
+const sort = ref(null);
 watch(sort, v => emit("update:sort", v));
-
-const onSelectChanged = () => { if (!sort.value) return; emit("search", { search: search.value, sortKey: sort.value.key, sortDirection: sort.value.dir, fromSelect: true }); };
-const onSearch = () => emit("search", { search: search.value, sort: sort.value });
 
 const route = useRoute();
 const sortOptions =
@@ -56,23 +52,34 @@ const sortOptions =
     ]
     : route.name === "MapObjects"
       ? [
-        { title: "Места (более свободные)", key: "places", dir: "asc", value: "places_asc" },
-        { title: "Парковка (более свободные)", key: "parking", dir: "asc", value: "parking_asc" },
+        { title: "Свободные места", key: "person", dir: "asc", value: "person_asc" },
+        { title: "Свободная парковка", key: "car", dir: "asc", value: "car_asc" },
       ]
-      :  route.name === "Trips"
-      ? [
-        { title: "ФИО (А→Я)", key: "fio", dir: "asc", value: "fio_asc" },
-        { title: "Аренда (наличие)", key: "house", dir: "desc", value: "house_desc" },
-        { title: "Транспорт (наличие)", key: "cars", dir: "desc", value: "cars_desc" },
-        { title: "Животные (наличие)", key: "animals", dir: "desc", value: "animals_desc" },
-      ] :
-      [
-        { title: "ФИО (А→Я)", key: "fio", dir: "asc", value: "fio_asc" },
-        { title: "Дата (ближайшие выезды)", key: "dateStay", dir: "asc", value: "dateStay_asc" },
-        { title: "Аренда (наличие)", key: "house", dir: "desc", value: "house_desc" },
-        { title: "Транспорт (наличие)", key: "cars", dir: "desc", value: "cars_desc" },
-        { title: "Животные (наличие)", key: "animals", dir: "desc", value: "animals_desc" },
-      ];
+      : route.name === "Trips"
+        ? [
+          { title: "ФИО (А→Я)", key: "fio", dir: "asc", value: "fio_asc" },
+          { title: "Аренда (наличие)", key: "house", dir: "desc", value: "house_desc" },
+          { title: "Транспорт (наличие)", key: "cars", dir: "desc", value: "cars_desc" },
+          { title: "Животные (наличие)", key: "animals", dir: "desc", value: "animals_desc" },
+        ] :
+        [
+          { title: "ФИО (А→Я)", key: "fio", dir: "asc", value: "fio_asc" },
+          { title: "Дата (ближайшие выезды)", key: "dateStay", dir: "asc", value: "dateStay_asc" },
+          { title: "Аренда (наличие)", key: "house", dir: "desc", value: "house_desc" },
+          { title: "Транспорт (наличие)", key: "cars", dir: "desc", value: "cars_desc" },
+          { title: "Животные (наличие)", key: "animals", dir: "desc", value: "animals_desc" },
+        ];
+const onSelectChanged = () => {
+  if (!sort.value) return;
+  emit("search", {
+    search: search.value,
+    sortKey: sort.value.key,
+    sortDirection: sort.value.dir,
+    fromSelect: true
+  });
+};
+
+const onSearch = () => emit("search", { search: search.value, sort: sort.value });
 </script>
 
 
