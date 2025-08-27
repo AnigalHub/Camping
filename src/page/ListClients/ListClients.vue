@@ -1,9 +1,7 @@
 <template>
   <v-container>
     <Title :title="title" icon="mdi-account-group-outline" />
-
     <Search v-model:sort="searchSort" @search="onSearchChanged" />
-
     <Table v-if="items.length" :headers="headers" :items="sortedItems" />
     <div v-else class="content">Данные не найдены.</div>
   </v-container>

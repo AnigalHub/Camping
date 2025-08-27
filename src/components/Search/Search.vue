@@ -49,8 +49,8 @@ const route = useRoute();
 const sortOptions =
   route.name === "AdditionalCosts"
     ? [
-      { title: "Наименование (А→Я)", key: "name", dir: "asc", value: "name_asc" },
-      { title: "Дата (недавно добавленные)", key: "date", dir: "asc", value: "date_asc" },
+      { title: "Наименование (А→Я)", key: "text", dir: "asc", value: "text_asc" },
+      { title: "Дата (недавно добавленные)", key: "date", dir: "desc", value: "date_desc" },
       { title: "Цена (по возрастанию)", key: "price", dir: "asc", value: "price_asc" },
       { title: "Цена (по убыванию)", key: "price", dir: "desc", value: "price_desc" },
     ]

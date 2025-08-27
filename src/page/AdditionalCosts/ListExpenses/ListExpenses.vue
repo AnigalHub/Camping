@@ -1,11 +1,13 @@
 <template>
   <div class="list">
-    <search class="search" />
-    <Table :headers="headers" :items="items" />
+    <search class="search" v-model:sort="searchSort" @search="onSearchChanged" />
+    <Table :headers="headers" :items="sortedItems" />
   </div>
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
+import itemsData from "./../../../../public/data/expenses.json";
 /** Заголовки */
 const headers = [
   [
@@ -14,41 +16,40 @@ const headers = [
     { label: 'Цена', key: 'price', sortable: true },
     { label: '', key: 'buttons' },
   ],
-]
-/** Содержимое таблицы */
-const items = [
-  {
-    text: 'Вызов сантехника из-за засора в раковинах на полянах №5 и №3',
-    date: '2025-07-15T00:00:00.000+00:00',
-    price: 6000,
-  },
-  {
-    text: 'Ложный вызов полиции к отдыхающим',
-    date: '2025-09-21T00:00:00.000+00:00',
-    price: 10000,
-  },
-  {
-    text: 'Замена сифона в раковинах на полянх №2 и №4',
-    date: '2025-05-21T00:00:00.000+00:00',
-    price: 5000,
-  },
-  {
-    text: 'Вызов частной скорой к отдыхающему по состоянию здоровья',
-    date: '2025-09-03T00:00:00.000+00:00',
-    price: 1000,
-  },
-]
+];
+
+
+const items = ref(itemsData);
+const sortKey = ref("date");
+const sortDirection = ref("desc");
+const searchSort = ref(null);
+
+
+const onSearchChanged = ({ sortKey: key, sortDirection: dir, fromSelect }) => {
+  if (fromSelect) {
+    sortKey.value = key || null;
+    sortDirection.value = dir || "asc";
+  }
+};
+
+/** Отсортированные элементы */
+const sortedItems = computed(() => {
+  if (!sortKey.value) return items.value;
+
+  return [...items.value].sort((a, b) => {
+    const valA = a[sortKey.value], valB = b[sortKey.value];
+    const cmp = sortKey.value === "price"
+      ? valA - valB
+      : sortKey.value === "date"
+        ? new Date(valA) - new Date(valB)
+        : String(valA ?? "").localeCompare(String(valB ?? ""));
+    return sortDirection.value === "asc" ? cmp : -cmp;
+  });
+});
 </script>
+
 <style scoped>
-.search {
-  margin-top: -.5rem;
-}
-
-.content {
-  height: 60vh;
-}
-
-.list {
-  min-height: 58vh;
-}
+.search { margin-top: -.5rem; }
+.content { height: 60vh; }
+.list { min-height: 58vh; }
 </style>
