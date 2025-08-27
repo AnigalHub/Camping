@@ -20,9 +20,9 @@
         </div>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
-            <div v-if="filteredItems.length">
-              <search style="margin-top: -10px;"/>
-              <Table :headers="headers" :items="filteredItems" sortByKey="fio" />
+            <div v-if="filteredSortedItems.length">
+              <Search v-model:sort="searchSort" @search="onSearchChanged" style="margin-top:-10px;" />
+              <Table :headers="headers" :items="filteredSortedItems" />
             </div>
             <div v-else class="no_data">Данных за день нет.</div>
           </v-tabs-window-item>
@@ -33,12 +33,11 @@
 </template>
 
 <script setup>
-import items from './../../../public/data/clients.json';
-import { shallowRef, ref, computed, onMounted, nextTick, watch } from "vue";
+import itemsData from './../../../public/data/clients.json';
+import { ref, computed, shallowRef, nextTick, watch, onMounted } from "vue";
 
-defineOptions({
-  name: "Trips",
-});
+defineOptions({ name: "Trips" });
+
 const title = "Ближайшие выезды";
 
 function get7Days() {
@@ -57,9 +56,9 @@ function get7Days() {
 
 const tabs = get7Days();
 const tab = shallowRef(tabs[0]);
-
 const tabRefs = ref([]);
 const sliderStyle = ref({});
+
 const updateSlider = () => {
   nextTick(() => {
     const activeIndex = tabs.indexOf(tab.value);
@@ -75,21 +74,48 @@ const updateSlider = () => {
 onMounted(updateSlider);
 watch(tab, updateSlider);
 
-// Mobile navigation
 const nextTab = () => {
-  const idx = tabs.findIndex((t) => t.value === tab.value);
-  tab.value = tabs[(idx + 1) % tabs.length].value;
+  const idx = tabs.indexOf(tab.value);
+  tab.value = tabs[(idx + 1) % tabs.length];
 };
-
 const prevTab = () => {
-  const idx = tabs.findIndex((t) => t.value === tab.value);
-  tab.value = tabs[(idx - 1 + tabs.length) % tabs.length].value;
+  const idx = tabs.indexOf(tab.value);
+  tab.value = tabs[(idx - 1 + tabs.length) % tabs.length];
 };
 
-// --- Логика фильтрации, таблицы и данных без изменений ---
-const filteredItems = computed(() => {
+const headers = [[
+  { label: "ФИО", key: "fio" },
+  { label: "Телефон", key: "phone" },
+  { label: "Проживание", key: "dateStay" },
+  { label: "Аренда (домик)", key: "house" },
+  { label: "Транспорт (наличие)", key: "cars" },
+  { label: "Животные", key: "animals" },
+  { label: "Поляна", key: "object" },
+  { label: "Стоимость", key: "price" },
+  { label: "", key: "buttons" }
+]];
+
+const items = ref(itemsData);
+const sortKey = ref("fio");
+const sortDirection = ref("asc");
+const searchSort = ref(null);
+
+const onSearchChanged = ({ sortKey: key, sortDirection: dir, fromSelect }) => {
+  if (!fromSelect) return;
+  sortKey.value = key || null;
+  sortDirection.value = dir || "asc";
+};
+
+onMounted(() => { searchSort.value = null; });
+
+const compareFio = (a, b) =>
+  ["surname", "name", "patronymic"].reduce((r, f) =>
+    r !== 0 ? r : (a[f] || "").localeCompare(b[f] || ""), 0);
+
+const filteredSortedItems = computed(() => {
   const currentDateStr = tab.value;
-  const filtered = items.filter((item) => {
+
+  let filtered = items.value.filter(item => {
     const endDate = new Date(item.endDate);
     const day = String(endDate.getDate()).padStart(2, "0");
     const month = String(endDate.getMonth() + 1).padStart(2, "0");
@@ -97,21 +123,19 @@ const filteredItems = computed(() => {
     const endDateStr = `${day}.${month}.${year}`;
     return endDateStr === currentDateStr;
   });
-  return filtered.sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
-});
 
-const headers = [[
-  { label: "ФИО", rowspan: 2, key: "fio", sortable: true },
-  { label: "Телефон", rowspan: 2, key: "phone" },
-  { label: "Проживание", rowspan: 2, key: "dateStay", sortable: true },
-  { label: "Аренда домика", rowspan: 2, key: "house", sortable: true },
-  { label: "Транспорт", rowspan: 2, key: "cars", sortable: true },
-  { label: "Животные", rowspan: 2, key: "animals", sortable: true },
-  { label: "Поляна", rowspan: 2, key: "object", sortable: true },
-  { label: "Стоимость", rowspan: 2, key: "price", sortable: true },
-  { label: "", key: "buttons" }
-]];
+  if (!sortKey.value) return filtered;
+
+  const sorted = [...filtered].sort((a, b) => {
+    if (sortKey.value === "fio") return compareFio(a, b);
+    if (sortKey.value === "dateStay") return new Date(a.endDate) - new Date(b.endDate);
+    return String(a[sortKey.value] ?? "").localeCompare(String(b[sortKey.value] ?? ""));
+  });
+
+  return sortDirection.value === "asc" ? sorted : sorted.reverse();
+});
 </script>
+
 
 <style scoped>
 @import "./../../../public/tabs.css";

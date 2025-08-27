@@ -1,27 +1,31 @@
 <template>
   <v-card class="search-bar d-flex flex-wrap align-center justify-space-between">
-    <v-text-field v-model="search" density="comfortable" hide-details rounded="lg" variant="solo" placeholder="Поиск"
-      prepend-inner-icon="mdi-magnify" class="search-input" />
-
+    <v-text-field 
+      v-model="search" 
+      placeholder="Поиск" 
+      prepend-inner-icon="mdi-magnify" 
+      variant="solo"
+      density="comfortable" 
+      rounded="lg" 
+      hide-details 
+      class="search-input" 
+    />
     <div class="search-controls d-flex align-center gap-3 flex-wrap mt-2 mt-md-0">
-<v-select
-  v-model="sort"
-  :items="sortOptions"
-  label="Сортировать"
-  density="comfortable"
-  hide-details
-  rounded="lg"
-  variant="solo"
-  class="filter-select"
-  @update:modelValue="onSelectChanged"
-/>
-      <v-btn 
-        class="btn-page"
-        prepend-icon="mdi-magnify"
-        @click="onSearch"
-      >
-        Найти
-      </v-btn>
+      <v-select 
+        v-model="sort" 
+        :items="sortOptions" 
+        item-title="title" 
+        item-value="value" 
+        return-object
+        label="Сортировать" 
+        variant="solo" 
+        density="comfortable" 
+        rounded="lg" 
+        hide-details 
+        class="filter-select"
+        @update:modelValue="onSelectChanged" 
+      />
+      <v-btn class="btn-page" prepend-icon="mdi-magnify" @click="onSearch">Найти</v-btn>
     </div>
   </v-card>
 </template>
@@ -30,43 +34,53 @@
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
-defineOptions({ name: "Search" });
-const props = defineProps({ sort: String });
+const props = defineProps({ sort: Object });
 const emit = defineEmits(["update:sort", "search"]);
-const sort = ref(props.sort);
-watch(sort, (v) => {
-  emit("update:sort", v);
-});
-watch(() => props.sort, (v) => { 
-  sort.value = v; 
-});
 
-const onSelectChanged = () => {
-  // уведомляем родителя о поиске/сортировке
-  emit("search", { search: search.value, sort: sort.value, fromSelect: true });
-};
+const search = ref("");
+const sort = ref(props.sort);
+watch(() => props.sort, v => (sort.value = v));
+watch(sort, v => emit("update:sort", v));
+
+const onSelectChanged = () => { if (!sort.value) return; emit("search", { search: search.value, sortKey: sort.value.key, sortDirection: sort.value.dir, fromSelect: true }); };
+const onSearch = () => emit("search", { search: search.value, sort: sort.value });
 
 const route = useRoute();
-const search = ref("");
-
 const sortOptions =
   route.name === "AdditionalCosts"
-    ? ["По наименованию", "По дате", "По цене"]
+    ? [
+      { title: "Наименование (А→Я)", key: "name", dir: "asc", value: "name_asc" },
+      { title: "Дата (недавно добавленные)", key: "date", dir: "asc", value: "date_asc" },
+      { title: "Цена (по возрастанию)", key: "price", dir: "asc", value: "price_asc" },
+      { title: "Цена (по убыванию)", key: "price", dir: "desc", value: "price_desc" },
+    ]
     : route.name === "MapObjects"
-      ? ["По местам", "По парковке"]
-      : ["По дате", "По фио"];
-
-
-const onSearch = () => {
-  emit("search", { search: search.value, sort: sort.value });
-};
+      ? [
+        { title: "Места (более свободные)", key: "places", dir: "asc", value: "places_asc" },
+        { title: "Парковка (более свободные)", key: "parking", dir: "asc", value: "parking_asc" },
+      ]
+      :  route.name === "Trips"
+      ? [
+        { title: "ФИО (А→Я)", key: "fio", dir: "asc", value: "fio_asc" },
+        { title: "Аренда (наличие)", key: "house", dir: "desc", value: "house_desc" },
+        { title: "Транспорт (наличие)", key: "cars", dir: "desc", value: "cars_desc" },
+        { title: "Животные (наличие)", key: "animals", dir: "desc", value: "animals_desc" },
+      ] :
+      [
+        { title: "ФИО (А→Я)", key: "fio", dir: "asc", value: "fio_asc" },
+        { title: "Дата (ближайшие выезды)", key: "dateStay", dir: "asc", value: "dateStay_asc" },
+        { title: "Аренда (наличие)", key: "house", dir: "desc", value: "house_desc" },
+        { title: "Транспорт (наличие)", key: "cars", dir: "desc", value: "cars_desc" },
+        { title: "Животные (наличие)", key: "animals", dir: "desc", value: "animals_desc" },
+      ];
 </script>
+
 
 <style>
 .v-field--variant-solo {
   box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.08) !important;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  transition: 0.3s;
 }
 
 .v-field--variant-solo:hover {
@@ -75,7 +89,7 @@ const onSearch = () => {
   transform: translateY(-1px);
 }
 
-.search-bar .v-input--density-comfortable .v-field--variant-solo {
+.search-bar .v-field--variant-solo {
   border-radius: 12px !important;
 }
 </style>
@@ -84,7 +98,6 @@ const onSearch = () => {
 .search-bar {
   border-radius: 12px;
   padding-left: 2px !important;
-  padding-right: 0 !important;
   margin-bottom: 5px;
 }
 
@@ -93,8 +106,8 @@ const onSearch = () => {
 }
 
 .filter-select {
-  min-width: 250px;
-  max-width: 300px;
+  min-width: 300px;
+  max-width: 350px;
 }
 
 .search-controls,

@@ -10,40 +10,14 @@
               :colspan="col.colspan || 1"
               :rowspan="col.rowspan || 1"
               class="text-center"
-              :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
-              @click="col.sortable && toggleSort(col.key)"
             >
-              <div style="display:flex;align-items:center;justify-content:center;width:100%;">
-                <span>{{ col.label }}</span>
-
-                <!-- arrows -->
-                <div v-if="col.sortable" style="display:flex;flex-direction:column">
-                  <svg
-                    :fill="isAsc(col.key) ? activeColor : inactiveColor"
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 8l-6 6h12l-6-6z" />
-                  </svg>
-                  <svg
-                    style="margin-top:-9px"
-                    :fill="isDesc(col.key) ? activeColor : inactiveColor"
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 16l6-6H6l6 6z" />
-                  </svg>
-                </div>
-              </div>
+              {{ col.label }}
             </th>
           </tr>
         </template>
       </thead>
-
       <tbody>
-        <tr v-for="(item, index) in sortedItems" :key="index">
+        <tr v-for="(item, index) in items" :key="index">
           <td
             v-for="(col, colIndex) in flatColumns"
             :key="colIndex"
@@ -53,7 +27,6 @@
               col.key === 'buttons' ? 'bg-buttons' : ''
             ]"
           >
-            <!-- content -->
             <template v-if="col.key === 'fio'">
               <div class="fio-wrapper">
                 <span>{{ item.surname }}</span>
@@ -133,50 +106,19 @@
 </template>
 
 <script setup>
-import { computed, ref, shallowRef, watch } from "vue";
+import { computed, shallowRef } from "vue";
 import Switch from "../Switch/Switch.vue";
 import { callModalWindow } from "./../../utils/callModalWindow";
 import { loadComponent } from "./../../utils/loadComponent";
 import { useStore } from "vuex";
 
-//////////////////////////////////////////////////////////////////////////////////
-// PROPS
-//////////////////////////////////////////////////////////////////////////////////
-
 const props = defineProps({
   headers: Array,
-  sortByKey: String,
-  sortByDirection: { type: String, default: "asc" },
   items: Array
 });
 
 const store = useStore();
 const Information = shallowRef(loadComponent("Information"));
-
-const activeColor = "#4d672c";
-const inactiveColor = "#ccc";
-
-//////////////////////////////////////////////////////////////////////////////////
-// SORT STATE
-//////////////////////////////////////////////////////////////////////////////////
-
-const sortKey = ref(props.sortByKey || null);
-const sortDirection = ref(props.sortByDirection);
-
-// реагировать на внешние изменения сортировки
-watch(
-  () => props.sortByKey,
-  (v) => v && (sortKey.value = v)
-);
-
-watch(
-  () => props.sortByDirection,
-  (v) => (sortDirection.value = v)
-);
-
-//////////////////////////////////////////////////////////////////////////////////
-// COLUMNS
-//////////////////////////////////////////////////////////////////////////////////
 
 const flatColumns = computed(() =>
   props.headers.flatMap((row) => row.filter((col) => col.key))
@@ -185,68 +127,6 @@ const flatColumns = computed(() =>
 const showButtons = computed(() =>
   props.headers.some((row) => row.some((col) => col.key === "buttons"))
 );
-
-//////////////////////////////////////////////////////////////////////////////////
-// SORT LOGIC
-/////////////////////////////////////////////////////////////////////////////////
-const emit = defineEmits(["sort-changed"]);
-
-function toggleSort(key) {
-  if (sortKey.value === key) {
-    sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
-  } else {
-    sortKey.value = key;
-    sortDirection.value = "asc";
-  }
-
-  // уведомляем родителя о том, что сортировка по столбцу изменена
-  emit("sort-changed");
-}
-
-
-function isAsc(key) {
-  return sortKey.value === key && sortDirection.value === "asc";
-}
-
-function isDesc(key) {
-  return sortKey.value === key && sortDirection.value === "desc";
-}
-
-function compareFio(a, b) {
-  const fields = ["surname", "name", "patronymic"];
-  for (const f of fields) {
-    const res = (a[f] || "").localeCompare(b[f] || "");
-    if (res !== 0) return res;
-  }
-  return 0;
-}
-
-// ——— главный вычисляемый массив ————
-const sortedItems = computed(() => {
-  const arr = [...props.items];
-
-  if (!sortKey.value) return arr;
-
-  return arr.sort((a, b) => {
-    if (sortKey.value === "fio") return compareFio(a, b);
-
-    if (sortKey.value === "date")
-      return new Date(a.date) - new Date(b.date);
-
-    if (sortKey.value === "dateStay")
-      return new Date(a.endDate) - new Date(b.endDate);
-
-    const av = a[sortKey.value];
-    const bv = b[sortKey.value];
-
-    return String(av || "").localeCompare(String(bv || ""));
-  })
-    [sortDirection.value === "asc" ? "slice" : "reverse"]();
-});
-
-//////////////////////////////////////////////////////////////////////////////////
-// HELPERS
-//////////////////////////////////////////////////////////////////////////////////
 
 function formatDate(date) {
   return date ? date.split("T")[0].split("-").reverse().join(".") : "—";
@@ -260,9 +140,6 @@ async function onModalDocuments(name, object, disable) {
   });
 }
 </script>
-
-
-
 
 <style scoped>
 .date-line {

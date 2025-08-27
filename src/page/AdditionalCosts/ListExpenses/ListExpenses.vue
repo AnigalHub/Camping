@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <search class="search" />
-    <Table :headers="headers" :items="items" sortByKey="date" />
+    <Table :headers="headers" :items="items" />
   </div>
 </template>
 
