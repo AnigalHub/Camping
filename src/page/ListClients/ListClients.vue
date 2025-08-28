@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import itemsData from './../../../public/data/clients.json';
 
 const title = "Список клиентов";
@@ -65,6 +65,20 @@ function onSearchChanged({ sort, fromSelect }) {
     }
   }
 }
+onMounted(() => {
+  const hasFio = headers.some(row =>
+    row.some(col => col.key === "fio" && col.sortable)
+  );
+
+  if (hasFio) {
+    sortKey.value = "fio";
+    sortDirection.value = "asc";
+
+    // обязательно! чтобы select был пустым
+    searchSort.value = null;
+  }
+});
+
 
 // Сортировка при клике на заголовок
 function onColumnSort() {
@@ -105,24 +119,6 @@ const sortedItems = computed(() => {
   return sortDirection.value === "asc" ? arr : arr.reverse();
 });
 
-// сброс значения sort в Search.vue при клике на заголовок
-function resetSortSelect() {
-  searchSort.value = null;
-}
-
-// обработка выбора сортировки из Search.vue
-// function onSearchChanged({ sort }) {
-//   switch (sort) {
-//     case "По фио":
-//       toggleSort("fio");
-//       break;
-//     case "По дате":
-//       toggleSort("dateStay");
-//       break;
-//     default:
-//       sortKey.value = null;
-//   }
-// }
 </script>
 
 <style scoped>

@@ -31,13 +31,14 @@ import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
 defineOptions({ name: "Search" });
-
-const props = defineProps({ modelValue: String });
-const emit = defineEmits(["update:modelValue", "search"]);
-const sort = ref(props.modelValue);
-
+const props = defineProps({ sort: String });
+const emit = defineEmits(["update:sort", "search"]);
+const sort = ref(props.sort);
 watch(sort, (v) => {
-  emit("update:modelValue", v);
+  emit("update:sort", v);
+});
+watch(() => props.sort, (v) => { 
+  sort.value = v; 
 });
 
 const onSelectChanged = () => {
