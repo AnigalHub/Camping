@@ -4,17 +4,17 @@
       prepend-inner-icon="mdi-magnify" class="search-input" />
 
     <div class="search-controls d-flex align-center gap-3 flex-wrap mt-2 mt-md-0">
-      <v-select
-        v-model="sort"
-        :items="sortOptions"
-        label="Сортировать"
-        density="comfortable"
-        hide-details
-        rounded="lg"
-        variant="solo"
-        class="filter-select"
-        @update:modelValue="onSearch"   
-      />
+<v-select
+  v-model="sort"
+  :items="sortOptions"
+  label="Сортировать"
+  density="comfortable"
+  hide-details
+  rounded="lg"
+  variant="solo"
+  class="filter-select"
+  @update:modelValue="onSelectChanged"
+/>
       <v-btn 
         class="btn-page"
         prepend-icon="mdi-magnify"
@@ -27,14 +27,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
 defineOptions({ name: "Search" });
 
+const props = defineProps({ modelValue: String });
+const emit = defineEmits(["update:modelValue", "search"]);
+const sort = ref(props.modelValue);
+
+watch(sort, (v) => {
+  emit("update:modelValue", v);
+});
+
+const onSelectChanged = () => {
+  // уведомляем родителя о поиске/сортировке
+  emit("search", { search: search.value, sort: sort.value, fromSelect: true });
+};
+
 const route = useRoute();
 const search = ref("");
-const sort = ref(null);
 
 const sortOptions =
   route.name === "AdditionalCosts"
@@ -43,7 +55,6 @@ const sortOptions =
       ? ["По местам", "По парковке"]
       : ["По дате", "По фио"];
 
-const emit = defineEmits(["search"]);
 
 const onSearch = () => {
   emit("search", { search: search.value, sort: sort.value });

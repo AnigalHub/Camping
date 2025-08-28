@@ -189,6 +189,7 @@ const showButtons = computed(() =>
 //////////////////////////////////////////////////////////////////////////////////
 // SORT LOGIC
 /////////////////////////////////////////////////////////////////////////////////
+const emit = defineEmits(["sort-changed"]);
 
 function toggleSort(key) {
   if (sortKey.value === key) {
@@ -197,7 +198,11 @@ function toggleSort(key) {
     sortKey.value = key;
     sortDirection.value = "asc";
   }
+
+  // уведомляем родителя о том, что сортировка по столбцу изменена
+  emit("sort-changed");
 }
+
 
 function isAsc(key) {
   return sortKey.value === key && sortDirection.value === "asc";
