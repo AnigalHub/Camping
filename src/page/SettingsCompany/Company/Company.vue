@@ -1,17 +1,15 @@
 <template>
   <div class="content">
     <v-row dense align="stretch">
-      <v-col cols="9" style="overflow: auto;height: 65vh;">
+      <v-col cols="9" style="overflow: auto; height: 65vh;">
         <v-card class="pa-6" elevation="2">
           <v-form>
             <h3 class="form-subtitle">Организация</h3>
-            <v-text-field v-model="organization.name" label="Название" variant="outlined" density="comfortable"
+            <v-text-field v-model="company.name" label="Название" variant="outlined" density="comfortable"
               rounded="lg" clearable />
-            <v-textarea v-model="organization.slogan" label="Слоган" variant="outlined" density="comfortable" auto-grow
+            <v-textarea v-model="company.slogan" label="Слоган" variant="outlined" density="comfortable" auto-grow
               rows="4" max-rows="6" rounded="lg" clearable />
-            <div class="add-object-btn">
-              <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
-            </div>
+            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
           </v-form>
         </v-card>
       </v-col>
@@ -23,19 +21,17 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 import HouseSvg from "./svg/house.vue";
+import organization from './../../../../public/data/organization.json';
 
 defineOptions({
   name: "Company",
 });
-const organization = reactive({
-  name: "Ромашка",
-  slogan: "Кемпинг у моря — природа, которой хочется делиться!",
-});
 
-const originalOrganization = ref(JSON.parse(JSON.stringify(organization)));
-const isChanged = computed(() => JSON.stringify(organization) !== JSON.stringify(originalOrganization.value));
+const company = reactive(organization);
+const originalOrganization = ref(JSON.parse(JSON.stringify(company)));
+const isChanged = computed(() => JSON.stringify(company) !== JSON.stringify(originalOrganization.value));
 </script>
 
 <style scoped>

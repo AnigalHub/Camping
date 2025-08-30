@@ -1,15 +1,7 @@
 <template>
   <v-card class="search-bar d-flex flex-wrap align-center justify-space-between">
-    <v-text-field
-      v-model="search"
-      density="comfortable"
-      hide-details
-      rounded="lg"
-      variant="solo"
-      placeholder="Поиск"
-      prepend-inner-icon="mdi-magnify"
-      class="search-input"
-    />
+    <v-text-field v-model="search" density="comfortable" hide-details rounded="lg" variant="solo" placeholder="Поиск"
+      prepend-inner-icon="mdi-magnify" class="search-input" />
 
     <div class="search-controls d-flex align-center gap-3 flex-wrap mt-2 mt-md-0">
       <v-select

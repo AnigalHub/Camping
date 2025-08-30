@@ -44,7 +44,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const goRoute = () => router.push({ name: "MapObjects" });
-import places from './../../../../public/places.json';
+import places from './../../../../public/data/places.json';
 
 function sortPlacesByOccupancy(places) {
   return places

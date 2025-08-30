@@ -136,8 +136,8 @@ const openOnMap = coords => {
 .number-badge {
   font-family: var(--font-family);
   font-size: 1.35rem;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -152,6 +152,7 @@ const openOnMap = coords => {
 }
 
 .title-icon {
+  margin: 0 10px;
   animation: sway 3s ease-in-out infinite, rotY 5s ease-in-out infinite;
 }
 

@@ -13,13 +13,14 @@
 </template>
 
 <script setup>
+import places from './../../../public/data/places.json';
 defineOptions({ name: 'MapObjects' })
-import places from './../../../public/places.json';
 const title = 'Свободные поляны';
 </script>
+
 <style scoped>
 .block {
-  height: 78vh;
+  height: 70vh;
   padding: 0 5px 20px 15px;
   overflow: auto;
   margin-left: -18px;

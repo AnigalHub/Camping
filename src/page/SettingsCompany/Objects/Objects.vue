@@ -30,10 +30,8 @@
                   </v-expansion-panel-text>
                 </v-expansion-panel>
               </v-expansion-panels>
-              <div class="add-object-btn">
-                <v-btn class="btn-page" @click="addObject">Добавить объект</v-btn>
-                <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
-              </div>
+              <v-btn class="btn-page" @click="addObject">Добавить объект</v-btn>
+              <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
             </v-form>
           </v-card>
         </div>
@@ -48,7 +46,7 @@
 <script setup>
 import { ref, reactive, computed, onMounted, nextTick } from "vue";
 import TentSvg from "./svg/tent.vue";
-import places from './../../../../public/places.json';
+import places from './../../../../public/data/places.json';
 
 
 defineOptions({

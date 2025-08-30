@@ -166,14 +166,10 @@
             <div class="result_block">
               <h3 class="form-subtitle result">Итоговая стоимость: </h3><span>0</span>
             </div>
-            <div class="add-object-btn">
-              <v-btn class="btn-page" @click="addPerson">Добавить отдыхающего</v-btn>
-            </div>
-            <div class="add-object-btn">
-              <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">
-                Сохранить
-              </v-btn>
-            </div>
+            <v-btn class="btn-page" @click="addPerson">Добавить отдыхающего</v-btn>
+            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">
+              Сохранить
+            </v-btn>
           </v-form>
         </v-card>
       </div>

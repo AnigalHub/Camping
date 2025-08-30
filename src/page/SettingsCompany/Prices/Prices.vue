@@ -14,12 +14,10 @@
                 rounded="lg" clearable v-mask="'#########'" />
               <v-text-field v-model="prices.transport" label="За транспорт" variant="outlined" density="comfortable"
                 rounded="lg" clearable v-mask="'#########'" />
-              <v-text-field v-model="prices.smallTransport" label="За мелкий транспорт" variant="outlined"
-                density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+              <v-text-field v-model="prices.smallTransport" label="За мелкий транспорт" variant="outlined" density="comfortable" 
+              rounded="lg" clearable v-mask="'#########'" />
             </div>
-            <div class="add-object-btn">
-              <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
-            </div>
+            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
           </v-form>
         </v-card>
       </v-col>
@@ -33,17 +31,13 @@
 <script setup>
 import { ref, reactive, computed } from "vue";
 import CacheSvg from "./svg/cache.vue";
+import pricelist from './../../../../public/data/prices.json';
 
 defineOptions({
   name: "Prices",
 });
-const prices = reactive({
-  person: 500,
-  animal: 500,
-  house: 4000,
-  transport: 500,
-  smallTransport: 250
-});
+
+const prices = reactive(pricelist);
 const originalPrices = ref(JSON.parse(JSON.stringify(prices)));
 const normalize = (obj) => ({
   person: Number(obj.person),
