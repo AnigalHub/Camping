@@ -18,7 +18,7 @@
             <h3 class="title">{{ place.name }}</h3>
           </div>
           <div v-if="rightLayout" class="right-tools">
-            <div class="map-button map-button-right" @click="openOnMap(place.value)">
+            <div class="map-button map-button-right" @click="openOnMap(place.coordinations)">
               <div class="map-icon-wrap icon-block">
                 <v-icon size="30" color="#6d8f3c" class="map-icon-animated">mdi-map-marker</v-icon>
                 <div class="ping"></div>
@@ -29,28 +29,28 @@
         </div>
         <div class="desc-wrap">
           <p class="description">{{ place.description }}</p>
-          <div v-if="rightLayout" class="coords coords-inline" @click="copyCoords(place.value, number)">
-            <span>{{ place.value }}</span>
+          <div v-if="rightLayout" class="coords coords-inline" @click="copyCoords(place.coordinations, number)">
+            <span>{{ place.coordinations }}</span>
             <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
           </div>
         </div>
         <div class="progress-section">
           <div class="progress-item">
             <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
-            <span>{{ place.person }}/{{ place.maxperson  }}</span>
-            <v-progress-linear :model-value="showPercent(place.person,place.maxperson)" color="#8AB539" height="9" rounded />
+            <span>{{ place.person }}/{{ place.people  }}</span>
+            <v-progress-linear :model-value="showPercent(place.person,place.people)" color="#8AB539" height="9" rounded />
           </div>
           <div class="progress-item">
             <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
-            <span>{{ place.car }}/{{ place.maxcar  }}</span>
-            <v-progress-linear :model-value="showPercent(place.car,place.maxcar)" color="#B5B5B5" height="9" rounded />
+            <span>{{ place.car }}/{{ place.cars  }}</span>
+            <v-progress-linear :model-value="showPercent(place.car,place.cars)" color="#B5B5B5" height="9" rounded />
           </div>
         </div>
-        <div v-if="!rightLayout" class="coords" @click="copyCoords(place.value, number)">
-          <span>{{ place.value }}</span>
+        <div v-if="!rightLayout" class="coords" @click="copyCoords(place.coordinations, number)">
+          <span>{{ place.coordinations }}</span>
           <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
         </div>
-        <div v-if="!rightLayout" class="map-button" @click="openOnMap(place.value)">
+        <div v-if="!rightLayout" class="map-button" @click="openOnMap(place.coordinations)">
           <div class="map-icon-wrap">
             <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
             <div class="ping"></div>

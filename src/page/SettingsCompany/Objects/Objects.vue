@@ -1,40 +1,42 @@
 <template>
   <div class="content objects">
     <v-row dense align="stretch">
-      <v-col cols="9" style="overflow: auto;height: 65vh;" class="wrapper_content">
-        <v-card class="pa-6" elevation="2">
-          <v-form v-model="valid" @submit.prevent="saveForm">
-            <v-expansion-panels v-model="openedPanel" multiple>
-              <v-expansion-panel class="custom-panel" v-for="(obj, i) in objects" :key="i">
-                <v-expansion-panel-title>
-                  <div class="panel-title">
-                    <strong>Объект №{{ i + 1 }}</strong>
-                    <v-btn icon="mdi-delete" variant="text" size="small" class="action delete-btn"
-                      @click.stop="removeObject(i)" />
-                  </div>
-                </v-expansion-panel-title>
-                <v-expansion-panel-text class="custom-text">
-                  <div class="grid-inputs">
-                    <v-text-field v-model="obj.name" label="Название" variant="outlined" density="comfortable"
-                      rounded="lg" clearable />
-                    <v-text-field v-model="obj.description" label="Описание" variant="outlined" density="comfortable"
-                      rounded="lg" clearable />
-                    <v-text-field v-model="obj.coordinations" label="Координаты объекта" variant="outlined"
-                      density="comfortable" rounded="lg" clearable v-mask="['##.######, ##.######']" />
-                    <v-text-field v-model="obj.maxpeople" label="Количество мест" variant="outlined"
-                      density="comfortable" rounded="lg" clearable v-mask="'#########'" />
-                    <v-text-field v-model="obj.maxcars" label="Количество парковочных мест" variant="outlined"
-                      density="comfortable" rounded="lg" clearable v-mask="'#########'" />
-                  </div>
-                </v-expansion-panel-text>
-              </v-expansion-panel>
-            </v-expansion-panels>
-            <div class="add-object-btn">
-              <v-btn class="btn-page" @click="addObject">Добавить объект</v-btn>
-              <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
-            </div>
-          </v-form>
-        </v-card>
+     <v-col cols="9" style="height: 65vh;">
+        <div class="wrapper_content" ref="scrollContainer" style="overflow: auto; height: 100%;">
+          <v-card class="pa-6" elevation="2">
+            <v-form v-model="valid" @submit.prevent="saveForm">
+              <v-expansion-panels v-model="openedPanel" multiple>
+                <v-expansion-panel class="custom-panel" v-for="(obj, i) in objects" :key="i">
+                  <v-expansion-panel-title>
+                    <div class="panel-title">
+                      <strong>Объект №{{ i + 1 }}</strong>
+                      <v-btn icon="mdi-delete" variant="text" size="small" class="action delete-btn"
+                        @click.stop="removeObject(i)" />
+                    </div>
+                  </v-expansion-panel-title>
+                  <v-expansion-panel-text class="custom-text">
+                    <div class="grid-inputs">
+                      <v-text-field v-model="obj.name" label="Название" variant="outlined" density="comfortable"
+                        rounded="lg" clearable />
+                      <v-text-field v-model="obj.description" label="Описание" variant="outlined" density="comfortable"
+                        rounded="lg" clearable />
+                      <v-text-field v-model="obj.coordinations" label="Координаты объекта" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="['##.######, ##.######']" />
+                      <v-text-field v-model="obj.people" label="Количество мест" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                      <v-text-field v-model="obj.cars" label="Количество парковочных мест" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                    </div>
+                  </v-expansion-panel-text>
+                </v-expansion-panel>
+              </v-expansion-panels>
+              <div class="add-object-btn">
+                <v-btn class="btn-page" @click="addObject">Добавить объект</v-btn>
+                <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
+              </div>
+            </v-form>
+          </v-card>
+        </div>
       </v-col>
       <v-col class="content-icons">
         <icon-circle :svg="TentSvg" text="Описание объектов кемпинга" />
@@ -44,41 +46,47 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, onMounted, nextTick } from "vue";
 import TentSvg from "./svg/tent.vue";
+import places from './../../../../public/places.json';
+
 
 defineOptions({
   name: "Objects",
 });
 
 const valid = ref(false);
-const objects = reactive([
-  {
-    name: 'У Песчаного Моря',
-    description: 'Тёплый песок, мягкий бриз и спокойные волны',
-    coordinations: '43.960635, 39.263933',
-    maxpeople: 10,
-    maxcars: 8
-  },
-  {
-    name: 'У Песчаного Моря',
-    description: 'Тёплый песок, мягкий бриз и спокойные волны',
-    coordinations: '43.960635, 39.263933',
-    maxpeople: 10,
-    maxcars: 8
-  }
-]);
+const objects = reactive(places);
 const openedPanel = ref([objects.length - 1]);
+
+const scrollContainer = ref(null);
+
+const scrollToBottom = () => {
+  nextTick(() => {
+    const el = scrollContainer.value;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  });
+};
+
+onMounted(async () => {
+  await nextTick(); 
+  await nextTick(); // отрисовка всех элементов
+  scrollToBottom();
+});
+
 
 const addObject = () => {
   objects.push({
     name: "",
     description: "",
     coordinations: "",
-    maxpeople: null,
-    maxcars: null,
+    people: null,
+    cars: null,
   });
   openedPanel.value = [objects.length - 1];
+  scrollToBottom();
 };
 
 const removeObject = (i) => {
@@ -92,12 +100,12 @@ const normalizeObjects = (arr) =>
     name: obj.name,
     description: obj.description,
     coordinations: obj.coordinations,
-    maxpeople: obj.maxpeople !== null ? Number(obj.maxpeople) : null,
-    maxcars: obj.maxcars !== null ? Number(obj.maxcars) : null,
+    people: obj.people !== null ? Number(obj.people) : null,
+    cars: obj.cars !== null ? Number(obj.cars) : null,
   }));
 
 const isChanged = computed(() => {
-  const hasEmpty = objects.some(o => !o.name || !o.description || !o.coordinations || o.maxpeople == null || o.maxcars == null);
+  const hasEmpty = objects.some(o => !o.name || !o.description || !o.coordinations || o.people == null || o.cars == null);
   return JSON.stringify(normalizeObjects(objects)) !== JSON.stringify(normalizeObjects(originalObjects.value)) && !hasEmpty;
 });
 
