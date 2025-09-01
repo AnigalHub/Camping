@@ -39,50 +39,9 @@ const isChanged = computed(() => JSON.stringify(organization) !== JSON.stringify
 </script>
 
 <style scoped>
+@import "../../../../public/form.css";
 .content {
   padding: 20px 10px;
   height: 70vh;
-}
-
-.form-subtitle {
-  margin: 10px 0 30px;
-  font-family: var(--font-family-title);
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: .7px;
-  background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-}
-.form-subtitle:first-of-type {
-  margin-top: 0;
-}
-
-.form-subtitle::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 70px;
-  height: 3px;
-  border-radius: 3px;
-  background: #2d9ac5;
-  opacity: .9;
-}
-
-.btn-page {
-  width: 60%;
-  margin: 10px auto 0;
-}
-
-@media (max-width:780px) {
-  .v-col-9{
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  .content-icons{
-    display: none;
-  }
 }
 </style>

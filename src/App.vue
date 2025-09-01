@@ -46,11 +46,6 @@ onMounted(async () => {
   background: transparent !important;
 }
 
-.v-input__details {
-  min-height: 0 !important;
-  padding-top: 0 !important
-}
-
 /**Фон страниц */
 .v-application__wrap{
   background: var(--background-color-page) !important;

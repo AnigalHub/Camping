@@ -55,10 +55,9 @@
               :rules="[rules.required, rules.numeric]" 
               class="modern-input"
               @input="onPriceInput" 
-              clearable></v-text-field>
-            <div class="mt-6">
-              <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
-            </div>
+              clearable
+            />
+            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
           </v-form>
         </v-card>
       </v-col>
@@ -147,51 +146,10 @@ function saveForm() {
 </script>
 
 <style scoped>
+@import "../../../../public/form.css";
 .content {
   padding: 20px 10px;
   height: 70vh;
-}
-
-.form-subtitle {
-  margin: 10px 0 30px;
-  font-family: var(--font-family-title);
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: .7px;
-  background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-}
-
-.form-subtitle:first-of-type {
-  margin-top: 0;
-}
-
-.form-subtitle::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 70px;
-  height: 3px;
-  border-radius: 3px;
-  background: #2d9ac5;
-  opacity: .9;
-}
-
-.btn-page {
-  margin: 0 auto;
-  width: 60%;
-}
-
-/* .v-picker.v-sheet {
-  margin-top: -3.5%;
-  border-radius: 15px !important;
-} */
-
-.modern-input {
-  margin-bottom: 18px;
 }
 
 .textarea-large textarea {
@@ -202,15 +160,5 @@ function saveForm() {
 
 .v-card {
   overflow: initial;
-}
-
-@media (max-width:780px) {
-  .v-col-9{
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  .content-icons{
-    display: none;
-  }
 }
 </style>
