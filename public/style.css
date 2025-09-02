@@ -40,25 +40,6 @@
   --border-bottom-title-modal: 1px solid #ccc;
   --border-bottom-content-modal: 1px solid #ccc;
 
-  /* Табы */
-  --text-transform-tabs: none;
-  --border-radius-tabs: 10px;
-
-  /* Неактивные табы */
-  --color-inactive-tab: #5F8835;
-  --text-stroke-inactive-tab: .05px rgba(138, 181, 57, 0.08);
-  --border-inactive-tab: 1px solid;
-  --border-color-inactive-tab: rgba(138, 181, 57, 1);
-
-  /* Активные табы */
-  --background-active-tab: #ffffff;
-  --color-active-tab: #5F8835;
-  --text-stroke-active-tab: .2px #5F8835;
-  --border-active-tab: 1px solid;
-  --border-color-active-tab: #5F8835;
-  /* Отключение подчеркивания у активного таба */
-  --underline-active-tab: transparent;
-
   /* Карточки под контент*/
   --background-content-card: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8));
   --box-shadow-content-card: inset 0 0 10px rgba(255, 255, 255, 0.3),
@@ -72,16 +53,10 @@
   --font-family: "El Messiri", sans-serif;
   --font-family-title: "Poiret One", sans-serif;
   --font-family-text: "Poppins", sans-serif;
-  --v-layout-left: 0 !important;
-  --v-layout-top:50px !important
-}
 
-/* 
-.v-theme--light {
-  --v-disabled-opacity: 0.9 !important;
-  --v-input-control-height: 35px !important;
-} 
-*/
+  --v-layout-left: 0 !important;
+  --v-layout-top: 50px !important
+}
 
 .v-main {
   padding-top: 0 !important;

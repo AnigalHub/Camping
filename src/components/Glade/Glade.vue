@@ -78,14 +78,14 @@ const openOnMap = coords => {
   border-radius: 18px;
   padding: 18px 20px 22px;
   margin: 10px 8px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.08);
   transition: 0.35s;
   position: relative;
 }
 
 .place-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(17, 44, 18, 0.2);
 }
 
 .header {

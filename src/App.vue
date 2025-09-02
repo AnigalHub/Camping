@@ -164,32 +164,6 @@ onMounted(async () => {
   box-shadow: var(--box-shadow-content-inner-card) !important;
 }
 
-.inactive-tab {
-  background: rgb(246 249 239) !important;
-  color: var(--color-inactive-tab) !important;
-  -webkit-text-stroke: var(--text-stroke-inactive-tab);
-  border: var(--border-inactive-tab) var(--border-color-inactive-tab) !important;
-}
-
-.active-tab {
-  background-color: var(--background-active-tab) !important;
-  color: var(--color-active-tab) !important;
-  -webkit-text-stroke: var(--text-stroke-active-tab);
-  border: var(--border-active-tab) var(--border-color-active-tab) !important;
-}
-
-.inactive-tab,
-.active-tab {
-  text-transform: var(--text-transform-tabs) !important;
-  border-radius: var(--border-radius-tabs) !important;
-  margin-right: 8px;
-  margin-bottom: 10px;
-}
-
-.v-tab__slider {
-  background: var(--underline-active-tab) !important;
-}
-
 .v-form {
   padding: 10px 10px 0 !important;
   margin-top: -20px;
