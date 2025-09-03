@@ -166,7 +166,7 @@ const places = [
   padding: 0 15px 20px;
   overflow: auto;
   margin-left: -18px;
-  margin-top: -15px;
+  margin-top: -5px;
 }
 
 .grid-container {

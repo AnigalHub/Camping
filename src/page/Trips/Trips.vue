@@ -3,7 +3,7 @@
     <v-container>
       <Title :title="title" icon="mdi-calendar-clock-outline" />
       <v-card style="min-height:85vh;position:relative;z-index:2">
-        <div class="tabs-container">
+        <div class="tabs-container desktop-only">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
             <v-tab v-for="(item, i) in tabs" :key="item" :value="item"
@@ -12,6 +12,11 @@
               {{ item }}
             </v-tab>
           </div>
+        </div>
+        <div class="mobile-tabs mobile-only">
+          <button class="arrow" @click="prevTab">‹</button>
+          <div class="mobile-tab-label">{{ tab }}</div>
+          <button class="arrow" @click="nextTab">›</button>
         </div>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
@@ -68,6 +73,17 @@ const updateSlider = () => {
 };
 onMounted(updateSlider);
 watch(tab, updateSlider);
+
+// Mobile navigation
+const nextTab = () => {
+  const idx = tabs.findIndex((t) => t.value === tab.value);
+  tab.value = tabs[(idx + 1) % tabs.length].value;
+};
+
+const prevTab = () => {
+  const idx = tabs.findIndex((t) => t.value === tab.value);
+  tab.value = tabs[(idx - 1 + tabs.length) % tabs.length].value;
+};
 
 // --- Логика фильтрации, таблицы и данных без изменений ---
 const filteredItems = computed(() => {
@@ -381,87 +397,14 @@ const items = [
 </script>
 
 <style scoped>
-.tab-label {
-  position: absolute;
-  top: -8px;
-  left: 88%;
-  transform: translateX(-50%);
-  background: #89ac49d7;
-  color: #fff;
-  padding: 2px 5px 4px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: none;
-  -webkit-text-stroke: 0.25px transparent !important;
-  text-align: center;
-  z-index: 10;
-  transition: all 0.3s ease;
-}
-
-.tabs-switch-tab:hover .tab-label {
-  transform: translateX(-50%) translateY(-1px) scale(1.05);
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, .25),
-    0 0 10px rgba(113, 150, 79, .4);
-}
+@import "./../../../public/tabs.css";
 
 .tabs-switch {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 15px;
   width: 100%;
-  box-sizing: border-box;
-  font-weight: 800 !important;
-  font-family: var(--font-family-title);
-  margin-bottom: 15px;
-  padding: 0;
-}
-
-.tabs-slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  border-radius: 15px;
-  background: #89ac49d7;
-  border: 1.5px solid var(--border-color-inactive-tab);
-  transition: .35s cubic-bezier(.4, 0, .2, 1);
-  z-index: 0;
 }
 
 .tabs-switch-tab {
   flex: 1;
-  text-align: center;
-  background: transparent;
-  border: none;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 15px 0;
-  cursor: pointer;
-  letter-spacing: 2px;
-  color: #494c54;
-  position: relative;
-  z-index: 1;
-  transition: .25s ease;
-  border-radius: 15px;
-  margin: 1px 2px;
-}
-
-.tabs-switch-tab:hover {
-  background: rgba(57, 181, 94, .05);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
-  border-radius: 15px !important;
-}
-
-.tabs-switch-tab.active {
-  color: #fff;
-  font-weight: 900;
-  -webkit-text-stroke: .05px #fff;
-  box-shadow: 0 4px 10px rgba(138, 181, 57, .096);
 }
 
 .content {
