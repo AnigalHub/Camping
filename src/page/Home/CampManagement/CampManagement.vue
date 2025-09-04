@@ -3,7 +3,7 @@
     class="d-flex flex-column justify-space-between card"
     elevation="4"
     rounded="xl"
-    @click="goRoute('SettingsCompany')"
+    @click="goRoute"
   >
     <div class="d-flex align-start text-start card-header">
       <v-icon color="#debe7e" size="33">mdi-cog-outline</v-icon>
@@ -14,25 +14,30 @@
         <div class="position-absolute dashed-ring"></div>
         <div class="position-absolute pulse-ring"></div>
         <div class="d-flex align-center justify-center position-relative icon-wrap">
-          <component :is="SettingsSvg" :color="'#547c8f'" style="width: 45px" />
+          <SettingsSvg color="#547c8f" style="width: 45px" />
         </div>
         <svg class="position-absolute decor-line" viewBox="0 0 200 100" preserveAspectRatio="none">
-          <path d="M0,80 Q100,10 200,70" stroke="rgb(0, 107, 153 , 0.2)" stroke-width="3" fill="none" stroke-linecap="round" />
+          <path
+            d="M0,80 Q100,10 200,70"
+            stroke="rgb(0, 107, 153 , 0.2)"
+            stroke-width="3"
+            fill="none"
+            stroke-linecap="round"
+          />
         </svg>
       </div>
       <div class="d-flex flex-column flex-1-1-auto text-block">
         <div class="title-block">
           <h3 class="title">Настройте лагерь под себя</h3>
           <p class="card-text">
-            Гибко управляйте всеми параметрами кемпинга: настройками, тарифами и
-            инфраструктурой. Все изменения мгновенно применяются и
-            синхронизируются с другими модулями.
+            Гибко управляйте параметрами кемпинга: настройками, тарифами и инфраструктурой.
+            Все изменения мгновенно синхронизируются с другими модулями.
           </p>
         </div>
         <div class="list">
-          <div v-for="(item, i) in list" :key="i" class="d-flex align-center list-item">
+          <div v-for="item in list" :key="item" class="d-flex align-center list-item">
             <v-icon size="22" color="#006b99ad">mdi-check</v-icon>
-            <span>{{ item.name }}</span>
+            <span>{{ item }}</span>
           </div>
         </div>
       </div>
@@ -48,14 +53,15 @@
 import SettingsSvg from "./../../../svg/settings.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-function goRoute(name) {
-  if (name) router.push({ name });
-}
+
+const goRoute = () => router.push({ name: "SettingsCompany" });
+
 const list = [
-  { name: "редактируйте основные параметры лагеря;" },
-  { name: "обновляйте действующие тарифы;" },
+  "редактируйте основные параметры лагеря;",
+  "обновляйте действующие тарифы;",
 ];
 </script>
+
 <style scoped>
 .card {
   cursor: pointer;

@@ -26,7 +26,7 @@
       <v-col class="icon-col">
         <div class="icon-wrapper">
           <div class="block-icon">
-            <component :is="CacheSvg" color="#61656d" style="padding: 10px" />
+            <component :is="CacheSvg" class="svg" color="#61656d" />
           </div>
           <p class="icon-caption">Действующие тарифы</p>
         </div>
@@ -105,6 +105,10 @@ const isChanged = computed(() => {
     transform: scale(1.2);
     opacity: .8;
   }
+}
+
+.svg {
+  padding: 10px;
 }
 
 .icon-wrapper {
@@ -199,7 +203,7 @@ const isChanged = computed(() => {
 .grid-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px 25px;
+  gap: 0 16px;
 }
 
 @media (max-width: 900px) {

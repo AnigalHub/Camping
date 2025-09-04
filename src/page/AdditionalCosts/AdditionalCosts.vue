@@ -1,14 +1,14 @@
 <template>
   <div class="page">
     <v-container>
-      <Title :title="title" :icon="'mdi-cash-multiple'" />
-      <v-card :style="!tabs[1].value ? 'height: 100vh;' : 'height: 87vh;'">
+      <Title :title="title" icon="mdi-cash-multiple" />
+      <v-card :style="cardHeight">
         <div class="tabs-container">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
             <v-tab
-              v-for="item in tabs"
-              :key="item.value" 
+              v-for="(item, i) in tabs"
+              :key="i"
               :class="['tabs-switch-tab', { active: tab === item.value }]"
               @click="tab = item.value"
               ref="tabRefs"
@@ -19,17 +19,13 @@
         </div>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item
-            v-for="item in tabs"
-            :key="item.value" 
+            v-for="(item, i) in tabs"
+            :key="i"
             :value="item.value"
           >
             <v-card-text>
-              <div v-if="tab === tabs[0].value">
-                <AddExpenses />
-              </div>
-              <div v-else-if="tab === tabs[1].value">
-                <ListExpenses class="list" />
-              </div>
+              <AddExpenses v-if="tab === tabs[0].value" />
+              <ListExpenses v-else class="list" />
             </v-card-text>
           </v-tabs-window-item>
         </v-tabs-window>
@@ -39,13 +35,12 @@
 </template>
 
 <script setup>
-import { shallowRef, ref, nextTick, onMounted, watch } from "vue";
+import { shallowRef, ref, nextTick, computed, onMounted, watch } from "vue";
 import AddExpenses from "./AddExpenses/AddExpenses.vue";
 import ListExpenses from "./ListExpenses/ListExpenses.vue";
 
-defineOptions({
-  name: "AdditionalCosts",
-});
+defineOptions({ name: "AdditionalCosts" });
+
 const title = "Учет расходов";
 
 const tabs = [
@@ -58,22 +53,27 @@ const tab = shallowRef(tabs[0].value);
 const tabRefs = ref([]);
 const sliderStyle = ref({});
 
+const cardHeight = computed(() =>
+  tab === tabs[1].value ? "height: 87vh;" : "height: 100vh;"
+);
+
 const updateSlider = () => {
   nextTick(() => {
-    const activeIndex = tabs.findIndex(t => t.value === tab.value);
-    const el = tabRefs.value[activeIndex]?.$el || tabRefs.value[activeIndex];
-    if (el) {
-      sliderStyle.value = {
-        width: `${el.offsetWidth}px`,
-        transform: `translateX(${el.offsetLeft}px)`,
-      };
-    }
+    const index = tabs.findIndex(t => t.value === tab.value);
+    const el = tabRefs.value[index]?.$el || tabRefs.value[index];
+    if (!el) return;
+
+    sliderStyle.value = {
+      width: `${el.offsetWidth}px`,
+      transform: `translateX(${el.offsetLeft}px)`
+    };
   });
 };
 
 onMounted(updateSlider);
 watch(tab, updateSlider);
 </script>
+
 
 <style scoped>
 .tabs-switch {
@@ -92,7 +92,8 @@ watch(tab, updateSlider);
 
 .tabs-slider {
   position: absolute;
-  inset: 0 auto 0 0;
+  top: 0;
+  left: 0;
   height: 100%;
   border-radius: 15px;
   background: #89ac49d7;

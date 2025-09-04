@@ -74,7 +74,7 @@
             <component
             :is="ExpensesSvg"
             color="#61656d"
-            style="padding: 20px;"
+            class="svg"
           />
           </div>
           <p class="icon-caption">Расходы по содержанию лагеря</p>
@@ -176,6 +176,10 @@ function saveForm() {
   min-height: 120px !important;
   font-size: 15px;
   line-height: 1.5;
+}
+
+.svg {
+  padding: 20px;
 }
 
 .btn-page {

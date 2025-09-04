@@ -5,24 +5,23 @@
         <v-card class="pa-6" elevation="2">
           <v-form v-model="valid" @submit.prevent="saveForm">
             <v-expansion-panels v-model="openedPanel" multiple>
-              <v-expansion-panel class="custom-panel" v-for="(object, index) in objects" :key="index">
+              <v-expansion-panel class="custom-panel" v-for="(obj, i) in objects" :key="i">
                 <v-expansion-panel-title class="custom-title d-flex justify-space-between align-center">
-                  <strong>Объект №{{ index + 1 }}</strong>
+                  <strong>Объект №{{ i + 1 }}</strong>
                   <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn"
-                    @click.stop="removeObject(index)" />
+                    @click.stop="removeObject(i)" />
                 </v-expansion-panel-title>
-
                 <v-expansion-panel-text class="custom-text">
                   <div class="grid-inputs">
-                    <v-text-field v-model="object.name" label="Название" variant="outlined" density="comfortable"
+                    <v-text-field v-model="obj.name" label="Название" variant="outlined" density="comfortable"
                       rounded="lg" clearable />
-                    <v-text-field v-model="object.description" label="Описание" variant="outlined" density="comfortable"
+                    <v-text-field v-model="obj.description" label="Описание" variant="outlined" density="comfortable"
                       rounded="lg" clearable />
-                    <v-text-field v-model="object.coordinations" label="Координаты объекта" variant="outlined"
+                    <v-text-field v-model="obj.coordinations" label="Координаты объекта" variant="outlined"
                       density="comfortable" rounded="lg" clearable v-mask="['##.######, ##.######']" />
-                    <v-text-field v-model="object.maxpeople" label="Количество мест" variant="outlined"
+                    <v-text-field v-model="obj.maxpeople" label="Количество мест" variant="outlined"
                       density="comfortable" rounded="lg" clearable v-mask="'#########'" />
-                    <v-text-field v-model="object.maxcars" label="Количество парковочных мест" variant="outlined"
+                    <v-text-field v-model="obj.maxcars" label="Количество парковочных мест" variant="outlined"
                       density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                   </div>
                 </v-expansion-panel-text>
@@ -38,7 +37,7 @@
       <v-col class="icon-col">
         <div class="icon-wrapper">
           <div class="block-icon">
-            <component :is="TentSvg" color="#61656d" style="padding: 20px" />
+            <component :is="TentSvg" color="#61656d" style="padding:20px" />
           </div>
           <p class="icon-caption">Описание объектов кемпинга</p>
         </div>
@@ -63,9 +62,10 @@ const objects = reactive([
     description: 'Тёплый песок, мягкий бриз и спокойные волны',
     coordinations: '43.960635, 39.263933',
     maxpeople: 10,
-    maxcars: 8,
+    maxcars: 8
   }
 ]);
+
 const addObject = () => {
   objects.push({
     name: "",
@@ -77,8 +77,8 @@ const addObject = () => {
   openedPanel.value = [objects.length - 1];
 };
 
-const removeObject = (index) => {
-  if (objects.length > 1) objects.splice(index, 1);
+const removeObject = (i) => {
+  if (objects.length > 1) objects.splice(i, 1);
   openedPanel.value = [0];
 };
 
@@ -93,26 +93,12 @@ const normalizeObjects = (arr) =>
   }));
 
 const isChanged = computed(() => {
-  // Проверка на пустые поля
-  const hasEmptyFields = objects.some(obj =>
-    !obj.name ||
-    !obj.description ||
-    !obj.coordinations ||
-    obj.maxpeople == null ||
-    obj.maxcars == null
-  );
-
-  // Нормализуем перед сравнением — чтобы "10" == 10
-  const current = normalizeObjects(objects);
-  const original = normalizeObjects(originalObjects.value);
-
-  const changed = JSON.stringify(current) !== JSON.stringify(original);
-
-  return changed && !hasEmptyFields;
+  const hasEmpty = objects.some(o => !o.name || !o.description || !o.coordinations || o.maxpeople == null || o.maxcars == null);
+  return JSON.stringify(normalizeObjects(objects)) !== JSON.stringify(normalizeObjects(originalObjects.value)) && !hasEmpty;
 });
-const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
-</script>
 
+const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
+</script>
 <style>
 .objects .v-expansion-panel-text__wrapper {
   padding: 8px 16px 0 !important;
@@ -250,7 +236,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .grid-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px 25px;
+  gap: 0 16px;
 }
 
 @media (max-width: 900px) {

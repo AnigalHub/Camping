@@ -17,7 +17,7 @@
                 <v-expansion-panel-text class="custom-text">
                   <!-- Личные данные -->
                   <h3 class="form-subtitle">Личные данные</h3>
-                  <div class="grid-fields">
+                  <div class="grid-inputs">
                     <v-text-field v-model="person.surname" label="Фамилия" variant="outlined" density="comfortable"
                       rounded="lg" clearable />
                     <v-text-field v-model="person.name" label="Имя" variant="outlined" density="comfortable"
@@ -46,7 +46,7 @@
                   </v-radio-group>
                   <!-- Паспорт -->
                   <div v-if="person.selectedDoc === 'passport'">
-                    <div class="grid-fields">
+                    <div class="grid-inputs">
                       <v-text-field v-model="person.passport.series" label="Серия" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
                       <v-text-field v-model="person.passport.number" label="Номер" variant="outlined"
@@ -70,7 +70,7 @@
                   </div>
                   <!-- Свидетельство о рождении -->
                   <div v-if="person.selectedDoc === 'birth'">
-                    <div class="grid-fields">
+                    <div class="grid-inputs">
                       <v-text-field v-model="person.birth.series" label="Серия" variant="outlined" density="comfortable"
                         rounded="lg" clearable />
                       <v-text-field v-model="person.birth.number" label="Номер" variant="outlined" density="comfortable"
@@ -100,13 +100,36 @@
                       density="comfortable" rounded="lg" clearable />
                   </div>
                   <hr />
-                  <!-- Дополнительные данные -->
+                  <!-- Даты проживания -->
+                  <h3 class="form-subtitle">Даты проживания</h3>
+                  <div class="grid-inputs">
+                    <v-menu v-model="person.startDateMenu" :close-on-content-click="false" transition="scale-transition"
+                      offset-y>
+                      <template #activator="{ props }">
+                        <v-text-field v-model="person.startDate" v-bind="props" label="Дата въезда" variant="outlined"
+                          density="comfortable" rounded="lg" prepend-inner-icon="mdi-calendar" clearable readonly />
+                      </template>
+                      <v-date-picker v-model="person.startDateInternal" locale="ru" hide-header
+                        @update:model-value="val => onDateSelect(val, index, 'startDate')" />
+                    </v-menu>
+                    <v-menu v-model="person.endDateMenu" :close-on-content-click="false" transition="scale-transition"
+                      offset-y>
+                      <template #activator="{ props }">
+                        <v-text-field v-model="person.endDate" v-bind="props" label="Дата выезда" variant="outlined"
+                          density="comfortable" rounded="lg" prepend-inner-icon="mdi-calendar" clearable readonly />
+                      </template>
+                      <v-date-picker v-model="person.endDateInternal" locale="ru" hide-header
+                        @update:model-value="val => onDateSelect(val, index, 'endDate')" />
+                    </v-menu>
+                  </div>
+                  <hr />
+                    <!-- Дополнительные данные -->
                   <h3 class="form-subtitle">Дополнительные данные</h3>
-                  <div class="grid-fields">
+                  <div class="grid-inputs">
                     <v-text-field v-model="person.object" label="Номер поляны" variant="outlined" density="comfortable"
                       rounded="lg" clearable v-mask="'#########'" />
                   </div>
-                  <div class="grid-fields">
+                  <div class="grid-inputs">
                     <div>
                       <div class="d-flex align-center rent">
                         <v-label class="me-2" @click="person.car = !person.car">Транспорт:</v-label>
@@ -136,35 +159,11 @@
                     </div>
                   </div>
                   <hr />
-                  <!-- Даты проживания -->
-                  <h3 class="form-subtitle">Даты проживания</h3>
-                  <div class="grid-fields">
-                    <v-menu v-model="person.startDateMenu" :close-on-content-click="false" transition="scale-transition"
-                      offset-y>
-                      <template #activator="{ props }">
-                        <v-text-field v-model="person.startDate" v-bind="props" label="Дата въезда" variant="outlined"
-                          density="comfortable" rounded="lg" prepend-inner-icon="mdi-calendar" clearable readonly />
-                      </template>
-                      <v-date-picker v-model="person.startDateInternal" locale="ru" hide-header
-                        @update:model-value="val => onDateSelect(val, index, 'startDate')" />
-                    </v-menu>
-                    <v-menu v-model="person.endDateMenu" :close-on-content-click="false" transition="scale-transition"
-                      offset-y>
-                      <template #activator="{ props }">
-                        <v-text-field v-model="person.endDate" v-bind="props" label="Дата выезда" variant="outlined"
-                          density="comfortable" rounded="lg" prepend-inner-icon="mdi-calendar" clearable readonly />
-                      </template>
-                      <v-date-picker v-model="person.endDateInternal" locale="ru" hide-header
-                        @update:model-value="val => onDateSelect(val, index, 'endDate')" />
-                    </v-menu>
-                  </div>
-                  <hr />
                   <h3 class="form-subtitle result">Итоговая стоимость: </h3><span>0</span>
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
-            <div
-              style="padding: 10px 15px; border: 1.5px solid #4a90e2;margin: 5px auto 20px; width: 60%; border-radius: 10px;">
+            <div class="result_block">
               <h3 class="form-subtitle result">Итоговая стоимость за всех отдыхающих: </h3><span>0</span>
             </div>
             <div class="add-object-btn">
@@ -265,9 +264,19 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .v-selection-control-group {
   flex-direction: row !important;
 }
+.client .v-expansion-panel-text__wrapper {
+  padding: 0 15px 16px !important;
+}
 </style>
 
 <style scoped>
+.result_block{
+  padding: 10px 15px; 
+  border: 1.5px solid #4a90e2;
+  margin: 5px auto 20px; 
+  width: 60%; 
+  border-radius: 12px;
+}
 .v-field--disabled {
   background-color: rgba(204, 204, 204, .2);
 }
@@ -371,20 +380,20 @@ hr {
   cursor: not-allowed !important;
 }
 
-.grid-fields {
+.grid-inputs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0 16px;
 }
 
 @media (max-width: 992px) {
-  .grid-fields {
+  .grid-inputs {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .grid-fields {
+  .grid-inputs {
     grid-template-columns: 1fr;
   }
 }
@@ -473,9 +482,5 @@ hr {
 .panel-title .action {
   margin-left: auto;
   margin-right: 20px;
-}
-
-.client .v-expansion-panel-text__wrapper {
-  padding: 8px 16px 16px !important;
 }
 </style>

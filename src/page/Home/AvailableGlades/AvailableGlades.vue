@@ -3,22 +3,33 @@
     class="d-flex flex-column justify-space-between card"
     elevation="4"
     rounded="xl"
-    @click="goRoute('MapObjects')"
+    @click="goRoute"
   >
     <div class="d-flex align-start text-start card-header">
-      <v-icon color="#debe7e" size="33"> mdi-tent</v-icon>
+      <v-icon color="#debe7e" size="33">mdi-tent</v-icon>
       <h2>Свободные поляны</h2>
     </div>
     <div class="position-absolute decor-wave-and-orbits">
       <svg class="position-absolute decor-wave" viewBox="0 0 400 120" preserveAspectRatio="none">
-        <path d="M0,80 Q150,10 300,70 T400,60" stroke="rgb(240 ,173 ,41 , .4)" stroke-width="3" fill="none" stroke-linecap="round" />
+        <path
+          d="M0,80 Q150,10 300,70 T400,60"
+          stroke="rgb(240 ,173 ,41 , .4)"
+          stroke-width="3"
+          fill="none"
+          stroke-linecap="round"
+        />
       </svg>
       <div class="position-absolute orbit orbit1"></div>
       <div class="position-absolute orbit orbit2"></div>
     </div>
     <v-row dense>
-      <v-col v-for="(place, index) in places" :key="index" cols="12" md="6">
-        <Glade :place="place" :number="index" />
+      <v-col
+        v-for="(place, i) in places"
+        :key="i"
+        cols="12"
+        md="6"
+      >
+        <Glade :place="place" :number="i" />
       </v-col>
     </v-row>
     <div class="d-flex align-center card-footer mt-4">
@@ -31,16 +42,16 @@
 <script setup>
 import { useRouter } from "vue-router";
 const router = useRouter();
-function goRoute(name) {
-  if (name) router.push({ name });
-}
+
+const goRoute = () => router.push({ name: "MapObjects" });
+
 const places = [
   {
     name: "У Песчаного Моря",
     description: "Тёплый песок, мягкий бриз и спокойные волны",
     icon: "mdi-weather-sunny",
     color: "#f4b740",
-    value: '43.960635, 39.263933',
+    value: "43.960635, 39.263933",
     percentPerson: "24",
     textPerson: "7/30",
     percentCar: "10",
@@ -51,23 +62,12 @@ const places = [
     description: "Аромат хвои, прохлада и шелест леса",
     icon: "mdi-pine-tree",
     color: "#8ab45a",
-    value: '44.260545, 37.463974',
+    value: "44.260545, 37.463974",
     percentPerson: "30",
     textPerson: "3/10",
     percentCar: "12",
     textCar: "1/8",
   },
-  // {
-  //   name: "У Подножья Гор",
-  //   description: "Величественные вершины и кристально чистый воздух",
-  //   icon: "mdi-image-filter-hdr",
-  //   color: "#bca37f",
-  //   value: '46.742464, 35.933421',
-  //   percentPerson: "56",
-  //   textPerson: "14/25",
-  //   percentCar: "45",
-  //   textCar: "7/15",
-  // },
 ];
 </script>
 <style scoped>

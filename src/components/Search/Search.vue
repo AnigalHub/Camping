@@ -1,11 +1,32 @@
 <template>
   <v-card class="d-flex flex-wrap align-center justify-space-between search-bar">
-    <v-text-field v-model="search" density="comfortable" hide-details rounded="lg" variant="solo" placeholder="Поиск"
-      prepend-inner-icon="mdi-magnify" class="search-input"></v-text-field>
+    <v-text-field
+      v-model="search"
+      density="comfortable"
+      hide-details
+      rounded="lg"
+      variant="solo"
+      placeholder="Поиск"
+      prepend-inner-icon="mdi-magnify"
+      class="search-input"
+    />
+
     <div class="d-flex align-center gap-3 flex-wrap mt-2 mt-md-0 search-controls">
-      <v-select v-model="sort" :items="sortOptions" label="Сортировать" density="comfortable" hide-details rounded="lg"
-        variant="solo" class="filter-select"></v-select>
-      <v-btn class="btn-page" prepend-icon="mdi-magnify" @click="onSearch">
+      <v-select
+        v-model="sort"
+        :items="sortOptions"
+        label="Сортировать"
+        density="comfortable"
+        hide-details
+        rounded="lg"
+        variant="solo"
+        class="filter-select"
+      />
+      <v-btn 
+        class="btn-page" 
+        prepend-icon="mdi-magnify" 
+        @click="onSearch"
+      >
         Найти
       </v-btn>
     </div>
@@ -15,29 +36,22 @@
 <script setup>
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+
+defineOptions({ name: "Search" });
+
 const route = useRoute();
-
-defineOptions({
-  name: "Search",
-
-});
-
 const search = ref("");
 const sort = ref(null);
-const sortOptions = route.name !== 'AdditionalCosts' ? ["По дате", "По имени"] : ["По наиенованию", "По дате", "По цене"];
 
-function onSearch() {
-  console.log(
-    "Поиск:",
-    search.value,
-    "Сортировка:",
-    sort.value
-  );
-}
+const sortOptions =
+  route.name !== "AdditionalCosts"
+    ? ["По дате", "По имени"]
+    : ["По наиенованию", "По дате", "По цене"];
+
+const onSearch = () => console.log("Поиск:", search.value, "Сортировка:", sort.value);
 </script>
 
 <style>
-/* Добавим лёгкий эффект для полей */
 .v-field--variant-solo {
   box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.08) !important;

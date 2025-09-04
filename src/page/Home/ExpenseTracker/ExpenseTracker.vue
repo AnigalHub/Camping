@@ -3,15 +3,15 @@
     class="d-flex flex-column justify-space-between card"
     elevation="4"
     rounded="xl"
-    @click="goRoute('AdditionalCosts')"
+    @click="goRoute"
   >
     <div class="d-flex align-start text-start card-header">
       <v-icon color="#debe7e" size="33">mdi-cash-multiple</v-icon>
       <h2>Учет расходов</h2>
     </div>
     <div class="m-5 card-text">
-      Учитывайте все аспекты содержания лагеря — аренду, уборку, обслуживание
-      территории и любые иные услуги.
+      Учитывайте все аспекты содержания лагеря — аренду, уборку,
+      обслуживание территории и любые иные услуги.
     </div>
     <v-btn class="btn-home">Добавить траты</v-btn>
   </v-card>
@@ -20,10 +20,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 const router = useRouter();
-function goRoute(name) {
-  if (name) router.push({ name });
-}
+
+const goRoute = () => router.push({ name: "AdditionalCosts" });
 </script>
+
 <style scoped>
 .card {
   cursor: pointer;

@@ -1,13 +1,4 @@
 :root {
-  /* Заголовки страниц */
-  --color-h1: #4d672c;
-  --text-stroke-h1: 0.25px #4d672c;
-  --background-h1: transparent;
-  --border-radius-h1: 10px;
-  --border-h1: none;
-  --border-color-h1: transparent;
-  --box-shadow-h1: none;
-
   /** Скролл */
   --size-scrollbar: 8px;
   --background-track-scrollbar: #e0e0e0;
@@ -21,43 +12,11 @@
   --border-slider-scrollbar: none;
   --border-color-slider-scrollbar: transparent;
 
-  /* Заголовок Главной страницы */
-  --color-h1-home: #72962E;
-  --text-stroke-h1-home: .7px none;
-  --font-family-h1-home: "Amatic SC", sans-serif;
-  --background-h1-home: transparent;
-  --border-radius-h1-home: 0;
-  --border-h1-home: none;
-  --border-color-h1-home: transparent;
-  --box-shadow-h1-home: none;
-
   /* Слоган Главной страницы */
-  --color-slogan-home: #739730;
-  --text-stroke-slogan-home: .16px #F3F3F5;
-  --font-family-slogan-home: "Pacifico", cursive;
-  --background-slogan-home: transparent;
-  --border-radius-slogan-home: 0;
-  --border-slogan-home: none;
-  --border-color-slogan-home: transparent;
-  --box-shadow-slogan-home: none;
-
-  /* Иконки кнопок Главной страницы */
-  --fill-icon-home: #4d672c;
+  --font-family-slogan: "Pacifico", cursive;
 
   /** Фон страниц */
   --background-color-page: #edeef0;
-  --background-img-page: transparent;
-  --background-size-img-page: 100% 100%;
-  --filter-background-page: blur(0px);
-
-  /** Поиск (инпут) (страниц) */
-  --background-search: #ffffff;
-  --border-color-search: #5F8835;
-  --opacity-search: .7;
-  --border-color-after-search: #5F8835;
-  --border-width-after-search: 0 0 1.8px;
-  --box-shadow-search: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
 
   /** Переключатель */
   --background-active-switch: #87bd23;
@@ -69,31 +28,10 @@
   --filter-background-table: blur(10px);
   --background-table: transparent;
   --background-btn-block-table: rgb(228 231 234 / 20%);
-  --background-btn-table: transparent;
-  --background-btn-table-hover: rgba(215, 245, 161, 0.05);
-  --border-btn-table: .5px solid;
-  --border-color-btn-table: #4d672c;
-  --color-btn-table: #000000;
-  --text-stroke-btn-table: .45px #000000;
   --background-even-tr-table: #ecf3ef50;
   --background-tr-table-hover: rgba(138, 181, 57, 0.08);
-  --background-th-table: #ffffff;
   --color-th-table: #3A6210;
-  --text-stroke-th-table: .05px #5F8835;
-  --border-th-table: .25px solid;
-  --border-color-th-table: #ffffff;
-  --box-shadow-th-table: none;
   --svg-table: 16px;
-
-  /** Кнопки страниц */
-  --color-btn-page: #3A6210;
-  --text-stroke-btn-page: .5px #5F8835;
-  --letter-spacing-btn-page: -.15px;
-  --background-btn-page: #ffffff !important;
-  --border-radius-btn-page: 8px;
-  --border-btn-page: 1.5px solid;
-  --border-color-btn-page: #4d672c;
-  --box-shadow-btn-page: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
   /** Модальные окна страниц */
   --background-modal: #fefefe;
@@ -102,37 +40,15 @@
   --border-bottom-title-modal: 1px solid #ccc;
   --border-bottom-content-modal: 1px solid #ccc;
 
-  /** Кнопка Назад */
-  --fill-icon-btn-back-page: #000000;
-  --color-btn-back-page: #2a3a1f;
-  --text-stroke-btn-back-page: none;
-  --background-btn-back-page: transparent;
-  --border-radius-btn-back-page: 10px;
-  --border-btn-back-page: 1px solid;
-  --border-color-btn-back-page: transparent;
-  --box-shadow-btn-back-page: none;
-  --filter-btn-back-page: blur(0px);
-  /* Кнопка Назад(при наведении) */
-  --color-btn-back-page-hover: #2a3a1f;
-  --text-stroke-btn-back-page-hover: none;
-  --background-btn-back-page-hover: transparent;
-  --border-radius-btn-back-page-hover: 10px;
-  --border-btn-back-page-hover: 1px solid;
-  --border-color-btn-back-page-hover: transparent;
-  --box-shadow-btn-back-page-hover: none;
-  --filter-btn-back-page-hover: blur(0px);
-
   /* Табы */
   --text-transform-tabs: none;
   --border-radius-tabs: 10px;
 
   /* Неактивные табы */
-  --background-inactive-tab: rgba(138, 181, 57, 0.08);
   --color-inactive-tab: #5F8835;
   --text-stroke-inactive-tab: .05px rgba(138, 181, 57, 0.08);
   --border-inactive-tab: 1px solid;
   --border-color-inactive-tab: rgba(138, 181, 57, 1);
-
 
   /* Активные табы */
   --background-active-tab: #ffffff;
@@ -153,9 +69,7 @@
   --background-content-inner-card: transparent;
   --box-shadow-content-inner-card: none;
 
-
   /* Шрифты страниц */
-  --font-family-main: "Zen Kaku Gothic New", sans-serif;
   --font-family: "El Messiri", sans-serif;
   --font-family-numbers: 'Courier New', monospace;
   --font-family-title: "Poiret One", sans-serif;
@@ -164,24 +78,14 @@
   --v-layout-top:50px !important
 }
 
+/* 
 .v-theme--light {
   --v-disabled-opacity: 0.9 !important;
   --v-input-control-height: 35px !important;
-}
+} 
+*/
+
 .v-main {
   padding-top: 0 !important;
   margin-top: -10px;
-}
-
-/*Плавное появление элементов при загрузке страницы*/
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }

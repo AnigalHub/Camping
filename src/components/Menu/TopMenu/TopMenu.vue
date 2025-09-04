@@ -79,7 +79,7 @@ function goRoute(name) {
 }
 
 .slogan {
-  font-family: var(--font-family-slogan-home);
+  font-family: var(--font-family-slogan);
   color: #767677;
   -webkit-text-stroke: .04px #dfdfdf;
   font-size: .95rem;

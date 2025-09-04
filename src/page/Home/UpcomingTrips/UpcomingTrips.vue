@@ -3,8 +3,8 @@
     class="card position-relative"
     elevation="4"
     rounded="xl"
-    @click="goRoute('Trips')"
-  >
+    @click="goRoute"
+    >
     <div class="d-flex align-center card-header">
       <v-icon color="#debe7e" size="33">mdi-calendar-clock-outline</v-icon>
       <h2>Ближайшие выезды</h2>
@@ -44,6 +44,9 @@ import { useRouter } from "vue-router";
 import CalendarSvg from "./../../../svg/calendar.vue";
 
 const today = new Date().toLocaleDateString("ru-RU").split(".");
+
+const goRoute = () => router.push({ name: "Trips" });
+
 const months = {
   "01": "января",
   "02": "февраля",
@@ -65,10 +68,6 @@ const status = [
   { label: "Глэмпинг", value: 0 },
 ];
 
-const router = useRouter();
-function goRoute(name) {
-  if (name) router.push({ name });
-}
 </script>
 
 <style scoped>

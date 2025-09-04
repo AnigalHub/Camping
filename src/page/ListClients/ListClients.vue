@@ -19,12 +19,10 @@ defineOptions({
   name: "ListClients",
 });
 const title = "Список клиентов";
-// Заголовки
+
 const headers = [
   [
     { label: "ФИО", rowspan: 2, key: "fio", sortable: true },
-    // { label: 'Дата рождения', rowspan: 2, key: 'date' },
-    // { label: 'Данные документа', rowspan: 2, key: 'document'},
     { label: "Телефон", rowspan: 2, key: "phone" },
     { label: "Проживание", rowspan: 2, key: "dateStay", sortable: true },
     { label: "Аренда домика", rowspan: 2, key: "house", sortable: true },
@@ -35,7 +33,7 @@ const headers = [
     { label: "", key: "buttons" },
   ],
 ];
-// Содержимое таблицы
+
 const items = [
   {
     surname: "Иванов",

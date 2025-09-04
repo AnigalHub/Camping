@@ -8,7 +8,7 @@
             <v-text-field v-model="organization.name" label="Название" variant="outlined" density="comfortable"
               rounded="lg" clearable />
             <v-textarea v-model="organization.slogan" label="Слоган" variant="outlined" density="comfortable" auto-grow
-              rows="4" max-rows="6" rounded="lg" clearable></v-textarea>
+              rows="4" max-rows="6" rounded="lg" clearable />
             <div class="add-object-btn">
               <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
             </div>
@@ -18,7 +18,7 @@
       <v-col class="icon-col">
         <div class="icon-wrapper">
           <div class="block-icon">
-            <component :is="HouseSvg" color="#61656d" style="padding: 20px" />
+            <component :is="HouseSvg" color="#61656d" style="padding:20px" />
           </div>
           <p class="icon-caption">Основные параметры организации</p>
         </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { reactive, ref, computed } from "vue";
 import HouseSvg from "./svg/house.vue";
 
 defineOptions({
@@ -40,9 +40,7 @@ const organization = reactive({
 });
 
 const originalOrganization = ref(JSON.parse(JSON.stringify(organization)));
-const isChanged = computed(() => {
-  return JSON.stringify(organization) !== JSON.stringify(originalOrganization.value);
-});
+const isChanged = computed(() => JSON.stringify(organization) !== JSON.stringify(originalOrganization.value));
 </script>
 
 <style scoped>

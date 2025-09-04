@@ -1,45 +1,25 @@
 <template>
   <div class="page">
     <v-container>
-      <Title :title="title" :icon="'mdi-calendar-clock-outline'" />
-      <v-card style="min-height: 85vh; position:relative; z-index:2">
+      <Title :title="title" icon="mdi-calendar-clock-outline" />
+      <v-card style="min-height:85vh;position:relative;z-index:2">
         <div class="tabs-container">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
-
-            <v-tab
-              v-for="(item, index) in tabs"
-              :key="item"
-              :value="item"
-              :class="['tabs-switch-tab', { active: tab === item }]"
-              @click="tab = item"
-              ref="tabRefs"
-            >
-              <div v-if="index === 0" class="tab-label">Сегодня</div>
-              <div v-else-if="index === 1" class="tab-label">Завтра</div>
+            <v-tab v-for="(item, i) in tabs" :key="item" :value="item"
+              :class="['tabs-switch-tab', { active: tab === item }]" @click="tab = item" ref="tabRefs">
+              <div v-if="i < 2" class="tab-label">{{ i === 0 ? 'Сегодня' : 'Завтра' }}</div>
               {{ item }}
             </v-tab>
           </div>
         </div>
-
         <v-tabs-window v-model="tab">
-          <v-tabs-window-item
-            v-for="item in tabs"
-            :key="item"
-            :text="item"
-            :value="item"
-          >
-            <div v-if="filteredItems.length !== 0">
+          <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
+            <div v-if="filteredItems.length">
               <search />
-              <Table
-                :headers="headers"
-                :items="filteredItems"
-                sortByKey="fio"
-              />
+              <Table :headers="headers" :items="filteredItems" sortByKey="fio" />
             </div>
-            <div v-else style="padding: 15px" class="no_data">
-              Данных за день нет.
-            </div>
+            <div v-else class="no_data">Данных за день нет.</div>
           </v-tabs-window-item>
         </v-tabs-window>
       </v-card>
@@ -72,10 +52,8 @@ function get7Days() {
 const tabs = get7Days();
 const tab = shallowRef(tabs[0]);
 
-// динамическое положение подсветки активного таба
 const tabRefs = ref([]);
 const sliderStyle = ref({});
-
 const updateSlider = () => {
   nextTick(() => {
     const activeIndex = tabs.indexOf(tab.value);
@@ -88,7 +66,6 @@ const updateSlider = () => {
     }
   });
 };
-
 onMounted(updateSlider);
 watch(tab, updateSlider);
 
@@ -106,19 +83,17 @@ const filteredItems = computed(() => {
   return filtered.sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
 });
 
-const headers = [
-  [
-    { label: "ФИО", rowspan: 2, key: "fio", sortable: true },
-    { label: "Телефон", rowspan: 2, key: "phone" },
-    { label: "Проживание", rowspan: 2, key: "dateStay", sortable: true },
-    { label: "Аренда домика", rowspan: 2, key: "house", sortable: true },
-    { label: "Транспорт", rowspan: 2, key: "cars", sortable: true },
-    { label: "Животные", rowspan: 2, key: "animals", sortable: true },
-    { label: "Поляна", rowspan: 2, key: "object", sortable: true },
-    { label: "Стоимость", rowspan: 2, key: "price", sortable: true },
-    { label: "", key: "buttons" },
-  ],
-];
+const headers = [[
+  { label: "ФИО", rowspan: 2, key: "fio", sortable: true },
+  { label: "Телефон", rowspan: 2, key: "phone" },
+  { label: "Проживание", rowspan: 2, key: "dateStay", sortable: true },
+  { label: "Аренда домика", rowspan: 2, key: "house", sortable: true },
+  { label: "Транспорт", rowspan: 2, key: "cars", sortable: true },
+  { label: "Животные", rowspan: 2, key: "animals", sortable: true },
+  { label: "Поляна", rowspan: 2, key: "object", sortable: true },
+  { label: "Стоимость", rowspan: 2, key: "price", sortable: true },
+  { label: "", key: "buttons" }
+]];
 
 const items = [
   {
@@ -499,5 +474,6 @@ const items = [
   border-radius: var(--border-radius-content-card) !important;
   height: 71vh;
   margin-top: 15px;
+  padding: 15px
 }
 </style>

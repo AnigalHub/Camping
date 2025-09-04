@@ -3,36 +3,29 @@
     border: route.name !== 'Home' ? `` : `1.55px solid ${place.color}`,
     'padding-bottom': route.name === 'Home' ? `10px` : ''
   }">
-    <div class="d-flex align-center justify-space-between  card-place-header">
+    <div class="d-flex align-center justify-space-between card-place-header">
       <div class="card-place-number" :style="{
         border: route.name !== 'Home' ? `1.8px solid ${place.color}` : `1.55px solid ${place.color}`,
         color: place.color
-      }">
-        {{ number + 1 }}
-      </div>
-      <div class="d-flex">
-        <div class="d-flex align-center justify-center position-relative card-place-icon">
-          <v-icon :color="place.color" size="35">{{ place.icon }}</v-icon>
-        </div>
+      }">{{ number + 1 }}</div>
+      <div class="d-flex align-center">
+        <v-icon :color="place.color" size="35" class="card-place-icon">{{ place.icon }}</v-icon>
         <h3 class="card-place-name">{{ place.name }}</h3>
       </div>
     </div>
-    <div class="card-place-text">
-      {{ place.description }}
-    </div>
+    <div class="card-place-text">{{ place.description }}</div>
     <div class="three-blocks">
       <div class="block block-long">
         <h5>Загруженность:</h5>
-        <div class="d-flex align-center mt-2.5 card-place-progress-block">
-          <component :is="PeopleSvg" class="progress-svg" :color="'#759930'" />
+        <div class="card-place-progress-block">
+          <component :is="PeopleSvg" class="progress-svg" color="#759930" />
           <span class="card-place-name-progress">{{ place.textPerson }}</span>
-          <v-progress-linear :model-value="place.percentPerson" color="#8AB539" height="9" rounded
-            class="flex-grow-1" />
+          <v-progress-linear :model-value="place.percentPerson" color="#8AB539" height="9" rounded class="flex-grow-1"/>
         </div>
-        <div class="d-flex align-center mt-2.5 card-place-progress-block">
-          <component :is="CarSvg" class="progress-svg" :color="'#999999'" />
+        <div class="card-place-progress-block">
+          <component :is="CarSvg" class="progress-svg" color="#999999" />
           <span class="card-place-name-progress">{{ place.textCar }}</span>
-          <v-progress-linear :model-value="place.percentCar" color="#aeaeae" height="15" rounded class="flex-grow-1" />
+          <v-progress-linear :model-value="place.percentCar" color="#aeaeae" height="15" rounded class="flex-grow-1"/>
         </div>
       </div>
       <div class="vertical-hr"></div>
@@ -47,7 +40,7 @@
             <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
             <div class="ping"></div>
           </div>
-          <span class="map-open" :style="{ color: `#759930`, }">Открыть на картах</span>
+          <span class="map-open" :style="{ color: '#759930' }">Открыть на картах</span>
         </div>
       </div>
     </div>
@@ -59,6 +52,7 @@ import { ref } from 'vue';
 import { useRoute } from "vue-router";
 import CarSvg from "./../../svg/car.vue";
 import PeopleSvg from "./../../svg/people.vue";
+
 const route = useRoute();
 const props = defineProps({
   number: Number,
@@ -68,11 +62,11 @@ const copiedIndex = ref(null);
 const copyCoords = async (coords, index) => {
   await navigator.clipboard.writeText(coords);
   copiedIndex.value = index;
-  setTimeout(() => (copiedIndex.value = null), 1500);
+  setTimeout(() => copiedIndex.value = null, 1500);
 };
 
-const openOnMap = (coords) => {
-  const [lat, lng] = coords.split(',').map((c) => c.trim());
+const openOnMap = coords => {
+  const [lat, lng] = coords.split(',').map(c => c.trim());
   window.open(`https://yandex.ru/maps/?ll=${lng},${lat}&pt=${lng},${lat},pm2rdm&z=15&l=map`, '_blank');
 };
 </script>
