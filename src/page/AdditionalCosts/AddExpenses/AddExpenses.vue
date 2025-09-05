@@ -167,18 +167,17 @@ function saveForm() {
   margin-top: -3.5%;
   border-radius: 15px !important;
 }
+
 .modern-input {
   margin-bottom: 18px;
 }
 
-/* Увеличиваем поле "Наименование" */
 .textarea-large textarea {
   min-height: 120px !important;
   font-size: 15px;
   line-height: 1.5;
 }
 
-/* Кнопка */
 .btn-page {
   background: #547c8f;
   color: #fff;
@@ -188,7 +187,7 @@ function saveForm() {
   border-radius: 12px !important;
   letter-spacing: 0.5px;
   box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
-  transition: all 0.3s ease;
+  transition: .3s;
   padding: 10px 22px !important;
   min-height: 46px;
   min-width: 220px;
@@ -210,11 +209,10 @@ function saveForm() {
 
 .content {
   padding: 20px 10px;
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.8)) !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, .3),
+    2px 2px 8px rgba(17, 44, 18, .1) !important;
   border-radius: 15px !important;
   height: 70vh;
 }
@@ -233,7 +231,7 @@ function saveForm() {
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgb(57 131 181 / 50%), transparent 10%);
+  background: radial-gradient(circle, rgba(57, 131, 181, .5), transparent 10%);
   filter: blur(40px);
   animation: pulse 6s ease-in-out infinite alternate;
 }
@@ -241,12 +239,12 @@ function saveForm() {
 @keyframes pulse {
   0% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: .5;
   }
 
   100% {
     transform: scale(1.2);
-    opacity: 0.8;
+    opacity: .8;
   }
 }
 
@@ -260,22 +258,24 @@ function saveForm() {
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, 0.3);
-  background: linear-gradient(180deg, #ffffff, #eff5f7);
+  border: 1px solid rgba(180, 180, 180, .3);
+  background: linear-gradient(180deg, #fff, #eff5f7);
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 6px 15px rgba(47, 118, 139, 0.18),
-    inset 0 0 10px rgba(255, 255, 255, 0.3);
-  transition: all 0.5s ease;
+  box-shadow:
+    0 6px 15px rgba(47, 118, 139, .18),
+    inset 0 0 10px rgba(255, 255, 255, .3);
+  transition: .5s;
   animation: breathe 5s ease-in-out infinite;
 }
 
 .block-icon:hover {
   transform: scale(1.06);
-  box-shadow: 0 10px 25px rgba(47, 118, 139, 0.25),
-    inset 0 0 15px rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 10px 25px rgba(47, 118, 139, .25),
+    inset 0 0 15px rgba(255, 255, 255, .4);
 }
 
 @keyframes breathe {

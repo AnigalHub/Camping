@@ -1,15 +1,10 @@
 <template>
   <v-card class="d-flex flex-wrap align-center justify-space-between search-bar">
-    <!-- Поле поиска -->
     <v-text-field v-model="search" density="comfortable" hide-details rounded="lg" variant="solo" placeholder="Поиск"
       prepend-inner-icon="mdi-magnify" class="search-input"></v-text-field>
-
     <div class="d-flex align-center gap-3 flex-wrap mt-2 mt-md-0 search-controls">
-      <!-- Сортировка -->
       <v-select v-model="sort" :items="sortOptions" label="Сортировать" density="comfortable" hide-details rounded="lg"
         variant="solo" class="filter-select"></v-select>
-
-      <!-- Кнопка -->
       <v-btn class="btn-page" prepend-icon="mdi-magnify" @click="onSearch">
         Найти
       </v-btn>

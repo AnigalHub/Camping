@@ -4,7 +4,6 @@
       <Title :title="title" />
       <div class="block-table">
         <v-row dense align="stretch">
-          <!-- Левая часть — форма -->
           <v-col cols="9">
             <v-card class="settings-card" elevation="3">
               <v-card-text>
@@ -25,7 +24,6 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <!-- Правая часть — иконка -->
           <v-col class="icon-col">
             <div class="icon-wrapper">
               <div class="block-icon">

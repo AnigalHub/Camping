@@ -10,18 +10,8 @@
       <h2>Свободные поляны</h2>
     </div>
     <div class="position-absolute decor-wave-and-orbits">
-      <svg
-        class="position-absolute decor-wave"
-        viewBox="0 0 400 120"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,80 Q150,10 300,70 T400,60"
-          stroke="rgb(240 ,173 ,41 , .4)"
-          stroke-width="3"
-          fill="none"
-          stroke-linecap="round"
-        />
+      <svg class="position-absolute decor-wave" viewBox="0 0 400 120" preserveAspectRatio="none">
+        <path d="M0,80 Q150,10 300,70 T400,60" stroke="rgb(240 ,173 ,41 , .4)" stroke-width="3" fill="none" stroke-linecap="round" />
       </svg>
       <div class="position-absolute orbit orbit1"></div>
       <div class="position-absolute orbit orbit2"></div>
@@ -45,7 +35,7 @@ function goRoute(name) {
   if (name) router.push({ name });
 }
 const places = [
-{
+  {
     name: "У Песчаного Моря",
     description: "Тёплый песок, мягкий бриз и спокойные волны",
     icon: "mdi-weather-sunny",
@@ -84,16 +74,11 @@ const places = [
 .card {
   cursor: pointer;
   padding: 15px !important;
-  border-radius: 15px !important;
   border: 1.5px solid #fff;
-  background: linear-gradient(165deg,
-      rgba(255, 255, 255, 0.96),
-      rgba(255, 255, 255, 0.92)) !important;
+  border-radius: 15px !important;
+  background: linear-gradient(165deg, #fffffff5, #ffffffeb) !important;
   margin-top: 30px;
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
 }
 
 .card-header {
@@ -107,13 +92,13 @@ const places = [
   font-size: 1.1rem;
   font-family: var(--font-family);
   color: #104155;
-  transition: color 0.25s ease;
+  transition: color .25s ease;
 }
 
 .card:hover {
   filter: contrast(110%);
   transform: scale(1.025);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
 
 .card:hover .card-footer {
@@ -149,12 +134,12 @@ h2::after {
   left: -20px;
   width: 100%;
   height: 120px;
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .orbit {
   border-radius: 50%;
-  border: 1.58px dashed rgba(138, 181, 57, 1);
+  border: 1.58px dashed rgba(138, 181, 57);
   animation: orbitRotate 270s linear infinite;
   z-index: 0;
 }
@@ -172,6 +157,6 @@ h2::after {
   height: 400px;
   bottom: -150px;
   left: -200px;
-  animation-duration: 160s;
+  animation-duration: 16s;
 }
 </style>

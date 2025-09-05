@@ -10,28 +10,14 @@
       <h2>Управление лагерем и тарифами</h2>
     </div>
     <div class="d-flex align-center card-wrapper">
-      <div
-        class="d-flex position-relative justify-center align-center svg-block"
-      >
+      <div class="d-flex position-relative justify-center align-center svg-block">
         <div class="position-absolute dashed-ring"></div>
         <div class="position-absolute pulse-ring"></div>
-        <div
-          class="d-flex align-center justify-center position-relative icon-wrap"
-        >
+        <div class="d-flex align-center justify-center position-relative icon-wrap">
           <component :is="SettingsSvg" :color="'#547c8f'" style="width: 45px" />
         </div>
-        <svg
-          class="position-absolute decor-line"
-          viewBox="0 0 200 100"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,80 Q100,10 200,70"
-            stroke="rgb(0, 107, 153 , 0.2)"
-            stroke-width="3"
-            fill="none"
-            stroke-linecap="round"
-          />
+        <svg class="position-absolute decor-line" viewBox="0 0 200 100" preserveAspectRatio="none">
+          <path d="M0,80 Q100,10 200,70" stroke="rgb(0, 107, 153 , 0.2)" stroke-width="3" fill="none" stroke-linecap="round" />
         </svg>
       </div>
       <div class="d-flex flex-column flex-1-1-auto text-block">
@@ -44,11 +30,7 @@
           </p>
         </div>
         <div class="list">
-          <div
-            v-for="(item, i) in list"
-            :key="i"
-            class="d-flex align-center list-item"
-          >
+          <div v-for="(item, i) in list" :key="i" class="d-flex align-center list-item">
             <v-icon size="22" color="#006b99ad">mdi-check</v-icon>
             <span>{{ item.name }}</span>
           </div>
@@ -78,24 +60,20 @@ const list = [
 .card {
   cursor: pointer;
   padding: 15px !important;
-  border-radius: 15px !important;
   border: 1.5px solid #fff;
-  background: linear-gradient(165deg,
-      rgba(255, 255, 255, 0.96),
-      rgba(255, 255, 255, 0.92)) !important;
+  border-radius: 15px !important;
+  background: linear-gradient(165deg, #fffffff5, #ffffffeb) !important;
   margin-top: 30px;
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.card-wrapper {
-  gap: 36px;
+  transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
 }
 
 .card-header {
   gap: 12px;
+}
+
+.card-wrapper {
+  display: flex;
+  gap: 36px;
 }
 
 .card-text {
@@ -107,19 +85,20 @@ const list = [
 }
 
 .card-footer {
+  display: flex;
   justify-content: flex-end;
   gap: 6px;
   font-weight: 500;
   font-size: 1.1rem;
   font-family: var(--font-family);
   color: #104155;
-  transition: color 0.25s ease;
+  transition: color .25s ease;
 }
 
 .card:hover {
   filter: contrast(110%);
   transform: scale(1.025);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
 
 .card:hover .card-footer {
@@ -131,10 +110,10 @@ const list = [
 }
 
 h2 {
+  margin: -5px 0 20px;
   font-family: var(--font-family-title);
   font-size: 1.5rem;
   color: #494c54;
-  margin: -5px 0 20px;
   position: relative;
 }
 
@@ -159,23 +138,25 @@ h2::after {
   height: 160px;
   border-radius: 50%;
   border: 1.58px dashed #547c8f;
-  opacity: 0.6;
+  opacity: .6;
   pointer-events: none;
   z-index: 0;
   animation: orbit 50s linear infinite;
-  filter: blur(0.2px);
+  filter: blur(.2px);
 }
 
 .pulse-ring {
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(57, 125, 181, 0.18), transparent);
+  background: radial-gradient(circle, rgba(57, 125, 181, .18), transparent);
   filter: blur(15px);
   animation: pulse 3s ease-in-out infinite;
 }
 
 .text-block {
+  display: flex;
+  flex-direction: column;
   gap: 18px;
 }
 
@@ -195,11 +176,12 @@ h2::after {
 }
 
 .list-item {
+  display: flex;
+  align-items: center;
   gap: 8px;
-  color: #2e2e2e;
   font-size: 0.95rem;
   font-family: "Poppins", sans-serif;
-  transition: transform 0.2s ease;
+  transition: transform .2s ease, color .2s ease;
 }
 
 .list-item:hover {
@@ -210,13 +192,15 @@ h2::after {
 .svg-block {
   width: 200px;
   height: 160px;
+  position: relative;
 }
 
 .decor-line {
+  position: absolute;
   bottom: 5px;
   left: -20px;
   width: 240px;
-  opacity: 0.6;
+  opacity: .6;
   z-index: 1;
 }
 
@@ -226,32 +210,32 @@ h2::after {
   0%,
   100% {
     transform: translateY(0) scale(1);
-    opacity: 0.7;
+    opacity: .7
   }
 
   50% {
     transform: translateY(-3px) scale(1.15);
-    opacity: 1;
+    opacity: 1
   }
 }
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg)
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: rotate(360deg)
   }
 }
 
 @keyframes orbit {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg)
   }
 
   100% {
-    transform: rotate(-360deg);
+    transform: rotate(-360deg)
   }
 }
 
@@ -260,16 +244,16 @@ h2::after {
   0%,
   100% {
     transform: scale(1);
-    opacity: 0.6;
+    opacity: .6
   }
 
   50% {
     transform: scale(1.2);
-    opacity: 1;
+    opacity: 1
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width:960px) {
   .card-wrapper {
     flex-direction: column;
     align-items: flex-start;

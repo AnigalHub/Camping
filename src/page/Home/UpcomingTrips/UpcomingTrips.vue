@@ -5,19 +5,14 @@
     rounded="xl"
     @click="goRoute('Trips')"
   >
-    <!-- Заголовок -->
     <div class="d-flex align-center card-header">
       <v-icon color="#debe7e" size="33">mdi-calendar-clock-outline</v-icon>
       <h2>Ближайшие выезды</h2>
     </div>
-
-    <!-- Текст -->
     <div class="card-text ma-5">
       Общее количество гостей, транспортных средств и глэмпингов, покидающих
       территорию лагеря в течение дня:
     </div>
-
-    <!-- Основная информация -->
     <v-row dense align="center">
       <v-col cols="8">
         <div class="d-flex justify-space-around text-center">
@@ -27,7 +22,6 @@
           </div>
         </div>
       </v-col>
-
       <v-col cols="4" class="d-flex justify-center">
         <v-card flat class="pa-4 text-center position-relative date-block">
           <component :is="CalendarSvg" width="50px" class="mx-auto" />
@@ -36,14 +30,10 @@
         </v-card>
       </v-col>
     </v-row>
-
-    <!-- Нижнее меню -->
     <div class="d-flex align-center card-footer mt-4">
       <span>Подробнее</span>
       <v-icon size="20">mdi-arrow-right</v-icon>
     </div>
-
-    <!-- Геометрические фигуры -->
     <div class="geom-circle position-absolute"></div>
     <div class="geom-circle2 position-absolute"></div>
   </v-card>
@@ -85,35 +75,30 @@ function goRoute(name) {
 .card {
   overflow: hidden;
   padding: 15px !important;
-  background: linear-gradient(165deg,
-      rgba(255, 255, 255, 0.96),
-      rgba(255, 255, 255, 0.92)) !important;
   border-radius: 15px !important;
   border: 1.5px solid #fff;
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease,
-    box-shadow 0.3s ease;
+  background: linear-gradient(165deg, rgba(255, 255, 255, .96), rgba(255, 255, 255, .92)) !important;
+  cursor: pointer;
+  transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
+  position: relative;
+}
+
+.card:hover {
+  filter: contrast(110%);
+  transform: scale(1.025);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
 
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 60% 30%,
-      rgba(138, 181, 57, 0.07),
-      transparent 65%);
+  background: radial-gradient(circle at 60% 30%, rgba(138, 181, 57, .07), transparent 65%);
   animation: pulseGlow 6s ease-in-out infinite;
 }
 
 .card-header {
   gap: 12px;
-}
-
-.card:hover {
-  filter: contrast(110%);
-  transform: scale(1.025);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -131,15 +116,23 @@ h2::after {
   left: 0;
   width: 50px;
   height: 3px;
-  border-radius: 3px;
   background: #f0ad29;
+  border-radius: 3px;
+}
+
+.card-text {
+  font-family: "Poppins", sans-serif;
+  font-size: .93rem;
+  color: #505050;
+  width: 60%;
+  line-height: 1.45;
 }
 
 .numbers {
   font-family: "Smooch Sans", sans-serif;
   font-size: 72px;
   color: #4b707f;
-  transition: color 0.3s ease;
+  transition: color .3s ease;
 }
 
 .card:hover .numbers {
@@ -153,36 +146,52 @@ h2::after {
   margin-top: -20%;
 }
 
+.card-footer {
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: var(--font-family);
+  color: #104155;
+  transition: color .25s ease;
+}
+
+.card:hover .card-footer {
+  color: #006c9a;
+}
+
+/* Блок даты */
 .date-block {
+  position: relative;
   border-radius: 15px;
   width: 100%;
   background: #fff;
   box-shadow: 1px 1px 1px 1px #d9d8d8 !important;
   margin-top: -45%;
-  z-index: 5;
-  transition: all 0.4s ease;
+  padding: 16px !important;
+  transition: transform .4s ease, box-shadow .4s ease;
 }
 
-.date-block::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 17px;
-  background: conic-gradient(from 0deg,
-      rgba(138, 181, 57, 0.8),
-      rgba(255, 138, 61, 0.6),
-      rgba(0, 107, 153, 0.6),
-      rgba(138, 181, 57, 0.8));
-  animation: spinBorder 12s linear infinite;
-  z-index: 0;
-}
-
+.date-block::before,
 .date-block::after {
   content: "";
   position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.date-block::before {
+  inset: -3px;
+  background: conic-gradient(rgba(138, 181, 57, .8),
+      rgba(255, 138, 61, .6),
+      rgba(0, 107, 153, .6),
+      rgba(138, 181, 57, .8));
+  animation: spinBorder 12s linear infinite;
+}
+
+.date-block::after {
   inset: 1.5px;
   background: #fff;
-  border-radius: 13px;
   z-index: 1;
 }
 
@@ -193,35 +202,16 @@ h2::after {
 
 .card:hover .date-block {
   transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 6px 18px rgba(138, 181, 57, 0.3);
+  box-shadow: 0 6px 18px rgba(138, 181, 57, .3);
 }
 
-.card-text {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.93rem;
-  color: #505050;
-  width: 60%;
-  line-height: 1.45;
-}
-
-.card-footer {
-  justify-content: flex-end;
-  gap: 6px;
-  font-weight: 500;
-  font-size: 1.1rem;
-  font-family: var(--font-family);
-  color: #104155;
-  transition: color 0.25s ease;
-}
-
-.card:hover .card-footer {
-  color: #006c9a;
-}
-
+/* Геометрия */
 .geom-circle,
 .geom-circle2 {
+  position: absolute;
   border-radius: 50%;
-  filter: blur(0.3px);
+  border: 1.58px dashed;
+  filter: blur(.3px);
   animation: geomSpin 200s linear infinite;
 }
 
@@ -230,7 +220,7 @@ h2::after {
   height: 420px;
   top: -180px;
   left: -150px;
-  border: 1.58px dashed rgba(138, 181, 57, 1);
+  border-color: rgba(138, 181, 57, 1);
 }
 
 .geom-circle2 {
@@ -238,7 +228,7 @@ h2::after {
   height: 260px;
   bottom: -120px;
   right: -100px;
-  border: 1.58px dashed rgba(255, 138, 61, 1);
+  border-color: rgba(255, 138, 61, 1);
   animation-duration: 35s;
 }
 
@@ -260,7 +250,7 @@ h2::after {
 
   0%,
   100% {
-    opacity: 0.6;
+    opacity: .6;
     transform: scale(1);
   }
 
@@ -271,29 +261,22 @@ h2::after {
 }
 
 @keyframes spinBorder {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes geomSpin {
-  0% {
+
+  0%,
+  100% {
     transform: rotate(0deg);
-    opacity: 0.8;
+    opacity: .8;
   }
 
   50% {
     transform: rotate(180deg);
     opacity: 1;
-  }
-
-  100% {
-    transform: rotate(360deg);
-    opacity: 0.8;
   }
 }
 

@@ -7,12 +7,7 @@
         <router-view style="margin-top: 53px" />
       </v-main>
     </div>
-    <modal
-      v-for="(modal, index) in modals"
-      v-bind="modal"
-      :key="index"
-      :value="modal.isVisible"
-    />
+    <modal v-for="(modal, index) in modals" v-bind="modal" :key="index" :value="modal.isVisible" />
   </v-app>
 </template>
 
@@ -38,7 +33,7 @@ function isModalVisible(name) {
 <style>
 @import "./../public/style.css";
 
-.v-card--variant-elevated{
+.v-card--variant-elevated {
   background: transparent !important;
 }
 
@@ -63,7 +58,7 @@ function isModalVisible(name) {
   z-index: 1;
 }
 
-.wrapper > * {
+.wrapper>* {
   position: relative;
   z-index: 2;
 }
@@ -74,7 +69,8 @@ function isModalVisible(name) {
   height: var(--size-scrollbar);
 }
 
-.v-table__wrapper::-webkit-scrollbar-thumb, .wrapper_content::-webkit-scrollbar-thumb {
+.v-table__wrapper::-webkit-scrollbar-thumb,
+.wrapper_content::-webkit-scrollbar-thumb {
   background-color: #6c92a4 !important;
 }
 
@@ -91,15 +87,19 @@ function isModalVisible(name) {
   border: var(--border-track-scrollbar);
   border-color: var(--border-color-track-scrollbar);
 }
-.v-expansion-panel--active > .v-expansion-panel-title:not(.v-expansion-panel-title--static){
+
+.v-expansion-panel--active>.v-expansion-panel-title:not(.v-expansion-panel-title--static) {
   min-height: 50px;
   padding: 10px 20px;
 }
 
-.btn-home{
-  border: 1.7px solid #4170839e;
+.btn-home {
+  border: 1.5px solid #547c8f;
+  opacity: .75;
 }
-.btn-home, .btn-page {
+
+.btn-home,
+.btn-page {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   font-family: 'El Messiri', sans-serif;
@@ -118,11 +118,16 @@ function isModalVisible(name) {
 
 .v-card:hover .btn-home {
   transform: translateY(-2px);
-  background: #ecf9ff;
+  transform: scale(1.05);
+  box-shadow: none;
+  background: #e9eff9;
+  opacity: 1;
 }
 
-
-.v-card, .content, .block-title, .v-list-item{
+.v-card,
+.content,
+.block-title,
+.v-list-item {
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
@@ -159,7 +164,6 @@ function isModalVisible(name) {
   box-shadow: var(--box-shadow-content-inner-card) !important;
 }
 
-/* Неактивные табы */
 .inactive-tab {
   background: rgb(246 249 239) !important;
   color: var(--color-inactive-tab) !important;
@@ -167,7 +171,6 @@ function isModalVisible(name) {
   border: var(--border-inactive-tab) var(--border-color-inactive-tab) !important;
 }
 
-/* Активный таб */
 .active-tab {
   background-color: var(--background-active-tab) !important;
   color: var(--color-active-tab) !important;

@@ -74,7 +74,7 @@ const addObject = () => {
     maxpeople: null,
     maxcars: null,
   });
-   openedPanel.value = [objects.length - 1];
+  openedPanel.value = [objects.length - 1];
 };
 
 const removeObject = (index) => {
@@ -121,11 +121,8 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 <style scoped>
 .content {
   padding: 20px 10px;
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.8)) !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important;
   border-radius: 15px !important;
   height: 70vh;
 }
@@ -152,12 +149,12 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 @keyframes pulse {
   0% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: .5;
   }
 
   100% {
     transform: scale(1.2);
-    opacity: 0.8;
+    opacity: .8;
   }
 }
 
@@ -171,22 +168,20 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, 0.3);
-  background: linear-gradient(180deg, #ffffff, #eff5f7);
+  border: 1px solid rgba(180, 180, 180, .3);
+  background: linear-gradient(180deg, #fff, #eff5f7);
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 6px 15px rgba(47, 118, 139, 0.18),
-    inset 0 0 10px rgba(255, 255, 255, 0.3);
-  transition: all 0.5s ease;
+  box-shadow: 0 6px 15px rgba(47, 118, 139, .18), inset 0 0 10px rgba(255, 255, 255, .3);
+  transition: .5s ease;
   animation: breathe 5s ease-in-out infinite;
 }
 
 .block-icon:hover {
   transform: scale(1.06);
-  box-shadow: 0 10px 25px rgba(47, 118, 139, 0.25),
-    inset 0 0 15px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 25px rgba(47, 118, 139, .25), inset 0 0 15px rgba(255, 255, 255, .4);
 }
 
 @keyframes breathe {
@@ -218,7 +213,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   font-family: "Poiret One", sans-serif;
   font-size: 1.45rem;
   font-weight: 600;
-  letter-spacing: 0.7px;
+  letter-spacing: .7px;
   background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -249,7 +244,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   height: 3px;
   border-radius: 3px;
   background: #2d9ac5;
-  opacity: 0.9;
+  opacity: .9;
 }
 
 .grid-inputs {
@@ -264,43 +259,6 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   }
 }
 
-.object-title {
-  margin: 20px 0 18px;
-  padding: 8px 16px;
-  display: inline-block;
-  background: rgba(45, 154, 197, 0.08);
-  border-left: 4px solid #2d9ac5;
-  border-radius: 6px;
-  backdrop-filter: blur(2px);
-  font-family: "Poiret One", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.7px;
-  animation: fadeIn 0.6s ease;
-}
-
-.subtitle-object {
-  margin-bottom: 0;
-}
-
-.object-title span {
-  background: linear-gradient(90deg, #2d9ac5, #7b6f5e, #2d9ac5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .btn-page {
   background: #547c8f;
   color: #fff;
@@ -308,9 +266,9 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   font-family: "El Messiri", sans-serif;
   font-size: 1.05rem;
   border-radius: 12px;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
-  transition: all 0.3s ease;
+  letter-spacing: .5px;
+  box-shadow: 0 4px 12px rgba(50, 70, 90, .08);
+  transition: .3s ease;
   padding: 10px 22px !important;
   min-height: 46px;
   margin: 10px auto 0;
@@ -336,18 +294,18 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 }
 
 .custom-panel {
-  border: 1.5px solid rgba(70, 120, 170, 0.35);
+  border: 1.5px solid rgba(70, 120, 170, .35);
   border-radius: 18px;
   margin-bottom: 18px;
-  background: linear-gradient(180deg, #ffffff, #f7f9fc);
-  transition: all 0.25s ease;
+  background: linear-gradient(180deg, #fff, #f7f9fc);
+  transition: .25s ease;
   overflow: hidden;
   position: relative;
 }
 
 .custom-panel:hover {
   border-color: #4a90e2;
-  background: linear-gradient(180deg, #ffffff, #f4f8ff);
+  background: linear-gradient(180deg, #fff, #f4f8ff);
 }
 
 .custom-title {
@@ -361,12 +319,12 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .custom-text {
   padding: 20px 10px 0;
   background: #fafafa;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, .06);
   border-radius: 0 0 14px 14px;
-  animation: fadeIn 0.3s ease;
+  animation: fadeBlocks .3s ease;
 }
 
-@keyframes fadeIn {
+@keyframes fadeBlocks {
   from {
     opacity: 0;
     transform: translateY(-4px);
@@ -379,20 +337,20 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 }
 
 .delete-btn {
-  opacity: 0.8;
-  transition: 0.2s;
+  opacity: .8;
+  transition: .2s;
   margin-left: 10px;
   margin-top: -2.5px;
-  border: 1.5px solid rgba(70, 120, 170, 0.35);
-  color: rgba(70, 120, 170, 0.8);
+  border: 1.5px solid rgba(70, 120, 170, .35);
+  color: rgba(70, 120, 170, .8);
   border-radius: 10px;
 }
 
 .delete-btn:hover {
   opacity: 1;
-  background-color: #f9f0ee;
+  background: #f9f0ee;
   color: #c0392b;
-  border: 1.5px solid #c0392b;
+  border-color: #c0392b;
   transform: scale(1.15);
 }
 </style>

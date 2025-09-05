@@ -25,7 +25,7 @@
           >
             <v-card-text>
               <div v-if="tab === tabs[0].value">
-                <AddExpenses/>
+                <AddExpenses />
               </div>
               <div v-else-if="tab === tabs[1].value">
                 <ListExpenses class="list" />
@@ -80,7 +80,6 @@ watch(tab, updateSlider);
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   background: #fff;
   border-radius: 15px;
   width: fit-content;
@@ -88,24 +87,21 @@ watch(tab, updateSlider);
   font-weight: 800 !important;
   font-family: var(--font-family-title);
   margin-bottom: 15px;
-  padding: 0; /* убираем внутренний отступ */
-  overflow: hidden; /* чтобы скругления выглядели аккуратно */
+  overflow: hidden;
 }
 
 .tabs-slider {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0 auto 0 0;
   height: 100%;
   border-radius: 15px;
-  background-color: #89ac49d7;
+  background: #89ac49d7;
   border: 1.5px solid var(--border-color-inactive-tab);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: .35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
 }
 
 .tabs-switch-tab {
-  text-align: center;
   background: transparent;
   border: none;
   font-weight: 600;
@@ -116,9 +112,7 @@ watch(tab, updateSlider);
   color: #494c54;
   position: relative;
   z-index: 1;
-  transition: all 0.25s ease;
-  border-radius: 0; 
-  margin: 0; 
+  transition: .25s ease;
 }
 
 .tabs-switch-tab:first-child {
@@ -130,15 +124,15 @@ watch(tab, updateSlider);
 }
 
 .tabs-switch-tab:hover {
-  background-color: rgba(57, 181, 94, 0.05);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: rgba(57, 181, 94, .05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
 }
 
 .tabs-switch-tab.active {
   color: #fff;
   font-weight: 900;
   -webkit-text-stroke: .05px #fff;
-  box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
+  box-shadow: 0 4px 10px rgba(138, 181, 57, .096);
 }
 
 .list {

@@ -1,16 +1,12 @@
 <template>
   <v-dialog v-model="isDialogOpen" max-width="600" persistent class="modal-block">
     <v-card :class="[classCss]">
-      <!-- Заголовок -->
       <v-card-title v-if="!hideHeader" class="d-flex justify-space-between align-center">
         <span>{{ title }}</span>
-        <!-- Кнопка закрытия -->
         <v-btn icon @click="handleClose">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-card-title>
-
-      <!-- Содержимое -->
       <v-card-text>
         <component
           :is="component"
@@ -20,8 +16,6 @@
           @cancel="handleCancel"
         />
       </v-card-text>
-
-      <!-- Футер -->
       <v-card-actions v-if="!hideFooter" class="justify-end">
         <v-spacer></v-spacer>
         <v-btn v-if="!okOnly" text @click="handleCancel">Cancel</v-btn>

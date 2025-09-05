@@ -1,14 +1,14 @@
 <template>
   <div class="page">
     <v-container>
-      <Title :title="title" :icon="'mdi-tent'" class="title"/>
-      <Search/>
+      <Title :title="title" :icon="'mdi-tent'" class="title" />
+      <Search />
       <div class="block">
         <div class="grid-container">
           <Glade v-for="(place, index) in places" :key="index" :place="place" :number="index" />
         </div>
       </div>
-    </v-container> 
+    </v-container>
   </div>
 </template>
 
@@ -50,185 +50,185 @@ const places = [
     percentCar: "45",
     textCar: "7/15",
   },
-  { 
-    name: 'Звёздная Ночь', 
-    value: '50.456723, 36.234655', 
-    icon: 'mdi-star-shooting', 
-    description: 'Чистое небо, млечный путь и тишина природы', 
+  {
+    name: 'Звёздная Ночь',
+    value: '50.456723, 36.234655',
+    icon: 'mdi-star-shooting',
+    description: 'Чистое небо, млечный путь и тишина природы',
     color: '#6d8bc9',
     value: '45.126335, 34.393356',
     percentPerson: "14",
     textPerson: "2/15",
     percentCar: "50",
-    textCar: "5/10", 
+    textCar: "5/10",
   },
-  { 
-    name: 'Закат у Моря', 
-    value: '47.256335, 32.372356', 
-    icon: 'mdi-weather-sunset', 
-    description: 'Нежное сияние заката над морской гладью', 
+  {
+    name: 'Закат у Моря',
+    value: '47.256335, 32.372356',
+    icon: 'mdi-weather-sunset',
+    description: 'Нежное сияние заката над морской гладью',
     color: '#ff9c6a',
     value: '47.256335, 32.372356',
     percentPerson: "40",
     textPerson: "4/10",
     percentCar: "60",
-    textCar: "3/5", 
+    textCar: "3/5",
   },
-  { 
-    name: 'У Ветреного Берега', 
-    value: '41.830533, 31.118635', 
-    icon: 'mdi-waves', 
-    description: 'Плеск волн и морской бриз', 
+  {
+    name: 'У Ветреного Берега',
+    value: '41.830533, 31.118635',
+    icon: 'mdi-waves',
+    description: 'Плеск волн и морской бриз',
     color: '#7cb7c5',
     value: '48.363257, 30.295367',
     percentPerson: "28",
     textPerson: "7/25",
     percentCar: "65",
-    textCar: "13/20",  
+    textCar: "13/20",
   },
-  { 
+  {
     name: 'Лесная Опушка',
     value: '45.126335, 34.393356',
     icon: 'mdi-flower',
-    description: 'Солнечная поляна, пение птиц и мягкий свет', 
+    description: 'Солнечная поляна, пение птиц и мягкий свет',
     color: '#d7a77b',
     value: '41.830533, 31.118635',
     percentPerson: "40",
     textPerson: "10/25",
     percentCar: "90",
-    textCar: "9/10", 
+    textCar: "9/10",
   },
-  { 
-    name: 'Между Морем и Горами', 
-    value: '49.220335, 46.253733', 
-    icon: 'mdi-compass', 
-    description: 'Баланс стихий — море, горы и небо', 
+  {
+    name: 'Между Морем и Горами',
+    value: '49.220335, 46.253733',
+    icon: 'mdi-compass',
+    description: 'Баланс стихий — море, горы и небо',
     color: '#9a8cd4',
     value: '49.220335, 46.253733',
     percentPerson: "27",
     textPerson: "4/15",
     percentCar: "29",
-    textCar: "2/7",   
+    textCar: "2/7",
   },
-  { 
-    name: 'Под Горным Ветром', 
-    value: '48.363257, 30.295367', 
-    icon: 'mdi-weather-windy', 
-    description: 'Свежесть ветра и свобода простора', 
+  {
+    name: 'Под Горным Ветром',
+    value: '48.363257, 30.295367',
+    icon: 'mdi-weather-windy',
+    description: 'Свежесть ветра и свобода простора',
     color: '#8bb7d2',
     value: '50.456723, 36.234655',
     percentPerson: "30",
     textPerson: "3/10",
     percentCar: "80",
-    textCar: "4/5",   
+    textCar: "4/5",
   },
-  { 
-    name: 'У Горного Озера', 
-    value: '51.162342, 37.635122', 
-    icon: 'mdi-water-outline', 
-    description: 'Хрустальная вода и отражение гор в глади озера', 
+  {
+    name: 'У Горного Озера',
+    value: '51.162342, 37.635122',
+    icon: 'mdi-water-outline',
+    description: 'Хрустальная вода и отражение гор в глади озера',
     color: '#7db6d4',
     value: '51.162342, 37.635122',
     percentPerson: "40",
     textPerson: "8/20",
     percentCar: "50",
-    textCar: "6/12",   
+    textCar: "6/12",
   },
-  { 
-    name: 'Долина Цветов', 
-    value: '52.342156, 38.451212', 
-    icon: 'mdi-flower-tulip-outline', 
-    description: 'Ковёр из ароматных трав и цветов под солнцем', 
+  {
+    name: 'Долина Цветов',
+    value: '52.342156, 38.451212',
+    icon: 'mdi-flower-tulip-outline',
+    description: 'Ковёр из ароматных трав и цветов под солнцем',
     color: '#d48ab4',
     value: '52.342156, 38.451212',
     percentPerson: "5",
     textPerson: "1/20",
     percentCar: "89",
-    textCar: "8/9",   
+    textCar: "8/9",
   },
-  { 
-    name: 'Сосновая Тропа', 
-    value: '53.152534, 40.126334', 
-    icon: 'mdi-nature', 
-    description: 'Шелест хвои и лёгкий аромат смолы на тропинке', 
+  {
+    name: 'Сосновая Тропа',
+    value: '53.152534, 40.126334',
+    icon: 'mdi-nature',
+    description: 'Шелест хвои и лёгкий аромат смолы на тропинке',
     color: '#8cc47d',
     value: '53.152534, 40.126334',
     percentPerson: "73",
     textPerson: "11/15",
     percentCar: "84",
-    textCar: "5/6",   
+    textCar: "5/6",
   },
-  { 
-    name: 'Туманное Утро', 
-    value: '54.626235, 41.835236', 
-    icon: 'mdi-weather-partly-cloudy', 
-    description: 'Лёгкая дымка, свежесть воздуха и покой', 
+  {
+    name: 'Туманное Утро',
+    value: '54.626235, 41.835236',
+    icon: 'mdi-weather-partly-cloudy',
+    description: 'Лёгкая дымка, свежесть воздуха и покой',
     color: '#b0bec5',
     value: '54.626235, 41.835236',
     percentPerson: "40",
     textPerson: "8/20",
     percentCar: "50",
-    textCar: "5/10",   
+    textCar: "5/10",
   },
-  { 
-    name: 'Берег Рассвета', 
-    value: '55.612334, 42.783214', 
-    icon: 'mdi-weather-sunset-up', 
-    description: 'Первый свет дня и золотые блики на воде', 
+  {
+    name: 'Берег Рассвета',
+    value: '55.612334, 42.783214',
+    icon: 'mdi-weather-sunset-up',
+    description: 'Первый свет дня и золотые блики на воде',
     color: '#ffcc80',
     value: '55.612334, 42.783214',
     percentPerson: "70",
     textPerson: "7/10",
     percentCar: "20",
-    textCar: "1/5",   
+    textCar: "1/5",
   },
-  { 
-    name: 'Лунная Долина', 
-    value: '56.134562, 43.254623', 
-    icon: 'mdi-weather-night', 
-    description: 'Таинственное свечение луны и лёгкий шепот ветра', 
+  {
+    name: 'Лунная Долина',
+    value: '56.134562, 43.254623',
+    icon: 'mdi-weather-night',
+    description: 'Таинственное свечение луны и лёгкий шепот ветра',
     color: '#9fa8da',
     value: '56.134562, 43.254623',
     percentPerson: "13",
     textPerson: "2/15",
     percentCar: "50",
-    textCar: "5/10",   
+    textCar: "5/10",
   },
-  { 
-    name: 'Голубая Гавань', 
-    value: '57.215634, 44.612345', 
-    icon: 'mdi-anchor', 
-    description: 'Спокойная вода, качающиеся лодки и морская свежесть', 
+  {
+    name: 'Голубая Гавань',
+    value: '57.215634, 44.612345',
+    icon: 'mdi-anchor',
+    description: 'Спокойная вода, качающиеся лодки и морская свежесть',
     color: '#81d4fa',
     value: '57.215634, 44.612345',
     percentPerson: "90",
     textPerson: "9/10",
     percentCar: "50",
-    textCar: "5/10",   
+    textCar: "5/10",
   },
-  { 
-    name: 'Лес Туманов', 
-    value: '58.124534, 45.726512', 
-    icon: 'mdi-forest', 
-    description: 'Мягкий туман среди сосен и загадочная тишина', 
+  {
+    name: 'Лес Туманов',
+    value: '58.124534, 45.726512',
+    icon: 'mdi-forest',
+    description: 'Мягкий туман среди сосен и загадочная тишина',
     color: '#90a4ae',
     value: '58.124534, 45.726512',
     percentPerson: "25",
     textPerson: "13/25",
     percentCar: "75",
-    textCar: "15/20",   
+    textCar: "15/20",
   },
-  { 
-    name: 'Серебряный Ручей', 
-    value: '59.283412, 46.985734', 
-    icon: 'mdi-waterfall', 
-    description: 'Прозрачная вода журчит среди камней и трав', 
+  {
+    name: 'Серебряный Ручей',
+    value: '59.283412, 46.985734',
+    icon: 'mdi-waterfall',
+    description: 'Прозрачная вода журчит среди камней и трав',
     color: '#a5d6a7',
     value: '59.283412, 46.985734',
     percentPerson: "80",
     textPerson: "12/15",
     percentCar: "70",
-    textCar: "7/10",   
+    textCar: "7/10",
   },
 ];
 </script>
@@ -244,14 +244,7 @@ const places = [
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px 4px;
-  /* Автоматическая высота рядов под контент */
   grid-auto-rows: min-content;
-}
-
-@media (max-width: 1024px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 600px) {

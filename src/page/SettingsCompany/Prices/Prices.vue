@@ -6,16 +6,16 @@
           <v-form>
             <h3 class="form-subtitle">Цены</h3>
             <div class="grid-inputs">
-              <v-text-field v-model="prices.person" label="За человека" variant="outlined"
-                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
-              <v-text-field v-model="prices.animal" label="За животное" variant="outlined"
-                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
-              <v-text-field v-model="prices.house" label="За аренду домика" variant="outlined"
-                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
-              <v-text-field v-model="prices.transport" label="За транспорт" variant="outlined"
-                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
+              <v-text-field v-model="prices.person" label="За человека" variant="outlined" density="comfortable"
+                rounded="lg" clearable v-mask="'#########'" />
+              <v-text-field v-model="prices.animal" label="За животное" variant="outlined" density="comfortable"
+                rounded="lg" clearable v-mask="'#########'" />
+              <v-text-field v-model="prices.house" label="За аренду домика" variant="outlined" density="comfortable"
+                rounded="lg" clearable v-mask="'#########'" />
+              <v-text-field v-model="prices.transport" label="За транспорт" variant="outlined" density="comfortable"
+                rounded="lg" clearable v-mask="'#########'" />
               <v-text-field v-model="prices.smallTransport" label="За мелкий транспорт" variant="outlined"
-                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
+                density="comfortable" rounded="lg" clearable v-mask="'#########'" />
             </div>
             <div class="add-object-btn">
               <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
@@ -70,11 +70,8 @@ const isChanged = computed(() => {
 <style scoped>
 .content {
   padding: 20px 10px;
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.8)) !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important;
   border-radius: 15px !important;
   height: 70vh;
 }
@@ -93,20 +90,20 @@ const isChanged = computed(() => {
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgb(57 131 181 / 50%), transparent 10%);
+  background: radial-gradient(circle, rgba(57, 131, 181, .5), transparent 10%);
   filter: blur(40px);
   animation: pulse 6s ease-in-out infinite alternate;
 }
 
 @keyframes pulse {
-  0% {
+  from {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: .5;
   }
 
-  100% {
+  to {
     transform: scale(1.2);
-    opacity: 0.8;
+    opacity: .8;
   }
 }
 
@@ -120,22 +117,20 @@ const isChanged = computed(() => {
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, 0.3);
-  background: linear-gradient(180deg, #ffffff, #eff5f7);
+  border: 1px solid rgba(180, 180, 180, .3);
+  background: linear-gradient(180deg, #fff, #eff5f7);
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 6px 15px rgba(47, 118, 139, 0.18),
-    inset 0 0 10px rgba(255, 255, 255, 0.3);
-  transition: all 0.5s ease;
+  box-shadow: 0 6px 15px rgba(47, 118, 139, .18), inset 0 0 10px rgba(255, 255, 255, .3);
+  transition: .5s ease;
   animation: breathe 5s ease-in-out infinite;
 }
 
 .block-icon:hover {
   transform: scale(1.06);
-  box-shadow: 0 10px 25px rgba(47, 118, 139, 0.25),
-    inset 0 0 15px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 25px rgba(47, 118, 139, .25), inset 0 0 15px rgba(255, 255, 255, .4);
 }
 
 @keyframes breathe {
@@ -167,11 +162,11 @@ const isChanged = computed(() => {
   font-family: "Poiret One", sans-serif;
   font-size: 1.45rem;
   font-weight: 600;
-  letter-spacing: 0.7px;
+  letter-spacing: .7px;
   background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 7s infinite linear;
+  animation: shimmer 7s linear infinite;
   position: relative;
 }
 
@@ -180,11 +175,11 @@ const isChanged = computed(() => {
 }
 
 @keyframes shimmer {
-  0% {
+  from {
     background-position: -160px 0;
   }
 
-  100% {
+  to {
     background-position: 160px 0;
   }
 }
@@ -198,7 +193,7 @@ const isChanged = computed(() => {
   height: 3px;
   border-radius: 3px;
   background: #2d9ac5;
-  opacity: 0.9;
+  opacity: .9;
 }
 
 .grid-inputs {
@@ -217,15 +212,15 @@ const isChanged = computed(() => {
   margin: 20px 0 18px;
   padding: 8px 16px;
   display: inline-block;
-  background: rgba(45, 154, 197, 0.08);
+  background: rgba(45, 154, 197, .08);
   border-left: 4px solid #2d9ac5;
   border-radius: 6px;
   backdrop-filter: blur(2px);
   font-family: "Poiret One", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0.7px;
-  animation: fadeIn 0.6s ease;
+  letter-spacing: .7px;
+  animation: fadeIn .6s ease;
 }
 
 .subtitle-object {
@@ -257,14 +252,14 @@ const isChanged = computed(() => {
   font-family: "El Messiri", sans-serif;
   font-size: 1.05rem;
   border-radius: 12px;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
-  transition: all 0.3s ease;
+  letter-spacing: .5px;
+  box-shadow: 0 4px 12px rgba(50, 70, 90, .08);
+  transition: .3s ease;
   padding: 10px 22px !important;
   min-height: 46px;
+  width: 60%;
   margin: 10px auto 0;
   display: block;
-  width: 60%;
 }
 
 .btn-page:hover {

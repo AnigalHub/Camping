@@ -411,7 +411,7 @@ const items = [
   top: -8px;
   left: 88%;
   transform: translateX(-50%);
-  background-color: #89ac49d7; /* сохраняем цвет */
+  background: #89ac49d7;
   color: #fff;
   padding: 2px 5px 4px;
   border-radius: 12px;
@@ -428,10 +428,9 @@ const items = [
 .tabs-switch-tab:hover .tab-label {
   transform: translateX(-50%) translateY(-1px) scale(1.05);
   box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.25),
-    0 0 10px rgba(113, 150, 79, 0.4);
+    0 4px 10px rgba(0, 0, 0, .25),
+    0 0 10px rgba(113, 150, 79, .4);
 }
-
 
 .tabs-switch {
   position: relative;
@@ -453,9 +452,9 @@ const items = [
   left: 0;
   height: 100%;
   border-radius: 15px;
-  background-color: #89ac49d7;
+  background: #89ac49d7;
   border: 1.5px solid var(--border-color-inactive-tab);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: .35s cubic-bezier(.4, 0, .2, 1);
   z-index: 0;
 }
 
@@ -472,14 +471,14 @@ const items = [
   color: #494c54;
   position: relative;
   z-index: 1;
-  transition: all 0.25s ease;
-  border-radius: 15px; /* сохраняем закругления */
-  margin: 1px 2px; /* убрали внешний отступ */
+  transition: .25s ease;
+  border-radius: 15px;
+  margin: 1px 2px;
 }
 
 .tabs-switch-tab:hover {
-  background-color: rgba(57, 181, 94, 0.05);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: rgba(57, 181, 94, .05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
   border-radius: 15px !important;
 }
 
@@ -487,14 +486,14 @@ const items = [
   color: #fff;
   font-weight: 900;
   -webkit-text-stroke: .05px #fff;
-  box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
+  box-shadow: 0 4px 10px rgba(138, 181, 57, .096);
 }
 
-.content{
+.content {
   height: 62vh;
 }
 
-.no_data{
+.no_data {
   background: var(--background-content-card) !important;
   box-shadow: var(--box-shadow-content-card) !important;
   border-radius: var(--border-radius-content-card) !important;

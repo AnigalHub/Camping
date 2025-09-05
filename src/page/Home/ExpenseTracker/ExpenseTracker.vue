@@ -27,35 +27,32 @@ function goRoute(name) {
 <style scoped>
 .card {
   cursor: pointer;
-  border-radius: 15px !important;
   padding: 15px !important;
   border: 1.5px solid #fff;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(255, 255, 255, 0.92)
-  ) !important;
-   transition: 
-    transform 0.3s ease, 
-    filter 0.3s ease, 
-    box-shadow 0.3s ease;
+  border-radius: 15px !important;
+  background: linear-gradient(165deg, #fffffff5, #ffffffeb) !important;
+  transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
 }
+
 .card-header {
   gap: 12px;
 }
+
 .card:hover {
   filter: contrast(110%);
   transform: scale(1.025);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
+
 h2 {
+  width: 90%;
+  margin: -5px 0 10px;
   font-family: var(--font-family-title);
   font-size: 1.5rem;
   color: #494c54;
-  margin: -5px 0 10px;
-  width: 90%;
   position: relative;
 }
+
 h2::after {
   content: "";
   position: absolute;
@@ -66,7 +63,7 @@ h2::after {
   border-radius: 3px;
   background: #f0ad29;
 }
-/* Текст в карточке */
+
 .card-text {
   font-family: "Poppins", sans-serif;
   font-size: 0.93rem;

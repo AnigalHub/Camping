@@ -61,73 +61,70 @@ function goRoute(name) {
 
 <style scoped>
 .card {
-  padding: 18px;
   width: 100%;
-  border: 1.5px solid #fff;
-  border-radius: 15px !important;
-  background: linear-gradient(165deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(255, 255, 255, 0.92)) !important;
-  border: 1.5px solid #fff;
+  padding: 18px;
   cursor: pointer;
   overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease,
-    box-shadow 0.3s ease;
-  z-index: 1;
+  border-radius: 15px !important;
+  border: 1.5px solid #fff;
+  background: linear-gradient(165deg, rgba(255, 255, 255, .96), rgba(255, 255, 255, .92)) !important;
+  transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
 }
 
 .card:hover {
-  filter: contrast(110%);
   transform: scale(1.025);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  filter: contrast(110%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
 
 .card-header {
   gap: 12px;
   align-items: flex-start;
-  z-index: 2;
 }
 
 .visual-area {
   width: 200px;
   height: 160px;
+  position: relative;
 }
 
 .icon-wrap {
-  z-index: 3;
+  position: relative;
   animation: floatAnim 4.5s ease-in-out infinite;
+  z-index: 3;
 }
 
 .icon {
   width: 60px;
   height: 60px;
-  transition: all 0.3s ease;
+  transition: .3s;
 }
 
 .card:hover .icon {
   transform: scale(1.07);
-  filter: drop-shadow(0 3px 4px rgba(138, 181, 57, 0.2));
+  filter: drop-shadow(0 3px 4px rgba(138, 181, 57, .2));
+}
+
+.pulse-ring,
+.orbit-ring,
+.dashed-ring {
+  position: absolute;
+  border-radius: 50%;
 }
 
 .pulse-ring {
   width: 130px;
   height: 130px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(138, 181, 57, 0.17), transparent);
+  background: radial-gradient(circle, rgba(138, 181, 57, .17), transparent);
   filter: blur(15px);
   animation: pulseAnim 3s ease-in-out infinite;
-  z-index: 1;
 }
 
 .orbit-ring {
   width: 160px;
   height: 160px;
-  border-radius: 50%;
-  border: 1.58px dashed rgba(0, 107, 153, 0.7);
+  border: 1.58px dashed rgba(0, 107, 153, .7);
   animation: orbitAnim 50s linear infinite;
-  z-index: 0;
 }
 
 .dashed-ring {
@@ -136,18 +133,16 @@ function goRoute(name) {
   top: 50%;
   right: -180px;
   transform: translateY(-50%);
-  border-radius: 50%;
   border: 1.58px dashed rgba(0, 107, 153, 1);
-  opacity: 0.6;
+  opacity: .6;
   pointer-events: none;
-  z-index: 0;
   animation: dashedAnim 120s linear infinite;
-  filter: blur(0.2px);
+  filter: blur(.2px);
 }
 
 .card-text {
   font-family: "Poppins", sans-serif;
-  font-size: 0.93rem;
+  font-size: .93rem;
   color: #505050;
   line-height: 1.45;
   margin: 20px 0 0 0;
@@ -157,7 +152,6 @@ function goRoute(name) {
 .card-btn {
   width: 60%;
   float: right;
-  z-index: 2;
 }
 
 /* Анимации */
@@ -166,7 +160,7 @@ function goRoute(name) {
   0%,
   100% {
     transform: scale(1);
-    opacity: 0.6;
+    opacity: .6;
   }
 
   50% {
@@ -177,7 +171,7 @@ function goRoute(name) {
 
 @keyframes orbitAnim {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0);
   }
 
   100% {
@@ -186,19 +180,16 @@ function goRoute(name) {
 }
 
 @keyframes dashedAnim {
-  0% {
-    transform: translateY(-50%) rotate(0deg);
-    opacity: 0.6;
+
+  0%,
+  100% {
+    transform: translateY(-50%) rotate(0);
+    opacity: .6;
   }
 
   50% {
     transform: translateY(-50%) rotate(180deg);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: translateY(-50%) rotate(360deg);
-    opacity: 0.6;
+    opacity: .8;
   }
 }
 
@@ -207,7 +198,7 @@ function goRoute(name) {
   0%,
   100% {
     transform: translateY(0) scale(1);
-    opacity: 0.7;
+    opacity: .7;
   }
 
   50% {
@@ -216,13 +207,12 @@ function goRoute(name) {
   }
 }
 
-/* Индивидуальные настройки карточек */
 .card-1 .orbit-ring {
-  border-color: rgba(240, 173, 41, 0.9);
+  border-color: rgba(240, 173, 41, .9);
 }
 
 .card-1 .pulse-ring {
-  background: radial-gradient(circle, rgba(243, 142, 74, 0.2), transparent);
+  background: radial-gradient(circle, rgba(243, 142, 74, .2), transparent);
 }
 
 .card-1 {
@@ -245,6 +235,6 @@ function goRoute(name) {
 }
 
 .card-2 .dashed-ring {
-  border: 1.58px dashed rgba(240, 173, 41, 0.9);
+  border-color: rgba(240, 173, 41, .9);
 }
 </style>

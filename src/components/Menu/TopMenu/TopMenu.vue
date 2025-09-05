@@ -62,7 +62,6 @@ function goRoute(name) {
   height: 50px;
   margin: 1px 4px 0 0;
   transition: transform 1s ease;
-  transform: translateZ(0);
   will-change: transform;
 }
 
@@ -104,12 +103,12 @@ h1,
 .btn {
   width: 38px;
   height: 38px;
-  opacity: .65;
-  transition: .2s;
   margin: -2px 10px 0 0;
+  opacity: .65;
   border-radius: 10px;
   color: #547c8f;
   border: 1.8px solid #547c8f;
+  transition: .2s;
 }
 
 .btn:hover {

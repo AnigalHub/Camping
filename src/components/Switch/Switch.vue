@@ -15,7 +15,7 @@ const props = defineProps({
     type: Boolean,
     default: () => true,
   },
-  form:{
+  form: {
     type: Boolean,
     default: () => false,
   }
@@ -30,7 +30,8 @@ const props = defineProps({
   background-color: #78a0b2 !important;
 }
 
-.v-switch__track, .v-switch__thumb {
+.v-switch__track,
+.v-switch__thumb {
   border: var(--border-switch) var(--border-color-switch) !important;
   background-color: #ccc !important;
 }

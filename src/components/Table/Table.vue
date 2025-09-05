@@ -14,7 +14,6 @@
                   width: 100%;
                 ">
                 <span>{{ col.label }}</span>
-                <!-- Иконки сортировки SVG -->
                 <div v-if="col.sortable" style="display: flex; flex-direction: column">
                   <svg :fill="sortKey === col.key && sortDirection === 'asc'
                     ? activeColor

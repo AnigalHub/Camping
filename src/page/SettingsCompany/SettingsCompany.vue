@@ -98,10 +98,10 @@ const prevTab = () => {
 </script>
 
 <style scoped>
-/* Desktop Tabs */
 .desktop-only {
   display: flex;
 }
+
 .mobile-only {
   display: none;
 }
@@ -123,9 +123,9 @@ const prevTab = () => {
   left: 0;
   height: 100%;
   border-radius: 15px;
-  background-color: #89ac49d7;
+  background: #89ac49d7;
   border: 1.5px solid var(--border-color-inactive-tab);
-  transition: all 0.35s;
+  transition: .35s;
   z-index: 0;
 }
 
@@ -134,19 +134,18 @@ const prevTab = () => {
   cursor: pointer;
   letter-spacing: 2px;
   color: #494c54;
-  z-index: 1;
   background: transparent;
   transition: .25s;
+  z-index: 1;
 }
 
 .tabs-switch-tab.active {
   color: #fff;
   font-weight: 900;
   -webkit-text-stroke: .05px #fff;
-  box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
+  box-shadow: 0 4px 10px rgba(138, 181, 57, .096);
 }
 
-/* Mobile Arrows */
 .mobile-tabs {
   display: none;
   justify-content: center;
@@ -175,18 +174,20 @@ const prevTab = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+  transition: transform .2s;
 }
+
 .arrow:active {
-  transform: scale(0.9);
+  transform: scale(.9);
 }
 
 /* Breakpoint */
-@media (max-width: 700px) {
+@media (max-width:700px) {
   .desktop-only {
     display: none;
   }
+
   .mobile-only {
     display: flex;
   }

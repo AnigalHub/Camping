@@ -5,7 +5,6 @@
       <div class="content">
         <v-card elevation="2" style="overflow: auto; height: 65vh;" class="wrapper_content pa-6">
           <v-form v-model="valid" @submit.prevent="saveForm">
-            <!-- Блок с аккордеонами -->
             <v-expansion-panels v-model="openedPanel" multiple>
               <v-expansion-panel class="custom-panel" v-for="(person, index) in persons" :key="index">
                 <v-expansion-panel-title v-slot="{ }">
@@ -25,8 +24,6 @@
                       rounded="lg" clearable />
                     <v-text-field v-model="person.patronymic" label="Отчество" variant="outlined" density="comfortable"
                       rounded="lg" clearable />
-
-                    <!-- Дата рождения -->
                     <v-menu v-model="person.dateMenu" :close-on-content-click="false" transition="scale-transition"
                       offset-y>
                       <template #activator="{ props }">
@@ -36,11 +33,9 @@
                       <v-date-picker v-model="person.dateInternal" locale="ru" hide-header
                         @update:model-value="val => onDateSelect(val, index, 'date')" />
                     </v-menu>
-
                     <v-text-field v-model="person.phone" label="Телефон" variant="outlined" density="comfortable"
                       rounded="lg" clearable v-mask="'+7 (###) ###-##-##'" />
                   </div>
-
                   <hr />
                   <!-- Документы -->
                   <h3 class="form-subtitle">Документы</h3>
@@ -49,7 +44,6 @@
                     <v-radio label="Свидетельство о рождении" value="birth" class="radio-large" />
                     <v-radio label="Иное" value="other" class="radio-small" />
                   </v-radio-group>
-
                   <!-- Паспорт -->
                   <div v-if="person.selectedDoc === 'passport'">
                     <div class="grid-fields">
@@ -74,7 +68,6 @@
                     <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
                       density="comfortable" rounded="lg" clearable />
                   </div>
-
                   <!-- Свидетельство о рождении -->
                   <div v-if="person.selectedDoc === 'birth'">
                     <div class="grid-fields">
@@ -113,7 +106,6 @@
                     <v-text-field v-model="person.object" label="Номер поляны" variant="outlined" density="comfortable"
                       rounded="lg" clearable v-mask="'#########'" />
                   </div>
-
                   <div class="grid-fields">
                     <div>
                       <div class="d-flex align-center rent">
@@ -143,7 +135,6 @@
                       </div>
                     </div>
                   </div>
-
                   <hr />
                   <!-- Даты проживания -->
                   <h3 class="form-subtitle">Даты проживания</h3>
@@ -167,7 +158,6 @@
                         @update:model-value="val => onDateSelect(val, index, 'endDate')" />
                     </v-menu>
                   </div>
-
                   <hr />
                   <h3 class="form-subtitle result">Итоговая стоимость: </h3><span>0</span>
                 </v-expansion-panel-text>
@@ -177,11 +167,9 @@
               style="padding: 10px 15px; border: 1.5px solid #4a90e2;margin: 5px auto 20px; width: 60%; border-radius: 10px;">
               <h3 class="form-subtitle result">Итоговая стоимость за всех отдыхающих: </h3><span>0</span>
             </div>
-            <!-- Кнопка: добавить -->
             <div class="add-object-btn">
               <v-btn class="btn-page" @click="addPerson">Добавить отдыхающего</v-btn>
             </div>
-            <!-- Кнопка: сохранить -->
             <div class="add-object-btn">
               <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">
                 Сохранить
@@ -284,8 +272,14 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   background-color: rgba(204, 204, 204, .2);
 }
 
-.docs-radio .radio-small { flex: 1; }
-.docs-radio .radio-large { flex: 2; }
+.docs-radio .radio-small {
+  flex: 1;
+}
+
+.docs-radio .radio-large {
+  flex: 2;
+}
+
 .docs-radio .v-radio .v-label,
 .docs-radio .v-radio .v-input--selection-controls__ripple {
   white-space: nowrap;
@@ -299,8 +293,8 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .content {
   margin-top: 20px;
   padding: 20px 10px;
-  background: linear-gradient(to top, rgba(255,255,255,.7), rgba(255,255,255,.8)) !important;
-  box-shadow: inset 0 0 10px rgba(255,255,255,.3), 2px 2px 8px rgba(17,44,18,.1) !important;
+  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important;
   border-radius: 15px !important;
   height: 78vh;
 }
@@ -319,7 +313,10 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   position: relative;
 }
 
-.result { float: left; margin-right: 5px; }
+.result {
+  float: left;
+  margin-right: 5px;
+}
 
 span {
   color: #2d9ac5 !important;
@@ -343,13 +340,18 @@ span {
 }
 
 @keyframes shimmer {
-  0% { background-position: -160px 0; }
-  100% { background-position: 160px 0; }
+  0% {
+    background-position: -160px 0;
+  }
+
+  100% {
+    background-position: 160px 0;
+  }
 }
 
 hr {
   border: none;
-  border-bottom: 1px solid rgba(70,120,170,.45);
+  border-bottom: 1px solid rgba(70, 120, 170, .45);
 }
 
 .btn-page {
@@ -371,16 +373,20 @@ hr {
 
 .grid-fields {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0 16px;
 }
 
 @media (max-width: 992px) {
-  .grid-fields { grid-template-columns: repeat(2,1fr); }
+  .grid-fields {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
-  .grid-fields { grid-template-columns: 1fr; }
+  .grid-fields {
+    grid-template-columns: 1fr;
+  }
 }
 
 .v-expansion-panels,
@@ -390,10 +396,10 @@ hr {
 }
 
 .custom-panel {
-  border: 1.5px solid rgba(70,120,170,.35);
+  border: 1.5px solid rgba(70, 120, 170, .35);
   border-radius: 18px;
   margin-bottom: 18px;
-  background: linear-gradient(180deg,#fff,#f7f9fc);
+  background: linear-gradient(180deg, #fff, #f7f9fc);
   transition: .25s ease;
   overflow: hidden;
   position: relative;
@@ -401,7 +407,7 @@ hr {
 
 .custom-panel:hover {
   border-color: #4a90e2;
-  background: linear-gradient(180deg,#fff,#f4f8ff);
+  background: linear-gradient(180deg, #fff, #f4f8ff);
 }
 
 .custom-title {
@@ -415,14 +421,21 @@ hr {
 .custom-text {
   padding: 0 10px;
   background: #fafafa;
-  border-top: 1px solid rgba(0,0,0,.06);
+  border-top: 1px solid rgba(0, 0, 0, .06);
   border-radius: 0 0 14px 14px;
   animation: fadeIn .3s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .delete-btn {
@@ -430,8 +443,8 @@ hr {
   transition: .2s;
   margin-left: 10px;
   margin-top: -2.5px;
-  border: 1.5px solid rgba(70,120,170,.35);
-  color: rgba(70,120,170,.8);
+  border: 1.5px solid rgba(70, 120, 170, .35);
+  color: rgba(70, 120, 170, .8);
   border-radius: 10px;
 }
 
@@ -443,8 +456,13 @@ hr {
   transform: scale(1.15);
 }
 
-.rent { height: 60px; }
-.rent .v-switch { margin-right: 10px; }
+.rent {
+  height: 60px;
+}
+
+.rent .v-switch {
+  margin-right: 10px;
+}
 
 .panel-title {
   width: 100%;
