@@ -30,15 +30,14 @@ const props = defineProps({
   background-color: #78a0b2 !important;
 }
 
-
 .v-switch__track, .v-switch__thumb {
   border: var(--border-switch) var(--border-color-switch) !important;
-    background-color: #ccc !important;
+  background-color: #ccc !important;
 }
 </style>
 
 <style scoped>
-.v-switch__thumb{
+.v-switch__thumb {
   width: 18px !important;
   height: 18px !important;
 }

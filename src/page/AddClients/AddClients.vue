@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page client">
     <v-container>
       <Title :title="title" :icon="'mdi-account-plus-outline'" />
       <div class="content">
@@ -271,7 +271,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 <style>
 .v-field--disabled {
-  background-color: rgba(204, 204, 204, 0.2);
+  background-color: rgba(204, 204, 204, .2);
 }
 
 .v-selection-control-group {
@@ -281,17 +281,11 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 <style scoped>
 .v-field--disabled {
-  background-color: rgba(204, 204, 204, 0.2);
+  background-color: rgba(204, 204, 204, .2);
 }
 
-.docs-radio .radio-small {
-  flex: 1;
-}
-
-.docs-radio .radio-large {
-  flex: 2;
-}
-
+.docs-radio .radio-small { flex: 1; }
+.docs-radio .radio-large { flex: 2; }
 .docs-radio .v-radio .v-label,
 .docs-radio .v-radio .v-input--selection-controls__ripple {
   white-space: nowrap;
@@ -304,23 +298,20 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 .content {
   margin-top: 20px;
-  padding: 30px 10px;
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.8)) !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+  padding: 20px 10px;
+  background: linear-gradient(to top, rgba(255,255,255,.7), rgba(255,255,255,.8)) !important;
+  box-shadow: inset 0 0 10px rgba(255,255,255,.3), 2px 2px 8px rgba(17,44,18,.1) !important;
   border-radius: 15px !important;
   height: 78vh;
 }
 
 .form-subtitle {
-  margin: 10px 0 30px;
+  margin: 10px 0 25px;
   padding-left: 4px;
   font-family: "Poiret One", sans-serif;
   font-size: 1.45rem;
   font-weight: 600;
-  letter-spacing: 0.7px;
+  letter-spacing: .7px;
   background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -328,10 +319,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   position: relative;
 }
 
-.result {
-  float: left;
-  margin-right: 5px;
-}
+.result { float: left; margin-right: 5px; }
 
 span {
   color: #2d9ac5 !important;
@@ -351,22 +339,17 @@ span {
   height: 3px;
   border-radius: 3px;
   background: #2d9ac5;
-  opacity: 0.9;
+  opacity: .9;
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -160px 0;
-  }
-
-  100% {
-    background-position: 160px 0;
-  }
+  0% { background-position: -160px 0; }
+  100% { background-position: 160px 0; }
 }
 
 hr {
   border: none;
-  border-bottom: 1px solid rgba(70, 120, 170, 0.45);
+  border-bottom: 1px solid rgba(70,120,170,.45);
 }
 
 .btn-page {
@@ -378,31 +361,26 @@ hr {
   display: block;
   margin: 10px auto 0;
   border-radius: 12px;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .btn-disabled {
   background: #393939 !important;
-  border: 1.7px solid #fbf0f09e !important;
   cursor: not-allowed !important;
 }
 
 .grid-fields {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3,1fr);
+  gap: 0 16px;
 }
 
 @media (max-width: 992px) {
-  .grid-fields {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .grid-fields { grid-template-columns: repeat(2,1fr); }
 }
 
 @media (max-width: 600px) {
-  .grid-fields {
-    grid-template-columns: 1fr;
-  }
+  .grid-fields { grid-template-columns: 1fr; }
 }
 
 .v-expansion-panels,
@@ -412,18 +390,18 @@ hr {
 }
 
 .custom-panel {
-  border: 1.5px solid rgba(70, 120, 170, 0.35);
+  border: 1.5px solid rgba(70,120,170,.35);
   border-radius: 18px;
   margin-bottom: 18px;
-  background: linear-gradient(180deg, #ffffff, #f7f9fc);
-  transition: all 0.25s ease;
+  background: linear-gradient(180deg,#fff,#f7f9fc);
+  transition: .25s ease;
   overflow: hidden;
   position: relative;
 }
 
 .custom-panel:hover {
   border-color: #4a90e2;
-  background: linear-gradient(180deg, #ffffff, #f4f8ff);
+  background: linear-gradient(180deg,#fff,#f4f8ff);
 }
 
 .custom-title {
@@ -437,30 +415,23 @@ hr {
 .custom-text {
   padding: 0 10px;
   background: #fafafa;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 1px solid rgba(0,0,0,.06);
   border-radius: 0 0 14px 14px;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn .3s ease;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .delete-btn {
-  opacity: 0.8;
-  transition: 0.2s;
+  opacity: .8;
+  transition: .2s;
   margin-left: 10px;
   margin-top: -2.5px;
-  border: 1.5px solid rgba(70, 120, 170, 0.35);
-  color: rgba(70, 120, 170, 0.8);
+  border: 1.5px solid rgba(70,120,170,.35);
+  color: rgba(70,120,170,.8);
   border-radius: 10px;
 }
 
@@ -468,18 +439,12 @@ hr {
   opacity: 1;
   background-color: #f7f2f1;
   color: #c0392b;
-  border: 1.5px solid #c0392b;
+  border-color: #c0392b;
   transform: scale(1.15);
 }
 
-.rent {
-
-  height: 60px;
-}
-
-.rent .v-switch {
-  margin-right: 10px;
-}
+.rent { height: 60px; }
+.rent .v-switch { margin-right: 10px; }
 
 .panel-title {
   width: 100%;
@@ -490,5 +455,9 @@ hr {
 .panel-title .action {
   margin-left: auto;
   margin-right: 20px;
+}
+
+.client .v-expansion-panel-text__wrapper {
+  padding: 8px 16px 16px !important;
 }
 </style>

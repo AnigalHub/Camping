@@ -74,7 +74,7 @@ function goRoute(name) {
 <style>
 .v-list-item-title {
   font-weight: 800 !important;
-  letter-spacing: 0.009375em;
+  letter-spacing: .009375em;
   font-size: 1.15rem !important;
   font-family: var(--font-family-title);
   color: #455e25;
@@ -87,10 +87,11 @@ function goRoute(name) {
   color: #233b06;
 }
 
-.v-navigation-drawer{
+.v-navigation-drawer {
   top: 50px !important;
   height: 100% !important;
 }
+
 .active-item .v-list-item__prepend {
   color: #4d672c !important;
 }
@@ -105,7 +106,6 @@ function goRoute(name) {
   color: #4d672c !important;
   -webkit-text-stroke: .05px #4d672c;
   border: 1.5px solid #eee !important;
-  border-radius: 0 0 0 0 !important;
 }
 
 .active-item .v-list-item__prepend .v-icon {

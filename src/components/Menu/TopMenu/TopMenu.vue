@@ -52,17 +52,16 @@ function goRoute(name) {
 <style scoped>
 .navbar {
   border-radius: 0 0 15px 15px;
-  border: 1.5px solid rgba(255, 255, 255, 1);
+  border: 1.5px solid #fff;
   background: #fff !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .1) !important;
 }
 
 .logo {
   width: 50px;
   height: 50px;
-  margin-top: 1px;
-  margin-right: 4px;
-  transition: transform 1000ms ease;
+  margin: 1px 4px 0 0;
+  transition: transform 1s ease;
   transform: translateZ(0);
   will-change: transform;
 }
@@ -83,11 +82,10 @@ function goRoute(name) {
 .slogan {
   font-family: var(--font-family-slogan-home);
   color: #767677;
-  -webkit-text-stroke: 0.04px #dfdfdf;
+  -webkit-text-stroke: .04px #dfdfdf;
   font-size: .95rem;
   letter-spacing: 1px;
-  margin-top: -12px;
-  margin-left: -10px;
+  margin: -12px 0 0 -10px;
 }
 
 h1,
@@ -106,10 +104,9 @@ h1,
 .btn {
   width: 38px;
   height: 38px;
-  opacity: 0.65;
-  transition: 0.2s;
-  margin-right: 10px;
-  margin-top: -2px;
+  opacity: .65;
+  transition: .2s;
+  margin: -2px 10px 0 0;
   border-radius: 10px;
   color: #547c8f;
   border: 1.8px solid #547c8f;
@@ -118,6 +115,6 @@ h1,
 .btn:hover {
   opacity: 1;
   transform: scale(1.15);
-  background-color: #e9eff9;
+  background: #e9eff9;
 }
 </style>

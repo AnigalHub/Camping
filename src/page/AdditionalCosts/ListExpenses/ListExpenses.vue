@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <search class="search" />
     <Table :headers="headers" :items="items" sortByKey="date" />
   </div>
@@ -45,6 +45,7 @@ const items = [
 }
 
 .content {
-  height: 62vh;
+  height: 60vh;
+  padding: 0 0 5px 0;
 }
 </style>

@@ -91,7 +91,14 @@ function isModalVisible(name) {
   border: var(--border-track-scrollbar);
   border-color: var(--border-color-track-scrollbar);
 }
+.v-expansion-panel--active > .v-expansion-panel-title:not(.v-expansion-panel-title--static){
+  min-height: 50px;
+  padding: 10px 20px;
+}
 
+.btn-home{
+  border: 1.7px solid #4170839e;
+}
 .btn-home, .btn-page {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -103,7 +110,6 @@ function isModalVisible(name) {
   transition: all 0.3s ease;
   padding: 10px 22px !important;
   background: #fff;
-  border: 1.7px solid #4170839e;
   color: #4b707f;
   font-weight: 800;
   letter-spacing: 1px !important;
@@ -136,7 +142,7 @@ function isModalVisible(name) {
 }
 
 .v-card-text {
-  padding: 1rem 5px 0 0 !important;
+  padding: .25rem 5px 0 0 !important;
 }
 
 .content {

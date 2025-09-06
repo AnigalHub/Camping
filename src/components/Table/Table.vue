@@ -17,14 +17,14 @@
                 <!-- Иконки сортировки SVG -->
                 <div v-if="col.sortable" style="display: flex; flex-direction: column">
                   <svg :fill="sortKey === col.key && sortDirection === 'asc'
-                      ? activeColor
-                      : inactiveColor
+                    ? activeColor
+                    : inactiveColor
                     " width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 8l-6 6h12l-6-6z" />
                   </svg>
                   <svg style="margin-top: -9px" :fill="sortKey === col.key && sortDirection === 'desc'
-                      ? activeColor
-                      : inactiveColor
+                    ? activeColor
+                    : inactiveColor
                     " width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 16l6-6H6l6 6z" />
                   </svg>
@@ -91,10 +91,10 @@
             </template>
             <template v-else-if="showButtons && col.key === 'buttons'">
               <div class="buttons-wrapper">
-                <v-btn icon=" mdi-file-document" variant="text" size="small" class="document-btn btn" v-tooltip:top="'Документы'"
-                  @click="onModalDocuments('documents', item, true)" />
+                <v-btn icon=" mdi-file-document" variant="text" size="small" class="document-btn btn"
+                  v-tooltip:top="'Документы'" @click="onModalDocuments('documents', item, true)" />
                 <v-btn icon="mdi-pencil" variant="text" size="small" class="edit-btn btn" v-tooltip:top="'Изменить'"
-                  @click="onModalDocuments('edit', item)" />    
+                  @click="onModalDocuments('edit', item)" />
                 <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
                   @click="onModalDocuments('delete', item, true)" />
               </div>
@@ -112,19 +112,12 @@
 <script setup>
 import { computed, ref, shallowRef } from "vue";
 import Switch from "../Switch/Switch.vue";
-import delete_svg from "./../../svg/delete.vue";
-import edit_svg from "./../../svg/edit.vue";
-import document_svg from "./../../svg/document.vue";
 import { callModalWindow } from "./../../utils/callModalWindow";
 import { loadComponent } from "./../../utils/loadComponent";
 import { useStore } from "vuex";
 
 const Information = shallowRef(loadComponent("Information"));
 const store = useStore();
-
-const deleteSvg = shallowRef(delete_svg);
-const editSvg = shallowRef(edit_svg);
-const documentSvg = shallowRef(document_svg);
 
 const activeColor = "#4d672c";
 const inactiveColor = "#ccc";
@@ -204,11 +197,9 @@ async function onModalDocuments(name, object, disable) {
   gap: 8px;
 }
 
-
-
-  .v-table tbody td {
-    font-size: .92rem;
-  }
+.v-table tbody td {
+  font-size: .92rem;
+}
 
 .button-label {
   display: none;
@@ -260,18 +251,19 @@ async function onModalDocuments(name, object, disable) {
 
   font-size: 1rem;
   letter-spacing: .4px;
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   padding: 16px 0 !important;
-  box-shadow:  inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   user-select: none;
-  cursor: pointer; 
+  cursor: pointer;
   border-bottom: 1.9px solid #ccc !important
 }
 
 .v-table>.v-table__wrapper>table>thead>tr>th:first-child {
   border-radius: 15px 0 0 0 !important;
 }
+
 .v-table>.v-table__wrapper>table>thead>tr>th:last-child {
   border-radius: 0 15px 0 0 !important;
 }
@@ -327,6 +319,7 @@ async function onModalDocuments(name, object, disable) {
     width: 100%;
     gap: 10px;
   }
+
   .v-table tbody td.bg-buttons {
     justify-content: center;
     padding-top: 15px !important;
@@ -356,7 +349,7 @@ async function onModalDocuments(name, object, disable) {
     gap: 20px;
     padding: 0 20px 20px 0 !important;
   }
-  
+
   /** добавить переменные */
   .v-table tbody tr {
     display: flex;
@@ -441,7 +434,7 @@ async function onModalDocuments(name, object, disable) {
   }
 }
 
-.btn{
+.btn {
   opacity: 0.65;
   transition: 0.2s;
   margin-left: 2.5px;
@@ -449,10 +442,11 @@ async function onModalDocuments(name, object, disable) {
   border-radius: 10px;
 }
 
-.btn:hover{
+.btn:hover {
   opacity: 1;
   transform: scale(1.15);
 }
+
 .delete-btn {
   color: #c0392b;
   border: 1.7px solid #c0392b;
@@ -461,6 +455,7 @@ async function onModalDocuments(name, object, disable) {
 .delete-btn:hover {
   background-color: #f7f2f1;
 }
+
 .edit-btn {
   color: #547c8f;
   border: 1.7px solid #547c8f;
@@ -469,6 +464,7 @@ async function onModalDocuments(name, object, disable) {
 .edit-btn:hover {
   background-color: #e9eff9;
 }
+
 .document-btn {
   color: #6f9233;
   border: 1.7px solid #6f9233;

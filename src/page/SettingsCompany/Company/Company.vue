@@ -47,7 +47,7 @@ const isChanged = computed(() => {
 
 <style scoped>
 .content {
-  padding: 30px 10px;
+  padding: 20px 10px;
   background: linear-gradient(to top,
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.8)) !important;
@@ -203,7 +203,6 @@ const isChanged = computed(() => {
 
 .btn-disabled {
   background: #393939 !important;
-  border: 1.7px solid #fbf0f09e !important;
   transform: none !important;
   cursor: not-allowed !important;
 }
