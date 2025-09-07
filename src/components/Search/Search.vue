@@ -1,33 +1,13 @@
 <template>
-  <v-card
-    class="d-flex flex-wrap align-center justify-space-between search-bar"
-  >
+  <v-card class="d-flex flex-wrap align-center justify-space-between search-bar">
     <!-- Поле поиска -->
-    <v-text-field
-      v-model="search"
-      density="comfortable"
-      hide-details
-      rounded="lg"
-      variant="solo"
-      placeholder="Поиск"
-      prepend-inner-icon="mdi-magnify"
-      class="search-input"
-    ></v-text-field>
+    <v-text-field v-model="search" density="comfortable" hide-details rounded="lg" variant="solo" placeholder="Поиск"
+      prepend-inner-icon="mdi-magnify" class="search-input"></v-text-field>
 
-    <div
-      class="d-flex align-center gap-3 flex-wrap mt-2 mt-md-0 search-controls"
-    >
+    <div class="d-flex align-center gap-3 flex-wrap mt-2 mt-md-0 search-controls">
       <!-- Сортировка -->
-      <v-select
-        v-model="sort"
-        :items="sortOptions"
-        label="Сортировать"
-        density="comfortable"
-        hide-details
-        rounded="lg"
-        variant="solo"
-        class="filter-select"
-      ></v-select>
+      <v-select v-model="sort" :items="sortOptions" label="Сортировать" density="comfortable" hide-details rounded="lg"
+        variant="solo" class="filter-select"></v-select>
 
       <!-- Кнопка -->
       <v-btn class="btn-page" prepend-icon="mdi-magnify" @click="onSearch">
@@ -41,6 +21,11 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
+
+defineOptions({
+  name: "Search",
+
+});
 
 const search = ref("");
 const sort = ref(null);
@@ -69,7 +54,8 @@ function onSearch() {
     2px 2px 10px rgba(17, 44, 18, 0.1) !important;
   transform: translateY(-1px);
 }
-.search-bar .v-input--density-comfortable .v-field--variant-solo{
+
+.search-bar .v-input--density-comfortable .v-field--variant-solo {
   border-radius: 12px !important;
 }
 </style>

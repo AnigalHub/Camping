@@ -13,53 +13,38 @@
       </div>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <div class="d-flex">
-      <div v-for="menu in menus" :key="menu" class="d-flex cursor-pointer buttons">
-        <div
-          @click="goRoute(menu.route)"
-          class="d-flex button"
-          v-tooltip:bottom="menu.name"
-        >
-          <component 
-            v-if="menu.icon"
-            :is="menu.icon"
-            color="#547c8f"
-            width="30px"
-          />
-        </div>
+    <div class="d-flex buttons">
+      <div v-for="menu in menus" :key="menu" class="d-flex cursor-pointer">
+        <v-btn :icon="menu.icon" variant="text" size="small" class="btn" v-tooltip:bottom="menu.name"
+          @click="goRoute(menu.route)" />
       </div>
     </div>
   </v-app-bar>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import SettingsSvg from "./../../../svg/settings.vue";
-import ExitSvg from "./../../../svg/exit.vue";
 import { useRouter } from "vue-router";
 
 const props = defineProps({
   drawer: Boolean,
 });
 const emit = defineEmits(["toggle-drawer"]);
-
 const router = useRouter();
-
 const toggleDrawer = () => {
   emit("toggle-drawer");
 };
 
 const menus = [
-  { icon: SettingsSvg, name: "Настройки", route: "Settings" },
-  { icon: ExitSvg, name: "Выход", route: "Exit" },
+  { icon: "mdi-cog", name: "Настройки", route: "Settings" },
+  { icon: "mdi-exit-to-app", name: "Выход", route: "Exit" },
 ];
 
 function goRoute(name) {
   router.push({ name });
 }
 </script>
-<style >
-.v-toolbar__content{
+<style>
+.v-toolbar__content {
   height: 50px !important;
 }
 </style>
@@ -82,7 +67,7 @@ function goRoute(name) {
   will-change: transform;
 }
 
-.logo-block:hover .logo{
+.logo-block:hover .logo {
   transform: rotate(45deg);
 }
 
@@ -114,25 +99,25 @@ h1,
   animation: fadeSlide 1.2s ease-in-out;
 }
 
-.button {
-  width: 42px;
-  height: 42px;
-  transition: all 0.25s ease;
+.buttons {
   margin-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: #fff;
-  border: 1.5px solid #618da2;
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.05),
-    inset 0 1px 2px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
 }
 
-.button:hover {
-  transform: scale(1.05);
-  background: #ecf9ff;
+.btn {
+  width: 38px;
+  height: 38px;
+  opacity: 0.65;
+  transition: 0.2s;
+  margin-right: 10px;
+  margin-top: -2px;
+  border-radius: 10px;
+  color: #547c8f;
+  border: 1.8px solid #547c8f;
+}
+
+.btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+  background-color: #e9eff9;
 }
 </style>

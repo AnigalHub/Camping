@@ -334,9 +334,9 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 span {
   color: #2d9ac5 !important;
-  font-family: "Smooch Sans", sans-serif !important;
-  font-size: 2.5rem;
-  margin: 0 auto;
+  font-family: "El Messiri", sans-serif !important;
+  font-size: 2rem;
+  margin: 7px auto 0;
   display: block;
   font-weight: 500;
 }

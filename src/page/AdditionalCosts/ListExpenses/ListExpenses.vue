@@ -1,6 +1,8 @@
 <template>
-  <search class="search" />
-  <Table :headers="headers" :items="items" sortByKey="date" />
+  <div>
+    <search class="search" />
+    <Table :headers="headers" :items="items" sortByKey="date" />
+  </div>
 </template>
 
 <script setup>
@@ -38,10 +40,11 @@ const items = [
 ]
 </script>
 <style scoped>
-.search{
+.search {
   margin-top: -1rem;
 }
-.content{
+
+.content {
   height: 62vh;
 }
 </style>

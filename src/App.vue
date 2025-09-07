@@ -68,25 +68,6 @@ function isModalVisible(name) {
   z-index: 2;
 }
 
-/**Заголовок страниц */
-.page h1 {
-  -webkit-text-stroke: none;
-  font-family: var(--font-family-title);
-  color: #455e25;
-  margin-top: 2px;
-  letter-spacing: 0.009375em;
-  font-size: 1.65rem !important;
-  background: var(--background-h1);
-  box-shadow: var(--box-shadow-h1);
-  border-radius: var(--border-radius-h1);
-  border: var(--border-h1);
-  border-color: var(--border-color-h1);
-  width: max-content;
-  display: block;
-
-  padding-left: 0.6rem;
-}
-
 /**Скролл */
 ::-webkit-scrollbar {
   width: var(--size-scrollbar);
@@ -158,12 +139,6 @@ function isModalVisible(name) {
   padding: 1rem 5px 0 0 !important;
 }
 
-.v-window-item,
-.v-window-item--active,
-.v-tabs-window-item {
-  padding: 0;
-}
-
 .content {
   height: 72vh;
 }
@@ -210,17 +185,4 @@ function isModalVisible(name) {
   padding: 10px 10px 0 !important;
   margin-top: -20px;
 }
-
-/* Сделаем top-menu фиксированным */
-.top-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-
-
-
 </style>

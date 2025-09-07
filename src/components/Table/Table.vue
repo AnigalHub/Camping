@@ -455,7 +455,7 @@ async function onModalDocuments(name, object, disable) {
 }
 .delete-btn {
   color: #c0392b;
-  border: 1.5px solid #c0392b;
+  border: 1.7px solid #c0392b;
 }
 
 .delete-btn:hover {
@@ -463,18 +463,18 @@ async function onModalDocuments(name, object, disable) {
 }
 .edit-btn {
   color: #547c8f;
-  border: 1.5px solid #547c8f;
+  border: 1.7px solid #547c8f;
 }
 
-.edit:hover {
+.edit-btn:hover {
   background-color: #e9eff9;
 }
 .document-btn {
   color: #6f9233;
-  border: 1.5px solid #6f9233;
+  border: 1.7px solid #6f9233;
 }
 
-.document:hover {
-  background-color: #ecfaf2;
+.document-btn:hover {
+  background-color: #ebfbe9;
 }
 </style>
