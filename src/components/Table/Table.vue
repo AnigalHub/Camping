@@ -91,18 +91,12 @@
             </template>
             <template v-else-if="showButtons && col.key === 'buttons'">
               <div class="buttons-wrapper">
-                <div class="button-item documents" @click="onModalDocuments('documents', item, true)">
-                  <component :is="documentSvg" class="icons" v-tooltip:top="'Документы'" />
-                  <span class="button-label">Документы</span>
-                </div>
-                <div class="button-item edit" @click="onModalDocuments('edit', item)">
-                  <component :is="editSvg" class="icons" v-tooltip:top="'Изменить'" />
-                  <span class="button-label">Изменить</span>
-                </div>
-                <div class="button-item delete" @click="onModalDocuments('delete', item, true)">
-                  <component :is="deleteSvg" class="icons" v-tooltip:top="'Удалить'" />
-                  <span class="button-label">Удалить</span>
-                </div>
+                <v-btn icon=" mdi-file-document" variant="text" size="small" class="document-btn btn" v-tooltip:top="'Документы'"
+                  @click="onModalDocuments('documents', item, true)" />
+                <v-btn icon="mdi-pencil" variant="text" size="small" class="edit-btn btn" v-tooltip:top="'Изменить'"
+                  @click="onModalDocuments('edit', item)" />    
+                <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
+                  @click="onModalDocuments('delete', item, true)" />
               </div>
             </template>
             <template v-else>
@@ -210,23 +204,7 @@ async function onModalDocuments(name, object, disable) {
   gap: 8px;
 }
 
-.button-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 700;
-  font-family: var(--font-family-main);
-  position: relative;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-  color: var(--color-btn-table);
-  -webkit-text-stroke: var(--text-stroke-btn-table);
-}
 
-.button-item:hover {
-  background: var(--background-btn-table-hover);
-  transform: scale(1.02);
-}
 
   .v-table tbody td {
     font-size: .92rem;
@@ -331,14 +309,6 @@ async function onModalDocuments(name, object, disable) {
 
 /* --- Адаптив под карточки --- */
 @media (max-width: 1100px) {
-
-  .button-item.documents,
-  .button-item.edit,
-  .button-item.delete {
-    border: var(--border-btn-table) var(--border-color-btn-table);
-    background: var(--background-btn-table);
-  }
-
   .v-table {
     margin: 0;
   }
@@ -357,21 +327,6 @@ async function onModalDocuments(name, object, disable) {
     width: 100%;
     gap: 10px;
   }
-
-  .button-item {
-    flex-direction: row;
-    border-radius: 8px;
-    padding: 5px;
-    justify-content: center;
-  }
-
-  .button-label {
-    display: inline;
-    margin-left: 6px;
-    font-weight: 500;
-    font-size: 0.9rem;
-  }
-
   .v-table tbody td.bg-buttons {
     justify-content: center;
     padding-top: 15px !important;
@@ -448,14 +403,7 @@ async function onModalDocuments(name, object, disable) {
     gap: 8px;
   }
 
-  .button-item {
-    width: 100%;
-    flex: none;
-    flex-direction: row;
-    border-radius: 8px;
-    padding: 6px;
-    justify-content: center;
-  }
+
 
   .button-label {
     font-weight: 500;
@@ -491,5 +439,42 @@ async function onModalDocuments(name, object, disable) {
     font-size: 0.85rem;
     gap: 4px;
   }
+}
+
+.btn{
+  opacity: 0.65;
+  transition: 0.2s;
+  margin-left: 2.5px;
+  margin-top: -2px;
+  border-radius: 10px;
+}
+
+.btn:hover{
+  opacity: 1;
+  transform: scale(1.15);
+}
+.delete-btn {
+  color: #c0392b;
+  border: 1.5px solid #c0392b;
+}
+
+.delete-btn:hover {
+  background-color: #f7f2f1;
+}
+.edit-btn {
+  color: #547c8f;
+  border: 1.5px solid #547c8f;
+}
+
+.edit:hover {
+  background-color: #e9eff9;
+}
+.document-btn {
+  color: #6f9233;
+  border: 1.5px solid #6f9233;
+}
+
+.document:hover {
+  background-color: #ecfaf2;
 }
 </style>

@@ -120,9 +120,8 @@
                         <Switch v-model="person.car" :tumbler="person.car" :disable="false" :form="true" />
                       </div>
                       <v-text-field v-model="person.cars" :disabled="!person.car"
-                        :class="{ 'input-disable': !person.car }" label="Номер транспорта"
-                        :variant="person.car ? 'outlined' : 'filled'" density="comfortable" rounded="lg" clearable
-                        v-mask="'#########'" />
+                        :class="{ 'input-disable': !person.car }" label="Номер транспорта" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
@@ -130,9 +129,8 @@
                         <Switch v-model="person.animal" :tumbler="person.animal" :disable="false" :form="true" />
                       </div>
                       <v-text-field v-model="person.animals" :disabled="!person.animal"
-                        :class="{ 'input-disable': !person.animal }" label="Количество животных"
-                        :variant="person.animal ? 'outlined' : 'filled'" density="comfortable" rounded="lg" clearable
-                        v-mask="'#########'" />
+                        :class="{ 'input-disable': !person.animal }" label="Количество животных" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
@@ -140,9 +138,8 @@
                         <Switch v-model="person.house" :tumbler="person.house" :disable="false" :form="true" />
                       </div>
                       <v-text-field v-model="person.home" :disabled="!person.house"
-                        :class="{ 'input-disable': !person.house }" label="Номер домика"
-                        :variant="person.house ? 'outlined' : 'filled'" density="comfortable" rounded="lg" clearable
-                        v-mask="'#########'" />
+                        :class="{ 'input-disable': !person.house }" label="Номер домика" variant="outlined"
+                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
                   </div>
 
@@ -171,28 +168,18 @@
                   </div>
 
                   <hr />
-                  <h3 class="form-subtitle">Итоговая стоимость</h3>
-                  <div class="grid-fields">
-                    <v-text-field v-model="person.price" label="Стоимость" variant="outlined" density="comfortable"
-                      :disabled="true" rounded="lg" clearable v-mask="'#########'" />
-                  </div>
+                  <h3 class="form-subtitle result">Итоговая стоимость: </h3><span>0</span>
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
-
+            <div
+              style="padding: 10px 15px; border: 1.5px solid #4a90e2;margin: 5px auto 20px; width: 60%; border-radius: 10px;">
+              <h3 class="form-subtitle result">Итоговая стоимость за всех отдыхающих: </h3><span>0</span>
+            </div>
             <!-- Кнопка: добавить -->
             <div class="add-object-btn">
               <v-btn class="btn-page" @click="addPerson">Добавить отдыхающего</v-btn>
             </div>
-
-            <div style="display: block;margin: 15px auto 0; width: 60%;">
-              <h3 class="form-subtitle">Итоговая стоимость за всех отдыхающих</h3>
-            </div>
-            <div style="display: block;margin: -5px auto -5px; width: 30%;">
-              <v-text-field v-model="price" label="Итоговая стоимость" variant="outlined" density="comfortable"
-                :disabled="true" rounded="lg" clearable v-mask="'#########'" />
-            </div>
-
             <!-- Кнопка: сохранить -->
             <div class="add-object-btn">
               <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">
@@ -245,7 +232,7 @@ const removePerson = (index) => {
 
 const formatDate = (val) => {
   const d = new Date(val);
-  return `${String(d.getDate()).padStart(2,"0")}.${String(d.getMonth()+1).padStart(2,"0")}.${d.getFullYear()}`;
+  return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
 };
 
 const parseDate = (str) => {
@@ -321,7 +308,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.8)) !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-              2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   border-radius: 15px !important;
   height: 78vh;
 }
@@ -340,6 +327,20 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   position: relative;
 }
 
+.result {
+  float: left;
+  margin-right: 5px;
+}
+
+span {
+  color: #2d9ac5 !important;
+  font-family: "Smooch Sans", sans-serif !important;
+  font-size: 2.5rem;
+  margin: 0 auto;
+  display: block;
+  font-weight: 500;
+}
+
 .form-subtitle::after {
   content: "";
   position: absolute;
@@ -353,13 +354,18 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 }
 
 @keyframes shimmer {
-  0% { background-position: -160px 0; }
-  100% { background-position: 160px 0; }
+  0% {
+    background-position: -160px 0;
+  }
+
+  100% {
+    background-position: 160px 0;
+  }
 }
 
 hr {
   border: none;
-  border-bottom: 1px solid  rgba(70, 120, 170, 0.45);
+  border-bottom: 1px solid rgba(70, 120, 170, 0.45);
 }
 
 .btn-page {
@@ -428,7 +434,7 @@ hr {
 }
 
 .custom-text {
-  padding: 20px 10px 10px;
+  padding: 0 10px;
   background: #fafafa;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 0 0 14px 14px;
@@ -436,8 +442,15 @@ hr {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .delete-btn {
@@ -452,7 +465,7 @@ hr {
 
 .delete-btn:hover {
   opacity: 1;
-  background-color: #f9f0ee;
+  background-color: #f7f2f1;
   color: #c0392b;
   border: 1.5px solid #c0392b;
   transform: scale(1.15);
@@ -462,5 +475,4 @@ hr {
   margin-top: -5px;
   height: 40px;
 }
-
 </style>
