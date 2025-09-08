@@ -1,28 +1,33 @@
 <template>
-  <div class="content">
+  <div class="content objects">
     <v-row dense align="stretch">
       <v-col cols="9" style="overflow: auto;height: 65vh;">
         <v-card class="pa-6" elevation="2">
-          <v-form>
-            <h3 class="form-subtitle subtitle-object">Объекты</h3>
-            <div v-for="(object, i) in objects" :key="i">
-              <div class="object-title">
-                <span>Объект №{{ i + 1 }}</span>
-              </div>
-              <div class="grid-inputs">
-                <v-text-field v-model="object.name" label="Название" variant="outlined" density="comfortable"
-                  rounded="lg" clearable />
-                <v-text-field v-model="object.description" label="Описание" variant="outlined" density="comfortable"
-                  rounded="lg" clearable />
-                <v-text-field v-model="object.coordinations" label="Координаты объекта" variant="outlined"
-                  density="comfortable" rounded="lg" clearable v-mask="['##.######, ##.######']" />
-                <v-text-field v-model="object.maxpeople" label="Количество мест" variant="outlined"
-                  density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
-                <v-text-field v-model="object.maxcars" label="Количество парковочных мест" 
-                  variant="outlined" density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
-              </div>
-              <hr />
-            </div>
+          <v-form v-model="valid" @submit.prevent="saveForm">
+            <v-expansion-panels v-model="openedPanel" multiple>
+              <v-expansion-panel class="custom-panel" v-for="(object, index) in objects" :key="index">
+                <v-expansion-panel-title class="custom-title d-flex justify-space-between align-center">
+                  <strong>Объект №{{ index + 1 }}</strong>
+                  <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn"
+                    @click.stop="removeObject(index)" />
+                </v-expansion-panel-title>
+
+                <v-expansion-panel-text class="custom-text">
+                  <div class="grid-inputs">
+                    <v-text-field v-model="object.name" label="Название" variant="outlined" density="comfortable"
+                      rounded="lg" clearable />
+                    <v-text-field v-model="object.description" label="Описание" variant="outlined" density="comfortable"
+                      rounded="lg" clearable />
+                    <v-text-field v-model="object.coordinations" label="Координаты объекта" variant="outlined"
+                      density="comfortable" rounded="lg" clearable v-mask="['##.######, ##.######']" />
+                    <v-text-field v-model="object.maxpeople" label="Количество мест" variant="outlined"
+                      density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                    <v-text-field v-model="object.maxcars" label="Количество парковочных мест" variant="outlined"
+                      density="comfortable" rounded="lg" clearable v-mask="'#########'" />
+                  </div>
+                </v-expansion-panel-text>
+              </v-expansion-panel>
+            </v-expansion-panels>
             <div class="add-object-btn">
               <v-btn class="btn-page" @click="addObject">Добавить объект</v-btn>
               <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
@@ -49,6 +54,9 @@ import TentSvg from "./svg/tent.vue";
 defineOptions({
   name: "Objects",
 });
+
+const valid = ref(false);
+const openedPanel = ref([0]);
 const objects = reactive([
   {
     name: 'У Песчаного Моря',
@@ -67,6 +75,12 @@ const addObject = () => {
     maxcars: null,
   });
 };
+
+const removeObject = (index) => {
+  if (objects.length > 1) objects.splice(index, 1);
+  openedPanel.value = [0];
+};
+
 const originalObjects = ref(JSON.parse(JSON.stringify(objects)));
 const normalizeObjects = (arr) =>
   arr.map((obj) => ({
@@ -95,8 +109,14 @@ const isChanged = computed(() => {
 
   return changed && !hasEmptyFields;
 });
+const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 </script>
 
+<style>
+.objects .v-expansion-panel-text__wrapper {
+  padding: 8px 24px 0 !important;
+}
+</style>
 <style scoped>
 .content {
   padding: 30px 10px;
@@ -280,11 +300,6 @@ const isChanged = computed(() => {
   }
 }
 
-hr {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
 .btn-page {
   background: #547c8f;
   color: #fff;
@@ -312,5 +327,72 @@ hr {
   border: 1.7px solid #fbf0f09e !important;
   transform: none !important;
   cursor: not-allowed !important;
+}
+
+.v-expansion-panels,
+.v-expansion-panel {
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.custom-panel {
+  border: 1.5px solid rgba(70, 120, 170, 0.35);
+  border-radius: 18px;
+  margin-bottom: 18px;
+  background: linear-gradient(180deg, #ffffff, #f7f9fc);
+  transition: all 0.25s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-panel:hover {
+  border-color: #4a90e2;
+  background: linear-gradient(180deg, #ffffff, #f4f8ff);
+}
+
+.custom-title {
+  font-weight: 600;
+  font-size: 1.15rem;
+  padding: 10px 12px;
+  color: #39424e;
+  font-family: "El Messiri", sans-serif;
+}
+
+.custom-text {
+  padding: 20px 10px 0;
+  background: #fafafa;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0 0 14px 14px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delete-btn {
+  opacity: 0.8;
+  transition: 0.2s;
+  margin-left: 10px;
+  margin-top: -2.5px;
+  border: 1.5px solid rgba(70, 120, 170, 0.35);
+  color: rgba(70, 120, 170, 0.8);
+  border-radius: 10px;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+  background-color: #f9f0ee;
+  color: #c0392b;
+  border: 1.5px solid #c0392b;
+  transform: scale(1.15);
 }
 </style>

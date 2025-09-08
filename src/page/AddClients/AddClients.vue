@@ -3,8 +3,6 @@
     <v-container>
       <Title :title="title" :icon="'mdi-account-plus-outline'" />
       <div class="content">
-        <!-- <v-row dense align="stretch"> -->
-        <!-- <v-col cols="9" style="overflow: auto; height: 65vh;" class="wrapper_content"> -->
         <v-card elevation="2" style="overflow: auto; height: 65vh;" class="wrapper_content pa-6">
           <v-form v-model="valid" @submit.prevent="saveForm">
             <!-- Блок с аккордеонами -->
@@ -64,7 +62,7 @@
                           <v-text-field v-model="person.passport.date" v-bind="props" label="Дата выдачи" readonly
                             variant="outlined" density="comfortable" rounded="lg" clearable />
                         </template>
-                        <v-date-picker v-model="person.passport.dateInternal"
+                        <v-date-picker v-model="person.passport.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'passport')" />
                       </v-menu>
                     </div>
@@ -89,7 +87,7 @@
                           <v-text-field v-model="person.birth.date" v-bind="props" label="Дата выдачи" readonly
                             variant="outlined" density="comfortable" rounded="lg" clearable />
                         </template>
-                        <v-date-picker v-model="person.birth.dateInternal"
+                        <v-date-picker v-model="person.birth.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'birth')" />
                       </v-menu>
                     </div>
@@ -123,7 +121,7 @@
                       </div>
                       <v-text-field v-model="person.cars" :disabled="!person.car"
                         :class="{ 'input-disable': !person.car }" label="Номер транспорта"
-                        :variant="person.car ? 'outlined' : 'regular'" density="comfortable" rounded="lg" clearable
+                        :variant="person.car ? 'outlined' : 'filled'" density="comfortable" rounded="lg" clearable
                         v-mask="'#########'" />
                     </div>
                     <div>
@@ -133,7 +131,7 @@
                       </div>
                       <v-text-field v-model="person.animals" :disabled="!person.animal"
                         :class="{ 'input-disable': !person.animal }" label="Количество животных"
-                        :variant="person.animal ? 'outlined' : 'regular'" density="comfortable" rounded="lg" clearable
+                        :variant="person.animal ? 'outlined' : 'filled'" density="comfortable" rounded="lg" clearable
                         v-mask="'#########'" />
                     </div>
                     <div>
@@ -143,7 +141,7 @@
                       </div>
                       <v-text-field v-model="person.home" :disabled="!person.house"
                         :class="{ 'input-disable': !person.house }" label="Номер домика"
-                        :variant="person.house ? 'outlined' : 'regular'" density="comfortable" rounded="lg" clearable
+                        :variant="person.house ? 'outlined' : 'filled'" density="comfortable" rounded="lg" clearable
                         v-mask="'#########'" />
                     </div>
                   </div>
@@ -203,17 +201,6 @@
             </div>
           </v-form>
         </v-card>
-        <!-- </v-col> -->
-
-        <!-- <v-col class="icon-col">
-            <div class="icon-wrapper">
-              <div class="block-icon">
-                <component :is="PersonSvg" color="#61656d" style="padding: 10px" />
-              </div>
-              <p class="icon-caption">Данные о клиентах</p>
-            </div>
-          </v-col>
-        </v-row> -->
       </div>
     </v-container>
   </div>
@@ -227,101 +214,72 @@ defineOptions({ name: "AddClients" });
 
 const title = "Регистрация отдыхающих";
 const valid = ref(false);
-
 const openedPanel = ref([0]);
 const persons = reactive([createPerson()]);
-const price = null;
+const price = ref(null);
 
 function createPerson() {
+  const emptyDoc = { series: "", number: "", issuedDocument: "", cityDocument: "", date: "", dateInternal: null, dateMenu: false };
   return {
-    surname: "",
-    name: "",
-    patronymic: "",
-    date: "",
-    phone: "",
-    object: null,
-    car: false,
-    cars: null,
-    animal: false,
-    animals: null,
-    house: false,
-    home: null,
-    startDate: null,
-    endDate: null,
-    price: null,
-    dateMenu: false,
-    startDateMenu: false,
-    endDateMenu: false,
-    dateInternal: null,
-    startDateInternal: null,
-    endDateInternal: null,
-
-    // Документы
+    surname: "", name: "", patronymic: "", date: "", phone: "", object: null,
+    car: false, cars: null, animal: false, animals: null, house: false, home: null,
+    startDate: null, endDate: null, price: null,
+    dateMenu: false, startDateMenu: false, endDateMenu: false,
+    dateInternal: null, startDateInternal: null, endDateInternal: null,
     selectedDoc: "passport",
-    passport: { series: "", number: "", code: "", issuedDocument: "", cityDocument: "", date: "", dateInternal: null, dateMenu: false },
-    birth: { series: "", number: "", actNumber: "", issuedDocument: "", cityDocument: "", date: "", dateInternal: null, dateMenu: false },
-    other: { type: "", data: "" }
+    passport: { ...emptyDoc, code: "" },
+    birth: { ...emptyDoc, actNumber: "" },
+    other: { type: "", data: "" },
   };
 }
 
-function addPerson() {
+const addPerson = () => {
   persons.push(createPerson());
   openedPanel.value = [persons.length - 1];
-}
+};
 
-function formatDate(val) {
+const removePerson = (index) => {
+  if (persons.length > 1) persons.splice(index, 1);
+  openedPanel.value = [0];
+};
+
+const formatDate = (val) => {
   const d = new Date(val);
-  return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
-}
+  return `${String(d.getDate()).padStart(2,"0")}.${String(d.getMonth()+1).padStart(2,"0")}.${d.getFullYear()}`;
+};
 
-function parseDate(str) {
+const parseDate = (str) => {
   if (!str) return null;
   const [dd, mm, yyyy] = str.split(".");
   return new Date(`${yyyy}-${mm}-${dd}`);
-}
+};
 
-function onDateSelect(val, index, field) {
+const onDateSelect = (val, index, field) => {
   const p = persons[index];
   p[field] = formatDate(val);
-
+  if (field.endsWith("DateMenu")) return;
+  if (field === "startDate" && p.endDate && new Date(val) > parseDate(p.endDate)) [p.startDate, p.endDate] = [p.endDate, p.startDate];
+  if (field === "endDate" && p.startDate && new Date(val) < parseDate(p.startDate)) [p.startDate, p.endDate] = [p.endDate, p.startDate];
   if (field === "date") p.dateMenu = false;
   if (field === "startDate") p.startDateMenu = false;
   if (field === "endDate") p.endDateMenu = false;
+};
 
-  if (field === "startDate" && p.endDate) {
-    if (new Date(val) > parseDate(p.endDate)) [p.startDate, p.endDate] = [p.endDate, p.startDate];
-  }
-  if (field === "endDate" && p.startDate) {
-    if (new Date(val) < parseDate(p.startDate)) [p.startDate, p.endDate] = [p.endDate, p.startDate];
-  }
-}
-
-function onDocDateSelect(val, index, docType) {
-  const p = persons[index];
-  const formatted = formatDate(val);
-  if (docType === "passport") { p.passport.date = formatted; p.passport.dateMenu = false; }
-  else if (docType === "birth") { p.birth.date = formatted; p.birth.dateMenu = false; }
-}
+const onDocDateSelect = (val, index, docType) => {
+  const doc = persons[index][docType];
+  doc.date = formatDate(val);
+  doc.dateMenu = false;
+};
 
 const isChanged = computed(() =>
-  persons.some(p =>
-    p.surname || p.name || p.patronymic || p.date || p.phone || p.object ||
+  persons.some(p => p.surname || p.name || p.patronymic || p.date || p.phone || p.object ||
     (p.car && p.cars) || (p.animal && p.animals) || (p.house && p.home) ||
     p.startDate || p.endDate || p.price
   )
 );
 
-function removePerson(index) {
-  if (persons.length === 1) return;
-  persons.splice(index, 1);
-  openedPanel.value = [0];
-}
-
-function saveForm() {
-  console.log(JSON.parse(JSON.stringify(persons)));
-}
+const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 </script>
-
 
 <style>
 .v-field--disabled {
@@ -334,30 +292,26 @@ function saveForm() {
 </style>
 
 <style scoped>
+.v-field--disabled {
+  background-color: rgba(204, 204, 204, 0.2);
+}
+
 .docs-radio .radio-small {
   flex: 1;
-  /* обычная ширина */
 }
 
 .docs-radio .radio-large {
   flex: 2;
-  /* вторая кнопка в два раза шире */
 }
 
-/* Чтобы текст не переносился */
-.docs-radio .v-radio .v-input--selection-controls__ripple,
-.docs-radio .v-radio .v-label {
+.docs-radio .v-radio .v-label,
+.docs-radio .v-radio .v-input--selection-controls__ripple {
   white-space: nowrap;
 }
 
 .v-picker.v-sheet {
   margin-top: -3.5%;
   border-radius: 15px !important;
-}
-
-.rent {
-  margin-top: -5px;
-  height: 40px;
 }
 
 .content {
@@ -367,91 +321,9 @@ function saveForm() {
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.8)) !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+              2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   border-radius: 15px !important;
   height: 78vh;
-}
-
-.icon-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -12% !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.icon-col::before {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgb(57 131 181 / 50%), transparent 10%);
-  filter: blur(40px);
-  animation: pulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
-}
-
-.icon-wrapper {
-  text-align: center;
-  z-index: 2;
-  padding: 30px 10px;
-}
-
-.block-icon {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, 0.3);
-  background: linear-gradient(180deg, #ffffff, #eff5f7);
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px 15px rgba(47, 118, 139, 0.18),
-    inset 0 0 10px rgba(255, 255, 255, 0.3);
-  transition: all 0.5s ease;
-  animation: breathe 5s ease-in-out infinite;
-}
-
-.block-icon:hover {
-  transform: scale(1.06);
-  box-shadow: 0 10px 25px rgba(47, 118, 139, 0.25),
-    inset 0 0 15px rgba(255, 255, 255, 0.4);
-}
-
-@keyframes breathe {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.08);
-  }
-}
-
-.icon-caption {
-  font-weight: 600;
-  width: 100%;
-  margin: 1.2rem auto 0;
-  font-size: 1.6rem;
-  color: #494c54;
-  font-family: "Amatic SC", cursive;
-  letter-spacing: 1.2px;
-  -webkit-text-stroke: .05px #494c54;
 }
 
 .form-subtitle {
@@ -468,20 +340,6 @@ function saveForm() {
   position: relative;
 }
 
-.form-subtitle:first-of-type {
-  margin-top: 0;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -160px 0;
-  }
-
-  100% {
-    background-position: 160px 0;
-  }
-}
-
 .form-subtitle::after {
   content: "";
   position: absolute;
@@ -494,9 +352,14 @@ function saveForm() {
   opacity: 0.9;
 }
 
+@keyframes shimmer {
+  0% { background-position: -160px 0; }
+  100% { background-position: 160px 0; }
+}
+
 hr {
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid  rgba(70, 120, 170, 0.45);
 }
 
 .btn-page {
@@ -535,50 +398,12 @@ hr {
   }
 }
 
-/* Убираем тень карточки */
 .v-expansion-panels,
 .v-expansion-panel {
   box-shadow: none !important;
-}
-
-/* Общее оформление панели */
-.custom-panel {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 14px;
-  margin-bottom: 14px;
-  border-color: #4a90e2;
-  background: #fff;
-  transition: 0.25s ease;
-}
-
-/* Hover эффект */
-.custom-panel:hover {
-  background: #f8fbff;
-}
-
-/* Заголовок */
-.custom-title {
-  font-weight: 600;
-  font-size: 1.15rem;
-  padding: 10px 12px;
-  color: #39424e;
-  font-family: "El Messiri", sans-serif;
-}
-
-/* Оформление текста (контента) */
-.custom-text {
-  padding: 20px 10px 10px;
-  background: #fafafa;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 0 0 14px 14px;
-  animation: fadeIn 0.3s ease;
-}
-
-.v-expansion-panels {
   background: transparent !important;
 }
 
-/* Панель */
 .custom-panel {
   border: 1.5px solid rgba(70, 120, 170, 0.35);
   border-radius: 18px;
@@ -589,23 +414,30 @@ hr {
   position: relative;
 }
 
-/* При наведении — лёгкая подсветка */
 .custom-panel:hover {
   border-color: #4a90e2;
   background: linear-gradient(180deg, #ffffff, #f4f8ff);
 }
 
-/* Анимация появления */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
+.custom-title {
+  font-weight: 600;
+  font-size: 1.15rem;
+  padding: 10px 12px;
+  color: #39424e;
+  font-family: "El Messiri", sans-serif;
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.custom-text {
+  padding: 20px 10px 10px;
+  background: #fafafa;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0 0 14px 14px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .delete-btn {
@@ -625,4 +457,10 @@ hr {
   border: 1.5px solid #c0392b;
   transform: scale(1.15);
 }
+
+.rent {
+  margin-top: -5px;
+  height: 40px;
+}
+
 </style>

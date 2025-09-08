@@ -250,11 +250,6 @@ const isChanged = computed(() => {
   }
 }
 
-hr {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
 .btn-page {
   background: #547c8f;
   color: #fff;
