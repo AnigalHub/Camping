@@ -1,7 +1,7 @@
 <template>
   <v-switch 
-    :disabled="true"
-    :class="tumbler ? 'custom-switch--true' : 'custom-switch--false'">
+    :disabled="disable"
+    :class="tumbler ? (form ? 'custom-switch--true-form' : 'custom-switch--true') : 'custom-switch--false'">
   </v-switch>
 </template>
 
@@ -11,12 +11,25 @@ const props = defineProps({
     type: Boolean,
     default: () => false,
   },
+  disable: {
+    type: Boolean,
+    default: () => true,
+  },
+  form:{
+    type: Boolean,
+    default: () => false,
+  }
 })
 </script>
 <style>
 .custom-switch--true .v-switch__thumb {
   background-color: var(--background-active-switch) !important;
 }
+
+.custom-switch--true-form .v-switch__thumb {
+  background-color: #78a0b2 !important;
+}
+
 
 .v-switch__track, .v-switch__thumb {
   border: var(--border-switch) var(--border-color-switch) !important;

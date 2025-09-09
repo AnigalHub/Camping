@@ -42,6 +42,7 @@ function isModalVisible(name) {
   background: transparent !important;
 }
 
+
 /**Фон страниц */
 .page {
   background: var(--background-color-page);
@@ -90,6 +91,10 @@ function isModalVisible(name) {
 ::-webkit-scrollbar {
   width: var(--size-scrollbar);
   height: var(--size-scrollbar);
+}
+
+.v-table__wrapper::-webkit-scrollbar-thumb, .wrapper_content::-webkit-scrollbar-thumb {
+  background-color: #6c92a4 !important;
 }
 
 ::-webkit-scrollbar-thumb {
