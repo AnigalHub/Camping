@@ -18,22 +18,11 @@ import VueTheMask from 'vue-the-mask'
 // Styles
 import 'unfonts.css'
 
-// Vuetify locale
-import { createVuetify } from 'vuetify'
-import { ru } from 'vuetify/locale'
-
 import { router } from './router'
 import { store } from './store'
 
 const app = createApp(App)
 
-// Добавляем Vuetify с русской локалью
-const vuetify = createVuetify({
-  locale: {
-    locale: 'ru',
-    messages: { ru },
-  },
-})
 
 registerPlugins(app)
 
