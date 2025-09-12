@@ -26,6 +26,34 @@ function isModalVisible(name) {
   const found = modals.value.find(x => x.name === name);
   return found ? found.isVisible : false;
 }
+import { onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function handleResize() {
+  if (window.innerWidth < 1100) {
+    if (router.currentRoute.value.name !== 'ListClients') {
+      router.replace({ name: 'ListClients' })
+    }
+  } else {
+    if (router.currentRoute.value.name !== 'Home') {
+      router.replace({ name: 'Home' })
+    }
+  }
+}
+
+onMounted(() => {
+  // Проверяем при загрузке
+  handleResize()
+
+  // Подписываемся на изменение ширины окна
+  window.addEventListener('resize', handleResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 
 <style>

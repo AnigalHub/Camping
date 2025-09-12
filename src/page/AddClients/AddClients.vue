@@ -3,7 +3,7 @@
     <v-container>
       <Title :title="title" />
       <div class="block_table">
-
+ввввв
       </div>
     </v-container>
   </div>
