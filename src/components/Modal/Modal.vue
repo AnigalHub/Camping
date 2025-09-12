@@ -139,5 +139,6 @@ export default defineComponent({
 
 .modal_block .v-card{
   background: #fefefe !important;
+    overflow: hidden !important;
 }
 </style>

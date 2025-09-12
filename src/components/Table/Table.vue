@@ -290,10 +290,6 @@ async function onModalDocuments(name, object, disable) {
   -webkit-text-stroke: .45px #000;
 }
 
-.button-item.documents, .button-item.edit, .button-item.delete {
-  border: .5px solid #4d672c;
-}
-
 .button-item:hover {
   background: rgba(138, 181, 57, 0.1);
   transform: scale(1.02);
@@ -392,7 +388,9 @@ async function onModalDocuments(name, object, disable) {
 
 /* --- Адаптив под карточки --- */
 @media (max-width: 1100px) {
-  
+  .button-item.documents, .button-item.edit, .button-item.delete {
+  border: .5px solid #4d672c;
+}
 .v-table {
   margin: 0;
 }
