@@ -317,8 +317,7 @@ const items = [
 </script>
 
 <style scoped>
-.table_block .v-table {
-  height: 82%;
-  margin-top: -1%;
+.block_table {
+  height: 67.5vh;
 }
 </style>

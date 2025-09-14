@@ -8,7 +8,7 @@
         </div>
       </div>
       <v-card style="min-height: 85vh;">
-        <v-tabs v-model="tab">
+        <v-tabs v-model="tab" grow>
           <v-tab v-for="item in tabs" :key="item" :text="item" :value="item"
             :class="{ 'active-tab': tab === item, 'inactive-tab': tab !== item }">
           </v-tab>
@@ -19,7 +19,7 @@
             <div v-if="filteredItems.length !== 0">
               <Table :headers="headers" :items="filteredItems" sortByKey="fio" />
             </div>
-            <div v-else style="padding: 15px;">
+            <div v-else style="padding: 15px;" class="block_table">
               Данных за день нет.
             </div>
           </v-tabs-window-item>
