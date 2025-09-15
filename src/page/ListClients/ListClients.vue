@@ -1,10 +1,7 @@
 <template>
   <div class="page">
     <v-container>
-      <div style="display: flex; align-items: center; margin-top: .7rem;">
-        <ButtonBack />
-        <h1 class="text-center">Список клиентов</h1>
-      </div>
+      <Title :title="title"/>
       <div class="table_block content">
         <Search />
         <Table :headers="headers" :items="items" sortByKey="fio" />
@@ -17,6 +14,7 @@
 defineOptions({
   name: 'ListClients'
 })
+const title = 'Список клиентов';
 // Заголовки 
 const headers = [
   [

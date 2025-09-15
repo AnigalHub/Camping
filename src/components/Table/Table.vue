@@ -271,7 +271,6 @@ async function onModalDocuments(object, disable) {
   color: var(--color-th-table);
   -webkit-text-stroke: var(--text-stroke-th-table);
   border: var(--border-th-table) var(--border-color-th-table) !important;
-
   font-size: 1rem;
   font-family: var(--font-family);
   font-weight: 500;
@@ -322,7 +321,6 @@ table>tbody>tr:last-child td:last-child {
   border-radius: var(--border-radius-table) !important;
   margin: 0 10px;
   height: 98% !important;
-
   transition: all 0.25s ease;
 }
 

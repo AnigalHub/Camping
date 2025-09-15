@@ -114,12 +114,6 @@ function goRoute(name) {
 </script>
 
 <style scoped>
-.logo {
-  font-family: "Amatic SC", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 /* Контейнер */
 .content_wrapper_home {
   background: var(--background-color-page);
@@ -155,6 +149,9 @@ function goRoute(name) {
   color: var(--color-h1-home);
   -webkit-text-stroke: .7px #4d672c;
   font-size: 2.1rem;
+  font-family: "Amatic SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   transform: scaleX(1.2);
   margin-top: -.2rem;
   letter-spacing: .15em;

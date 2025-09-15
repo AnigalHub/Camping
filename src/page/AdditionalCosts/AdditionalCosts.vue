@@ -1,12 +1,7 @@
 <template>
   <div class="page">
     <v-container >
-      <div style="display: flex; align-items: center;  margin-top: .7rem;margin-bottom: .2rem;">
-        <ButtonBack/>
-        <div>
-          <h1 class="text-center">Дополнительные расходы и настройки</h1>
-        </div>
-      </div>  
+      <Title :title="title"/>
       <v-card :style="!tabs[1].value ? 'height: 100vh;':'height: 98vh;'">
         <v-tabs v-model="tab" >
           <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
@@ -23,14 +18,6 @@
                 <Search />
                 <ListExpenses />
               </div>
-              <div v-if="tab === tabs[2].value">
-                <v-row no-gutters>
-                  <v-col></v-col>
-                  <v-col cols="3">
-                    <img src="./../../../../public/33.png" style="width: 120%; height: 50vh; margin-left: -25%; " />
-                  </v-col>
-                </v-row>
-              </div>
             </v-card-text>
           </v-tabs-window-item>
         </v-tabs-window>
@@ -46,7 +33,7 @@ import ListExpenses from './ListExpenses/ListExpenses.vue'
 defineOptions({
   name: 'AdditionalCosts'
 })
-
+const title = 'Дополнительные расходы';
 const tab = shallowRef('Добавить расходы');
 const tabs = [
   {
@@ -56,10 +43,6 @@ const tabs = [
   {
     text: 'Список расходов',
     value: 'Список расходов-2',
-  },
-  {
-    text: 'Настройки',
-    value: 'Настройки-3',
   },
 ]
 </script>
