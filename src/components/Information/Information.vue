@@ -24,7 +24,7 @@
       </v-col>
     </v-row>
   </v-form>
-  <v-btn class="btn_page">Сохранить</v-btn>
+  <v-btn v-if="!disable" class="btn_page">Сохранить</v-btn>
 </template>
 
 <script setup>

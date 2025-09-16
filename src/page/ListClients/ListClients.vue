@@ -1,11 +1,13 @@
 <template>
   <div class="page">
-    <v-container min-height="97vh">
-      <ButtonBack />
-      <h1 class="text-center">Список клиентов</h1>
+    <v-container>
+      <div style="display: flex; align-items: center; margin-top: .7rem;">
+        <ButtonBack />
+        <h1 class="text-center">Список клиентов</h1>
+      </div>
       <div class="table_block content">
         <Search />
-        <Table :headers="headers" :items="items" sortByKey="fio"/>
+        <Table :headers="headers" :items="items" sortByKey="fio" />
       </div>
     </v-container>
   </div>
@@ -21,13 +23,13 @@ const headers = [
     { label: 'ФИО', rowspan: 2, key: 'fio', sortable: true },
     // { label: 'Дата рождения', rowspan: 2, key: 'date' },
     // { label: 'Данные документа', rowspan: 2, key: 'document'},
-    { label: 'Номер телефона', rowspan: 2, key: 'phone'},
+    { label: 'Номер телефона', rowspan: 2, key: 'phone' },
     { label: 'Проживание', rowspan: 2, key: 'dateStay', sortable: true },
     { label: 'Аренда домика', rowspan: 2, key: 'house', sortable: true },
-    { label: 'Транспорт', rowspan: 2, key: 'cars' , sortable: true},
-    { label: 'Животные', rowspan: 2, key: 'animals' , sortable: true},
-    { label: 'Поляна', rowspan: 2, key: 'object' , sortable: true},
-    { label: 'Стоимость', rowspan: 2, key: 'price' , sortable: true},
+    { label: 'Транспорт', rowspan: 2, key: 'cars', sortable: true },
+    { label: 'Животные', rowspan: 2, key: 'animals', sortable: true },
+    { label: 'Поляна', rowspan: 2, key: 'object', sortable: true },
+    { label: 'Стоимость', rowspan: 2, key: 'price', sortable: true },
     { label: '', key: 'buttons' },
   ],
 ]
@@ -317,7 +319,6 @@ const items = [
 </script>
 
 <style scoped>
-
 .table_block .v-table {
   height: 82%;
   margin-top: -1%;

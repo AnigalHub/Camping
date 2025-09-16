@@ -63,10 +63,10 @@
   --filter-main-buttons-home-hover:blur(10px);
 
   /** Фон страниц */
-  --background-color-page: radial-gradient(circle, #ffffff 0%, #f4efd7 75% );
-  --background-img-page: url(./../../../public/25.png) 100% 100% no-repeat;
+  --background-color-page: #edeef0;
+  --background-img-page: transparent;
   --background-size-img-page: 100% 100%;
-  --filter-background-page: blur(1.5px);
+  --filter-background-page: blur(0px);
 
   /** Поиск (инпут) (страниц) */
   --background-search:none;
@@ -110,21 +110,21 @@
   --fill-icon-btn-back-page: #000000;
   --color-btn-back-page: #2a3a1f;
   --text-stroke-btn-back-page: none;
-  --background-btn-back-page: linear-gradient(to top, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+  --background-btn-back-page: transparent;
   --border-radius-btn-back-page: 10px;
   --border-btn-back-page: 1px solid;
-  --border-color-btn-back-page: #acb1967c;
-  --box-shadow-btn-back-page: 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1);
-  --filter-btn-back-page: blur(10px);
+  --border-color-btn-back-page: transparent;
+  --box-shadow-btn-back-page: none;
+  --filter-btn-back-page: blur(0px);
   /* Кнопка Назад(при наведении) */
   --color-btn-back-page-hover: #2a3a1f;
   --text-stroke-btn-back-page-hover: none;
-  --background-btn-back-page-hover: linear-gradient(to top, rgba(197, 211, 149, 0.2), rgba(197, 211, 149, 0.2));
+  --background-btn-back-page-hover: transparent;
   --border-radius-btn-back-page-hover: 10px;
   --border-btn-back-page-hover: 1px solid;
-  --border-color-btn-back-page-hover: #acb1967c;
-  --box-shadow-btn-back-page-hover: inset 0 0 10px rgba(255, 255, 255, 0.4), 10px 10px 8px rgba(17, 44, 18, 0.2);
-  --filter-btn-back-page-hover: blur(10px);
+  --border-color-btn-back-page-hover: transparent;
+  --box-shadow-btn-back-page-hover: none;
+  --filter-btn-back-page-hover: blur(0px);
 
  /* Шрифты страниц */
   --font-family-main: "Zen Kaku Gothic New", sans-serif;

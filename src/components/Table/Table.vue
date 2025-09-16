@@ -1,78 +1,82 @@
 <template>
-  <v-table fixed-header striped="even">
-    <thead>
-      <template v-for="(headerRow, rowIndex) in headers" :key="rowIndex">
-        <tr>
-          <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
-            :rowspan="col.rowspan || 1" class="text-center" :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
-            @click="col.sortable && sortByColumn(col.key)">
-            <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
-              <span>{{ col.label }}</span>
-              <!-- Иконки сортировки SVG -->
-              <div v-if="col.sortable" style="display: flex; flex-direction: column; ">
-                <svg :fill="sortKey === col.key && sortDirection === 'asc' ? activeColor : inactiveColor" width="15"
-                  height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 8l-6 6h12l-6-6z" />
-                </svg>
-                <svg style="margin-top: -9px;"
-                  :fill="sortKey === col.key && sortDirection === 'desc' ? activeColor : inactiveColor" width="15"
-                  height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 16l6-6H6l6 6z" />
-                </svg>
+  <div class="block_table">
+    <v-table fixed-header striped="even">
+      <thead>
+        <template v-for="(headerRow, rowIndex) in headers" :key="rowIndex">
+          <tr>
+            <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
+              :rowspan="col.rowspan || 1" class="text-center" :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
+              @click="col.sortable && sortByColumn(col.key)">
+              <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                <span>{{ col.label }}</span>
+                <!-- Иконки сортировки SVG -->
+                <div v-if="col.sortable" style="display: flex; flex-direction: column; ">
+                  <svg :fill="sortKey === col.key && sortDirection === 'asc' ? activeColor : inactiveColor" width="15"
+                    height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8l-6 6h12l-6-6z" />
+                  </svg>
+                  <svg style="margin-top: -9px;"
+                    :fill="sortKey === col.key && sortDirection === 'desc' ? activeColor : inactiveColor" width="15"
+                    height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16l6-6H6l6 6z" />
+                  </svg>
+                </div>
               </div>
-            </div>
-          </th>
+            </th>
+          </tr>
+        </template>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in sortedItems" :key="index">
+          <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :class="[col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
+          col.key === 'buttons' ? 'bg_buttons' : '']">
+            <template v-if="col.key === 'date' && item[col.key]">
+              {{ formatDate(item[col.key]) }}
+            </template>
+            <template v-else-if="col.key === 'dateStay'">
+              <div>{{ formatDate(item.startDate) }}</div>
+              <div>{{ formatDate(item.endDate) }}</div>
+            </template>
+            <template v-else-if="col.key === 'fio'">
+              <div>{{ item.surname }}</div>
+              <div>{{ item.name }}</div>
+              <div>{{ item.patronymic }}</div>
+            </template>
+            <template v-else-if="col.key === 'phone' && item[col.key]">
+              {{ item[col.key].replace(/^(\+7)(\d{3})(\d{3})(\d{2})(\d{2})$/, '$1($2)$3-$4-$5') }}
+            </template>
+            <template v-else-if="col.key === 'price' && item[col.key]">
+              {{ item[col.key].toLocaleString('ru-RU') }}
+            </template>
+            <template v-else-if="col.key === 'document'">
+              <div class="document_blocks">
+                <div>{{ item.seriesDocument }}</div>
+                <div>{{ item.numberDocument }}</div>
+              </div>
+              <div>{{ item.codeDocument }}</div>
+              <div>{{ formatDate(item.dateDocument) }}</div>
+              <div>{{ item.issuedDocument.length > 20 ? item.issuedDocument.slice(0, 20) + '...' : item.issuedDocument
+              }}
+              </div>
+              <div>{{ item.cityDocument }}</div>
+            </template>
+            <template v-else-if="item[col.key] === true || item[col.key] === false">
+              <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
+            </template>
+            <template v-else-if="showButtons && col.key === 'buttons'">
+              <component :is="documentSvg" class="icons" v-tooltip:top="'Документы'"
+                @click="onModalDocuments(item, true)" />
+              <component :is="editSvg" class="icons" v-tooltip:top="'Изменить'" @click="onModalDocuments(item)" />
+              <component :is="deleteSvg" v-tooltip:top="'Удалить'" class="icons" />
+            </template>
+            <template v-else>
+              {{ item[col.key] ?? '—' }}
+            </template>
+          </td>
         </tr>
-      </template>
-    </thead>
-    <tbody>
-      <tr v-for="(item, index) in sortedItems" :key="index">
-        <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :class="[col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
-        col.key === 'buttons' ? 'bg_buttons' : '']">
-          <template v-if="col.key === 'date' && item[col.key]">
-            {{ formatDate(item[col.key]) }}
-          </template>
-          <template v-else-if="col.key === 'dateStay'">
-            <div>{{ formatDate(item.startDate) }}</div>
-            <div>{{ formatDate(item.endDate) }}</div>
-          </template>
-          <template v-else-if="col.key === 'fio'">
-            <div>{{ item.surname }}</div>
-            <div>{{ item.name }}</div>
-            <div>{{ item.patronymic }}</div>
-          </template>
-          <template v-else-if="col.key === 'phone' && item[col.key]">
-            {{ item[col.key].replace(/^(\+7)(\d{3})(\d{3})(\d{2})(\d{2})$/, '$1($2)$3-$4-$5') }}
-          </template>
-          <template v-else-if="col.key === 'price' && item[col.key]">
-            {{ item[col.key].toLocaleString('ru-RU') }}
-          </template>
-          <template v-else-if="col.key === 'document'">
-            <div class="document_blocks">
-              <div>{{ item.seriesDocument }}</div>
-              <div>{{ item.numberDocument }}</div>
-            </div>
-            <div>{{ item.codeDocument }}</div>
-            <div>{{ formatDate(item.dateDocument) }}</div>
-            <div>{{ item.issuedDocument.length > 20 ? item.issuedDocument.slice(0, 20) + '...' : item.issuedDocument }}
-            </div>
-            <div>{{ item.cityDocument }}</div>
-          </template>
-          <template v-else-if="item[col.key] === true || item[col.key] === false">
-            <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
-          </template>
-          <template v-else-if="showButtons && col.key === 'buttons'">
-            <component :is="documentSvg" class="icons"  v-tooltip:top="'Документы'" @click="onModalDocuments(item,true)"/>
-            <component :is="editSvg" class="icons" v-tooltip:top="'Изменить'" @click="onModalDocuments(item)"/>          
-            <component :is="deleteSvg" v-tooltip:top="'Удалить'" class="icons"/>
-          </template>
-          <template v-else>
-            {{ item[col.key] ?? '—' }}
-          </template>
-        </td>
-      </tr>
-    </tbody>
-  </v-table>
+      </tbody>
+    </v-table>
+  </div>
 </template>
 
 <script setup>
@@ -120,7 +124,7 @@ const props = defineProps({
 
 // Состояние сортировки
 const sortKey = ref(props.sortByKey);
-const sortDirection = ref(props.sortByDirection); 
+const sortDirection = ref(props.sortByDirection);
 
 
 // Функция сравнения для нескольких полей
@@ -162,8 +166,8 @@ const sortedItems = computed(() => {
     }
     if (sortKey.value === 'date') {
       const cVal = a[sortKey.value] ? new Date(a[sortKey.value]) : new Date(0);
-        const dVal = b[sortKey.value] ? new Date(b[sortKey.value]) : new Date(0);
-        return dVal - cVal;
+      const dVal = b[sortKey.value] ? new Date(b[sortKey.value]) : new Date(0);
+      return dVal - cVal;
     }
     if (typeof aVal === 'string' && typeof bVal === 'string') {
       return aVal.localeCompare(bVal);
@@ -220,18 +224,18 @@ function formatDate(dateStr) {
   return dateStr ? dateStr.split('T')[0].split('-').reverse().join('.') : null;
 }
 
-  /** Вызов Модального окна*/
-  async function onModalDocuments(object, disable) {
-    await callModalWindow(store, {
-      name: 'Information',
-      component: Information,
-      props: {
-        title: 'Документы',
-        object,
-        disable
-       },
-    });
-  }
+/** Вызов Модального окна*/
+async function onModalDocuments(object, disable) {
+  await callModalWindow(store, {
+    name: 'Information',
+    component: Information,
+    props: {
+      title: disable ? 'Документы' : 'Изменение данных',
+      object,
+      disable
+    },
+  });
+}
 </script>
 
 <style scoped>
@@ -249,7 +253,7 @@ function formatDate(dateStr) {
   min-width: 88px;
 }
 
-.icons{
+.icons {
   width: var(--svg-table);
   height: var(--svg-table);
   margin: 0 5px;
@@ -266,10 +270,8 @@ function formatDate(dateStr) {
   background: var(--background-th-table) !important;
   color: var(--color-th-table);
   -webkit-text-stroke: var(--text-stroke-th-table);
-  border-top: var(--border-th-table) var(--border-color-th-table) !important;
-   border-left: var(--border-th-table) var(--border-color-th-table) !important;
-    border-right: var(--border-th-table) var(--border-color-th-table) !important;
-     border-bottom: var(--border-th-table) #4d672c !important;
+  border: var(--border-th-table) var(--border-color-th-table) !important;
+
   font-size: 1rem;
   font-family: var(--font-family);
   font-weight: 500;
@@ -278,14 +280,15 @@ function formatDate(dateStr) {
   user-select: none;
   cursor: pointer;
 }
-.v-table > .v-table__wrapper > table > tbody > tr:first-child > td{
+
+.v-table>.v-table__wrapper>table>tbody>tr:first-child>td {
   border-top: none !important;
 
 }
-.v-table > .v-table__wrapper > table > tbody > tr > td{
-  padding: 0 8px !important; 
-  border-top: .35px solid rgba(77, 103, 44, 0.35);
-  border-bottom: .35px solid  rgba(77, 103, 44, 0.27);
+
+.v-table>.v-table__wrapper>table>tbody>tr>td {
+  padding: 0 8px !important;
+
 }
 
 .v-table>.v-table__wrapper>table>thead>tr>th:first-child {
@@ -315,11 +318,11 @@ table>tbody>tr:last-child td:last-child {
 .v-table {
   backdrop-filter: var(--filter-background-table);
   -webkit-backdrop-filter: var(--filter-background-table);
-  background: var(--background-table);
+  background: transparent !important;
   border-radius: var(--border-radius-table) !important;
   margin: 0 10px;
+  height: 98% !important;
 
-  border: 1.5px solid #4d672c;
   transition: all 0.25s ease;
 }
 
@@ -327,5 +330,4 @@ table>tbody>tr:last-child td:last-child {
 .v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
   background: var(--background-tr-table-hover);
 }
-
 </style>

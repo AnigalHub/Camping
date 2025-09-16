@@ -1,18 +1,23 @@
 <template>
   <div class="page">
-    <v-container min-height="97vh">
-      <ButtonBack />
-      <h1 class="text-center">Ближайшие выезды</h1>
-      <v-card>
-        <v-tabs v-model="tab" grow>
+    <v-container>
+      <div style="display: flex; align-items: center; margin-top: .7rem; margin-bottom: .2rem;">
+        <ButtonBack />
+        <div>
+          <h1 class="text-center">Ближайшие выезды</h1>
+        </div>
+      </div>
+      <v-card style="min-height: 100vh;">
+        <v-tabs v-model="tab">
           <v-tab v-for="item in tabs" :key="item" :text="item" :value="item"
             :class="{ 'active-tab': tab === item, 'inactive-tab': tab !== item }">
           </v-tab>
         </v-tabs>
         <v-tabs-window v-model="tab">
+
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
-            <div v-if="filteredItems.length !== 0" >
-              <Table :headers="headers" :items="filteredItems" sortByKey="fio"/>
+            <div v-if="filteredItems.length !== 0">
+              <Table :headers="headers" :items="filteredItems" sortByKey="fio" />
             </div>
             <div v-else style="padding: 15px;">
               Данных за день нет.
@@ -73,14 +78,14 @@ const filteredItems = computed(() => {
 // Заголовки 
 const headers = [
   [
-    { label: 'ФИО', rowspan: 2, key: 'fio' , sortable: true},
+    { label: 'ФИО', rowspan: 2, key: 'fio', sortable: true },
     { label: 'Номер телефона', rowspan: 2, key: 'phone' },
-    { label: 'Проживание', rowspan: 2, key: 'dateStay' , sortable: true},
-    { label: 'Аренда домика', rowspan: 2, key: 'house' , sortable: true},
-    { label: 'Транспорт', rowspan: 2, key: 'cars' , sortable: true},
-    { label: 'Животные', rowspan: 2, key: 'animals' , sortable: true},
-    { label: 'Поляна', rowspan: 2, key: 'object', sortable: true},
-    { label: 'Стоимость', rowspan: 2, key: 'price' , sortable: true},
+    { label: 'Проживание', rowspan: 2, key: 'dateStay', sortable: true },
+    { label: 'Аренда домика', rowspan: 2, key: 'house', sortable: true },
+    { label: 'Транспорт', rowspan: 2, key: 'cars', sortable: true },
+    { label: 'Животные', rowspan: 2, key: 'animals', sortable: true },
+    { label: 'Поляна', rowspan: 2, key: 'object', sortable: true },
+    { label: 'Стоимость', rowspan: 2, key: 'price', sortable: true },
     { label: '', key: 'buttons' },
   ],
 ]
@@ -99,7 +104,7 @@ const items = [
     dateDocument: '1971-09-15T00:00:00.000+00:00',
     phone: '+79039004578',
     startDate: '2025-10-05T00:00:00.000+00:00',
-    endDate: '2025-10-17T00:00:00.000+00:00',
+    endDate: '2025-10-20T00:00:00.000+00:00',
     house: false,
     object: 7,
     cars: 'Х765СС750',
@@ -119,7 +124,7 @@ const items = [
     dateDocument: '1980-05-15T00:00:00.000+00:00',
     phone: '+79068124233',
     startDate: '2025-10-10T00:00:00.000+00:00',
-    endDate: '2025-10-15T00:00:00.000+00:00',
+    endDate: '2025-10-20T00:00:00.000+00:00',
     house: false,
     object: 1,
     cars: null,
@@ -139,7 +144,7 @@ const items = [
     dateDocument: '2000-09-21T00:00:00.000+00:00',
     phone: '+79501674030',
     startDate: '2025-10-12T00:00:00.000+00:00',
-    endDate: '2025-10-15T00:00:00.000+00:00',
+    endDate: '2025-10-20T00:00:00.000+00:00',
     house: false,
     cars: 'Н122АК150',
     object: 3,
@@ -159,7 +164,7 @@ const items = [
     dateDocument: '1999-08-23T00:00:00.000+00:00',
     phone: '+79251542184',
     startDate: '2025-10-25T00:00:00.000+00:00',
-    endDate: '2025-10-30T00:00:00.000+00:00',
+    endDate: '2025-10-21T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 2,
@@ -179,7 +184,7 @@ const items = [
     dateDocument: '1986-06-15T00:00:00.000+00:00',
     phone: '+79251445456',
     startDate: '2025-10-05T00:00:00.000+00:00',
-    endDate: '2025-10-17T00:00:00.000+00:00',
+    endDate: '2025-10-22T00:00:00.000+00:00',
     cars: 'С521КК77',
     house: false,
     object: 2,
@@ -199,7 +204,7 @@ const items = [
     dateDocument: '1995-07-07T00:00:00.000+00:00',
     phone: '+79259202678',
     startDate: '2025-10-12T00:00:00.000+00:00',
-    endDate: '2025-10-18T00:00:00.000+00:00',
+    endDate: '2025-10-21T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 7,
@@ -219,7 +224,7 @@ const items = [
     dateDocument: '1993-03-15T00:00:00.000+00:00',
     phone: '+79148816500',
     startDate: '2025-10-07T00:00:00.000+00:00',
-    endDate: '2025-10-18T00:00:00.000+00:00',
+    endDate: '2025-10-22T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 9,
@@ -239,7 +244,7 @@ const items = [
     dateDocument: '1992-08-11T00:00:00.000+00:00',
     phone: '+79037260448',
     startDate: '2025-10-07T00:00:00.000+00:00',
-    endDate: '2025-10-19T00:00:00.000+00:00',
+    endDate: '2025-10-23T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 4,
@@ -259,7 +264,7 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1995-03-115T00:00:00.000+00:00',
     startDate: '2025-10-13T00:00:00.000+00:00',
-    endDate: '2025-10-17T00:00:00.000+00:00',
+    endDate: '2025-10-23T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 3,
@@ -279,7 +284,7 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1986-10-25T00:00:00.000+00:00',
     startDate: '2025-07-18T00:00:00.000+00:00',
-    endDate: '2025-07-23T00:00:00.000+00:00',
+    endDate: '2025-10-24T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 8,
@@ -299,7 +304,7 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1988-05-17T00:00:00.000+00:00',
     startDate: '2025-10-15T00:00:00.000+00:00',
-    endDate: '2025-10-16T00:00:00.000+00:00',
+    endDate: '2025-10-26T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 1,
@@ -319,7 +324,7 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1990-04-19T00:00:00.000+00:00',
     startDate: '2025-05-04T00:00:00.000+00:00',
-    endDate: '2025-05-29T00:00:00.000+00:00',
+    endDate: '2025-10-25T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 9,
@@ -339,7 +344,7 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1991-05-29T00:00:00.000+00:00',
     startDate: '2025-05-01T00:00:00.000+00:00',
-    endDate: '2025-05-03T00:00:00.000+00:00',
+    endDate: '2025-10-22T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 8,
@@ -359,7 +364,7 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1994-03-15T00:00:00.000+00:00',
     startDate: '2025-05-11T00:00:00.000+00:00',
-    endDate: '2025-05-14T00:00:00.000+00:00',
+    endDate: '2025-10-21T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 7,
@@ -371,9 +376,12 @@ const items = [
 
 <style scoped>
 .v-table {
-  height:auto !important;
+  height: auto !important;
 }
-.v-window-item, .v-window-item--active, .v-tabs-window-item{
+
+.v-window-item,
+.v-window-item--active,
+.v-tabs-window-item {
   padding: 15px 10px;
 }
 </style>

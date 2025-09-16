@@ -1,12 +1,14 @@
 <template>
   <div class="page">
-    <v-container min-height="97vh">
-      <ButtonBack />
-      <div>
-        <h1 class="text-center">Дополнительные расходы и настройки</h1>
-      </div>
-      <v-card>
-        <v-tabs v-model="tab" grow>
+    <v-container >
+      <div style="display: flex; align-items: center;  margin-top: .7rem;margin-bottom: .2rem;">
+        <ButtonBack/>
+        <div>
+          <h1 class="text-center">Дополнительные расходы и настройки</h1>
+        </div>
+      </div>  
+      <v-card :style="!tabs[1].value ? 'height: 100vh;':'height: 98vh;'">
+        <v-tabs v-model="tab" >
           <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
             :class="{ 'active-tab': tab === item.value, 'inactive-tab': tab !== item.value }">
           </v-tab>

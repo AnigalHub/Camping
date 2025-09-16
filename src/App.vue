@@ -39,7 +39,8 @@ function isModalVisible(name) {
 /**Фон страниц */
 .content_wrapper {
   background: var(--background-color-page);
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 .wrapper::before {
   content: "";
@@ -62,7 +63,8 @@ function isModalVisible(name) {
   -webkit-text-stroke: var(--text-stroke-h1);
   font-family: var(--font-family);
   font-weight: 200;
-  font-size: 1.4rem !important;
+  margin-top: -2px;
+  font-size: 1.65rem !important;
   background: var(--background-h1);
   box-shadow: var(--box-shadow-h1);
   border-radius: var(--border-radius-h1);
@@ -70,9 +72,9 @@ function isModalVisible(name) {
   border-color: var(--border-color-h1);
   width: max-content;
   display: block;
-  margin: -10px auto 10px;
-  padding: 5px 0;
-  transform: scale(1.1);
+
+  padding-left: .6rem;
+ 
 }
 
 /**Скролл */
@@ -106,25 +108,56 @@ function isModalVisible(name) {
   border-color: var(--border-color-btn-page) !important;
   box-shadow: var(--box-shadow-btn-page) !important;
   width: 100%;
-  padding: 0 10px !important;
-  min-height: 40px;
-  margin-top: 15px;
+  padding:  10px !important;
+  min-height: 42px;
+  margin-top: 5px;
 }
 
 /**Вкладки (содержимое)*/
-.v-card, .table_block {
-  height: 80vh;border: 1.5px solid #4d672c;
-  padding: 15px 10px;
-  -webkit-backdrop-filter: blur(9px);
-  backdrop-filter: blur(9px);
+/* .v-card {
+
+  border: 1.5px solid white;
+ 
   background: linear-gradient(to top,rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   transition: all 0.25s ease;
+} */
+
+.block_table, .block_search{
+  padding: 15px 10px;
+  background: linear-gradient(to top,rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1) !important;border-radius: 15px !important;  
+}
+
+
+
+.block_search{
+      height: 10vh;
+    margin-bottom: 3vh;
+    padding-top: 0;
+}
+.v-card-text {
+  padding: 1rem 5px 0 0 !important;
+}
+.v-window-item, .v-window-item--active, .v-tabs-window-item{
+    padding: 0;
+}
+
+.block_table {
+  height: 72vh;
+}
+.v-card, .table_block {
+   height: 72vh;
+  
+  padding: 5px 10px;
+ 
+ 
+  transition: all 0.25s ease;
 }
 
 .content, .v-card{
-  border: 1.5px solid rgb(77, 103, 44) !important;
   border-radius: 15px !important;  
   background-color: transparent !important;
 }
@@ -137,29 +170,37 @@ function isModalVisible(name) {
 
 .v-card--variant-elevated{
   padding: 10px !important;
+  box-shadow: none !important;
 }
 
 /* Неактивные табы */
 .inactive-tab {
-  border-bottom: 1.8px solid #5e8835af !important;
-  opacity: 0.55 !important;
+  background: #5f88353d !important;
+  opacity: 0.7 !important;
   text-transform: none !important;
   -webkit-text-stroke: .05px #5F8835;
+   border: 1px solid #5F8835 !important;
+  border-radius: 10px !important;
+  margin-right: 8px;
+  margin-bottom: 10px;
 }
 
 /* Активный таб */
 .active-tab {
-  background-color:  transparent !important;
-  border: 1px solid transparent !important;
+  background-color:  #fff !important;
   border-radius: 10px !important;
   color: #5F8835 !important;
   text-transform: none !important;
   -webkit-text-stroke: .2px #5F8835;
+   border: 1px solid #5F8835 !important;
+  border-radius: 10px !important;
+    margin-right: 8px;
+      margin-bottom: 10px;
  
 
 }
 /* Отключение подчеркивания у активного таба */
 .v-tab__slider {
-  background: #5F8835 !important;
+  background: transparent !important;
 }
 </style>

@@ -1,86 +1,130 @@
 <template>
   <div class="content_wrapper_home">
     <div class="wrapper">
-      <v-container class="container_home" max-height="97vh">
-        <div class="buttons_options">
-          <div v-for="menu in menus.slice(-2)" :key="menu" class="buttons">
-            <div @click="goRoute(menu.route)" class="button" v-tooltip:bottom="menu.name">
-              <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
-              <!-- <div>{{ menu.name }}</div> -->
+      <v-container class="container_home" min-height="100vh">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 35px;">
+          <div>
+            <div class="d-flex">
+              <div style="width: 48px; margin-bottom: 5px; margin-right: 5px;">
+                <img src="./../../../public/l3.png" style="width: 100%;" />
+              </div>
+              <div class="title">Ромашка</div>
+            </div>
+            <div class="slogan">
+              «Кемпинг у моря — природа, которой хочется делиться!»
             </div>
           </div>
-        </div>
-        <h1 class="text-center">"Ромашка"</h1>
-        <!-- <hr style="width: 30%; display: block; margin: -4% auto 0%;  border: none;border-top: 1.8px solid #4d672c; "></hr> -->
-        <div class="slogan">
-          «Кемпинг у моря - природа, которой хочется делиться!»
-        </div>
-        <v-row no-gutters class="main_row">
-
-          <v-col cols="5" class="left_col">
-            <!-- <div class="slogan">
-              «Кемпинг у моря - природа, которой хочется делиться!»
-            </div> -->
-            <div class="block_main_buttons">
-              <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="main_buttons">
-                <div @click="goRoute(menu.route)" class="main_button">
-                  <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
-                  <div> {{ menu.name }}</div>
-                </div>
+          <div class="buttons_options">
+            <div v-for="menu in menus.slice(-2)" :key="menu" class="buttons">
+              <div @click="goRoute(menu.route)" class="button" v-tooltip:bottom="menu.name">
+                <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
+                <!-- <div>{{ menu.name }}</div> -->
               </div>
             </div>
-          </v-col>
-          <v-col class="right_col">
-            <div id="image-container" class="image_container">
-              <img id="img1" src="./../../../public/999.png" class="image" />
-              <img id="img2" src="./../../../public/990.png" class="image hidden" />
-              <img id="img3" src="./../../../public/997.png" class="image hidden" />
-            </div>
-          </v-col>
-        </v-row>
+          </div>
+
+        </div>
+        <div class="main_row">
+          <v-row align="stretch" justify="center" class="menu-grid">
+            <v-col v-for="(menu, i) in menus.slice(0, menus.length - 2)" :key="i" cols="12" sm="6" lg="4"
+              class="d-flex">
+              <v-card class="pa-6 flex-grow-1 hover-elevate card_menu" elevation="4" rounded="xl"
+                @click="goRoute(menu.route)">
+                <div class="menu_header">
+                  <component :is="menu.icon" class="menu_icon" :color="'var(--color-h1)'" />
+                  <div class="menu_text">
+                    <h3 class="menu_title">{{ menu.name }}</h3>
+                    <p class="menu_descr">{{ menu.descr }}</p>
+                  </div>
+                </div>
+                <div class="menu_footer">
+                  <span class="go_text">Перейти</span>
+                  <v-icon class="arrow_icon" size="20">mdi-arrow-right</v-icon>
+                </div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </div>
       </v-container>
     </div>
   </div>
 </template>
 
 <script setup>
-import { router } from '@/router';
-import RegistrationSvg from './../../svg/registration.vue';
-import ListClientsSvg from './../../svg/listclients.vue';
-import MapObjectSvg from './../../svg/map_object.vue';
-import TripsSvg from './../../svg/trips.vue';
-import ServicesSvg from './../../svg/services.vue';
-import SettingsSvg from './../../svg/settings.vue';
-import ExitSvg from './../../svg/exit.vue';
+import { router } from '@/router'
+import RegistrationSvg from './../../svg/registration.vue'
+import ListClientsSvg from './../../svg/listclients.vue'
+import MapObjectSvg from './../../svg/map_object.vue'
+import TripsSvg from './../../svg/trips.vue'
+import ServicesSvg from './../../svg/services.vue'
+import SettingsSvg from './../../svg/settings.vue'
+import SettingsMainSvg from './../../svg/settings_main.vue'
+import ExitSvg from './../../svg/exit.vue'
 
 const menus = [
-  { icon: RegistrationSvg, name: 'Регистрация отдыхающих', route: '' },
-  { icon: ListClientsSvg, name: 'Список клиентов', route: 'ListClients' },
-  { icon: TripsSvg, name: 'Ближайшие выезды', route: 'Trips' },
-  { icon: MapObjectSvg, name: 'Карта полянок', route: 'MapObjects' },
-  { icon: ServicesSvg, name: 'Дополнительные расходы и настройки', route: 'AdditionalCosts' },
+  {
+    icon: RegistrationSvg,
+    name: 'Регистрация отдыхающих',
+    descr:
+      'Добавляйте новых гостей и быстро и комфортно размещайте их в лагере',
+    route: '',
+  },
+  {
+    icon: ListClientsSvg,
+    name: 'Список клиентов',
+    descr:
+      'Вся информация об отдыхающих в одном месте: личные данные, питомцы, номера домиков и выбранные поляны',
+    route: 'ListClients',
+  },
+  {
+    icon: TripsSvg,
+    name: 'Ближайшие выезды',
+    descr:
+      'Отслеживайте предстоящие отъезды гостей и планируйте размещение новых заранее',
+    route: 'Trips',
+  },
+  {
+    icon: MapObjectSvg,
+    name: 'Карта полянок',
+    descr:
+      'Удобно просматривайте пространство лагеря, распределяйте гостей и контролируйте занятость мест',
+    route: 'MapObjects',
+  },
+  {
+    icon: ServicesSvg,
+    name: 'Дополнительные расходы',
+    descr:
+      'Учитывайте все услуги: аренду, уборку и прочие дополнительные траты по лагерю',
+    route: 'AdditionalCosts',
+  },
+  {
+    icon: SettingsMainSvg,
+    name: 'Настройки',
+    descr:
+      'Настройте кемпинг под себя: управляйте параметрами, пользователями и устанавливайте актуальные цены',
+    route: 'AdditionalCosts',
+  },
   { icon: SettingsSvg, name: 'Настройки', route: 'Settings' },
   { icon: ExitSvg, name: 'Выход', route: 'Exit' },
-];
+]
 
 function goRoute(name) {
-  router.push({ name });
+  router.push({ name })
 }
-
-const images = ['img1', 'img2', 'img3'];
-let currentIndex = 0;
-
-setInterval(() => {
-  images.forEach((id) => (document.getElementById(id).style.display = 'none'));
-  document.getElementById(images[currentIndex]).style.display = 'block';
-  currentIndex = (currentIndex + 1) % images.length;
-}, 6000);
 </script>
 
 <style scoped>
+.logo {
+  font-family: "Amatic SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Контейнер */
 .content_wrapper_home {
   background: var(--background-color-page);
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 .container_home {
@@ -102,116 +146,112 @@ setInterval(() => {
 }
 
 .button .icon {
-  width: 25px;
-  margin: 0.5rem;
+  width: 22px;
+  margin: 1.5rem 0.25rem 0.25rem;
 }
 
-/* Заголовок и слоган */
-h1 {
+/* Заголовок */
+.title {
   color: var(--color-h1-home);
-  -webkit-text-stroke: var(--text-stroke-h1-home);
-  font-size: 4.5rem;
-  letter-spacing: 0.08em;
-  font-family: var(--font-family-h1-home);
+  -webkit-text-stroke: .7px #4d672c;
+  font-size: 2.1rem;
+  transform: scaleX(1.2);
+  margin-top: -.2rem;
+  letter-spacing: .15em;
+  padding-left: 10px;
   font-weight: 400;
-  background: var(--background-h1-home);
-  border-radius: var(--border-radius-h1-home);
-  border-bottom: 2px solid #4d672c;
-  width: max-content;
-  height: 5.7rem;
-  box-shadow: var(--box-shadow-h1-home);
-  margin: -3% auto 5px;
 }
 
+/* Слоган */
 .slogan {
   color: #4d672c;
-  font-size: 1.3rem;
+  -webkit-text-stroke: .08px #edeef0;
+  font-size: 1.2rem;
   letter-spacing: 1px;
+  margin-top: -2%;
   font-family: var(--font-family-slogan-home);
-  text-align: center;
-  margin: 0.5% auto 3%;
-  width: 50%;
 }
 
-/* Основной ряд */
 .main_row {
-  display: flex;
-  align-items: stretch; /* колонки одинаковой высоты */
-}
-
-/* Левая колонка */
-.left_col {
-  display: flex;
-  flex-direction: column;
-}
-
-.block_main_buttons {
-  flex: 1; /* растягиваем на всю высоту колонки */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly; /* равномерно распределяем кнопки */
-  padding: 15px 0;
-  border-radius: 15px;
-  height: 100%;
-}
-
-.main_buttons {
-  margin-left: 8%;
-}
-
-.main_button {
-  display: flex;
-  align-items: center;
-  margin-bottom: 3.4%;
-  width: 100%;
-  padding: 6px 8px;
-  color: var(--color-main-buttons-home);
-  font-family: var(--font-family-btn);
-  font-size: 1.25rem;
-  background: var(--background-main-buttons-home);
-  border-radius: var(--border-radius-main-buttons-home);
-  border: var(--border-main-buttons-home);
-  box-shadow: var(--box-shadow-main-buttons-home);
-  transition: all 0.25s ease;
-}
-
-.main_button .icon {
-  margin: 0.5rem 1rem;
-  width: 35px;
-}
-
-.main_button:hover {
-  cursor: pointer;
-  color: var(--color-main-buttons-home-hover);
-  background: var(--background-main-buttons-home-hover);
-  border-color: var(--border-color-main-buttons-home-hover);
-  box-shadow: var(--box-shadow-main-buttons-home-hover);
-}
-
-/* Правая колонка */
-.right_col {
   display: flex;
   align-items: stretch;
 }
 
-.image_container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.card_menu {
+  height: 100% !important;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.image {
-  position: absolute;
-  top: 0;
-  left: 10%;
-  width: 82%;
-  border: 2px dashed #4d672c;
-  border-radius: 15px;
-  padding: 15px;
-  background: white;
+.card_menu:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.hidden {
-  display: none;
+.menu_header {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.menu_icon {
+  width: 40px;
+  height: 40px;
+  color: var(--fill-icon-home);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.menu_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.menu_title {
+  color: var(--color-h1);
+  -webkit-text-stroke: 0.1px #4d672c;
+  letter-spacing: .25px;
+  font-family: var(--font-family);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.menu_descr {
+  font-size: 0.9rem;
+  color: var(--v-theme-on-surface-variant, #666);
+  line-height: 1.4;
+}
+
+.menu_footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 95px;
+  color: #5e8835a2;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.card_menu:hover .menu_footer {
+  color: var(--color-main-buttons-home-hover);
+}
+
+.arrow_icon {
+  vertical-align: middle;
+}
+
+.v-card {
+  border: 1.5px solid white;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+  transition: all 0.25s ease;
 }
 </style>

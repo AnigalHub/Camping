@@ -1,12 +1,14 @@
 <template>
   <div class="page">
-    <v-container min-height="97vh">
-      <ButtonBack/>
-      <div>
-        <h1 class="text-center">Карта полянок</h1>
+    <v-container>
+      <div style="display: flex; align-items: center; margin-top: .7rem;margin-bottom: .2rem;">
+        <ButtonBack />
+        <div>
+          <h1 class="text-center">Карта полянок</h1>
+        </div>
       </div>
-      <v-card>
-        <v-tabs v-model="tab" grow>
+      <v-card style="height: 100vh;">
+        <v-tabs v-model="tab">
           <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
             :class="{ 'active-tab': tab === item.value, 'inactive-tab': tab !== item.value }">
           </v-tab>
@@ -18,7 +20,7 @@
                 <FreeSeats />
               </div>
               <div v-else>
-               <CoordinatesObjects/>
+                <CoordinatesObjects />
               </div>
             </v-card-text>
           </v-tabs-window-item>
