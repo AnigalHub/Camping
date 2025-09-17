@@ -14,7 +14,7 @@ const backSvg = shallowRef(back);
 
 /** Возврат назад */
 function clickBack() {
-  return router.push('/');
+  return router.go(-1);
 }
 </script>
 

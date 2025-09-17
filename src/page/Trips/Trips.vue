@@ -75,7 +75,7 @@ const headers = [
   [
     { label: 'ФИО', rowspan: 2, key: 'fio' , sortable: true},
     { label: 'Номер телефона', rowspan: 2, key: 'phone' },
-    { label: 'Дата проживания', rowspan: 2, key: 'dateStay' , sortable: true},
+    { label: 'Проживание', rowspan: 2, key: 'dateStay' , sortable: true},
     { label: 'Аренда домика', rowspan: 2, key: 'house' , sortable: true},
     { label: 'Транспорт', rowspan: 2, key: 'cars' , sortable: true},
     { label: 'Животные', rowspan: 2, key: 'animals' , sortable: true},
@@ -272,8 +272,8 @@ const items = [
 </script>
 
 <style scoped>
-.table_block .v-table {
-  height:auto;
+.v-table {
+  height:auto !important;
 }
 .v-window-item, .v-window-item--active, .v-tabs-window-item{
   padding: 15px 10px;

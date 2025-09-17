@@ -2,7 +2,7 @@
   /* Заголовки страниц */
   --color-h1: #4d672c;
   --text-stroke-h1: 0.25px #4d672c;
-  --background-h1: #d8dfc2c1;
+  --background-h1: rgba(138, 181, 57, 0.12);
   --border-radius-h1: 10px;
   --border-h1: none;
   --border-color-h1: transparent;
@@ -93,7 +93,7 @@
   --border-th-table: 2px solid;
   --border-color-th-table: #ffffff;
   --box-shadow-th-table: none;
-  --svg-table: 15px;
+  --svg-table: 14px;
 
   
 

@@ -20,9 +20,9 @@ const headers = [
   [
     { label: 'ФИО', rowspan: 2, key: 'fio', sortable: true },
     { label: 'Дата рождения', rowspan: 2, key: 'date' },
-    { label: 'Документы', rowspan: 2, key: 'document'},
+    { label: 'Данные документа', rowspan: 2, key: 'document'},
     { label: 'Номер телефона', rowspan: 2, key: 'phone'},
-    { label: 'Дата проживания', rowspan: 2, key: 'dateStay', sortable: true },
+    { label: 'Проживание', rowspan: 2, key: 'dateStay', sortable: true },
     { label: 'Аренда домика', rowspan: 2, key: 'house', sortable: true },
     { label: 'Транспорт', rowspan: 2, key: 'cars' , sortable: true},
     { label: 'Животные', rowspan: 2, key: 'animals' , sortable: true},

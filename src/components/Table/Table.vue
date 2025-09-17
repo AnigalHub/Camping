@@ -62,8 +62,8 @@
             <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
           </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
-            <component :is="editSvg" />
-            <component :is="deleteSvg" />
+            <component :is="editSvg" class="icons"/>
+            <component :is="deleteSvg" class="icons"/>
           </template>
           <template v-else>
             {{ item[col.key] ?? '—' }}
@@ -225,7 +225,7 @@ function formatDate(dateStr) {
   background: var(--background-btn-block-table);
 }
 
-svg {
+.icons{
   width: var(--svg-table);
   height: var(--svg-table);
   margin: 0 5px;
@@ -246,12 +246,14 @@ svg {
   font-size: .85rem;
   font-family: var(--font-family);
   font-weight: 500;
-  padding: 8px 5px !important;
+  padding: 15px 0 !important;
   box-shadow: var(--box-shadow-th-table);
   user-select: none;
-  /* чтобы не выделялось при клике */
   cursor: pointer;
-  /* курсор */
+}
+
+.v-table > .v-table__wrapper > table > tbody > tr > td{
+  padding: 0 10px !important;
 }
 
 .v-table>.v-table__wrapper>table>thead>tr>th:first-child {
