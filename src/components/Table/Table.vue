@@ -9,7 +9,7 @@
             <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
               <span>{{ col.label }}</span>
               <!-- Иконки сортировки SVG -->
-              <div v-if="col.sortable" style="display: flex; flex-direction: column; margin-left: 4px;">
+              <div v-if="col.sortable" style="display: flex; flex-direction: column; ">
                 <svg :fill="sortKey === col.key && sortDirection === 'asc' ? activeColor : inactiveColor" width="15"
                   height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 8l-6 6h12l-6-6z" />
@@ -62,8 +62,8 @@
             <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
           </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
-            <!-- <component :is="editSvg" />
-            <component :is="deleteSvg" /> -->
+            <component :is="editSvg" />
+            <component :is="deleteSvg" />
           </template>
           <template v-else>
             {{ item[col.key] ?? '—' }}
@@ -75,13 +75,14 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, shallowRef } from 'vue';
 import Switch from '../Switch/Switch.vue';
 import delete_svg from './../../svg/delete.vue';
 import edit_svg from './../../svg/edit.vue';
 
-const deleteSvg = ref(delete_svg);
-const editSvg = ref(edit_svg);
+const deleteSvg = shallowRef(delete_svg);
+const editSvg = shallowRef(edit_svg);
+
 const activeColor = '#4d672c'; // цвет активной сортировки
 const inactiveColor = '#ccc';  // цвет неактивной
 
@@ -90,6 +91,15 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  sortByKey: {
+    type: String,
+    default: () => null,
+  },
+  sortByDirection: {
+    type: String,
+    //asc || desc
+    default: () => 'asc',
+  },
   items: {
     type: Array,
     default: () => [],
@@ -97,8 +107,8 @@ const props = defineProps({
 });
 
 // Состояние сортировки
-const sortKey = ref(null);
-const sortDirection = ref('asc'); // или 'desc'
+const sortKey = ref(props.sortByKey);
+const sortDirection = ref(props.sortByDirection); 
 
 
 // Функция сравнения для нескольких полей
@@ -137,6 +147,11 @@ const sortedItems = computed(() => {
         return aVal.localeCompare(bVal);
       }
       return 0;
+    }
+    if (sortKey.value === 'date') {
+      const cVal = a[sortKey.value] ? new Date(a[sortKey.value]) : new Date(0);
+        const dVal = b[sortKey.value] ? new Date(b[sortKey.value]) : new Date(0);
+        return dVal - cVal;
     }
     if (typeof aVal === 'string' && typeof bVal === 'string') {
       return aVal.localeCompare(bVal);

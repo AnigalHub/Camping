@@ -5,7 +5,7 @@
       <h1 class="text-center">Список клиентов</h1>
       <div class="table_block content">
         <Search />
-        <Table :headers="headers" :items="items" />
+        <Table :headers="headers" :items="items" sortByKey="fio"/>
       </div>
     </v-container>
   </div>

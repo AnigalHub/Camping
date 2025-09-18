@@ -12,7 +12,7 @@
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
             <div v-if="filteredItems.length !== 0" >
-              <Table :headers="headers" :items="filteredItems" />
+              <Table :headers="headers" :items="filteredItems" sortByKey="fio"/>
             </div>
             <div v-else style="padding: 15px;">
               Данных за день нет.
@@ -73,14 +73,14 @@ const filteredItems = computed(() => {
 // Заголовки 
 const headers = [
   [
-    { label: 'ФИО', rowspan: 2, key: 'fio' },
+    { label: 'ФИО', rowspan: 2, key: 'fio' , sortable: true},
     { label: 'Номер телефона', rowspan: 2, key: 'phone' },
-    { label: 'Дата проживания', rowspan: 2, key: 'dateStay' },
-    { label: 'Аренда домика', rowspan: 2, key: 'house' },
-    { label: 'Транспорт', rowspan: 2, key: 'cars' },
-    { label: 'Животные', rowspan: 2, key: 'animals' },
-    { label: 'Поляна', rowspan: 2, key: 'object' },
-    { label: 'Стоимость', rowspan: 2, key: 'price' },
+    { label: 'Дата проживания', rowspan: 2, key: 'dateStay' , sortable: true},
+    { label: 'Аренда домика', rowspan: 2, key: 'house' , sortable: true},
+    { label: 'Транспорт', rowspan: 2, key: 'cars' , sortable: true},
+    { label: 'Животные', rowspan: 2, key: 'animals' , sortable: true},
+    { label: 'Поляна', rowspan: 2, key: 'object', sortable: true},
+    { label: 'Стоимость', rowspan: 2, key: 'price' , sortable: true},
     { label: '', key: 'buttons' },
   ],
 ]

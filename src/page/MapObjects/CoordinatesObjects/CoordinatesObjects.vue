@@ -124,7 +124,7 @@ const formattedCoordinates = (value) => {
 .v-list-item {
   margin-bottom: 10px;
   border-radius: 10px;
-  background: #e4f2db69;
+  background: rgba(138, 181, 57, 0.08);
   box-shadow: 0 1px 6px rgba(90, 112, 47, 0.12);
   border: 1px solid #cccccc6b;
   display: flex;
@@ -135,7 +135,7 @@ const formattedCoordinates = (value) => {
 /* При наведении */
 .v-list-item:hover {
 cursor: pointer;
-  background: var(--background-btn-back-page-hover);
+  background: var(--background-tr-table-hover);
   border-radius: var(--border-radius-btn-back-page-hover);
   border: var(--border-btn-back-page-hover);
   border-color: var(--border-color-btn-back-page-hover);

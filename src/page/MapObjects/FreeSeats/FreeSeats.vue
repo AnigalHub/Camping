@@ -1,5 +1,5 @@
 <template>
-  <Table :headers="headers" :items="items"/>
+  <Table :headers="headers" :items="items" sortByKey="date" sortByDirection="desc"/>
 </template>
 
 <script setup>
@@ -13,8 +13,8 @@ const headers = [
   ],
   [
     { label: 'Дата', key: 'date', sortable: true  },
-    { label: 'Количество человек', key: 'people' },
-    { label: 'Количество машин', key: 'cars' },
+    { label: 'Количество человек', key: 'people', sortable: true},
+    { label: 'Количество машин', key: 'cars' , sortable: true},
   ],
 ]
 // Содержимое таблицы
@@ -31,7 +31,7 @@ const items = [
     glade: 2,
     freeSeats: '3/10',
     parkingSeats: '1/8',
-    date: '2025-08-18T00:00:00.000+00:00',
+    date: '2025-08-19T00:00:00.000+00:00',
     people: 5,
     cars: 0,
   },
@@ -47,7 +47,7 @@ const items = [
     glade: 4,
     freeSeats: '2/15',
     parkingSeats: '5/10',
-    date: '2025-08-21T00:00:00.000+00:00',
+    date: '2025-05-21T00:00:00.000+00:00',
     people: 6,
     cars: 1,
   },

@@ -1,14 +1,14 @@
 <template>
-    <Table :headers="headers" :items="items"/>
+    <Table :headers="headers" :items="items" sortByKey="date"/>
   </template>
   
   <script setup>
   /** Заголовки */
   const headers = [
     [
-      { label: 'Наименование',  key: 'text' },
-      { label: 'Дата', key: 'date' },
-      { label: 'Цена', key: 'price' },
+      { label: 'Наименование',  key: 'text', sortable: true},
+      { label: 'Дата', key: 'date', sortable: true},
+      { label: 'Цена', key: 'price', sortable: true},
       { label: '', key: 'buttons' },
     ],
   ]
@@ -26,12 +26,12 @@
     },
     {
       text: 'Замена сифона в раковинах на полянх №2 и №4',
-      date: '2025-09-21T00:00:00.000+00:00',
+      date: '2025-05-21T00:00:00.000+00:00',
       price: 5000,
     },
     {
       text: 'Вызов частной скорой к отдыхающему по состоянию здоровья',
-      date: '2025-09-21T00:00:00.000+00:00',
+      date: '2025-09-03T00:00:00.000+00:00',
       price: 1000,
     },
   ]
