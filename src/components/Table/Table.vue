@@ -6,24 +6,21 @@
           <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
             :rowspan="col.rowspan || 1" class="text-center" :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
             @click="col.sortable && sortByColumn(col.key)">
-          
-
-              <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
-                <span>{{ col.label }}</span>
-                <!-- Иконки сортировки SVG -->
-                <div v-if="col.sortable" style="display: flex; flex-direction: column; margin-left: 4px;">
-                  <svg :fill="sortKey === col.key && sortDirection === 'asc' ? activeColor : inactiveColor" width="10"
-                    height="10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 8l-6 6h12l-6-6z" />
-                  </svg>
-                  <svg style="margin-top: -9px;"
-                    :fill="sortKey === col.key && sortDirection === 'desc' ? activeColor : inactiveColor" width="10"
-                    height="10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 16l6-6H6l6 6z" />
-                  </svg>
-                </div>
+            <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
+              <span>{{ col.label }}</span>
+              <!-- Иконки сортировки SVG -->
+              <div v-if="col.sortable" style="display: flex; flex-direction: column; margin-left: 4px;">
+                <svg :fill="sortKey === col.key && sortDirection === 'asc' ? activeColor : inactiveColor" width="15"
+                  height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 8l-6 6h12l-6-6z" />
+                </svg>
+                <svg style="margin-top: -9px;"
+                  :fill="sortKey === col.key && sortDirection === 'desc' ? activeColor : inactiveColor" width="15"
+                  height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 16l6-6H6l6 6z" />
+                </svg>
               </div>
-        
+            </div>
           </th>
         </tr>
       </template>
@@ -65,8 +62,8 @@
             <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
           </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
-            <component :is="editSvg" />
-            <component :is="deleteSvg" />
+            <!-- <component :is="editSvg" />
+            <component :is="deleteSvg" /> -->
           </template>
           <template v-else>
             {{ item[col.key] ?? '—' }}
@@ -103,6 +100,29 @@ const props = defineProps({
 const sortKey = ref(null);
 const sortDirection = ref('asc'); // или 'desc'
 
+
+// Функция сравнения для нескольких полей
+function compareMultipleFields(a, b) {
+  const fields = ['surname', 'name', 'patronymic'];
+
+  for (const field of fields) {
+    const aVal = a[field];
+    const bVal = b[field];
+
+    // Если оба значения - строки, сравниваем по localeCompare
+    if (typeof aVal === 'string' && typeof bVal === 'string') {
+      const cmp = aVal.localeCompare(bVal);
+      if (cmp !== 0) return cmp;
+    } else {
+      const aStr = String(aVal || '');
+      const bStr = String(bVal || '');
+      const cmp = aStr.localeCompare(bStr);
+      if (cmp !== 0) return cmp;
+    }
+  }
+  return 0; // если все поля равны
+}
+
 // Вспомогательная переменная для отсортированных элементов
 const sortedItems = computed(() => {
   if (!sortKey.value) return props.items;
@@ -110,14 +130,31 @@ const sortedItems = computed(() => {
     const aVal = a[sortKey.value];
     const bVal = b[sortKey.value];
 
+    if (sortKey.value === 'cars') {
+      if (aVal && !bVal) return -1;
+      if (!aVal && bVal) return 1;
+      if (aVal && bVal) {
+        return aVal.localeCompare(bVal);
+      }
+      return 0;
+    }
     if (typeof aVal === 'string' && typeof bVal === 'string') {
       return aVal.localeCompare(bVal);
-    } else if (aVal instanceof Date && bVal instanceof Date) {
-      return aVal - bVal;
-    } else if ((typeof aVal === 'number' && typeof bVal === 'number') || 
-      (typeof aVal === 'boolean' && typeof bVal === 'boolean')){
-      return  bVal - aVal;
-    } else if (aVal && bVal) {
+    } else if (
+      (typeof aVal === 'number' && typeof bVal === 'number') ||
+      (typeof aVal === 'boolean' && typeof bVal === 'boolean')
+    ) {
+      return bVal - aVal;
+    } else if (!aVal && !bVal) {
+      if (sortKey.value === 'dateStay') {
+        const cVal = a.endDate ? new Date(a.endDate) : new Date(0);
+        const dVal = b.endDate ? new Date(b.endDate) : new Date(0);
+        return dVal - cVal;
+      }
+      if (sortKey.value === 'fio') {
+        return compareMultipleFields(a, b);
+      }
+    } else if (aVal || bVal) {
       return String(aVal).localeCompare(String(bVal));
     }
     return 0;
@@ -191,7 +228,7 @@ svg {
   color: var(--color-th-table);
   -webkit-text-stroke: var(--text-stroke-th-table);
   border: var(--border-th-table) var(--border-color-th-table) !important;
-  font-size: .8rem;
+  font-size: .85rem;
   font-family: var(--font-family);
   font-weight: 500;
   padding: 8px 5px !important;
@@ -208,5 +245,36 @@ svg {
 
 .v-table>.v-table__wrapper>table>thead>tr>th:last-child {
   border-radius: 0 var(--border-radius-table) 0 0 !important;
+}
+
+.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:first-child {
+  border-radius: var(--border-radius-table) 0 0 0 !important;
+}
+
+.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:last-child {
+  border-radius: 0 var(--border-radius-table) 0 0 !important;
+}
+
+table>tbody>tr:last-child td:last-child {
+  border-radius: 0 0 var(--border-radius-table) 0 !important;
+}
+
+.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even) {
+  background: var(--background-even-tr-table);
+}
+
+.v-table {
+  backdrop-filter: var(--filter-background-table);
+  -webkit-backdrop-filter: var(--filter-background-table);
+  background: var(--background-table);
+  border-radius: var(--border-radius-table) !important;
+  margin: 0 10px;
+  border: 1px solid #ddd;
+  transition: all 0.25s ease;
+}
+
+.v-table>.v-table__wrapper>table>tbody>tr:hover,
+.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
+  background: var(--background-tr-table-hover);
 }
 </style>
