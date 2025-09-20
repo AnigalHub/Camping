@@ -6,13 +6,13 @@
 // Заголовки 
 const headers = [
   [
-    { label: 'Поляна', rowspan: 2, key: 'glade' },
+    { label: 'Поляна', rowspan: 2, key: 'glade', sortable: true },
     { label: 'Свободные места', rowspan: 2, key: 'freeSeats' },
     { label: 'Парковочные места', rowspan: 2, key: 'parkingSeats' },
     { label: 'Ближайшие выезды', colspan: 3, key: null },
   ],
   [
-    { label: 'Дата', key: 'date' },
+    { label: 'Дата', key: 'date', sortable: true  },
     { label: 'Количество человек', key: 'people' },
     { label: 'Количество машин', key: 'cars' },
   ],

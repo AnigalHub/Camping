@@ -1,20 +1,37 @@
 <template>
   <v-table fixed-header striped="even">
     <thead>
-      <template v-for="(headerRow, index) in headers" :key="index">
+      <template v-for="(headerRow, rowIndex) in headers" :key="rowIndex">
         <tr>
           <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
-            :rowspan="col.rowspan || 1" class="text-center">
-            {{ col.label }}
+            :rowspan="col.rowspan || 1" class="text-center" :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
+            @click="col.sortable && sortByColumn(col.key)">
+          
+
+              <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                <span>{{ col.label }}</span>
+                <!-- Иконки сортировки SVG -->
+                <div v-if="col.sortable" style="display: flex; flex-direction: column; margin-left: 4px;">
+                  <svg :fill="sortKey === col.key && sortDirection === 'asc' ? activeColor : inactiveColor" width="10"
+                    height="10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8l-6 6h12l-6-6z" />
+                  </svg>
+                  <svg style="margin-top: -9px;"
+                    :fill="sortKey === col.key && sortDirection === 'desc' ? activeColor : inactiveColor" width="10"
+                    height="10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16l6-6H6l6 6z" />
+                  </svg>
+                </div>
+              </div>
+        
           </th>
         </tr>
       </template>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in items" :key="index">
-        <td v-for="(col, colIndex) in flatColumns" :key="colIndex"
-          :class="[col.key === 'fio' ||  col.key === 'document' ? 'text-left' : 'text-center',
-          col.key === 'buttons' ? 'bg_buttons' : '']">
+      <tr v-for="(item, index) in sortedItems" :key="index">
+        <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :class="[col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
+        col.key === 'buttons' ? 'bg_buttons' : '']">
           <template v-if="col.key === 'date' && item[col.key]">
             {{ formatDate(item[col.key]) }}
           </template>
@@ -33,18 +50,19 @@
           <template v-else-if="col.key === 'price' && item[col.key]">
             {{ item[col.key].toLocaleString('ru-RU') }}
           </template>
-          <template v-else-if="col.key === 'document'" >
+          <template v-else-if="col.key === 'document'">
             <div class="document_blocks">
               <div>{{ item.seriesDocument }}</div>
               <div>{{ item.numberDocument }}</div>
             </div>
             <div>{{ item.codeDocument }}</div>
             <div>{{ formatDate(item.dateDocument) }}</div>
-            <div>{{ item.issuedDocument.length > 20 ? item.issuedDocument.slice(0, 20) + '...' : item.issuedDocument }}</div>
+            <div>{{ item.issuedDocument.length > 20 ? item.issuedDocument.slice(0, 20) + '...' : item.issuedDocument }}
+            </div>
             <div>{{ item.cityDocument }}</div>
           </template>
           <template v-else-if="item[col.key] === true || item[col.key] === false">
-            <Switch v-model="item[col.key]" :tumbler="item[col.key] "/>
+            <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
           </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
             <component :is="editSvg" />
@@ -60,13 +78,15 @@
 </template>
 
 <script setup>
+import { computed, ref } from 'vue';
 import Switch from '../Switch/Switch.vue';
-import delete_svg from './../../svg/delete.vue'
-import edit_svg from './../../svg/edit.vue'
-import { computed } from 'vue';
-import { shallowRef } from 'vue'
-const deleteSvg = shallowRef(delete_svg)
-const editSvg = shallowRef(edit_svg)
+import delete_svg from './../../svg/delete.vue';
+import edit_svg from './../../svg/edit.vue';
+
+const deleteSvg = ref(delete_svg);
+const editSvg = ref(edit_svg);
+const activeColor = '#4d672c'; // цвет активной сортировки
+const inactiveColor = '#ccc';  // цвет неактивной
 
 const props = defineProps({
   headers: {
@@ -77,23 +97,63 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-})
+});
 
+// Состояние сортировки
+const sortKey = ref(null);
+const sortDirection = ref('asc'); // или 'desc'
+
+// Вспомогательная переменная для отсортированных элементов
+const sortedItems = computed(() => {
+  if (!sortKey.value) return props.items;
+  const sorted = [...props.items].sort((a, b) => {
+    const aVal = a[sortKey.value];
+    const bVal = b[sortKey.value];
+
+    if (typeof aVal === 'string' && typeof bVal === 'string') {
+      return aVal.localeCompare(bVal);
+    } else if (aVal instanceof Date && bVal instanceof Date) {
+      return aVal - bVal;
+    } else if ((typeof aVal === 'number' && typeof bVal === 'number') || 
+      (typeof aVal === 'boolean' && typeof bVal === 'boolean')){
+      return  bVal - aVal;
+    } else if (aVal && bVal) {
+      return String(aVal).localeCompare(String(bVal));
+    }
+    return 0;
+  });
+  return sortDirection.value === 'asc' ? sorted : sorted.reverse();
+});
+
+// Вытягиваем все колонки без заголовков (для данных)
 const flatColumns = computed(() => {
-  const flat = []
+  const flat = [];
   props.headers.forEach(row =>
     row.forEach(col => {
       if (col.key) flat.push(col);
     })
-  )
+  );
   return flat;
-})
+});
 
+// Проверяем, есть ли кнопки
 const showButtons = computed(() => {
   return props.headers.some(row => row.some(col => col.key === 'buttons'));
-})
+});
 
-// Форматирование даты в формат ДД.ММ.ГГГГ
+// Текущая сортируемая колонка
+function sortByColumn(key) {
+  if (sortKey.value === key) {
+    // Если уже сортируем по этой колонке, поменять направление
+    sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc';
+  } else {
+    // Если новая колонка, сортируем по возрастанию
+    sortKey.value = key;
+    sortDirection.value = 'asc';
+  }
+}
+
+// Форматирование даты
 function formatDate(dateStr) {
   return dateStr ? dateStr.split('T')[0].split('-').reverse().join('.') : null;
 }
@@ -116,15 +176,16 @@ function formatDate(dateStr) {
 svg {
   width: var(--svg-table);
   height: var(--svg-table);
-  margin: 0 10px;
+  margin: 0 5px;
   cursor: pointer;
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr>td {
-  font-size: .8rem;
+  font-size: .75rem;
 }
 
-.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th {
+/* Заголовки с сортировкой */
+.v-table>.v-table__wrapper>table>thead>tr>th {
   height: 20px !important;
   background: var(--background-th-table) !important;
   color: var(--color-th-table);
@@ -135,35 +196,17 @@ svg {
   font-weight: 500;
   padding: 8px 5px !important;
   box-shadow: var(--box-shadow-th-table);
+  user-select: none;
+  /* чтобы не выделялось при клике */
+  cursor: pointer;
+  /* курсор */
 }
 
-.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:first-child {
+.v-table>.v-table__wrapper>table>thead>tr>th:first-child {
   border-radius: var(--border-radius-table) 0 0 0 !important;
 }
 
-.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:last-child {
+.v-table>.v-table__wrapper>table>thead>tr>th:last-child {
   border-radius: 0 var(--border-radius-table) 0 0 !important;
-}
-
-table>tbody>tr:last-child td:last-child{
-  border-radius: 0 0 var(--border-radius-table) 0 !important;
-}
-
-.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even) {
-  background: var(--background-even-tr-table);
-}
-
-.v-table{
-  backdrop-filter: var(--filter-background-table);
-  -webkit-backdrop-filter: var(--filter-background-table);
-  background: var(--background-table);
-  border-radius: var(--border-radius-table) !important;
-  margin: 0 10px;
-  transition: all 0.25s ease;
-}
-
-.v-table>.v-table__wrapper>table>tbody>tr:hover,
-.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
-  background: var(--background-tr-table-hover);
 }
 </style>

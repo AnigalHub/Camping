@@ -155,7 +155,7 @@ const items = [
     surname: 'Кузнецов',
     name: 'Роман',
     patronymic: 'Иванович',
-    phone: '+79259202678459',
+    phone: '+79259202678',
     startDate: '2025-06-06T00:00:00.000+00:00',
     endDate: '2025-06-09T00:00:00.000+00:00',
     cars: null,

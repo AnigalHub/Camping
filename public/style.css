@@ -87,12 +87,12 @@
   --background-btn-block-table: rgba(217, 217, 217, 0.24);
   --background-even-tr-table: rgba(138, 181, 57, 0.08);
   --background-tr-table-hover: rgba(138, 181, 57, .2);
-  --background-th-table: #F2F2F2;
+  --background-th-table: #ffffff;
   --color-th-table: #3A6210;
   --text-stroke-th-table: .05px #5F8835;
   --border-th-table: 2px solid;
   --border-color-th-table: #ffffff;
-  --box-shadow-th-table: inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1);
+  --box-shadow-th-table: none;
   --svg-table: 15px;
 
   
