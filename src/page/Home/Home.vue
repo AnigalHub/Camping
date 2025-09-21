@@ -2,7 +2,7 @@
   <div class="content_wrapper_home">
     <div class="wrapper_home">
       <v-container max-height="97vh">
-        <div class="buttons-container">
+        <div class="buttons_options">
           <div v-for="menu in menus.slice(-2)" :key="menu" class="buttons">
             <div @click="goRoute(menu.route)" class="button">
               <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
@@ -16,8 +16,8 @@
             <div class="slogan">
               «Кемпинг у моря - природа, которой хочется делиться!»
             </div>
-            <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="buttons buttons_2">
-              <div @click="goRoute(menu.route)" class="vintage-glass-green">
+            <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="main_buttons">
+              <div @click="goRoute(menu.route)" class="main_button">
                 <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
                 <div> {{ menu.name }}</div>
               </div>
@@ -101,11 +101,13 @@ function goRoute(name) {
   background: var(--background-color-page);
   height: 100vh;
 }
+
 .wrapper_home {
   background: var(--background-img-page);
   background-size: var(--background-size-img-page);
   height: 100vh;
 }
+
 h1 {
   color: var(--color-h1-home);
   -webkit-text-stroke: var(--text-stroke-h1-home);
@@ -121,6 +123,7 @@ h1 {
   margin-top: -3%;
   margin-bottom: 25px;
 }
+
 .slogan {
   color: var(--color-slogan-home);
   -webkit-text-stroke: var(--text-stroke-slogan-home);
@@ -138,20 +141,10 @@ h1 {
   margin: -7% 0 4% 4%;
 }
 
-.buttons-container {
+.buttons_options {
   display: flex;
   justify-content: flex-end;
   gap: 15px;
-}
-
-.buttons-container .icon {
-  width: 40px !important;
-  margin: .5rem .5rem .5rem 2rem !important;
-}
-
-.buttons .icon {
-  margin: .5rem 1rem;
-  width: 55px;
 }
 
 .button {
@@ -162,38 +155,51 @@ h1 {
   font-size: 1.6rem;
 }
 
-.vintage-glass-green {
+.button .icon {
+  width: 40px;
+  margin: .5rem .5rem .5rem 2rem;
+}
+
+.main_buttons {
+  margin-left: 9%;
+}
+
+.main_button .icon {
+  margin: .5rem 1rem;
+  width: 55px;
+}
+
+.main_button {
   position: relative;
   display: flex;
   align-items: center;
   margin-bottom: 2.5%;
   width: 90%;
   padding: 2px 4px;
+  color: var(--color-main-buttons-home);
+  -webkit-text-stroke: var(--text-stroke-main-buttons-home);
   font-family: var(--font-family-btn);
   font-size: 1.6rem;
-  color: #2a3a1f;
-  border: 3px solid #acb1967c;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.2));
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
+  background: var(--background-main-buttons-home);
+  border-radius: var(--border-radius-main-buttons-home);
+  border: var(--border-main-buttons-home);
+  border-color: var(--border-color-main-buttons-home);
+  box-shadow: var(--box-shadow-main-buttons-home);
+  backdrop-filter: var(--filter-main-buttons-home);
+  -webkit-backdrop-filter: var(--filter-main-buttons-home);
   transition: all 0.25s ease;
 }
 
-.vintage-glass-green:hover {
+.main_button:hover {
   cursor: pointer;
-  background: linear-gradient(to top,
-      rgba(197, 211, 149, 0.2),
-      rgba(197, 211, 149, 0.2));
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4),
-    10px 10px 8px rgba(17, 44, 18, 0.2);
-}
-
-.buttons_2 {
-  margin-left: 9%;
+  color: var(--color-main-buttons-home-hover);
+  -webkit-text-stroke: var(--text-stroke-main-buttons-home-hover);
+  background: var(--background-main-buttons-home-hover);
+  border-radius: var(--border-radius-main-buttons-home-hover);
+  border: var(--border-main-buttons-home-hover);
+  border-color: var(--border-color-main-buttons-home-hover);
+  box-shadow: var(--box-shadow-main-buttons-home-hover);
+  backdrop-filter: var(--filter-main-buttons-home-hover);
+  -webkit-backdrop-filter: var(--filter-main-buttons-home-hover)
 }
 </style>

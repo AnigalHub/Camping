@@ -30,7 +30,7 @@
   height: 100%;
   background: var(--background-img-page);
   background-size: var(--background-size-img-page);
-  filter: var(--blur-background-page);
+  filter: var(--filter-background-page);
   z-index: 1; 
 }
 .wrapper > * {

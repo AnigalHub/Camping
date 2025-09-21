@@ -23,16 +23,11 @@
               </div>
               <div v-if="tab === tabs[2].value">
                 <v-row no-gutters>
-                  <v-col>
-
-                  </v-col>
-
+                  <v-col></v-col>
                   <v-col cols="3">
-
                     <img src="./../../../../public/33.png" style="width: 120%; height: 50vh; margin-left: -25%; " />
                   </v-col>
                 </v-row>
-
               </div>
             </v-card-text>
           </v-tabs-window-item>
@@ -90,7 +85,6 @@ const tabs = [
   box-shadow: 1px -2px 0px rgba(0, 0, 0, 0.2);
   border-radius: 20px 20px 0px 0px;
 }
-
 
 .v-btn {
   text-transform: none;

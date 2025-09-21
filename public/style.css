@@ -31,7 +31,7 @@
   --border-color-h1-home: transparent;
   --box-shadow-h1-home: none;
 
-   /* Слоган Главной страницы */
+  /* Слоган Главной страницы */
   --color-slogan-home:rgba(0, 0, 0, 0.75);
   --text-stroke-slogan-home: none;
   --font-family-slogan-home: "Pacifico", cursive;
@@ -43,12 +43,30 @@
 
   /* Иконки кнопок Главной страницы */
   --fill-icon-home: #5F8835;
+  /* Основные кнопки Главной страницы */
+  --color-main-buttons-home: #2a3a1f;
+  --text-stroke-main-buttons-home: none;
+  --background-main-buttons-home: linear-gradient(to top,rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+  --border-radius-main-buttons-home: 20px;
+  --border-main-buttons-home: 3px solid;
+  --border-color-main-buttons-home: #acb1967c;
+  --box-shadow-main-buttons-home: inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1);
+  --filter-main-buttons-home:blur(10px);
+  /* Основные кнопки (при наведении) Главной страницы */
+  --color-main-buttons-home-hover: #2a3a1f;
+  --text-stroke-main-buttons-home-hover: none;
+  --background-main-buttons-home-hover: linear-gradient(to top,rgba(197, 211, 149, 0.2), rgba(197, 211, 149, 0.2));
+  --border-radius-main-buttons-home-hover: 20px;
+  --border-main-buttons-home-hover: 3px solid;
+  --border-color-main-buttons-home-hover: #acb1967c;
+  --box-shadow-main-buttons-home-hover: inset 0 0 10px rgba(255, 255, 255, 0.4), 10px 10px 8px rgba(17, 44, 18, 0.2);
+  --filter-main-buttons-home-hover:blur(10px);
 
   /** Фон страниц */
   --background-color-page: radial-gradient(circle, #ffffff 0%, #f4efd7 75% );
   --background-img-page: url(./../../../public/1111.png) 100% 100% no-repeat;
   --background-size-img-page: 100% 100%;
-  --blur-background-page: blur(2.5px);
+  --filter-background-page: blur(2.5px);
 
  /* Шрифты страниц */
   --font-family-main: "Zen Kaku Gothic New", sans-serif;
