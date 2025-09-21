@@ -51,6 +51,9 @@
             <v-switch v-model="item[col.key]" :disabled="true"
               :class="item[col.key] ? 'custom-switch--true' : 'custom-switch--false'"></v-switch>
           </template>
+          <template v-else-if="col.key === 'car'">
+           
+          </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
             <component :is="editSvg" />
             <component :is="deleteSvg" />
@@ -179,7 +182,7 @@ svg {
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr>td {
-  font-size: 1.2;
+  font-size: 1rem;
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr:hover,

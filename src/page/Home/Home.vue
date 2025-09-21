@@ -44,7 +44,6 @@ import ServicesSvg from './../../svg/services.vue'
 import SettingsSvg from './../../svg/settings.vue'
 import ExitSvg from './../../svg/exit.vue'
 
-const homeSvg = HomeSvg
 const registrationSvg = RegistrationSvg
 const listClientsSvg = ListClientsSvg
 const mapObjectSvg = MapObjectSvg
@@ -52,6 +51,7 @@ const tripsSvg = TripsSvg
 const servicesSvg = ServicesSvg
 const settingsSvg = SettingsSvg
 const exitSvg = ExitSvg
+
 const menus = [
   {
     icon: registrationSvg,
@@ -71,7 +71,7 @@ const menus = [
   {
     icon: tripsSvg,
     name: 'Ближайшие выезды',
-    route: '',
+    route: 'Trips',
   },
   {
     icon: servicesSvg,
@@ -104,9 +104,6 @@ function goRoute(name) {
   display: flex;
   align-self: start;
 }
-
-
-
 
 .buttons-container .icon {
   width: 40px !important;
