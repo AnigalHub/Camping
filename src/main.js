@@ -24,4 +24,4 @@ const app = createApp(App)
 
 registerPlugins(app)
 
-app.use(router).use().mount('#app');
+app.use(router).mount('#app'); 

@@ -13,7 +13,7 @@
 <style>
 
 .v-main {
-  background: url(./../public/bg.png) 100% 100% no-repeat;
+  background: url(./../public/bg2.jpg) 100% 100% no-repeat;
   background-size: 100% 100%;
 }
 </style>
