@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <MapObjects/>
+      <AdditionalCosts/>
     </v-main>
   </v-app>
 </template>

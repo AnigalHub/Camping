@@ -13,7 +13,6 @@
         </v-tabs>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item.text" :value="item.value">
-
             <v-card-text>
               <div v-if="tab === tabs[0].value">
                 <FreeSeats />
@@ -36,12 +35,10 @@ const tabs = [
   {
     text: 'Свободные места',
     value: 'Свободные места-1',
-
   },
   {
     text: 'Координаты объектов',
     value: 'Координаты объектов-2',
-
   },
 ]
 </script>
