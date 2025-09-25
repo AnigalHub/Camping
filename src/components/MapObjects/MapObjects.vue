@@ -19,7 +19,7 @@
                 <FreeSeats />
               </div>
               <div v-else>
-               <Coordinates/>
+               <CoordinatesObjects/>
               </div>
             </v-card-text>
           </v-tabs-window-item>

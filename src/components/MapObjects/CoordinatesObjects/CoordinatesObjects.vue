@@ -1,7 +1,8 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <img src="./../../../../public/map.png" />
+      <!-- <img src="./../../../../public/map.png" /> -->
+      <component :is="mapSvg"/>
     </v-col>
     <v-col>
       <v-card height="50vh" class="coordinates">
@@ -22,33 +23,18 @@
 </template>
 
 <script setup>
+import map from './../../../svg/map.vue';
+import { shallowRef } from 'vue'
+const mapSvg = shallowRef(map)
 const items = [
-  {
-    value: '43.960635, 39.263933',
-  },
-  {
-    value: '44.260545, 37.463974',
-  },
-  {
-    value: '46.742464, 35.933421',
-  },
-  {
-    value: '45.126335, 34.393356',
-  },
-  {
-    value: '47.256335, 32.372356',
-  },
-  {
-    value: '48.363257, 30.295367',
-  },
-  {
-    value: '41.830533, 31.118635',
-  },
-
-  {
-    value: '49.220335, 46.253733',
-  },
-
+  { value: '43.960635, 39.263933' },
+  { value: '44.260545, 37.463974' },
+  { value: '46.742464, 35.933421' },
+  { value: '45.126335, 34.393356' },
+  { value: '47.256335, 32.372356' },
+  { value: '48.363257, 30.295367' },
+  { value: '41.830533, 31.118635' },
+  { value: '49.220335, 46.253733' },
 ]
 </script>
 
@@ -79,12 +65,11 @@ const items = [
 
 .v-card .v-card {
   margin: 10px 30px 10px 15px;
-  border-radius: 10px;
-  border: 0.5px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px; 
+  border: none;
+  box-shadow: none;
 }
-
-img {
+svg {
   width: 100%;
   margin-top: 20px;
   max-height: 50vh;

@@ -1,17 +1,18 @@
 <template>
   <div>
-    <img src="./../../../public/arrow.png" />
+    <component :is="backSvg"/>
     <div class="back">Назад</div>
   </div>
 </template>
 
 <script setup>
+import back from './../../svg/back.vue';
+import { shallowRef } from 'vue'
+const backSvg = shallowRef(back)
 </script>
 
 <style scoped>
-img {
-  width: 50px;
-  height: 50px;
+svg {
   float: left;
 }
 
@@ -20,7 +21,7 @@ img {
   font-weight: 200;
   font-size: 1.45rem;
   align-items: center;
-  height: 65px;
+  height: 55px;
   max-width: 80px;
   display: flex;
   justify-content: center;
