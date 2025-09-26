@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <HelloWorld />
+      <MapObjects/>
     </v-main>
   </v-app>
 </template>
