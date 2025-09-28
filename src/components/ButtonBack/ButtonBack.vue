@@ -14,7 +14,7 @@ const backSvg = shallowRef(back);
 
 /** Возврат назад */
 function clickBack() {
-  return router.go(-1);
+  return router.push('/');
 }
 </script>
 
@@ -45,12 +45,18 @@ function clickBack() {
   transition: all 0.25s ease;
 }
 
-.back:hover .back_text{
-  color: #5F8835;
+.back:hover{
+  cursor: pointer;
+    background: linear-gradient(to top,
+         rgba(197, 211, 149, 0.2),
+      rgba(197, 211, 149, 0.2)); 
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4),
+    10px 10px 8px rgba(17, 44, 18, 0.2);
 }
 
 svg {
-  float: left; margin-right: 5%;
+  float: left; 
+  margin-right: 8%;
 }
 
 .back_text {

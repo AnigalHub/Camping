@@ -105,9 +105,7 @@ function goRoute(name) {
   align-self: start;
 }
 
-.v-col-5 {
-  padding-left: 5% !important;
-}
+
 
 
 .buttons-container .icon {

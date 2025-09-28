@@ -20,7 +20,6 @@
   background: none !important;
 }
 .search .v-field--variant-filled .v-field__outline::before{
-  
    opacity: .7 !important;
    border-color: #5F8835 !important;
 }
