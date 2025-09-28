@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <v-container min-height="97vh">
-      <BackButton/>
+      <ButtonBack/>
       <div>
         <h1 class="text-center">Карта полянок</h1>
       </div>
@@ -29,7 +29,13 @@
 </template>
 
 <script setup>
-import { shallowRef } from 'vue'
+import { shallowRef } from 'vue';
+import FreeSeats from './FreeSeats/FreeSeats.vue'
+import CoordinatesObjects from './CoordinatesObjects/CoordinatesObjects.vue'
+
+defineOptions({
+  name: 'MapObjects'
+})
 const tab = shallowRef('Свободные места')
 const tabs = [
   {

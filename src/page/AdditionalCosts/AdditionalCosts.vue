@@ -1,11 +1,10 @@
 <template>
     <div class="map">
       <v-container min-height="97vh">
-        <BackButton/>
+        <ButtonBack/>
         <div>
           <h1 class="text-center">Дополнительные расходы и настройки</h1>
         </div>
-        
         <v-card>
           <v-tabs v-model="tab" grow>
             <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
@@ -33,7 +32,13 @@
   </template>
   
   <script setup>
-  import { shallowRef } from 'vue'
+  import { shallowRef } from 'vue';
+  import ListExpenses from './ListExpenses/ListExpenses.vue'
+
+  defineOptions({
+  name: 'AdditionalCosts'
+})
+
   const tab = shallowRef('Добавить расходы')
   const tabs = [
     {
