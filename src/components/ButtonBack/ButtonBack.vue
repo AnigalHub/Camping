@@ -21,6 +21,28 @@ function clickBack() {
 <style scoped>
 .back {
   cursor: pointer;
+    position: relative;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  padding: 4px 10px;
+  font-family: "Georgia", serif;
+  font-size: 1.6rem;
+  color: #2a3a1f;
+  border: 3px solid #acb1967c;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  /* размытие фона за элементом (поддержка в современных браузерах) */
+  -webkit-backdrop-filter: blur(10px);
+  /* для Safari */
+  /* Добавим градиент для имитации блика */
+  background: linear-gradient(to top,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.2));
+  /* Тень и внутренний блеск для стеклянного эффекта */
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1);
+  transition: all 0.25s ease;
 }
 
 .back:hover .back_text{
@@ -28,7 +50,7 @@ function clickBack() {
 }
 
 svg {
-  float: left;
+  float: left; margin-right: 5%;
 }
 
 .back_text {
@@ -38,6 +60,7 @@ svg {
   align-items: center;
   height: 55px;
   max-width: 80px;
+  padding-top: 8px;
   display: flex;
   justify-content: center;
 }

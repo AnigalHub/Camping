@@ -1,8 +1,8 @@
 <template>
   <v-container min-height="97vh">
     <ButtonBack />
+     <h1 class="text-center">Список клиентов</h1>
     <div class="table_bllock content">
-      <h1 class="text-center">Список клиентов</h1>
       <Search />
       <Table :headers="headers" :items="items" />
     </div>
@@ -169,6 +169,7 @@ h1 {
   font-weight: 200;
   color: #4d672c;
   -webkit-text-stroke: 0.25px #4d672c;
-  margin: 5px 0;
+  margin: 5px 0 15px;
+  transform: scale(1.25);
 }
 </style>
