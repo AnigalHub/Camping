@@ -1,12 +1,14 @@
 <template>
   <v-row no-gutters>
-    <v-col>
-      <component :is="mapSvg"/>
+        <v-col >
+      <!-- <component :is="mapSvg"/> -->
+        <img src="./../../../../public/map_2.png" style="width: 100%;height: 63vh;" />
     </v-col>
-    <v-col>
+
+     <v-col cols="3">
       <v-card height="50vh" class="coordinates">
         <v-list lines="two">
-          <v-list-item v-for="(item, index) in items" :key="index" two-line>
+          <v-list-item v-for="(item, index) in halfArray" :key="index" two-line>
             <template v-slot:prepend>
               <v-icon icon="mdi-circle" size="x-small" color="#3A6210"></v-icon>
             </template>
@@ -18,10 +20,27 @@
         </v-list>
       </v-card>
     </v-col>
+        <v-col cols="3">
+      <v-card height="50vh" class="coordinates">
+        <v-list lines="two">
+          <v-list-item v-for="(item, index) in halfFromEnd" :key="index" two-line>
+            <template v-slot:prepend>
+              <v-icon icon="mdi-circle" size="x-small" color="#3A6210"></v-icon>
+            </template>
+            <v-list-item-content>
+              <v-list-item-title>Поляна {{ halfArray.length + index + 1 }}</v-list-item-title>
+              <v-list-item-subtitle>{{ item.value }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-card>
+    </v-col>
+
   </v-row>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import map from './../../../svg/map.vue';
 import { shallowRef } from 'vue'
 const mapSvg = shallowRef(map)
@@ -35,6 +54,16 @@ const items = [
   { value: '41.830533, 31.118635' },
   { value: '49.220335, 46.253733' },
 ]
+
+ const halfArray= computed(() => { 
+      const halfIndex = Math.floor(items.length / 2);
+      return items.slice(0, halfIndex);
+  })
+
+  const  halfFromEnd= computed(() => { 
+      const halfIndex = Math.ceil(items.length / 2);
+      return items.slice(-halfIndex);
+    })
 </script>
 
 <style>
@@ -48,12 +77,12 @@ const items = [
   -webkit-text-stroke: .05px #5F8835;
   font-family: "El Messiri", sans-serif;
   font-weight: 500;
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   letter-spacing: -1px;
 }
 
 .v-list-item-subtitle {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .coordinates {
@@ -63,7 +92,7 @@ const items = [
 }
 
 .v-card .v-card {
-  margin: 10px 30px 10px 15px;
+  margin: 5px 30px 10px 15px;
   border-radius: 10px; 
   border: none;
   box-shadow: none;
@@ -100,5 +129,10 @@ svg {
   /* цвет фона полоски */
   border: .3px solid #9f9f9f;
   border-radius: 4px;
+}
+
+.v-list{
+  margin-top: 3%;
+      background: rgb(250 250 250);
 }
 </style>

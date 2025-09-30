@@ -72,6 +72,17 @@ function formatDate(dateStr) {
 </script>
 
 <style>
+
+.v-table {
+  padding: 10px;
+  font-size: 1rem;
+      border-radius: 15px !important;
+
+}
+tbody, thead{
+     border-radius: 15px !important;
+}
+
 .v-table__wrapper {
   padding-right: 30px !important;
 }
@@ -99,11 +110,8 @@ function formatDate(dateStr) {
   border-radius: 4px;
 }
 
-.v-table>.v-table__wrapper>table {
-  border: 1px solid rgba(0, 0, 0, .2) !important;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
+
+
 </style>
 <style scoped>
 .bg_buttons {
@@ -121,6 +129,9 @@ svg {
   padding: 10px;
   font-size: 1rem;
 }
+.v-table > .v-table__wrapper > table > tbody > tr > td{
+   font-size: 1.2;
+}
 
 .v-table>.v-table__wrapper>table>tbody>tr:hover,
 .v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
@@ -134,10 +145,13 @@ svg {
   -webkit-text-stroke: .05px #5F8835;
   border: 1.75px solid white;
   padding: 10px !important;
+   font-size: 1.2rem;
+     font-family: "El Messiri", sans-serif;
+  font-weight: 500;
 }
 
 .v-table>.v-table__wrapper>table>thead {
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2); */
 }
 
 .no_shadow {

@@ -1,30 +1,35 @@
 <template>
   <div class="home">
-    <v-container max-height="97vh">
-      <div class="buttons-container">
-        <v-btn v-for="menu in menus.slice(-2)" :key="menu" @click="goRoute(menu.route)">
-          <component v-if="menu.icon" :is="menu.icon" class="icon" />
-          {{ menu.name }}
-        </v-btn>
-      </div>
-      <h1 class="text-center">Ромашка</h1>
-      <v-row no-gutters>
-        <v-col cols="5">
-          <div class="slogan">
-            «Кемпинг у моря - природа, которой хочется делиться!»
-          </div>
-          <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="buttons">
-            <v-btn @click="goRoute(menu.route)">
+    <div class="home_bg">
+      <v-container max-height="97vh">
+        <div class="buttons-container">
+          <div v-for="menu in menus.slice(-2)" :key="menu" class="buttons">
+            <div @click="goRoute(menu.route)" class="button">
               <component v-if="menu.icon" :is="menu.icon" class="icon" />
-              {{ menu.name }}
-            </v-btn>
+              <div>{{ menu.name }}</div>
+            </div>
           </div>
-        </v-col>
-        <v-col>
-          <component :is="homeSvg" class="home_svg" />
-        </v-col>
-      </v-row>
-    </v-container>
+        </div>
+        <h1 class="text-center">"Ромашка"</h1>
+        <v-row no-gutters>
+          <v-col cols="5">
+            <div class="slogan">
+              «Кемпинг у моря - природа, которой хочется делиться!»
+            </div>
+            <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="buttons buttons_2">
+              <div @click="goRoute(menu.route)" class="vintage-glass-green" >
+                <component v-if="menu.icon" :is="menu.icon" class="icon" :color="'#4d702be7'" />
+                <div> {{ menu.name }}</div>
+              </div>
+            </div>
+          </v-col>
+          <v-col>
+            <!-- <component :is="homeSvg" class="home_svg" /> -->
+            <img src="./../../../public/4.png" style="width: 105%;height: 85vh; margin-top: -8%;" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
   </div>
 </template>
 
@@ -47,7 +52,6 @@ const tripsSvg = TripsSvg
 const servicesSvg = ServicesSvg
 const settingsSvg = SettingsSvg
 const exitSvg = ExitSvg
-
 const menus = [
   {
     icon: registrationSvg,
@@ -57,7 +61,7 @@ const menus = [
   {
     icon: listClientsSvg,
     name: 'Список клиентов',
-    route: '',
+    route: 'ListClients',
   },
   {
     icon: mapObjectSvg,
@@ -94,39 +98,26 @@ function goRoute(name) {
 </script>
 
 <style scoped>
-.icon {
-  margin: 10px;
+.btn {
+  font-family: "Georgia", serif;
+  font-size: 1.6rem;
+  display: flex;
+  align-self: start;
 }
 
+.v-col-5 {
+  padding-left: 5% !important;
+}
+
+
 .buttons-container .icon {
-  width: 55px;
-  height: 55px;
+  width: 40px !important;
+    margin: .5rem .5rem .5rem 2rem !important;
 }
 
 .buttons .icon {
-  width: 70px;
-  height: 70px;
-}
-
-.home {
-  padding: 0 2%;
-}
-
-.v-btn {
-  font-size: 2rem;
-  text-transform: none;
-  border: none;
-  box-shadow: none;
-  background: transparent;
-  font-family: "El Messiri", sans-serif;
-  font-weight: 200;
-  letter-spacing: -.5px;
-}
-.buttons{
-  margin-left: 10%;
-}
-.buttons .v-btn {
-   margin-bottom: 10%;
+  margin: .5rem 1rem;
+  width: 55px;
 }
 
 .buttons-container {
@@ -134,7 +125,6 @@ function goRoute(name) {
   justify-content: flex-end;
   /* выравнивание по правому краю */
   gap: 8px;
-  /* отступ между кнопками (8px — можно настроить) */
 }
 
 h1 {
@@ -143,11 +133,54 @@ h1 {
   font-style: normal;
   font-size: 7rem;
   letter-spacing: 0.08em;
-  color: #5F8835;
-  -webkit-text-stroke: 1.5px #5F8835;
+  color: #4d672c;
+  -webkit-text-stroke: 1.5px #4d672c;
   margin-top: -3%;
   margin-bottom: 25px;
 }
+
+.button{
+    position: relative;
+  display: flex;
+  align-items: center;
+    font-family: "Georgia", serif;
+  font-size: 1.6rem;
+}
+
+.vintage-glass-green {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5%;
+  width: 90%;
+  padding: 2px 4px;
+  font-family: "Georgia", serif;
+  font-size: 1.6rem;
+  color: #2a3a1f;
+  border: 3px solid #acb1967c;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  /* размытие фона за элементом (поддержка в современных браузерах) */
+  -webkit-backdrop-filter: blur(10px);
+  /* для Safari */
+  /* Добавим градиент для имитации блика */
+  background: linear-gradient(to top,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.2));
+  /* Тень и внутренний блеск для стеклянного эффекта */
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1);
+  transition: all 0.25s ease;
+}
+.vintage-glass-green:hover{
+  cursor: pointer;
+    background: linear-gradient(to top,
+         rgba(197, 211, 149, 0.2),
+      rgba(197, 211, 149, 0.2)); 
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4),
+    10px 10px 8px rgba(17, 44, 18, 0.2);
+}
+
 
 .home_svg {
   margin-top: -7%;
@@ -156,19 +189,45 @@ h1 {
 
 }
 
+.buttons_2 {
+  margin-left: 9%;
+}
+
 .slogan {
   font-family: "Pacifico", cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: 35px;
-  width: 98%;
-  line-height: 50px;
+  font-size: 38px;
+  width: 100%;
+  line-height: 55px;
   color: rgba(0, 0, 0, 0.75);
-  margin-top: -6%;
+  margin-top: -7%;
   margin-bottom: 4%;
+  margin-left: 4%;
+  letter-spacing: 1px;
 }
 
-.home{
-  padding: 20px 20px 0;
+.home {
+  background: radial-gradient(circle,
+      #ffffff 0%,
+      #f4efd7 75%);
+  height: 100vh;
+}
+
+img {
+  transform: scale(1);
+}
+
+.home {
+  background: radial-gradient(circle,
+      #ffffff 0%,
+      #f4efd7 75%);
+  height: 100vh;
+}
+
+.home_bg {
+  background: url(./../../../public/1111.png) 100% 100% no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
 }
 </style>
