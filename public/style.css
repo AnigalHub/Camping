@@ -1,10 +1,57 @@
 :root{
+  /* Заголовки страниц */
   --color-h1: #4d672c;
   --text-stroke-h1: 0.25px #4d672c;
   --background-h1: #d8dfc2c1;
+  --border-radius-h1: 10px;
+  --border-h1: none;
+  --border-color-h1: transparent;
+  --box-shadow-h1: none;
 
+  /** Скролл */
+  --size-scrollbar: 8px;
+  --background-track-scrollbar: #e0e0e0;
+  --border-radius-track-scrollbar: 4px;
+  --border-track-scrollbar: .3px solid;
+  --border-color-track-scrollbar: #9f9f9f;
+
+   /** Ползунок скролла */
+  --background-slider-scrollbar: #8AB539;
+  --border-radius-slider-scrollbar: 4px;
+  --border-slider-scrollbar: none;
+  --border-color-slider-scrollbar: transparent;
+
+  /* Заголовок Главной страницы */
+  --color-h1-home: #4d672c;
+  --text-stroke-h1-home: 1.5px #4d672c;
+  --font-family-h1-home: "Great Vibes", cursive;
+  --background-h1-home: transparent;
+  --border-radius-h1-home: 0;
+  --border-h1-home: none;
+  --border-color-h1-home: transparent;
+  --box-shadow-h1-home: none;
+
+   /* Слоган Главной страницы */
+  --color-slogan-home:rgba(0, 0, 0, 0.75);
+  --text-stroke-slogan-home: none;
+  --font-family-slogan-home: "Pacifico", cursive;
+  --background-slogan-home: transparent;
+  --border-radius-slogan-home: 0;
+  --border-slogan-home: none;
+  --border-color-slogan-home: transparent;
+  --box-shadow-slogan-home: none;
+
+  /* Иконки кнопок Главной страницы */
+  --fill-icon-home: #5F8835;
+
+  /** Фон страниц */
+  --background-color-page: radial-gradient(circle, #ffffff 0%, #f4efd7 75% );
+  --background-img-page: url(./../../../public/1111.png) 100% 100% no-repeat;
+  --background-size-img-page: 100% 100%;
+  --blur-background-page: blur(2.5px);
+
+ /* Шрифты страниц */
   --font-family-main: "Zen Kaku Gothic New", sans-serif;
   --font-family: "El Messiri", sans-serif;
-
-
+  --font-family-btn: "Georgia", serif;
 }

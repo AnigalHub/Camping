@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
-    <div class="home_bg">
+  <div class="content_wrapper_home">
+    <div class="wrapper_home">
       <v-container max-height="97vh">
         <div class="buttons-container">
           <div v-for="menu in menus.slice(-2)" :key="menu" class="buttons">
             <div @click="goRoute(menu.route)" class="button">
-              <component v-if="menu.icon" :is="menu.icon" class="icon" />
+              <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
               <div>{{ menu.name }}</div>
             </div>
           </div>
@@ -17,14 +17,13 @@
               «Кемпинг у моря - природа, которой хочется делиться!»
             </div>
             <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="buttons buttons_2">
-              <div @click="goRoute(menu.route)" class="vintage-glass-green" >
-                <component v-if="menu.icon" :is="menu.icon" class="icon" :color="'#4d702be7'" />
+              <div @click="goRoute(menu.route)" class="vintage-glass-green">
+                <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
                 <div> {{ menu.name }}</div>
               </div>
             </div>
           </v-col>
           <v-col>
-            <!-- <component :is="homeSvg" class="home_svg" /> -->
             <img src="./../../../public/4.png" style="width: 105%;height: 85vh; margin-top: -8%;" />
           </v-col>
         </v-row>
@@ -35,7 +34,6 @@
 
 <script setup>
 import { router } from '@/router';
-import HomeSvg from './../../svg/home.vue'
 import RegistrationSvg from './../../svg/registration.vue'
 import ListClientsSvg from './../../svg/listclients.vue'
 import MapObjectSvg from './../../svg/map_object.vue'
@@ -89,8 +87,9 @@ const menus = [
     route: 'Exit',
   },
 ]
+
 /**
- * Переход в покупку тренировкок (Доступные тренировки)
+ * Переход по страницам
  */
 function goRoute(name) {
   router.push({ name: name });
@@ -98,16 +97,56 @@ function goRoute(name) {
 </script>
 
 <style scoped>
-.btn {
-  font-family: "Georgia", serif;
-  font-size: 1.6rem;
+.content_wrapper_home {
+  background: var(--background-color-page);
+  height: 100vh;
+}
+.wrapper_home {
+  background: var(--background-img-page);
+  background-size: var(--background-size-img-page);
+  height: 100vh;
+}
+h1 {
+  color: var(--color-h1-home);
+  -webkit-text-stroke: var(--text-stroke-h1-home);
+  font-size: 7rem;
+  letter-spacing: 0.08em;
+  font-family: var(--font-family-h1-home);
+  font-weight: 400;
+  background: var(--background-h1-home);
+  border-radius: var(--border-radius-h1-home);
+  border: var(--border-h1-home);
+  border-color: var(--border-color-h1-home);
+  box-shadow: var(--box-shadow-h1-home);
+  margin-top: -3%;
+  margin-bottom: 25px;
+}
+.slogan {
+  color: var(--color-slogan-home);
+  -webkit-text-stroke: var(--text-stroke-slogan-home);
+  font-size: 38px;
+  letter-spacing: 1px;
+  font-family: var(--font-family-slogan-home);
+  font-weight: 400;
+  background: var(--background-slogan-home);
+  border-radius: var(--border-radius-slogan-home);
+  border: var(--border-slogan-home);
+  border-color: var(--border-color-slogan-home);
+  box-shadow: var(--box-shadow-slogan-home);
+  width: 100%;
+  line-height: 55px;
+  margin: -7% 0 4% 4%;
+}
+
+.buttons-container {
   display: flex;
-  align-self: start;
+  justify-content: flex-end;
+  gap: 15px;
 }
 
 .buttons-container .icon {
   width: 40px !important;
-    margin: .5rem .5rem .5rem 2rem !important;
+  margin: .5rem .5rem .5rem 2rem !important;
 }
 
 .buttons .icon {
@@ -115,30 +154,11 @@ function goRoute(name) {
   width: 55px;
 }
 
-.buttons-container {
-  display: flex;
-  justify-content: flex-end;
-  /* выравнивание по правому краю */
-  gap: 8px;
-}
-
-h1 {
-  font-family: "Great Vibes", cursive;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 7rem;
-  letter-spacing: 0.08em;
-  color: #4d672c;
-  -webkit-text-stroke: 1.5px #4d672c;
-  margin-top: -3%;
-  margin-bottom: 25px;
-}
-
-.button{
-    position: relative;
+.button {
+  position: relative;
   display: flex;
   align-items: center;
-    font-family: "Georgia", serif;
+  font-family: var(--font-family-btn);
   font-size: 1.6rem;
 }
 
@@ -149,80 +169,31 @@ h1 {
   margin-bottom: 2.5%;
   width: 90%;
   padding: 2px 4px;
-  font-family: "Georgia", serif;
+  font-family: var(--font-family-btn);
   font-size: 1.6rem;
   color: #2a3a1f;
   border: 3px solid #acb1967c;
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  /* размытие фона за элементом (поддержка в современных браузерах) */
   -webkit-backdrop-filter: blur(10px);
-  /* для Safari */
-  /* Добавим градиент для имитации блика */
   background: linear-gradient(to top,
       rgba(255, 255, 255, 0.6),
       rgba(255, 255, 255, 0.2));
-  /* Тень и внутренний блеск для стеклянного эффекта */
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1);
   transition: all 0.25s ease;
 }
-.vintage-glass-green:hover{
+
+.vintage-glass-green:hover {
   cursor: pointer;
-    background: linear-gradient(to top,
-         rgba(197, 211, 149, 0.2),
-      rgba(197, 211, 149, 0.2)); 
-        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4),
+  background: linear-gradient(to top,
+      rgba(197, 211, 149, 0.2),
+      rgba(197, 211, 149, 0.2));
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4),
     10px 10px 8px rgba(17, 44, 18, 0.2);
-}
-
-
-.home_svg {
-  margin-top: -7%;
-  width: 100%;
-  max-height: 80vh;
-
 }
 
 .buttons_2 {
   margin-left: 9%;
-}
-
-.slogan {
-  font-family: "Pacifico", cursive;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 38px;
-  width: 100%;
-  line-height: 55px;
-  color: rgba(0, 0, 0, 0.75);
-  margin-top: -7%;
-  margin-bottom: 4%;
-  margin-left: 4%;
-  letter-spacing: 1px;
-}
-
-.home {
-  background: radial-gradient(circle,
-      #ffffff 0%,
-      #f4efd7 75%);
-  height: 100vh;
-}
-
-img {
-  transform: scale(1);
-}
-
-.home {
-  background: radial-gradient(circle,
-      #ffffff 0%,
-      #f4efd7 75%);
-  height: 100vh;
-}
-
-.home_bg {
-  background: url(./../../../public/1111.png) 100% 100% no-repeat;
-  background-size: 100% 100%;
-  height: 100vh;
 }
 </style>

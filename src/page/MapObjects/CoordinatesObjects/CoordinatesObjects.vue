@@ -100,7 +100,7 @@ const items = [
 svg {
   width: 100%;
   margin-top: 20px;
-  max-height: 50vh;
+
   height: auto;
 }
 

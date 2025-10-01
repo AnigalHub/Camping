@@ -106,7 +106,7 @@ const tabs = [
 
 .v-card {
   height: auto;
-  min-height: 75vh;
+  min-height: 80vh;
   border-radius: 20px !important;
   backdrop-filter: blur(9px);
   background: linear-gradient(to top,

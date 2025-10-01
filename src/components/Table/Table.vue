@@ -108,7 +108,6 @@ function formatDate(dateStr) {
 .custom-switch--true .v-switch__thumb {
   background-color: #87bd23 !important;
 }
-
 .v-switch__track,
 .v-switch__thumb {
   border: 1px solid #000;
@@ -121,29 +120,6 @@ thead {
 
 .v-table__wrapper {
   padding-right: 30px !important;
-}
-
-/* Общий стиль для элементов с прокруткой внутри .v-table__wrapper */
-.v-table__wrapper::-webkit-scrollbar {
-  width: 8px;
-  /* ширина полосы прокрутки */
-  height: 8px;
-  /* ширина полосы прокрутки */
-}
-
-/* Стиль ползунка */
-.v-table__wrapper::-webkit-scrollbar-thumb {
-  background-color: #8AB539;
-  /* желаемый цвет ползунка */
-  border-radius: 4px;
-}
-
-/* Стиль трека (фон полоски) */
-.v-table__wrapper::-webkit-scrollbar-track {
-  background-color: #e0e0e0;
-  /* цвет фона полоски */
-  border: .3px solid #9f9f9f;
-  border-radius: 4px;
 }
 </style>
 <style scoped>
