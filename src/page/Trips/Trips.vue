@@ -1,11 +1,13 @@
 <template>
-  <v-container min-height="97vh">
-    <ButtonBack />
-     <h1 class="text-center">Ближайшие выезды</h1>
-    <div class="table_bllock content">
-      <Table :headers="headers" :items="items" />
-    </div>
-  </v-container>
+  <div class="page">
+    <v-container min-height="97vh">
+      <ButtonBack />
+      <h1 class="text-center">Ближайшие выезды</h1>
+      <div class="table_bllock content">
+        <Table :headers="headers" :items="items" />
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script setup>
@@ -19,7 +21,7 @@ const headers = [
     { label: 'Номер телефона', rowspan: 2, key: 'phone' },
     { label: 'Дата проживания', rowspan: 2, key: 'dateStay' },
     { label: 'Аренда домика', rowspan: 2, key: 'house' },
-    { label: 'Транспорт', rowspan: 2, key: 'car' },
+    { label: 'Транспорт', rowspan: 2, key: 'cars' },
     { label: 'Животные', rowspan: 2, key: 'animals' },
     { label: 'Поляна', rowspan: 2, key: 'object' },
     { label: 'Стоимость', rowspan: 2, key: 'price' },
@@ -33,22 +35,22 @@ const items = [
     name: 'Константин',
     patronymic: 'Иванович',
     phone: '+79039004578',
-    startDate:'2025-08-15T00:00:00.000+00:00',
-    endDate:'2025-08-19T00:00:00.000+00:00',
-    house:false,  
+    startDate: '2025-08-15T00:00:00.000+00:00',
+    endDate: '2025-08-19T00:00:00.000+00:00',
+    house: false,
     object: 7,
-    cars:'Х765СС750',
+    cars: 'Х765СС750',
     animals: 2,
-    price:2500,
+    price: 2500,
   },
   {
     surname: 'Алексеева',
     name: 'Мария',
     patronymic: 'Павловна',
     phone: '+79068124233',
-    startDate:'2025-08-20T00:00:00.000+00:00',
-    endDate:'2025-08-25T00:00:00.000+00:00',
-    house:false,  
+    startDate: '2025-08-20T00:00:00.000+00:00',
+    endDate: '2025-08-25T00:00:00.000+00:00',
+    house: false,
     object: 1,
     cars: null,
     animals: 0,
@@ -59,10 +61,10 @@ const items = [
     name: 'Артем',
     patronymic: 'Викторович',
     phone: '+79501674030',
-    startDate:'2025-08-22T00:00:00.000+00:00',
-    endDate:'2025-08-23T00:00:00.000+00:00',
-    house:false,  
-    cars:'Н122АК150',
+    startDate: '2025-08-22T00:00:00.000+00:00',
+    endDate: '2025-08-23T00:00:00.000+00:00',
+    house: false,
+    cars: 'Н122АК150',
     object: 3,
     animals: 1,
     price: 1500,
@@ -72,10 +74,10 @@ const items = [
     name: 'Татьяна',
     patronymic: 'Александровна',
     phone: '+79251542184',
-    startDate:'2025-08-25T00:00:00.000+00:00',
-    endDate:'2025-08-30T00:00:00.000+00:00',
+    startDate: '2025-08-25T00:00:00.000+00:00',
+    endDate: '2025-08-30T00:00:00.000+00:00',
     cars: null,
-    house: true,  
+    house: true,
     object: 2,
     animals: 1,
     price: 7500,
@@ -85,36 +87,36 @@ const items = [
     name: 'Илья',
     patronymic: 'Павлович',
     phone: '+79251445456',
-    startDate:'2025-07-05T00:00:00.000+00:00',
-    endDate:'2025-07-08T00:00:00.000+00:00',
-    cars:'С521КК77',
-    house:false,  
+    startDate: '2025-07-05T00:00:00.000+00:00',
+    endDate: '2025-07-08T00:00:00.000+00:00',
+    cars: 'С521КК77',
+    house: false,
     object: 2,
     animals: 0,
-    price:3000,
+    price: 3000,
   },
   {
     surname: 'Кузнецов',
     name: 'Роман',
     patronymic: 'Иванович',
     phone: '+79259202678459',
-    startDate:'2025-06-06T00:00:00.000+00:00',
-    endDate:'2025-06-09T00:00:00.000+00:00',
+    startDate: '2025-06-06T00:00:00.000+00:00',
+    endDate: '2025-06-09T00:00:00.000+00:00',
     cars: null,
-    house:false,  
+    house: false,
     object: 7,
     animals: 0,
-    price:2500,
+    price: 2500,
   },
   {
     surname: 'Мирзаева',
     name: 'Диана',
     patronymic: 'Сергеевна',
     phone: '+79148816500',
-    startDate:'2025-05-27T00:00:00.000+00:00',
-    endDate:'2025-05-29T00:00:00.000+00:00',
+    startDate: '2025-05-27T00:00:00.000+00:00',
+    endDate: '2025-05-29T00:00:00.000+00:00',
     cars: null,
-    house:false,  
+    house: false,
     object: 9,
     animals: 0,
     price: 1500,
@@ -124,10 +126,10 @@ const items = [
     name: 'Павел',
     patronymic: 'Юрьевич',
     phone: '+79037260448',
-    startDate:'2025-07-07T00:00:00.000+00:00',
-    endDate:'2025-07-08T00:00:00.000+00:00',
+    startDate: '2025-07-07T00:00:00.000+00:00',
+    endDate: '2025-07-08T00:00:00.000+00:00',
     cars: null,
-    house:false,  
+    house: false,
     object: 4,
     animals: 2,
     price: 1500,
@@ -137,10 +139,10 @@ const items = [
     name: 'Иван',
     patronymic: 'Николаевич',
     phone: '+79688373539',
-    startDate:'2025-06-13T00:00:00.000+00:00',
-    endDate:'2025-06-24T00:00:00.000+00:00',
+    startDate: '2025-06-13T00:00:00.000+00:00',
+    endDate: '2025-06-24T00:00:00.000+00:00',
     cars: null,
-    house:true,  
+    house: true,
     object: 3,
     animals: 0,
     price: 8000,
@@ -150,23 +152,23 @@ const items = [
     name: 'Кристина',
     patronymic: 'Сергеевна',
     phone: '+79106295047',
-    startDate:'2025-07-18T00:00:00.000+00:00',
-    endDate:'2025-07-23T00:00:00.000+00:00',
+    startDate: '2025-07-18T00:00:00.000+00:00',
+    endDate: '2025-07-23T00:00:00.000+00:00',
     cars: null,
-    house:true,  
+    house: true,
     object: 8,
     animals: 0,
-    price: 10000,  
+    price: 10000,
   },
   {
     surname: 'Кислов',
     name: 'Петр',
     patronymic: 'Павлович',
     phone: '+79263472779',
-    startDate:'2025-08-15T00:00:00.000+00:00',
-    endDate:'2025-08-16T00:00:00.000+00:00',
+    startDate: '2025-08-15T00:00:00.000+00:00',
+    endDate: '2025-08-16T00:00:00.000+00:00',
     cars: null,
-    house:false,  
+    house: false,
     object: 1,
     animals: 0,
     price: 1000,
@@ -176,10 +178,10 @@ const items = [
     name: 'Александр',
     patronymic: 'Михайлович',
     phone: '+79168371011',
-    startDate:'2025-05-04T00:00:00.000+00:00',
-    endDate:'2025-058-29T00:00:00.000+00:00',
+    startDate: '2025-05-04T00:00:00.000+00:00',
+    endDate: '2025-058-29T00:00:00.000+00:00',
     cars: null,
-    house:true,  
+    house: true,
     object: 9,
     animals: 1,
     price: 12500,
@@ -189,10 +191,10 @@ const items = [
     name: 'Аресений',
     patronymic: 'Иванович',
     phone: '+79671335013',
-    startDate:'2025-05-01T00:00:00.000+00:00',
-    endDate:'2025-05-03T00:00:00.000+00:00',
+    startDate: '2025-05-01T00:00:00.000+00:00',
+    endDate: '2025-05-03T00:00:00.000+00:00',
     cars: null,
-    house:false,  
+    house: false,
     object: 8,
     animals: 0,
     price: 2000,
@@ -202,10 +204,10 @@ const items = [
     name: 'Светлана',
     patronymic: 'Витальевна',
     phone: '+79162493723',
-    startDate:'2025-05-11T00:00:00.000+00:00',
-    endDate:'2025-05-14T00:00:00.000+00:00',
+    startDate: '2025-05-11T00:00:00.000+00:00',
+    endDate: '2025-05-14T00:00:00.000+00:00',
     cars: null,
-    house:false,  
+    house: false,
     object: 7,
     animals: 0,
     price: 1500,
@@ -213,7 +215,7 @@ const items = [
 ]
 </script>
 
-<style>
+<style scoped>
 .table_bllock {
   border-radius: 20px;
   background: white;
@@ -230,14 +232,5 @@ const items = [
 .table_bllock .v-table {
   min-height: 63vh;
   margin-top: -1%;
-}
-
-h1 {
-  font-family: "El Messiri", sans-serif;
-  font-weight: 200;
-  color: #4d672c;
-  -webkit-text-stroke: 0.25px #4d672c;
-  margin: 5px 0 15px;
-  transform: scale(1.25);
 }
 </style>

@@ -75,7 +75,7 @@ const items = [
 .v-list-item-title {
   color: #3A6210;
   -webkit-text-stroke: .05px #5F8835;
-  font-family: "El Messiri", sans-serif;
+  font-family:  var(--font-family);
   font-weight: 500;
   font-size: 1.35rem;
   letter-spacing: -1px;

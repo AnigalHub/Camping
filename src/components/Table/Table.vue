@@ -51,9 +51,6 @@
             <v-switch v-model="item[col.key]" :disabled="true"
               :class="item[col.key] ? 'custom-switch--true' : 'custom-switch--false'"></v-switch>
           </template>
-          <template v-else-if="col.key === 'car'">
-           
-          </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
             <component :is="editSvg" />
             <component :is="deleteSvg" />
@@ -117,13 +114,6 @@ function formatDate(dateStr) {
   border: 1px solid #000;
 }
 
-
-.v-table {
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 15px !important;
-}
-
 tbody,
 thead {
   border-radius: 15px !important;
@@ -176,11 +166,6 @@ svg {
   cursor: pointer;
 }
 
-.v-table {
-  padding: 10px;
-  font-size: 1rem;
-}
-
 .v-table>.v-table__wrapper>table>tbody>tr>td {
   font-size: 1rem;
 }
@@ -197,10 +182,20 @@ svg {
   -webkit-text-stroke: .05px #5F8835;
   border: 2.5px solid white;
   font-size: 1.2rem;
-  font-family: "El Messiri", sans-serif;
+  font-family:  var(--font-family);
   font-weight: 500;
-  box-shadow: none !important;
   padding: 15px 5px !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+  2px 2px 8px rgba(17, 44, 18, 0.1);
+}
+.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:first-child {
+  border-radius: 15px 0 0 0 !important;
+}
+.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:last-child {
+  border-radius: 0 15px 0 0 !important;
+}
+table>tbody>tr:last-child td:last-child{
+  border-radius: 0 0 15px 0 !important;
 }
 
 .no_shadow {
@@ -212,6 +207,16 @@ svg {
 }
 .v-table > .v-table__wrapper > table > tbody > tr > td{
   padding: 0 5px;
+}
+
+.v-table{
+  font-size: 1rem;
+  border-radius: 15px !important;
+  margin: 0 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: transparent;
+  transition: all 0.25s ease;
 }
 
 .v-switch.v-input {

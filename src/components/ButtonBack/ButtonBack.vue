@@ -60,7 +60,7 @@ svg {
 }
 
 .back_text {
-  font-family: "El Messiri", sans-serif;
+  font-family:  var(--font-family);
   font-weight: 200;
   font-size: 1.45rem;
   align-items: center;

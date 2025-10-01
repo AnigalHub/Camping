@@ -32,9 +32,10 @@
 
 .search .v-btn {
   width: 100%;
-  min-height: 55px;
+  min-height: 50px;
+  margin-top: 5px;
   text-transform: none;
-   font-family: "Zen Kaku Gothic New", sans-serif;
+   font-family: var(--font-family-main);
   font-weight: 500;
   letter-spacing: -.15px;
   font-size: 1.3rem;

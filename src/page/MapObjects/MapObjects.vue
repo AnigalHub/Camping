@@ -1,5 +1,5 @@
 <template>
-  <div class="map">
+  <div class="page">
     <v-container min-height="97vh">
       <ButtonBack/>
       <div>
@@ -76,13 +76,13 @@ const tabs = [
 
 .v-btn {
   text-transform: none;
-  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-family: var(--font-family-main);
   font-weight: 500;
   letter-spacing: -.15px;
   font-size: 1.45rem;
   color: #3A6210;
   -webkit-text-stroke: .5px #5F8835;
-  font-family: "El Messiri", sans-serif;
+  font-family:  var(--font-family);
   font-weight: 200;
 }
 
@@ -99,18 +99,5 @@ const tabs = [
   border: none;
 }
 
-.map {
-  background: url(./public/bg.png) 100% 100% no-repeat;
-  background-size: 100% 100%;
-  padding: 10px;
-}
 
-
-h1 {
-  font-family: "El Messiri", sans-serif;
-  font-weight: 200;
- color: #4d672c;
-  -webkit-text-stroke: 0.5px #4d672c;
-margin: 0 0 15px;
-}
 </style>
