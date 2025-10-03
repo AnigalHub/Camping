@@ -133,3 +133,9 @@ const items = [
   },
 ]
 </script>
+
+<style>
+.v-table{
+  height: 65vh;
+}
+</style>

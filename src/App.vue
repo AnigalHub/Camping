@@ -105,11 +105,13 @@
 }
 
 .content, .v-card{
-  border-radius: 15px !important;
+  border-radius: 15px !important;  background-color: transparent !important;
 }
 
 .v-card .v-card {
   border: none;
+  box-shadow: none;
+  background-color: transparent !important;
 }
 
 /* Неактивные табы */
@@ -119,12 +121,17 @@
   box-shadow: 1px -2px 0px rgba(95, 136, 53, 0.4) !important;
   border-radius: 5px 5px 0px 0px !important;
   opacity: 0.55 !important;
+  text-transform: none !important;
+  -webkit-text-stroke: .05px #5F8835;
 }
 
 /* Активный таб */
 .active-tab {
   background-color: transparent !important;
   border: 1px solid transparent !important;
+  color: #5F8835 !important;
+  text-transform: none !important;
+  -webkit-text-stroke: .05px #5F8835;
   box-shadow: 1px -2px 0px rgba(0, 0, 0, 0.2) !important;
   border-radius: 5px 5px 0px 0px !important;
 }

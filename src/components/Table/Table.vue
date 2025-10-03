@@ -161,4 +161,9 @@ table>tbody>tr:last-child td:last-child{
   margin: 0 10px;
   transition: all 0.25s ease;
 }
+
+.v-table>.v-table__wrapper>table>tbody>tr:hover,
+.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
+  background: var(--background-tr-table-hover);
+}
 </style>

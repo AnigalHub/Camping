@@ -5,6 +5,7 @@ const AdditionalCosts = () => import('@/page/AdditionalCosts/AdditionalCosts.vue
 const MapObjects = () => import('@/page/MapObjects/MapObjects.vue');
 const ListClients = () => import('@/page/ListClients/ListClients.vue');
 const Trips = () => import('@/page/Trips/Trips.vue');
+const Settings = () => import('@/page/Settings/Settings.vue');
 
 const routes = [
   { name: 'Home', path: '/', component: Home },
@@ -12,6 +13,7 @@ const routes = [
   { name: 'AdditionalCosts', path: '/additionalcosts', component: AdditionalCosts },
   { name: 'ListClients', path: '/listclients', component: ListClients },
   { name: 'Trips', path: '/trips', component: Trips },
+  { name: 'Settings', path: '/settings', component: Settings },
 ];
 
 export const router = createRouter({

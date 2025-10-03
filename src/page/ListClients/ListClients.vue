@@ -319,7 +319,7 @@ const items = [
 <style scoped>
 
 .table_block .v-table {
-  height: 88%;
+  height: 84%;
   margin-top: -1%;
 }
 </style>
