@@ -1,9 +1,9 @@
 <template>
   <v-row no-gutters>
-    <v-col>
-      <img src="./../../../../public/map_2.png" style="width: 100%; height: 63vh;" />
-    </v-col>
     <v-col cols="3">
+      <img src="./../../../../public/map_3.png" style="width: 100%;opacity: .8; height: 45vh; margin-top: 20%;transform: scale(1.1);" />
+    </v-col>
+    <v-col>
       <v-card height="65vh" class="coordinates">
         <v-list lines="two">
           <v-list-item
@@ -27,7 +27,7 @@
         </v-list>
       </v-card>
     </v-col>
-    <v-col cols="3">
+    <v-col>
       <v-card height="65vh" class="coordinates">
         <v-list lines="two">
           <v-list-item
@@ -41,11 +41,14 @@
                 <span class="bounce" style="font-size: 1rem;">{{ index % 2 === 0 ? '⛺' : '🏕️' }}</span>
               </div>
             </template>
+            
              <v-list-item-content>
               <v-list-item-title>
                 🌿Поляна {{halfArray.length + index + 1 }}🌿
               </v-list-item-title>
-              <v-list-item-subtitle>{{ formattedCoordinates(item.value) }}</v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{ formattedCoordinates(item.value) }}      
+              </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -103,6 +106,11 @@ const formattedCoordinates = (value) => {
   padding: 12px 20px;
   color: #3a6210;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.v-col-3 {
+    flex: 0 0 32% !important;
+    max-width: 32% !important;
 }
 
 /* Стили списка */
@@ -163,12 +171,13 @@ cursor: pointer;
 
 .v-list-item-subtitle {
   font-family: "Courier New", Courier, monospace;
-  width: 80%;
+  width: 90%;
   background-color: rgba(255, 255, 255, 0.75);
   padding: 4px 8px;
   margin-top: 4px;
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: 0.85rem; 
+  float: left;
   color: #3a6210;
   user-select: text;
   margin-left: 5%;
