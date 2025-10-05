@@ -92,13 +92,13 @@
   margin-top: 15px;
 }
 
-/**Вкладки*/
+/**Вкладки (содержимое)*/
 .v-card, .table_block {
   height: 80vh;
   padding: 15px 10px;
   -webkit-backdrop-filter: blur(9px);
   backdrop-filter: blur(9px);
-  background: linear-gradient(to top,rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)) !important;
+  background: linear-gradient(to top,rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.6)) !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   transition: all 0.25s ease;
@@ -108,11 +108,9 @@
   border-radius: 15px !important;
 }
 
-
 .v-card .v-card {
   border: none;
 }
-
 
 /* Неактивные табы */
 .inactive-tab {

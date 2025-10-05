@@ -156,7 +156,7 @@ h1 {
 }
 
 .button .icon {
-  width: 25px;
+  width: 30px;
   margin: .5rem .5rem .5rem 2rem;
 }
 
