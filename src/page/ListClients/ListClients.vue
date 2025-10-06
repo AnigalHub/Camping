@@ -3,7 +3,7 @@
     <v-container min-height="97vh">
       <ButtonBack />
       <h1 class="text-center">Список клиентов</h1>
-      <div class="table_bllock content">
+      <div class="table_block content">
         <Search />
         <Table :headers="headers" :items="items" />
       </div>
@@ -317,22 +317,9 @@ const items = [
 </script>
 
 <style scoped>
-.table_bllock {
-  border-radius: 15px;
-  padding: 15px 10px;
-  border: 3px solid #acb1967c;
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.3));
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
-  transition: all 0.25s ease;
 
-}
-
-.table_bllock .v-table {
+.table_block .v-table {
   height: 63vh;
+  margin-top: -2%;
 }
 </style>

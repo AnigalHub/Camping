@@ -11,7 +11,7 @@
         </v-tabs>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
-            <div v-if="filteredItems.length !== 0" class="table_bllock content">
+            <div v-if="filteredItems.length !== 0" >
               <Table :headers="headers" :items="filteredItems" />
             </div>
             <div v-else style="padding: 15px;">
@@ -50,7 +50,6 @@ function get7Days() {
 }
 
 const tabs = get7Days();
-
 const tab = shallowRef(tabs[0]);
 
 //Фильтрация данных по endDate (конечным датам выезда)
@@ -273,16 +272,10 @@ const items = [
 </script>
 
 <style scoped>
-.table_bllock {
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.3));
-  padding: 15px 10px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
+.table_block .v-table {
+  height:auto;
 }
-
-.table_bllock .v-table {
-  height: 65vh;
+.v-window-item, .v-window-item--active, .v-tabs-window-item{
+  padding: 15px 10px;
 }
 </style>

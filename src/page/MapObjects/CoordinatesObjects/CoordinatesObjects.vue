@@ -101,32 +101,6 @@ svg {
   height: auto;
 }
 
-/* WebKit стили */
-.coordinates::-webkit-scrollbar {
-  width: 8px;
-  /* ширина полосы прокрутки */
-  height: 8px;
-  /* ширина полосы прокрутки */
-}
-
-.coordinates::-webkit-scrollbar-track {
-  background: transparent;
-  /* фон дорожки */
-  border-radius: 4px;
-}
-
-.coordinates::-webkit-scrollbar-thumb {
-  background-color: #8AB539;
-  /* желаемый цвет ползунка */
-  border-radius: 4px;
-}
-
-.coordinates::-webkit-scrollbar-track {
-  background-color: #e0e0e0;
-  /* цвет фона полоски */
-  border: .3px solid #9f9f9f;
-  border-radius: 4px;
-}
 
 .v-list{
   margin-top: 3%;
