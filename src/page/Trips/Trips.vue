@@ -11,8 +11,11 @@
         </v-tabs>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
-            <div class="table_bllock content">
-              <Table :headers="headers" :items="items" />
+            <div v-if="filteredItems.length !== 0" class="table_bllock content">
+              <Table :headers="headers" :items="filteredItems" />
+            </div>
+            <div v-else style="padding: 15px;">
+              Данных нет.
             </div>
           </v-tabs-window-item>
         </v-tabs-window>
@@ -23,6 +26,7 @@
 
 <script setup>
 import { shallowRef } from 'vue';
+import { computed } from 'vue';
 
 defineOptions({
   name: 'Trips'
@@ -49,6 +53,23 @@ const tabs = get7Days();
 
 const tab = shallowRef(tabs[0]);
 
+//Фильтрация данных по endDate (конечным датам выезда)
+const filteredItems = computed(() => {
+  const currentDateStr = tab.value;
+  const filtered = items.filter(item => {
+    const endDate = new Date(item.endDate);
+    const day = String(endDate.getDate()).padStart(2, '0');
+    const month = String(endDate.getMonth() + 1).padStart(2, '0');
+    const year = endDate.getFullYear();
+
+    const endDateStr = `${day}.${month}.${year}`;
+    return endDateStr === currentDateStr;
+  });
+
+  // сортируем по endDate по возрастанию
+  return filtered.sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
+})
+
 
 // Заголовки 
 const headers = [
@@ -71,8 +92,8 @@ const items = [
     name: 'Константин',
     patronymic: 'Иванович',
     phone: '+79039004578',
-    startDate: '2025-08-15T00:00:00.000+00:00',
-    endDate: '2025-08-19T00:00:00.000+00:00',
+    startDate: '2025-10-05T00:00:00.000+00:00',
+    endDate: '2025-10-14T00:00:00.000+00:00',
     house: false,
     object: 7,
     cars: 'Х765СС750',
@@ -84,8 +105,8 @@ const items = [
     name: 'Мария',
     patronymic: 'Павловна',
     phone: '+79068124233',
-    startDate: '2025-08-20T00:00:00.000+00:00',
-    endDate: '2025-08-25T00:00:00.000+00:00',
+    startDate: '2025-10-10T00:00:00.000+00:00',
+    endDate: '2025-10-15T00:00:00.000+00:00',
     house: false,
     object: 1,
     cars: null,
@@ -97,8 +118,8 @@ const items = [
     name: 'Артем',
     patronymic: 'Викторович',
     phone: '+79501674030',
-    startDate: '2025-08-22T00:00:00.000+00:00',
-    endDate: '2025-08-23T00:00:00.000+00:00',
+    startDate: '2025-10-12T00:00:00.000+00:00',
+    endDate: '2025-10-15T00:00:00.000+00:00',
     house: false,
     cars: 'Н122АК150',
     object: 3,
@@ -110,8 +131,8 @@ const items = [
     name: 'Татьяна',
     patronymic: 'Александровна',
     phone: '+79251542184',
-    startDate: '2025-08-25T00:00:00.000+00:00',
-    endDate: '2025-08-30T00:00:00.000+00:00',
+    startDate: '2025-10-25T00:00:00.000+00:00',
+    endDate: '2025-10-30T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 2,
@@ -201,8 +222,8 @@ const items = [
     name: 'Петр',
     patronymic: 'Павлович',
     phone: '+79263472779',
-    startDate: '2025-08-15T00:00:00.000+00:00',
-    endDate: '2025-08-16T00:00:00.000+00:00',
+    startDate: '2025-10-15T00:00:00.000+00:00',
+    endDate: '2025-10-16T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 1,
@@ -215,7 +236,7 @@ const items = [
     patronymic: 'Михайлович',
     phone: '+79168371011',
     startDate: '2025-05-04T00:00:00.000+00:00',
-    endDate: '2025-058-29T00:00:00.000+00:00',
+    endDate: '2025-05-29T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 9,
@@ -253,6 +274,9 @@ const items = [
 
 <style scoped>
 .table_bllock {
+  background: linear-gradient(to top,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.3));
   padding: 15px 10px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1);

@@ -266,7 +266,7 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1990-04-19T00:00:00.000+00:00',
     startDate: '2025-05-04T00:00:00.000+00:00',
-    endDate: '2025-058-29T00:00:00.000+00:00',
+    endDate: '2025-05-29T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 9,
@@ -319,13 +319,13 @@ const items = [
 <style scoped>
 .table_bllock {
   border-radius: 15px;
-  padding: 5px;
+  padding: 15px 10px;
   border: 3px solid #acb1967c;
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   background: linear-gradient(to top,
       rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.6));
+      rgba(255, 255, 255, 0.3));
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1);
   transition: all 0.25s ease;
@@ -333,6 +333,6 @@ const items = [
 }
 
 .table_bllock .v-table {
-  height: 65vh;
+  height: 63vh;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-table height="50vh" fixed-header striped="even">
+  <v-table fixed-header striped="even">
     <thead>
       <template v-for="(headerRow, index) in headers" :key="index">
         <tr>
