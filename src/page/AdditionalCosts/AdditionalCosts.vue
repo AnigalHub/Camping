@@ -45,7 +45,7 @@ defineOptions({
   name: 'AdditionalCosts'
 })
 
-const tab = shallowRef('Добавить расходы')
+const tab = shallowRef('Добавить расходы');
 const tabs = [
   {
     text: 'Добавить расходы',

@@ -90,8 +90,8 @@
   --background-th-table: #F2F2F2;
   --color-th-table: #3A6210;
   --text-stroke-th-table: .05px #5F8835;
-  --border-th-table: 2.5px solid;
-  --border-th-table: #ffffff;
+  --border-th-table: 2px solid;
+  --border-color-th-table: #ffffff;
   --box-shadow-th-table: inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1);
   --svg-table: 15px;
 

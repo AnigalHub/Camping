@@ -129,8 +129,7 @@ svg {
   background: var(--background-th-table) !important;
   color: var(--color-th-table);
   -webkit-text-stroke: var(--text-stroke-th-table);
-  border: var(--border-th-table) !important;
-  border-color: var(--border-th-table) !important;
+  border: var(--border-th-table) var(--border-color-th-table) !important;
   font-size: .8rem;
   font-family: var(--font-family);
   font-weight: 500;
@@ -155,11 +154,11 @@ table>tbody>tr:last-child td:last-child{
 }
 
 .v-table{
-  border-radius: var(--border-radius-table) !important;
-  margin: 0 10px;
   backdrop-filter: var(--filter-background-table);
   -webkit-backdrop-filter: var(--filter-background-table);
   background: var(--background-table);
+  border-radius: var(--border-radius-table) !important;
+  margin: 0 10px;
   transition: all 0.25s ease;
 }
 </style>
