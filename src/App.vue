@@ -91,4 +91,43 @@
   min-height: 40px;
   margin-top: 15px;
 }
+
+/**Вкладки*/
+.v-card {
+  height: 80vh;
+  border-radius: 15px !important;
+  backdrop-filter: blur(9px);
+  background: linear-gradient(to top,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.3)) !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
+  transition: all 0.25s ease;
+}
+
+.v-card .v-card {
+  border: none;
+}
+
+
+/* Неактивные табы */
+.inactive-tab {
+  background-color: rgba(204, 204, 204, 0.2) !important;
+  border: 1px solid #CAC9C9 !important;
+  box-shadow: 1px -2px 0px rgba(95, 136, 53, 0.4) !important;
+  border-radius: 5px 5px 0px 0px !important;
+  opacity: 0.55 !important;
+}
+
+/* Активный таб */
+.active-tab {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: 1px -2px 0px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 5px 5px 0px 0px !important;
+}
+/* Отключение подчеркивания у активного таба */
+.v-tab__slider {
+  background: transparent !important;
+}
 </style>

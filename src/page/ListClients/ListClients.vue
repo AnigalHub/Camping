@@ -332,12 +332,7 @@ const items = [
 
 }
 
-.content {
-  min-height: 80vh;
-}
-
 .table_bllock .v-table {
-  min-height: 63vh;
-  margin-top: -1%;
+  height: 65vh;
 }
 </style>

@@ -24,7 +24,7 @@
             </div>
           </v-col>
           <v-col>
-            <img src="./../../../public/4.png" style="width: 105%;height: 82vh; margin-top: -12%;" />
+            <img src="./../../../public/4.png" style="width: 105%;height: 82vh; margin-top: -10%;" />
           </v-col>
         </v-row>
       </v-container>

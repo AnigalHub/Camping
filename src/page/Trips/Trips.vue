@@ -3,17 +3,53 @@
     <v-container min-height="97vh">
       <ButtonBack />
       <h1 class="text-center">Ближайшие выезды</h1>
-      <div class="table_bllock content">
-        <Table :headers="headers" :items="items" />
-      </div>
+      <v-card>
+        <v-tabs v-model="tab" grow>
+          <v-tab v-for="item in tabs" :key="item" :text="item" :value="item"
+            :class="{ 'active-tab': tab === item, 'inactive-tab': tab !== item }">
+          </v-tab>
+        </v-tabs>
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
+            <div class="table_bllock content">
+              <Table :headers="headers" :items="items" />
+            </div>
+          </v-tabs-window-item>
+        </v-tabs-window>
+      </v-card>
     </v-container>
   </div>
 </template>
 
 <script setup>
+import { shallowRef } from 'vue';
+
 defineOptions({
   name: 'Trips'
 })
+
+function get7Days() {
+  const result = [];
+  const today = new Date();
+
+  for (let i = 0; i < 7; i++) {
+    const nextDate = new Date(today);
+    nextDate.setDate(today.getDate() + i);
+    const day = String(nextDate.getDate()).padStart(2, '0');
+    const month = String(nextDate.getMonth() + 1).padStart(2, '0'); // месяцы от 0 до 11
+    const year = nextDate.getFullYear();
+
+    result.push(`${day}.${month}.${year}`);
+  }
+
+  return result;
+}
+
+const tabs = get7Days();
+
+const tab = shallowRef(tabs[0]);
+
+
 // Заголовки 
 const headers = [
   [
@@ -217,20 +253,12 @@ const items = [
 
 <style scoped>
 .table_bllock {
-  border-radius: 15px;
-  background: white;
-  padding: 5px;
+  padding: 15px 10px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1);
-
-}
-
-.content {
-  min-height: 80vh;
 }
 
 .table_bllock .v-table {
-  min-height: 63vh;
-  margin-top: -1%;
+  height: 65vh;
 }
 </style>

@@ -3,7 +3,6 @@
         <v-col >
         <img src="./../../../../public/map_2.png" style="width: 100%;height: 63vh;" />
     </v-col>
-
      <v-col cols="3">
       <v-card height="50vh" class="coordinates">
         <v-list lines="two">
@@ -76,12 +75,12 @@ const items = [
   -webkit-text-stroke: .05px #5F8835;
   font-family:  var(--font-family);
   font-weight: 500;
-  font-size: 1.35rem;
+  font-size: 1rem;
   letter-spacing: -1px;
 }
 
 .v-list-item-subtitle {
-  font-size: 1.2rem;
+  font-size: .85rem;
 }
 
 .coordinates {
@@ -93,13 +92,12 @@ const items = [
 .v-card .v-card {
   margin: 5px 30px 10px 15px;
   border-radius: 10px; 
-  border: none;
   box-shadow: none;
 }
+
 svg {
   width: 100%;
   margin-top: 20px;
-
   height: auto;
 }
 
@@ -132,6 +130,6 @@ svg {
 
 .v-list{
   margin-top: 3%;
-      background: rgb(250 250 250);
+  background: rgb(250 250 250);
 }
 </style>
