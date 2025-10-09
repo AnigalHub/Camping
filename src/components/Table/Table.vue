@@ -38,16 +38,10 @@
               <div>{{ item.seriesDocument }}</div>
               <div>{{ item.numberDocument }}</div>
             </div>
-             <div class="document_blocks">
-              <div>{{ item.codeDocument }}</div>
-            </div>
-            <div class="document_blocks">
-              <div>{{ formatDate(item.dateDocument) }}</div>
-            </div>
-            <div class="document_block">
-               {{ item.issuedDocument.length > 20 ? item.issuedDocument.slice(0, 20) + '...' : item.issuedDocument }}
-            </div>
-            <div class="document_block">{{ item.cityDocument }}</div>
+            <div>{{ item.codeDocument }}</div>
+            <div>{{ formatDate(item.dateDocument) }}</div>
+            <div>{{ item.issuedDocument.length > 20 ? item.issuedDocument.slice(0, 20) + '...' : item.issuedDocument }}</div>
+            <div>{{ item.cityDocument }}</div>
           </template>
           <template v-else-if="item[col.key] === true || item[col.key] === false">
             <Switch v-model="item[col.key]" :tumbler="item[col.key] "/>
@@ -105,32 +99,23 @@ function formatDate(dateStr) {
 }
 </script>
 
-<style>
-tbody,
-thead {
-  border-radius: 15px !important;
-}
-/* 
-.v-table__wrapper {
-  padding-right: 30px !important;
-} */
-</style>
 <style scoped>
 .document_blocks {
   display: flex;
 }
 
-.document_blocks div, .document_block {
-  margin: 5px 8px 2.5px 0;
+.document_blocks div {
+  margin-right: 8px;
+  margin-top: 2.5px;
 }
 
 .bg_buttons {
-  background: rgba(217, 217, 217, 0.24);
+  background: var(--background-btn-block-table);
 }
 
 svg {
-  width: 15px;
-  height: 15px;
+  width: var(--svg-table);
+  height: var(--svg-table);
   margin: 0 10px;
   cursor: pointer;
 }
@@ -139,44 +124,42 @@ svg {
   font-size: .8rem;
 }
 
-.v-table>.v-table__wrapper>table>tbody>tr:hover,
-.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
-  background: rgba(138, 181, 57, .2);
-}
-
 .v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th {
   height: 20px !important;
-  background: #F2F2F2 !important;
-  color: #3A6210;
-  -webkit-text-stroke: .05px #5F8835;
-  border: 2.5px solid white;
+  background: var(--background-th-table) !important;
+  color: var(--color-th-table);
+  -webkit-text-stroke: var(--text-stroke-th-table);
+  border: var(--border-th-table) !important;
+  border-color: var(--border-th-table) !important;
   font-size: .8rem;
-  font-family:  var(--font-family);
+  font-family: var(--font-family);
   font-weight: 500;
   padding: 8px 5px !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-  2px 2px 8px rgba(17, 44, 18, 0.1);
+  box-shadow: var(--box-shadow-th-table);
 }
+
 .v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:first-child {
-  border-radius: 10px 0 0 0 !important;
+  border-radius: var(--border-radius-table) 0 0 0 !important;
 }
+
 .v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:last-child {
-  border-radius: 0 10px 0 0 !important;
+  border-radius: 0 var(--border-radius-table) 0 0 !important;
 }
+
 table>tbody>tr:last-child td:last-child{
-  border-radius: 0 0 10px 0 !important;
+  border-radius: 0 0 var(--border-radius-table) 0 !important;
 }
 
 .v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even) {
-  background: rgba(138, 181, 57, 0.08);
+  background: var(--background-even-tr-table);
 }
 
 .v-table{
-  border-radius: 10px !important;
+  border-radius: var(--border-radius-table) !important;
   margin: 0 10px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background: transparent;
+  backdrop-filter: var(--filter-background-table);
+  -webkit-backdrop-filter: var(--filter-background-table);
+  background: var(--background-table);
   transition: all 0.25s ease;
 }
 </style>

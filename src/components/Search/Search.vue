@@ -13,7 +13,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style>
 .search{
   margin-top: -1.5%;
 }
