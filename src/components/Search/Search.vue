@@ -13,7 +13,7 @@
 
 <script setup></script>
 
-<style>
+<style scoped>
 .search{
   margin-top: -1.5%;
 }
@@ -32,4 +32,3 @@
   border-color: var(--border-color-after-search) !important;
 }
 </style>
-<style scoped></style>

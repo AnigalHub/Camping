@@ -13,7 +13,8 @@
     <tbody>
       <tr v-for="(item, index) in items" :key="index">
         <td v-for="(col, colIndex) in flatColumns" :key="colIndex"
-          :class="[col.key === 'fio' ||  col.key === 'document' ? 'text-left' : 'text-center', col.key === 'buttons' ? 'bg_buttons' : '']">
+          :class="[col.key === 'fio' ||  col.key === 'document' ? 'text-left' : 'text-center',
+          col.key === 'buttons' ? 'bg_buttons' : '']">
           <template v-if="col.key === 'date' && item[col.key]">
             {{ formatDate(item[col.key]) }}
           </template>
@@ -48,10 +49,8 @@
             </div>
             <div class="document_block">{{ item.cityDocument }}</div>
           </template>
-
           <template v-else-if="item[col.key] === true || item[col.key] === false">
-            <v-switch v-model="item[col.key]" :disabled="true"
-              :class="item[col.key] ? 'custom-switch--true' : 'custom-switch--false'"></v-switch>
+            <Switch v-model="item[col.key]" :tumbler="item[col.key] "/>
           </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
             <component :is="editSvg" />
@@ -67,6 +66,7 @@
 </template>
 
 <script setup>
+import Switch from '../Switch/Switch.vue';
 import delete_svg from './../../svg/delete.vue'
 import edit_svg from './../../svg/edit.vue'
 import { computed } from 'vue';
@@ -101,33 +101,19 @@ const showButtons = computed(() => {
 
 // Форматирование даты в формат ДД.ММ.ГГГГ
 function formatDate(dateStr) {
-  console.log('----', dateStr.split('T')[0].split('-').reverse().join('.'));
   return dateStr ? dateStr.split('T')[0].split('-').reverse().join('.') : null;
 }
 </script>
 
 <style>
-.custom-switch--true .v-switch__thumb {
-  background-color: #87bd23 !important;
-}
-.v-switch__track,
-.v-switch__thumb {
-  border: 1px solid #000;
-}
-
-.v-switch__thumb{
-  width: 18px !important;
-  height: 18px !important;
-}
-
 tbody,
 thead {
   border-radius: 15px !important;
 }
-
+/* 
 .v-table__wrapper {
   padding-right: 30px !important;
-}
+} */
 </style>
 <style scoped>
 .document_blocks {
@@ -184,9 +170,6 @@ table>tbody>tr:last-child td:last-child{
 .v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even) {
   background: rgba(138, 181, 57, 0.08);
 }
-.v-table > .v-table__wrapper > table > tbody > tr > td{
-
-}
 
 .v-table{
   border-radius: 10px !important;
@@ -195,11 +178,5 @@ table>tbody>tr:last-child td:last-child{
   -webkit-backdrop-filter: blur(10px);
   background: transparent;
   transition: all 0.25s ease;
-}
-
-.v-switch.v-input {
-  flex: 0 1 auto;
-  display: flex;
-  justify-content: center;
 }
 </style>

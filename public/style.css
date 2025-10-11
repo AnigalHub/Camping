@@ -75,6 +75,12 @@
   --border-color-after-search: #5F8835;
   --border-width-after-search: 0 0 1.8px;
 
+   /** Переключатель */
+  --background-active-switch: #87bd23;
+  --border-color-switch: #000000;
+  --border-switch: 1px solid;
+
+
   /** Таблица (страниц) */
 
 
