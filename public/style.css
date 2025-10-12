@@ -68,12 +68,14 @@
   --background-size-img-page: 100% 100%;
   --filter-background-page: blur(2.5px);
 
-  /** Поиск (инпут) */
+  /** Поиск (инпут) (страниц) */
   --background-search:none;
   --border-color-search: #5F8835;
   --opacity-search: .7;
   --border-color-after-search: #5F8835;
-  --border-width-after-search: 0 0 3.15px;
+  --border-width-after-search: 0 0 1.8px;
+
+  /** Таблица (страниц) */
 
 
   /** Кнопки страниц */
@@ -82,7 +84,7 @@
   --letter-spacing-btn-page:-.15px;
   --background-btn-page: #ffffff;
   --border-radius-btn-page: 8px;
-  --border-btn-page: 2px solid;
+  --border-btn-page: 1.4px solid;
   --border-color-btn-page: #5F8835;
   --box-shadow-btn-page:  0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 

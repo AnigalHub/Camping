@@ -86,18 +86,6 @@ const tabs = [
   border-radius: 20px 20px 0px 0px;
 }
 
-.v-btn {
-  text-transform: none;
-  font-family: var(--font-family-main);
-  font-weight: 500;
-  letter-spacing: -.15px;
-  font-size: 1.45rem;
-  color: #3A6210;
-  -webkit-text-stroke: .5px #5F8835;
-  font-family:  var(--font-family);
-  font-weight: 200;
-}
-
 .v-card {
   height: auto;
   min-height: 80vh;

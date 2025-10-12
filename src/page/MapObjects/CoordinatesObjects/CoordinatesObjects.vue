@@ -1,7 +1,6 @@
 <template>
   <v-row no-gutters>
         <v-col >
-      <!-- <component :is="mapSvg"/> -->
         <img src="./../../../../public/map_2.png" style="width: 100%;height: 63vh;" />
     </v-col>
 
