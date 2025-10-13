@@ -14,7 +14,7 @@
 
 </script>
 
-<style>
+<style >
 @import './../public/style.css';
 
 /**Фон страниц */
@@ -43,6 +43,7 @@
   -webkit-text-stroke: var(--text-stroke-h1);
   font-family: var(--font-family);
   font-weight: 200;
+  font-size: 1.2rem !important;
   background: var(--background-h1);
   box-shadow: var(--box-shadow-h1);
   border-radius: var(--border-radius-h1);
@@ -50,7 +51,7 @@
   border-color: var(--border-color-h1);
   width: max-content;
   display: block;
-  margin: -5px auto 25px;
+  margin: -10px auto 10px;
   padding: 5px 7%;
   transform: scale(1.1);
 }
@@ -71,5 +72,23 @@
   border-radius: var(--border-radius-track-scrollbar);
   border: var(--border-track-scrollbar);
   border-color: var(--border-color-track-scrollbar);
+}
+/**Кнопки страниц */
+ .btn_page {
+  color: var(--color-btn-page) !important;
+  -webkit-text-stroke: var(--text-stroke-btn-page);
+  text-transform: none !important;
+  letter-spacing: var(--letter-spacing-btn-page) !important;
+  font-family: var(--font-family-main) !important;
+  font-size: .95rem !important;
+  background: var(--background-btn-page) !important;
+  border-radius: var(--border-radius-btn-page) !important;
+  border: var(--border-btn-page) !important;
+  border-color: var(--border-color-btn-page) !important;
+  box-shadow: var(--box-shadow-btn-page) !important;
+  width: 100%;
+  padding: 0 10px !important;
+  min-height: 40px;
+  margin-top: 15px;
 }
 </style>

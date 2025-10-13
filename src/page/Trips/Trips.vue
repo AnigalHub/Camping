@@ -217,9 +217,9 @@ const items = [
 
 <style scoped>
 .table_bllock {
-  border-radius: 20px;
+  border-radius: 15px;
   background: white;
-  padding: 15px;
+  padding: 5px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1);
 

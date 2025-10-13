@@ -318,10 +318,9 @@ const items = [
 
 <style scoped>
 .table_bllock {
-  border-radius: 20px;
-  padding: 10px;
+  border-radius: 15px;
+  padding: 5px;
   border: 3px solid #acb1967c;
-  border-radius: 20px;
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   background: linear-gradient(to top,

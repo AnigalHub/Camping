@@ -37,8 +37,10 @@
               <div>{{ item.seriesDocument }}</div>
               <div>{{ item.numberDocument }}</div>
             </div>
-            <div class="document_blocks">
+             <div class="document_blocks">
               <div>{{ item.codeDocument }}</div>
+            </div>
+            <div class="document_blocks">
               <div>{{ formatDate(item.dateDocument) }}</div>
             </div>
             <div class="document_block">
@@ -113,6 +115,11 @@ function formatDate(dateStr) {
   border: 1px solid #000;
 }
 
+.v-switch__thumb{
+  width: 18px !important;
+  height: 18px !important;
+}
+
 tbody,
 thead {
   border-radius: 15px !important;
@@ -128,7 +135,7 @@ thead {
 }
 
 .document_blocks div, .document_block {
-  margin: 5px 10px 6px 0;
+  margin: 5px 8px 2.5px 0;
 }
 
 .bg_buttons {
@@ -136,14 +143,14 @@ thead {
 }
 
 svg {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin: 0 10px;
   cursor: pointer;
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr>td {
-  font-size: 1rem;
+  font-size: .8rem;
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr:hover,
@@ -152,43 +159,38 @@ svg {
 }
 
 .v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th {
-  height: 30px !important;
+  height: 20px !important;
   background: #F2F2F2 !important;
   color: #3A6210;
   -webkit-text-stroke: .05px #5F8835;
   border: 2.5px solid white;
-  font-size: 1.2rem;
+  font-size: .8rem;
   font-family:  var(--font-family);
   font-weight: 500;
-  padding: 15px 5px !important;
+  padding: 8px 5px !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
   2px 2px 8px rgba(17, 44, 18, 0.1);
 }
 .v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:first-child {
-  border-radius: 15px 0 0 0 !important;
+  border-radius: 10px 0 0 0 !important;
 }
 .v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:last-child {
-  border-radius: 0 15px 0 0 !important;
+  border-radius: 0 10px 0 0 !important;
 }
 table>tbody>tr:last-child td:last-child{
-  border-radius: 0 0 15px 0 !important;
-}
-
-.no_shadow {
-  box-shadow: none !important;
+  border-radius: 0 0 10px 0 !important;
 }
 
 .v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even) {
   background: rgba(138, 181, 57, 0.08);
 }
 .v-table > .v-table__wrapper > table > tbody > tr > td{
-  padding: 0 5px;
+
 }
 
 .v-table{
-  font-size: 1rem;
-  border-radius: 15px !important;
-  margin: 0 15px;
+  border-radius: 10px !important;
+  margin: 0 10px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: transparent;

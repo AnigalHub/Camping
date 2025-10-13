@@ -1,6 +1,6 @@
 <template>
   <div @click="clickBack" class="back">
-    <component :is="backSvg" />
+    <component :is="backSvg" :color="'var(--fill-icon-btn-back-page)'" class="icon"/>
     <div class="back_text">Назад</div>
   </div>
 </template>
@@ -19,51 +19,52 @@ function clickBack() {
 </script>
 
 <style scoped>
+svg{
+  transform: scale(.85);
+  margin-right: 8%;
+}
+
 .back {
-  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
   width: max-content;
   padding: 4px 10px;
   font-family: var(--font-family-btn);
-  font-size: 1.6rem;
-  color: #2a3a1f;
-  border: 3px solid #acb1967c;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.2));
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
+  background: var(--background-btn-back-page);
+  border-radius: var(--border-radius-btn-back-page);
+  border: var(--border-btn-back-page);
+  border-color: var(--border-color-btn-back-page);
+  box-shadow: var(--box-shadow-btn-back-page);
   transition: all 0.25s ease;
+  backdrop-filter: var(--filter-btn-back-page);
+  -webkit-backdrop-filter: var(--filter-btn-back-page);
 }
 
 .back:hover {
   cursor: pointer;
-  background: linear-gradient(to top,
-      rgba(197, 211, 149, 0.2),
-      rgba(197, 211, 149, 0.2));
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4),
-    10px 10px 8px rgba(17, 44, 18, 0.2);
-}
-
-svg {
-  float: left;
-  margin-right: 8%;
+  background: var(--background-btn-back-page-hover);
+  border-radius: var(--border-radius-btn-back-page-hover);
+  border: var(--border-btn-back-page-hover);
+  border-color: var(--border-color-btn-back-page-hover);
+  box-shadow: var(--box-shadow-btn-back-page-hover);
+  backdrop-filter: var(--filter-btn-back-page-hover);
+  -webkit-backdrop-filter: var(--filter-btn-back-page-hover);
 }
 
 .back_text {
+  color: var(--color-btn-back-page);
+  -webkit-text-stroke: var(--text-stroke-btn-back-page);
   font-family: var(--font-family);
-  font-weight: 200;
-  font-size: 1.45rem;
-  align-items: center;
-  height: 55px;
-  max-width: 80px;
-  padding-top: 8px;
+  font-size: 1rem;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  height: 35px;
+  padding-top: 8px;
+}
+
+.back:hover .back_text {
+  color: var(--color-btn-back-page-hover);
+  -webkit-text-stroke: var(--text-stroke-btn-back-page-hover);
 }
 </style>

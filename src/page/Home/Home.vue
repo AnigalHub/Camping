@@ -24,7 +24,7 @@
             </div>
           </v-col>
           <v-col>
-            <img src="./../../../public/4.png" style="width: 105%;height: 85vh; margin-top: -8%;" />
+            <img src="./../../../public/4.png" style="width: 105%;height: 82vh; margin-top: -12%;" />
           </v-col>
         </v-row>
       </v-container>
@@ -111,7 +111,7 @@ function goRoute(name) {
 h1 {
   color: var(--color-h1-home);
   -webkit-text-stroke: var(--text-stroke-h1-home);
-  font-size: 7rem;
+  font-size: 5rem;
   letter-spacing: 0.08em;
   font-family: var(--font-family-h1-home);
   font-weight: 400;
@@ -127,7 +127,8 @@ h1 {
 .slogan {
   color: var(--color-slogan-home);
   -webkit-text-stroke: var(--text-stroke-slogan-home);
-  font-size: 38px;
+  font-size: 1.8rem;
+  line-height: 3rem;
   letter-spacing: 1px;
   font-family: var(--font-family-slogan-home);
   font-weight: 400;
@@ -137,8 +138,7 @@ h1 {
   border-color: var(--border-color-slogan-home);
   box-shadow: var(--box-shadow-slogan-home);
   width: 100%;
-  line-height: 55px;
-  margin: -7% 0 4% 4%;
+  margin: -10% 0 4% 4%;
 }
 
 .buttons_options {
@@ -152,21 +152,21 @@ h1 {
   display: flex;
   align-items: center;
   font-family: var(--font-family-btn);
-  font-size: 1.6rem;
+  font-size: 1.25rem;
 }
 
 .button .icon {
-  width: 40px;
+  width: 25px;
   margin: .5rem .5rem .5rem 2rem;
 }
 
 .main_buttons {
-  margin-left: 9%;
+  margin-left: 5%;
 }
 
 .main_button .icon {
   margin: .5rem 1rem;
-  width: 55px;
+  width: 35px;
 }
 
 .main_button {
@@ -179,7 +179,7 @@ h1 {
   color: var(--color-main-buttons-home);
   -webkit-text-stroke: var(--text-stroke-main-buttons-home);
   font-family: var(--font-family-btn);
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   background: var(--background-main-buttons-home);
   border-radius: var(--border-radius-main-buttons-home);
   border: var(--border-main-buttons-home);
