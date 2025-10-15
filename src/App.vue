@@ -114,8 +114,8 @@
 
 /* Неактивные табы */
 .inactive-tab {
-  background-color: rgba(204, 204, 204, 0.2) !important;
-  border: 1px solid #CAC9C9 !important;
+  background-color: rgb(223, 224, 220) !important;
+  border: 1px solid rgb(157, 160, 145, .7) !important;
   box-shadow: 1px -2px 0px rgba(95, 136, 53, 0.4) !important;
   border-radius: 5px 5px 0px 0px !important;
   opacity: 0.55 !important;

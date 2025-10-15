@@ -15,7 +15,7 @@
               <Table :headers="headers" :items="filteredItems" />
             </div>
             <div v-else style="padding: 15px;">
-              Данных нет.
+              Данных за день нет.
             </div>
           </v-tabs-window-item>
         </v-tabs-window>
