@@ -62,7 +62,7 @@
             <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
           </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
-            <component :is="editSvg" class="icons"/>
+            <component :is="editSvg" class="icons" @click="onModalDescriptionShare"/>          
             <component :is="deleteSvg" class="icons"/>
           </template>
           <template v-else>
@@ -79,6 +79,16 @@ import { computed, ref, shallowRef } from 'vue';
 import Switch from '../Switch/Switch.vue';
 import delete_svg from './../../svg/delete.vue';
 import edit_svg from './../../svg/edit.vue';
+
+
+import { callModalWindow } from './../../utils/callModalWindow';
+import { loadComponent } from './../../utils/loadComponent';
+import { useStore } from 'vuex';
+
+const Information = shallowRef(loadComponent('Information'));
+const store = useStore();
+
+
 
 const deleteSvg = shallowRef(delete_svg);
 const editSvg = shallowRef(edit_svg);
@@ -196,10 +206,8 @@ const showButtons = computed(() => {
 // Текущая сортируемая колонка
 function sortByColumn(key) {
   if (sortKey.value === key) {
-    // Если уже сортируем по этой колонке, поменять направление
     sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc';
   } else {
-    // Если новая колонка, сортируем по возрастанию
     sortKey.value = key;
     sortDirection.value = 'asc';
   }
@@ -209,6 +217,17 @@ function sortByColumn(key) {
 function formatDate(dateStr) {
   return dateStr ? dateStr.split('T')[0].split('-').reverse().join('.') : null;
 }
+
+  /** Вызов Модального окна*/
+  async function onModalDescriptionShare() {
+    await callModalWindow(store, {
+      name: 'Information',
+      component: Information,
+      props: {
+        title: 'Пример',
+       },
+    });
+  }
 </script>
 
 <style scoped>
@@ -233,7 +252,7 @@ function formatDate(dateStr) {
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr>td {
-  font-size: .75rem;
+  font-size: .95rem;
 }
 
 /* Заголовки с сортировкой */
@@ -243,7 +262,7 @@ function formatDate(dateStr) {
   color: var(--color-th-table);
   -webkit-text-stroke: var(--text-stroke-th-table);
   border: var(--border-th-table) var(--border-color-th-table) !important;
-  font-size: .85rem;
+  font-size: 1rem;
   font-family: var(--font-family);
   font-weight: 500;
   padding: 15px 0 !important;

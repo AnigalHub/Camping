@@ -2,10 +2,10 @@
   <v-container class="search">
     <v-row>
       <v-col>
-        <v-text-field v-model="search" label="Поиск"></v-text-field>
+        <v-text-field label="Поиск"></v-text-field>
       </v-col>
       <v-col cols="2">
-        <v-btn class="btn_page" @click="searchFunction">Найти</v-btn>
+        <v-btn class="btn_page">Найти</v-btn>
       </v-col>
     </v-row>
   </v-container>

@@ -6,12 +6,31 @@
         <router-view />
       </v-main>
       </div>
+      <modal 
+        v-for="(modal, index) in modals" 
+        v-bind="modal" 
+        :key="index" 
+        :value="modal.isVisible" 
+      />
     </div>
   </v-app>
 </template>
 
 <script setup>
+import { loadComponent } from './utils/loadComponent';
+const Modal = loadComponent('Modal');
 
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const modals = computed(() => store.getters['Modal/modals']);
+
+/** Проверка видимости модального окна по имени */
+function isModalVisible(name) {
+  const found = modals.value.find(x => x.name === name);
+  return found ? found.isVisible : false;
+}
 </script>
 
 <style >

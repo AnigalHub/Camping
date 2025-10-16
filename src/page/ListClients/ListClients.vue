@@ -20,7 +20,7 @@ const headers = [
   [
     { label: 'ФИО', rowspan: 2, key: 'fio', sortable: true },
     { label: 'Дата рождения', rowspan: 2, key: 'date' },
-    { label: 'Данные документа', rowspan: 2, key: 'document'},
+    // { label: 'Данные документа', rowspan: 2, key: 'document'},
     { label: 'Номер телефона', rowspan: 2, key: 'phone'},
     { label: 'Проживание', rowspan: 2, key: 'dateStay', sortable: true },
     { label: 'Аренда домика', rowspan: 2, key: 'house', sortable: true },
@@ -319,7 +319,7 @@ const items = [
 <style scoped>
 
 .table_block .v-table {
-  height: 84%;
+  height: 82%;
   margin-top: -1%;
 }
 </style>

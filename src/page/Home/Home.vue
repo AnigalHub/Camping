@@ -62,14 +62,14 @@ const menus = [
     route: 'ListClients',
   },
   {
-    icon: mapObjectSvg,
-    name: 'Карта полянок',
-    route: 'MapObjects',
-  },
-  {
     icon: tripsSvg,
     name: 'Ближайшие выезды',
     route: 'Trips',
+  },
+  {
+    icon: mapObjectSvg,
+    name: 'Карта полянок',
+    route: 'MapObjects',
   },
   {
     icon: servicesSvg,

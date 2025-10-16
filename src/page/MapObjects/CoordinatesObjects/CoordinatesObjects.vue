@@ -134,7 +134,7 @@ const formattedCoordinates = (value) => {
 }
 /* При наведении */
 .v-list-item:hover {
-cursor: pointer;
+  cursor: pointer;
   background: var(--background-tr-table-hover);
   border-radius: var(--border-radius-btn-back-page-hover);
   border: var(--border-btn-back-page-hover);
@@ -160,7 +160,7 @@ cursor: pointer;
 .v-list-item-title {
   text-align: left;
   font-weight: 600;
-  font-size: .9rem; 
+  font-size: 1rem; 
   margin-left: 5%;
   color: #3a6210;
 }
@@ -176,7 +176,7 @@ cursor: pointer;
   padding: 4px 8px;
   margin-top: 4px;
   border-radius: 6px;
-  font-size: 0.85rem; 
+  font-size: .9rem; 
   float: left;
   color: #3a6210;
   user-select: text;
