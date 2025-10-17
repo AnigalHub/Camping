@@ -33,8 +33,8 @@
             {{ formatDate(item[col.key]) }}
           </template>
           <template v-else-if="col.key === 'dateStay'">
-            <div>с {{ formatDate(item.startDate) }}</div>
-            <div>по {{ formatDate(item.endDate) }}</div>
+            <div>{{ formatDate(item.startDate) }}</div>
+            <div>{{ formatDate(item.endDate) }}</div>
           </template>
           <template v-else-if="col.key === 'fio'">
             <div>{{ item.surname }}</div>
@@ -62,8 +62,9 @@
             <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
           </template>
           <template v-else-if="showButtons && col.key === 'buttons'">
-            <component :is="editSvg" class="icons" @click="onModalDescriptionShare"/>          
-            <component :is="deleteSvg" class="icons"/>
+            <component :is="documentSvg" class="icons"  v-tooltip:top="'Документы'" @click="onModalDocuments(item,true)"/>
+            <component :is="editSvg" class="icons" v-tooltip:top="'Изменить'" @click="onModalDocuments(item)"/>          
+            <component :is="deleteSvg" v-tooltip:top="'Удалить'" class="icons"/>
           </template>
           <template v-else>
             {{ item[col.key] ?? '—' }}
@@ -79,7 +80,7 @@ import { computed, ref, shallowRef } from 'vue';
 import Switch from '../Switch/Switch.vue';
 import delete_svg from './../../svg/delete.vue';
 import edit_svg from './../../svg/edit.vue';
-
+import document_svg from './../../svg/document.vue';
 
 import { callModalWindow } from './../../utils/callModalWindow';
 import { loadComponent } from './../../utils/loadComponent';
@@ -92,6 +93,7 @@ const store = useStore();
 
 const deleteSvg = shallowRef(delete_svg);
 const editSvg = shallowRef(edit_svg);
+const documentSvg = shallowRef(document_svg);
 
 const activeColor = '#4d672c'; // цвет активной сортировки
 const inactiveColor = '#ccc';  // цвет неактивной
@@ -219,12 +221,14 @@ function formatDate(dateStr) {
 }
 
   /** Вызов Модального окна*/
-  async function onModalDescriptionShare() {
+  async function onModalDocuments(object, disable) {
     await callModalWindow(store, {
       name: 'Information',
       component: Information,
       props: {
-        title: 'Пример',
+        title: 'Документы',
+        object,
+        disable
        },
     });
   }
@@ -242,6 +246,7 @@ function formatDate(dateStr) {
 
 .bg_buttons {
   background: var(--background-btn-block-table);
+  min-width: 88px;
 }
 
 .icons{
@@ -252,7 +257,7 @@ function formatDate(dateStr) {
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr>td {
-  font-size: .95rem;
+  font-size: .94rem;
 }
 
 /* Заголовки с сортировкой */
@@ -272,7 +277,7 @@ function formatDate(dateStr) {
 }
 
 .v-table > .v-table__wrapper > table > tbody > tr > td{
-  padding: 0 10px !important;
+  padding: 0 8px !important;
 }
 
 .v-table>.v-table__wrapper>table>thead>tr>th:first-child {
@@ -305,7 +310,7 @@ table>tbody>tr:last-child td:last-child {
   background: var(--background-table);
   border-radius: var(--border-radius-table) !important;
   margin: 0 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #b6b6b6;
   transition: all 0.25s ease;
 }
 
