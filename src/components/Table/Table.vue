@@ -266,18 +266,26 @@ function formatDate(dateStr) {
   background: var(--background-th-table) !important;
   color: var(--color-th-table);
   -webkit-text-stroke: var(--text-stroke-th-table);
-  border: var(--border-th-table) var(--border-color-th-table) !important;
+  border-top: var(--border-th-table) var(--border-color-th-table) !important;
+   border-left: var(--border-th-table) var(--border-color-th-table) !important;
+    border-right: var(--border-th-table) var(--border-color-th-table) !important;
+     border-bottom: var(--border-th-table) #4d672c !important;
   font-size: 1rem;
   font-family: var(--font-family);
   font-weight: 500;
-  padding: 15px 0 !important;
+  padding: 10px 0 !important;
   box-shadow: var(--box-shadow-th-table);
   user-select: none;
   cursor: pointer;
 }
+.v-table > .v-table__wrapper > table > tbody > tr:first-child > td{
+  border-top: none !important;
 
+}
 .v-table > .v-table__wrapper > table > tbody > tr > td{
-  padding: 0 8px !important;
+  padding: 0 8px !important; 
+  border-top: .35px solid rgba(77, 103, 44, 0.35);
+  border-bottom: .35px solid  rgba(77, 103, 44, 0.27);
 }
 
 .v-table>.v-table__wrapper>table>thead>tr>th:first-child {
@@ -310,7 +318,8 @@ table>tbody>tr:last-child td:last-child {
   background: var(--background-table);
   border-radius: var(--border-radius-table) !important;
   margin: 0 10px;
-  border: 1px solid #b6b6b6;
+
+  border: 1.5px solid #4d672c;
   transition: all 0.25s ease;
 }
 
@@ -318,4 +327,5 @@ table>tbody>tr:last-child td:last-child {
 .v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
   background: var(--background-tr-table-hover);
 }
+
 </style>

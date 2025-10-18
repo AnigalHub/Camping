@@ -1,30 +1,48 @@
 <template>
   <div class="content_wrapper_home">
-    <div class="wrapper_home">
+    <div class="wrapper">
       <v-container max-height="97vh">
         <div class="buttons_options">
           <div v-for="menu in menus.slice(-2)" :key="menu" class="buttons">
-            <div @click="goRoute(menu.route)" class="button">
+            <div @click="goRoute(menu.route)" class="button" v-tooltip:bottom="menu.name">
               <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
-              <div>{{ menu.name }}</div>
+              <!-- <div>{{ menu.name }}</div> -->
             </div>
           </div>
         </div>
         <h1 class="text-center">"Ромашка"</h1>
+        <!-- <hr style="width: 30%; display: block; margin: -4% auto 0%;  border: none;border-top: 1.8px solid #4d672c; "></hr> -->
+        <div class="slogan" style="width: 50%; display: block; margin: .5% auto 3%;">
+          «Кемпинг у моря - природа, которой хочется делиться!»
+        </div>
         <v-row no-gutters>
           <v-col cols="5">
-            <div class="slogan">
+            <!-- <div class="slogan">
               «Кемпинг у моря - природа, которой хочется делиться!»
-            </div>
-            <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="main_buttons">
-              <div @click="goRoute(menu.route)" class="main_button">
-                <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
-                <div> {{ menu.name }}</div>
+            </div> -->
+            <div class="block_main_buttons">
+              <div v-for="menu in menus.slice(0, menus.length - 2)" :key="menu" class="main_buttons">
+                <div @click="goRoute(menu.route)" class="main_button">
+                  <component v-if="menu.icon" :is="menu.icon" :color="'var(--fill-icon-home)'" class="icon" />
+                  <div> {{ menu.name }}</div>
+                </div>
               </div>
             </div>
+
+
           </v-col>
           <v-col>
-            <img src="./../../../public/4.png" style="width: 105%;height: 82vh; margin-top: -10%;" />
+            <div id="image-container" style="width:100%; position:relative;">
+              <img id="img1" src="./../../../public/999.png"
+                style="
+    margin-left: 10%; border-radius: 15px; width: 82%; border: 2px dashed #4d672c; height: auto; margin-top: -.5%; padding: 15px; background: white; position: absolute; top: 0; left: 0;" />
+              <img id="img2" src="./../../../public/990.png"
+                style="
+    margin-left: 10%; border-radius: 15px; width: 82%; border: 2px dashed #4d672c; height: auto; margin-top: -.5%; padding: 15px; background: white; position: absolute; top: 0; left: 0; display: none;" />
+              <img id="img3" src="./../../../public/997.png"
+                style="
+    margin-left: 10%; border-radius: 15px; width: 82%; border: 2px dashed #4d672c; height: auto; margin-top: -.5%; padding: 15px; background: white; position: absolute; top: 0; left: 0; display: none;" />
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -33,6 +51,20 @@
 </template>
 
 <script setup>
+const images = ['img1', 'img2', 'img3'];
+let currentIndex = 0;
+
+setInterval(() => {
+  // Сначала скрываем все изображения
+  images.forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  // Переключаемся на следующее изображение
+  document.getElementById(images[currentIndex]).style.display = 'block';
+
+  // Обновляем индекс для следующего переключения
+  currentIndex = (currentIndex + 1) % images.length;
+}, 6000);
 import { router } from '@/router';
 import RegistrationSvg from './../../svg/registration.vue'
 import ListClientsSvg from './../../svg/listclients.vue'
@@ -102,33 +134,33 @@ function goRoute(name) {
   height: 100vh;
 }
 
-.wrapper_home {
+/* .wrapper_home {
   background: var(--background-img-page);
   background-size: var(--background-size-img-page);
   height: 100vh;
-}
+} */
 
 h1 {
   color: var(--color-h1-home);
   -webkit-text-stroke: var(--text-stroke-h1-home);
-  font-size: 5rem;
+  font-size: 4.5rem;
   letter-spacing: 0.08em;
   font-family: var(--font-family-h1-home);
   font-weight: 400;
   background: var(--background-h1-home);
   border-radius: var(--border-radius-h1-home);
-  border: var(--border-h1-home);
-  border-color: var(--border-color-h1-home);
+  border-bottom: 2px solid #4d672c;
+  width: max-content;
+  height: 5.7rem;
   box-shadow: var(--box-shadow-h1-home);
-  margin-top: -3%;
-  margin-bottom: 25px;
+  margin: -3% auto 5px;
 }
 
 .slogan {
-  color: var(--color-slogan-home);
-  -webkit-text-stroke: var(--text-stroke-slogan-home);
-  font-size: 1.8rem;
-  line-height: 3rem;
+  color: #4d672c;
+  -webkit-text-stroke: 0.05px #4d672c;
+  font-size: 1.3rem;
+  line-height: 2rem;
   letter-spacing: 1px;
   font-family: var(--font-family-slogan-home);
   font-weight: 400;
@@ -138,7 +170,7 @@ h1 {
   border-color: var(--border-color-slogan-home);
   box-shadow: var(--box-shadow-slogan-home);
   width: 100%;
-  margin: -10% 0 4% 4%;
+  /* margin: -10% 0 4% 4%; */
 }
 
 .buttons_options {
@@ -156,12 +188,20 @@ h1 {
 }
 
 .button .icon {
-  width: 30px;
-  margin: .5rem .5rem .5rem 2rem;
+  width: 25px;
+    margin: .5rem .25rem .5rem .25rem;
+}
+
+.block_main_buttons {
+
+  padding: 15px 0;
+  border-radius: 15px;
+  margin-top: 0%;
+
 }
 
 .main_buttons {
-  margin-left: 5%;
+  margin-left: 8%;
 }
 
 .main_button .icon {
@@ -173,8 +213,8 @@ h1 {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 2.5%;
-  width: 90%;
+  margin-bottom: 3.4%;
+  width: 100%;
   padding: 2px 4px;
   color: var(--color-main-buttons-home);
   -webkit-text-stroke: var(--text-stroke-main-buttons-home);

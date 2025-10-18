@@ -62,7 +62,7 @@ function isModalVisible(name) {
   -webkit-text-stroke: var(--text-stroke-h1);
   font-family: var(--font-family);
   font-weight: 200;
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
   background: var(--background-h1);
   box-shadow: var(--box-shadow-h1);
   border-radius: var(--border-radius-h1);
@@ -71,7 +71,7 @@ function isModalVisible(name) {
   width: max-content;
   display: block;
   margin: -10px auto 10px;
-  padding: 5px 7%;
+  padding: 5px 0;
   transform: scale(1.1);
 }
 
@@ -113,32 +113,35 @@ function isModalVisible(name) {
 
 /**Вкладки (содержимое)*/
 .v-card, .table_block {
-  height: 80vh;
+  height: 80vh;border: 1.5px solid #4d672c;
   padding: 15px 10px;
   -webkit-backdrop-filter: blur(9px);
   backdrop-filter: blur(9px);
-  background: linear-gradient(to top,rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.6)) !important;
+  background: linear-gradient(to top,rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   transition: all 0.25s ease;
 }
 
 .content, .v-card{
-  border-radius: 15px !important;  background-color: transparent !important;
+  border: 1.5px solid rgb(77, 103, 44) !important;
+  border-radius: 15px !important;  
+  background-color: transparent !important;
 }
 
 .v-card .v-card {
-  border: none;
+  border: none !important;
   box-shadow: none;
   background-color: transparent !important;
 }
 
+.v-card--variant-elevated{
+  padding: 10px !important;
+}
+
 /* Неактивные табы */
 .inactive-tab {
-  background-color: rgb(223, 224, 220) !important;
-  border: 1px solid rgb(157, 160, 145, .7) !important;
-  box-shadow: 1px -2px 0px rgba(95, 136, 53, 0.4) !important;
-  border-radius: 5px 5px 0px 0px !important;
+  border-bottom: 1.8px solid #5e8835af !important;
   opacity: 0.55 !important;
   text-transform: none !important;
   -webkit-text-stroke: .05px #5F8835;
@@ -146,16 +149,17 @@ function isModalVisible(name) {
 
 /* Активный таб */
 .active-tab {
-  background-color: transparent !important;
+  background-color:  transparent !important;
   border: 1px solid transparent !important;
+  border-radius: 10px !important;
   color: #5F8835 !important;
   text-transform: none !important;
-  -webkit-text-stroke: .05px #5F8835;
-  box-shadow: 1px -2px 0px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 5px 5px 0px 0px !important;
+  -webkit-text-stroke: .2px #5F8835;
+ 
+
 }
 /* Отключение подчеркивания у активного таба */
 .v-tab__slider {
-  background: transparent !important;
+  background: #5F8835 !important;
 }
 </style>
