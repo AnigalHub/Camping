@@ -20,6 +20,7 @@ const props = defineProps({
 
 .v-switch__track, .v-switch__thumb {
   border: var(--border-switch) var(--border-color-switch) !important;
+    background-color: #ccc !important;
 }
 </style>
 

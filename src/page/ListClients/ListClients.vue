@@ -19,7 +19,7 @@ defineOptions({
 const headers = [
   [
     { label: 'ФИО', rowspan: 2, key: 'fio', sortable: true },
-    { label: 'Дата рождения', rowspan: 2, key: 'date' },
+    // { label: 'Дата рождения', rowspan: 2, key: 'date' },
     // { label: 'Данные документа', rowspan: 2, key: 'document'},
     { label: 'Номер телефона', rowspan: 2, key: 'phone'},
     { label: 'Проживание', rowspan: 2, key: 'dateStay', sortable: true },

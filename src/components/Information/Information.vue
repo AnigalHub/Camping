@@ -6,7 +6,7 @@
         :key="key">
         <v-text-field 
           v-if="isISODate(object[key])"  
-          :variant="disable ? 'plain' : 'underlined'" 
+          :variant="disable ? 'plain' : 'outlined'" 
           :label="label" 
           :value="formatDate(object[key])" 
           type="date"
@@ -15,7 +15,7 @@
         <v-text-field 
           v-else 
           :label="label"
-          :variant="disable ? 'plain' : 'underlined'"  
+          :variant="disable ? 'plain' : 'outlined'"  
           :active="true" 
           :value="object[key]" 
           class="small-margin"  
@@ -24,6 +24,7 @@
       </v-col>
     </v-row>
   </v-form>
+  <v-btn class="btn_page">Сохранить</v-btn>
 </template>
 
 <script setup>

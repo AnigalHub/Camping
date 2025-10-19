@@ -2,7 +2,7 @@
   /* Заголовки страниц */
   --color-h1: #4d672c;
   --text-stroke-h1: 0.25px #4d672c;
-  --background-h1: rgba(138, 181, 57, 0.12);
+  --background-h1: transparent;
   --border-radius-h1: 10px;
   --border-h1: none;
   --border-color-h1: transparent;
@@ -48,25 +48,25 @@
   --text-stroke-main-buttons-home: none;
   --background-main-buttons-home: linear-gradient(to top,rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
   --border-radius-main-buttons-home: 15px;
-  --border-main-buttons-home: 1px solid;
-  --border-color-main-buttons-home: #acb1967c;
-  --box-shadow-main-buttons-home: inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1);
+  --border-main-buttons-home: 1.5px solid;
+  --border-color-main-buttons-home: #4d672c;
+  --box-shadow-main-buttons-home: inset 0 0 8px rgba(255, 255, 255, 0.3), 10px 10px 6px rgba(17, 44, 18, 0.1);
   --filter-main-buttons-home:blur(10px);
   /* Основные кнопки (при наведении) Главной страницы */
   --color-main-buttons-home-hover: #2a3a1f;
   --text-stroke-main-buttons-home-hover: none;
   --background-main-buttons-home-hover: linear-gradient(to top,rgba(197, 211, 149, 0.2), rgba(197, 211, 149, 0.2));
   --border-radius-main-buttons-home-hover: 15px;
-  --border-main-buttons-home-hover: 1px solid;
-  --border-color-main-buttons-home-hover: #acb1967c;
+  --border-main-buttons-home-hover: 1.5px solid;
+  --border-color-main-buttons-home-hover: #2a3a1f;
   --box-shadow-main-buttons-home-hover: inset 0 0 10px rgba(255, 255, 255, 0.4), 10px 10px 8px rgba(17, 44, 18, 0.2);
   --filter-main-buttons-home-hover:blur(10px);
 
   /** Фон страниц */
   --background-color-page: radial-gradient(circle, #ffffff 0%, #f4efd7 75% );
-  --background-img-page: url(./../../../public/1111.png) 100% 100% no-repeat;
+  --background-img-page: url(./../../../public/25.png) 100% 100% no-repeat;
   --background-size-img-page: 100% 100%;
-  --filter-background-page: blur(2.5px);
+  --filter-background-page: blur(1.5px);
 
   /** Поиск (инпут) (страниц) */
   --background-search:none;
@@ -77,8 +77,8 @@
 
    /** Переключатель */
   --background-active-switch: #87bd23;
-  --border-color-switch: #000000;
-  --border-switch: 1px solid;
+  --border-color-switch: #0000005a;
+  --border-switch: 0.1px solid;
 
   /** Таблица (страниц) */
   --border-radius-table: 10px;
@@ -90,21 +90,20 @@
   --background-th-table: #ffffff;
   --color-th-table: #3A6210;
   --text-stroke-th-table: .05px #5F8835;
-  --border-th-table: 2px solid;
+  --border-th-table: .25px solid;
   --border-color-th-table: #ffffff;
   --box-shadow-th-table: none;
   --svg-table: 14px;
 
-  
-
+ 
   /** Кнопки страниц */
   --color-btn-page: #3A6210;
   --text-stroke-btn-page: .5px #5F8835;
   --letter-spacing-btn-page:-.15px;
   --background-btn-page: #ffffff;
   --border-radius-btn-page: 8px;
-  --border-btn-page: 1.25px solid;
-  --border-color-btn-page: #5F8835;
+  --border-btn-page: 1.5px solid;
+  --border-color-btn-page: #4d672c;
   --box-shadow-btn-page:  0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
   /** Кнопка Назад */
@@ -134,4 +133,8 @@
 
 
   
+}
+.v-theme--light {
+  --v-disabled-opacity: 0.9 !important;
+  --v-input-control-height: 35px !important;
 }
