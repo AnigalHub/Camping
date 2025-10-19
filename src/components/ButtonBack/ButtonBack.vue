@@ -1,7 +1,7 @@
 <template>
   <div @click="clickBack" class="back">
     <component :is="backSvg" :color="'var(--fill-icon-btn-back-page)'" class="icon"/>
-    <div class="back_text">Назад</div>
+    <!-- <div class="back_text">Назад</div> -->
   </div>
 </template>
 
@@ -31,11 +31,11 @@ svg{
   width: max-content;
   padding: 4px 10px;
   font-family: var(--font-family-btn);
-  background: var(--background-btn-back-page);
+  /* background: var(--background-btn-back-page);
   border-radius: var(--border-radius-btn-back-page);
-  border: var(--border-btn-back-page);
-  border-color: var(--border-color-btn-back-page);
-  box-shadow: var(--box-shadow-btn-back-page);
+  border: var(--border-btn-back-page); */
+  /* border-color: var(--border-color-btn-back-page); */
+  /* box-shadow: var(--box-shadow-btn-back-page); */
   transition: all 0.25s ease;
   backdrop-filter: var(--filter-btn-back-page);
   -webkit-backdrop-filter: var(--filter-btn-back-page);
@@ -44,10 +44,10 @@ svg{
 .back:hover {
   cursor: pointer;
   background: var(--background-btn-back-page-hover);
-  border-radius: var(--border-radius-btn-back-page-hover);
+  /* border-radius: var(--border-radius-btn-back-page-hover);
   border: var(--border-btn-back-page-hover);
   border-color: var(--border-color-btn-back-page-hover);
-  box-shadow: var(--box-shadow-btn-back-page-hover);
+  box-shadow: var(--box-shadow-btn-back-page-hover); */
   backdrop-filter: var(--filter-btn-back-page-hover);
   -webkit-backdrop-filter: var(--filter-btn-back-page-hover);
 }
