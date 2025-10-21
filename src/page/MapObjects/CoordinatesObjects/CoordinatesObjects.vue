@@ -45,15 +45,17 @@
         </v-card>
       </v-col>
       <v-col cols="6">
-        <img src="./../../../../public/999.png"
-          style="width: 45%; background: white;margin-left: 15px; padding: 15px;border-radius: 15px; border: 1.25px dashed green;" />
-        <img src="./../../../../public/997.png"
+
+        <img src="./../../../../public/13.png"
+          style="width: 95%; background: white;margin-left: 15px; padding: 15px;border-radius: 15px;" />
+        <!-- <img src="./../../../../public/997.png"
           style="width: 45%; margin-top: 20px; margin-left: 15px; background: white; padding: 15px;border-radius: 15px; border: 1.25px dashed green;" />
         <img src="./../../../../public/990.png"
           style="width: 45%; margin-top: 15px;margin-left: 15px; background: white; padding: 15px;border-radius: 15px; border: 1.25px dashed green;" />
         <img src="./../../../../public/995.png"
           style="width: 45%; margin-top: 15px; margin-left: 15px; background: white; padding: 15px;border-radius: 15px; border: 1.25px dashed green;" />
-      </v-col>
+       -->
+        </v-col>
     </v-row>
   </div>
 

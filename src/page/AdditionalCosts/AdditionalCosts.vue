@@ -2,7 +2,7 @@
   <div class="page">
     <v-container >
       <Title :title="title"/>
-      <v-card :style="!tabs[1].value ? 'height: 100vh;':'height: 98vh;'">
+      <v-card :style="!tabs[1].value ? 'height: 100vh;':'height: 87vh;'">
         <v-tabs v-model="tab" >
           <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
             :class="{ 'active-tab': tab === item.value, 'inactive-tab': tab !== item.value }">
@@ -11,12 +11,12 @@
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item.text" :value="item.value">
             <v-card-text>
-              <div v-if="tab === tabs[0].value">
+              <div v-if="tab === tabs[0].value" class="block_table">
                 Нету
               </div>
               <div v-if="tab === tabs[1].value">
                 <Search />
-                <ListExpenses />
+                <ListExpenses class="list"/>
               </div>
             </v-card-text>
           </v-tabs-window-item>
@@ -47,4 +47,8 @@ const tabs = [
 ]
 </script>
 
-<style scoped></style>
+<style scoped>
+.list{
+  height: 58vh;
+}
+</style>

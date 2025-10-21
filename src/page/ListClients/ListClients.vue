@@ -4,7 +4,8 @@
       <Title :title="title"/>
       <div class="table_block content">
         <Search />
-        <Table :headers="headers" :items="items" sortByKey="fio" />
+        <Table v-if="items.length" :headers="headers" :items="items" sortByKey="fio" />
+        <div v-else class="block_table">Данные не найдены.</div>
       </div>
     </v-container>
   </div>
