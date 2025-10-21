@@ -5,7 +5,7 @@
         <div style="display: flex; justify-content: space-between; margin-bottom: 35px;">
           <div>
             <div class="d-flex">
-              <div style="width: 48px; margin-bottom: 5px; margin-right: 5px;">
+              <div style="width: 38px; margin-bottom: 5px; margin-right: 5px;">
                 <img src="./../../../public/l3.png" style="width: 100%;" />
               </div>
               <div class="title">Ромашка</div>
@@ -147,26 +147,35 @@ function goRoute(name) {
 /* Заголовок */
 .title {
   color: var(--color-h1-home);
-  -webkit-text-stroke: .7px #4d672c;
+  -webkit-text-stroke: var(--text-stroke-h1-home);
   font-size: 2.1rem;
   font-family: "Amatic SC", sans-serif;
   font-weight: 400;
   font-style: normal;
+  background: var(--background-h1-home);
+  border-radius: var(--border-radius-h1-home);
+  border: var(--border-h1-home);
+  border-color: var(--border-color-h1-home);
+  box-shadow: var(--box-shadow-h1-home);
   transform: scaleX(1.2);
   margin-top: -.2rem;
   letter-spacing: .15em;
   padding-left: 10px;
-  font-weight: 400;
 }
 
 /* Слоган */
 .slogan {
-  color: #4d672c;
-  -webkit-text-stroke: .08px #edeef0;
+  color: var(--color-slogan-home);
+  -webkit-text-stroke: var(--text-stroke-slogan-home);
   font-size: 1.2rem;
   letter-spacing: 1px;
-  margin-top: -2%;
   font-family: var(--font-family-slogan-home);
+  background: var(--background-slogan-home);
+  border-radius: var(--border-radius-slogan-home);
+  border: var(--border-slogan-home);
+  border-color: var(--border-color-slogan-home);
+  box-shadow: var(--box-shadow-slogan-home);
+  margin-top: -2%;
 }
 
 .main_row {
@@ -179,13 +188,15 @@ function goRoute(name) {
   cursor: pointer;
   transition: all 0.25s ease;
   display: flex;
+  border: .5px solid white !important;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .card_menu:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: .5px solid #8c8c8c91 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 .menu_header {

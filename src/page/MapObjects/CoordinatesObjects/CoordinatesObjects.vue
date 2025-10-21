@@ -1,7 +1,10 @@
 <template>
   <v-row no-gutters>
-    <v-col cols="3">
-      <img src="./../../../../public/map_3.png" style="width: 100%;opacity: .8; height: 45vh; margin-top: 20%;transform: scale(1.1);" />
+    <v-col cols="4">
+      <img src="./../../../../public/999.png" 
+      style="width: 97%; margin-top: 35px; background: white; padding: 15px;
+      border-radius: 15px; border: 1.25px dashed green;
+      "  />
     </v-col>
     <v-col>
       <v-card height="65vh" class="coordinates">
@@ -98,19 +101,7 @@ const formattedCoordinates = (value) => {
 }
 /* Общая стилизация для карточек */
 .coordinates {
-  overflow-y: auto;
-  border-radius: 12px;
-  margin-top: 5%;
-  background-color: #f8f6ea !important;
-  box-shadow: 0 4px 12px rgba(90, 112, 47, 0.25);
-  padding: 12px 20px;
-  color: #3a6210;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.v-col-3 {
-    flex: 0 0 32% !important;
-    max-width: 32% !important;
 }
 
 /* Стили списка */

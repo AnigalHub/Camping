@@ -23,8 +23,8 @@
 
   /* Заголовок Главной страницы */
   --color-h1-home: #4d672c;
-  --text-stroke-h1-home: 1.5px #4d672c;
-  --font-family-h1-home: "Great Vibes", cursive;
+  --text-stroke-h1-home: .7px #4d672c;
+  --font-family-h1-home: "Amatic SC", sans-serif;
   --background-h1-home: transparent;
   --border-radius-h1-home: 0;
   --border-h1-home: none;
@@ -32,8 +32,8 @@
   --box-shadow-h1-home: none;
 
   /* Слоган Главной страницы */
-  --color-slogan-home:rgba(0, 0, 0, 0.75);
-  --text-stroke-slogan-home: none;
+  --color-slogan-home:#4d672c;
+  --text-stroke-slogan-home: .08px #edeef0;
   --font-family-slogan-home: "Pacifico", cursive;
   --background-slogan-home: transparent;
   --border-radius-slogan-home: 0;
@@ -43,25 +43,10 @@
 
   /* Иконки кнопок Главной страницы */
   --fill-icon-home: #5F8835;
-  /* Основные кнопки Главной страницы */
-  --color-main-buttons-home: #2a3a1f;
-  --text-stroke-main-buttons-home: none;
-  --background-main-buttons-home: linear-gradient(to top,rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
-  --border-radius-main-buttons-home: 15px;
-  --border-main-buttons-home: 1.5px solid;
-  --border-color-main-buttons-home: #4d672c;
-  --box-shadow-main-buttons-home: inset 0 0 8px rgba(255, 255, 255, 0.3), 10px 10px 6px rgba(17, 44, 18, 0.1);
-  --filter-main-buttons-home:blur(10px);
-  /* Основные кнопки (при наведении) Главной страницы */
-  --color-main-buttons-home-hover: #2a3a1f;
-  --text-stroke-main-buttons-home-hover: none;
-  --background-main-buttons-home-hover: linear-gradient(to top,rgba(197, 211, 149, 0.2), rgba(197, 211, 149, 0.2));
-  --border-radius-main-buttons-home-hover: 15px;
-  --border-main-buttons-home-hover: 1.5px solid;
-  --border-color-main-buttons-home-hover: #2a3a1f;
-  --box-shadow-main-buttons-home-hover: inset 0 0 10px rgba(255, 255, 255, 0.4), 10px 10px 8px rgba(17, 44, 18, 0.2);
-  --filter-main-buttons-home-hover:blur(10px);
 
+
+
+  
   /** Фон страниц */
   --background-color-page: #edeef0;
   --background-img-page: transparent;
@@ -130,9 +115,6 @@
   --font-family-main: "Zen Kaku Gothic New", sans-serif;
   --font-family: "El Messiri", sans-serif;
   --font-family-btn: "Georgia", serif;
-
-
-  
 }
 .v-theme--light {
   --v-disabled-opacity: 0.9 !important;

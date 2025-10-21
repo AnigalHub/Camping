@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="isDialogOpen" max-width="600"  persistent>
+  <v-dialog v-model="isDialogOpen" max-width="600" persistent class="modal_block">
     <v-card :class="[classCss]">
       <!-- Заголовок -->
       <v-card-title v-if="!hideHeader" class="d-flex justify-space-between align-center">
@@ -135,5 +135,9 @@ export default defineComponent({
 .v-btn--variant-elevated {
     box-shadow: none !important;
     background: transparent !important;
+}
+
+.modal_block .v-card{
+  background: #fefefe !important;
 }
 </style>

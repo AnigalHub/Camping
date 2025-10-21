@@ -2,7 +2,7 @@
   <div class="page">
     <v-container>
       <Title :title="title"/>
-      <v-card style="height: 100vh;">
+      <v-card style="height: 85vh;">
         <v-tabs v-model="tab">
           <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
             :class="{ 'active-tab': tab === item.value, 'inactive-tab': tab !== item.value }">

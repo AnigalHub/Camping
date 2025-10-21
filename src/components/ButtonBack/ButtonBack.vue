@@ -1,6 +1,5 @@
 <template>
   <div @click="clickBack" class="back">
-    <!-- <img  src="./../../../public/back.png" style="width: 30px;"/> -->
     <component :is="backSvg" :color="'var(--fill-icon-btn-back-page)'" class="icon"/>
   </div>
 </template>

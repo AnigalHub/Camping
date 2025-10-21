@@ -7,7 +7,7 @@
           <h1 class="text-center">Ближайшие выезды</h1>
         </div>
       </div>
-      <v-card style="min-height: 100vh;">
+      <v-card style="min-height: 85vh;">
         <v-tabs v-model="tab">
           <v-tab v-for="item in tabs" :key="item" :text="item" :value="item"
             :class="{ 'active-tab': tab === item, 'inactive-tab': tab !== item }">

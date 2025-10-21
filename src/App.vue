@@ -171,8 +171,7 @@ function isModalVisible(name) {
 /* Неактивные табы */
 .inactive-tab {
   background: rgba(138, 181, 57, 0.08) !important;
-  opacity: 0.55 !important;
-  color: #5F8835;
+  color: #5F8835 !important;
   text-transform: none !important;
   -webkit-text-stroke: .05px rgba(138, 181, 57, 0.08);
   border: 1px solid rgba(138, 181, 57, 1) !important;
