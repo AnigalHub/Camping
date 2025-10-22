@@ -186,7 +186,6 @@ function goRoute(name) {
 .card_menu {
   height: 100% !important;
   cursor: pointer;
-  transition: all 0.25s ease;
   display: flex;
   border: .5px solid white !important;
   flex-direction: column;
