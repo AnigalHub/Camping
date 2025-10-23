@@ -65,9 +65,9 @@
             </template>
             <template v-else-if="showButtons && col.key === 'buttons'">
               <component :is="documentSvg" class="icons" v-tooltip:top="'Документы'"
-                @click="onModalDocuments(item, true)" />
-              <component :is="editSvg" class="icons" v-tooltip:top="'Изменить'" @click="onModalDocuments(item)" />
-              <component :is="deleteSvg" v-tooltip:top="'Удалить'" class="icons" />
+                @click="onModalDocuments('document', item, true)" />
+              <component :is="editSvg" class="icons" v-tooltip:top="'Изменить'" @click="onModalDocuments('edit', item)" />
+              <component :is="deleteSvg" v-tooltip:top="'Удалить'" class="icons" @click="onModalDocuments('delete', item, true)"/>
             </template>
             <template v-else>
               {{ item[col.key] ?? '—' }}
@@ -225,12 +225,12 @@ function formatDate(dateStr) {
 }
 
 /** Вызов Модального окна*/
-async function onModalDocuments(object, disable) {
+async function onModalDocuments(name, object, disable) {
   await callModalWindow(store, {
     name: 'Information',
     component: Information,
     props: {
-      title: disable ? 'Документы' : 'Изменение данных',
+      name,
       object,
       disable
     },

@@ -1,6 +1,6 @@
 <template>
   <h2 v-html="title"></h2>
-  <v-form style="height: max-content; overflow: auto; padding: 0 10px 20px 0 ;">
+  <v-form style="height: max-content; padding: 0 0 20px 0 ;">
     <v-row dense>
       <v-col :md="key === 'issuedDocument' || key === 'cityDocument' ? 12 : 4" v-for="(label, key) in filteredObject"
         :key="key">
@@ -24,7 +24,12 @@
       </v-col>
     </v-row>
   </v-form>
-  <v-btn v-if="!disable" class="btn_page">Сохранить</v-btn>
+  <v-btn v-if="name === 'edit'" class="btn_page">Сохранить</v-btn>
+  <div v-if="name === 'delete'" class="btn_delete">
+    <v-btn class="btn_page">Да</v-btn>
+    <v-btn class="btn_page">Нет</v-btn>
+  </div>
+  
 </template>
 
 <script setup>
@@ -34,7 +39,7 @@ import { computed } from 'vue';
  */
 
 const props = defineProps({
-  title: {
+  name: {
     type: String,
     default: '',
   },
@@ -72,10 +77,20 @@ const fieldMappings = {
   price: 'Стоимость',
 };
 
+const names = [
+  {value:'document', name: 'Документы'},
+  {value:'edit', name: 'Изменение данных'},
+  {value:'delete', name: 'Удалить запись ?'},
+]
+
+const title = computed(() => {
+  return names.find(el => el.value === props.name)?.name;
+});
+
 // Отфильтровать только те поля, которые есть в маппинге
 const filteredObject = computed(() => {
   // Если выключен disable, объединяем оба маппинга, иначе только fieldMappingsDisable
-  const mapping = props.disable
+  const mapping = props.name === 'document'
     ? fieldMappingsDisable
     : { ...fieldMappingsDisable, ...fieldMappings };
 
@@ -118,6 +133,17 @@ h2 {
 
 .v-field__input {
   padding-top: 15px !important;
+}
+
+.btn_delete{
+  display: flex;
+}
+.btn_delete .v-btn:first-child{
+  margin-right: 15px;
+}
+
+.btn_delete .v-btn{
+  width: 47%;
 }
 
 </style>
