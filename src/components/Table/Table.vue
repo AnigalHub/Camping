@@ -4,20 +4,54 @@
       <thead>
         <template v-for="(headerRow, rowIndex) in headers" :key="rowIndex">
           <tr>
-            <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
-              :rowspan="col.rowspan || 1" class="text-center" :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
-              @click="col.sortable && sortByColumn(col.key)">
-              <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
+            <th
+              v-for="(col, colIndex) in headerRow"
+              :key="colIndex"
+              :colspan="col.colspan || 1"
+              :rowspan="col.rowspan || 1"
+              class="text-center"
+              :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
+              @click="col.sortable && sortByColumn(col.key)"
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 100%;
+                "
+              >
                 <span>{{ col.label }}</span>
                 <!-- Иконки сортировки SVG -->
-                <div v-if="col.sortable" style="display: flex; flex-direction: column; ">
-                  <svg :fill="sortKey === col.key && sortDirection === 'asc' ? activeColor : inactiveColor" width="15"
-                    height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div
+                  v-if="col.sortable"
+                  style="display: flex; flex-direction: column"
+                >
+                  <svg
+                    :fill="
+                      sortKey === col.key && sortDirection === 'asc'
+                        ? activeColor
+                        : inactiveColor
+                    "
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path d="M12 8l-6 6h12l-6-6z" />
                   </svg>
-                  <svg style="margin-top: -9px;"
-                    :fill="sortKey === col.key && sortDirection === 'desc' ? activeColor : inactiveColor" width="15"
-                    height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    style="margin-top: -9px"
+                    :fill="
+                      sortKey === col.key && sortDirection === 'desc'
+                        ? activeColor
+                        : inactiveColor
+                    "
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path d="M12 16l6-6H6l6 6z" />
                   </svg>
                 </div>
@@ -28,26 +62,56 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in sortedItems" :key="index">
-          <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :class="[col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
-          col.key === 'buttons' ? 'bg_buttons' : '']">
-            <template v-if="col.key === 'date' && item[col.key]">
+          <td
+            v-for="(col, colIndex) in flatColumns"
+            :key="colIndex"
+            :data-label="col.label"
+            :class="[
+              col.key === 'fio' || col.key === 'document'
+                ? 'text-left'
+                : 'text-center',
+              col.key === 'buttons' ? 'bg_buttons' : '',
+            ]"
+          >
+            <!-- Форматирование ФИО -->
+            <template v-if="col.key === 'fio'">
+              <div class="fio-wrapper">
+                <span>{{ item.surname }}</span>
+                <span>{{ item.name }}</span>
+                <span>{{ item.patronymic }}</span>
+              </div>
+            </template>
+
+            <!-- Форматирование даты -->
+            <template v-else-if="col.key === 'date' && item[col.key]">
               {{ formatDate(item[col.key]) }}
             </template>
+
+            <!-- Форматирование диапазона дат -->
             <template v-else-if="col.key === 'dateStay'">
-              <div>{{ formatDate(item.startDate) }}</div>
-              <div>{{ formatDate(item.endDate) }}</div>
+              <div class="date-range">
+                <span>{{ formatDate(item.startDate) }}</span>
+                <span class="date_line">—</span>
+                <span>{{ formatDate(item.endDate) }}</span>
+              </div>
             </template>
-            <template v-else-if="col.key === 'fio'">
-              <div>{{ item.surname }}</div>
-              <div>{{ item.name }}</div>
-              <div>{{ item.patronymic }}</div>
-            </template>
+
+            <!-- Телефон -->
             <template v-else-if="col.key === 'phone' && item[col.key]">
-              {{ item[col.key].replace(/^(\+7)(\d{3})(\d{3})(\d{2})(\d{2})$/, '$1($2)$3-$4-$5') }}
+              {{
+                item[col.key].replace(
+                  /^(\+7)(\d{3})(\d{3})(\d{2})(\d{2})$/,
+                  "$1($2)$3-$4-$5"
+                )
+              }}
             </template>
+
+            <!-- Цена -->
             <template v-else-if="col.key === 'price' && item[col.key]">
-              {{ item[col.key].toLocaleString('ru-RU') }}
+              {{ item[col.key].toLocaleString("ru-RU") }}
             </template>
+
+            <!-- Документы -->
             <template v-else-if="col.key === 'document'">
               <div class="document_blocks">
                 <div>{{ item.seriesDocument }}</div>
@@ -55,22 +119,60 @@
               </div>
               <div>{{ item.codeDocument }}</div>
               <div>{{ formatDate(item.dateDocument) }}</div>
-              <div>{{ item.issuedDocument.length > 20 ? item.issuedDocument.slice(0, 20) + '...' : item.issuedDocument
-              }}
+              <div>
+                {{
+                  item.issuedDocument.length > 20
+                    ? item.issuedDocument.slice(0, 20) + "..."
+                    : item.issuedDocument
+                }}
               </div>
               <div>{{ item.cityDocument }}</div>
             </template>
-            <template v-else-if="item[col.key] === true || item[col.key] === false">
+
+            <!-- Булевы значения (переключатель) -->
+            <template
+              v-else-if="item[col.key] === true || item[col.key] === false"
+            >
               <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
             </template>
-            <template v-else-if="showButtons && col.key === 'buttons'">
-              <component :is="documentSvg" class="icons" v-tooltip:top="'Документы'"
-                @click="onModalDocuments('document', item, true)" />
-              <component :is="editSvg" class="icons" v-tooltip:top="'Изменить'" @click="onModalDocuments('edit', item)" />
-              <component :is="deleteSvg" v-tooltip:top="'Удалить'" class="icons" @click="onModalDocuments('delete', item, true)"/>
-            </template>
+
+            <!-- Кнопки -->
+           <!-- Кнопки -->
+<template v-else-if="showButtons && col.key === 'buttons'">
+  <div class="buttons-wrapper">
+    <div class="button-item documents" @click="onModalDocuments('documents', item, true)">
+      <component
+        :is="documentSvg"
+        class="icons"
+        v-tooltip:top="'Документы'"
+      />
+      <span class="button-label">Документы</span>
+    </div>
+
+    <div class="button-item edit" @click="onModalDocuments('edit', item)">
+      <component
+        :is="editSvg"
+        class="icons"
+        v-tooltip:top="'Изменить'"
+      />
+      <span class="button-label">Изменить</span>
+    </div>
+
+    <div class="button-item delete" @click="onModalDocuments('delete', item, true)">
+      <component
+        :is="deleteSvg"
+        class="icons"
+        v-tooltip:top="'Удалить'"
+      />
+      <span class="button-label">Удалить</span>
+    </div>
+  </div>
+</template>
+
+
+            <!-- По умолчанию -->
             <template v-else>
-              {{ item[col.key] ?? '—' }}
+              {{ item[col.key] ?? "—" }}
             </template>
           </td>
         </tr>
@@ -80,172 +182,149 @@
 </template>
 
 <script setup>
-import { computed, ref, shallowRef } from 'vue';
-import Switch from '../Switch/Switch.vue';
-import delete_svg from './../../svg/delete.vue';
-import edit_svg from './../../svg/edit.vue';
-import document_svg from './../../svg/document.vue';
+import { computed, ref, shallowRef } from "vue";
+import Switch from "../Switch/Switch.vue";
+import delete_svg from "./../../svg/delete.vue";
+import edit_svg from "./../../svg/edit.vue";
+import document_svg from "./../../svg/document.vue";
+import { callModalWindow } from "./../../utils/callModalWindow";
+import { loadComponent } from "./../../utils/loadComponent";
+import { useStore } from "vuex";
 
-import { callModalWindow } from './../../utils/callModalWindow';
-import { loadComponent } from './../../utils/loadComponent';
-import { useStore } from 'vuex';
-
-const Information = shallowRef(loadComponent('Information'));
+const Information = shallowRef(loadComponent("Information"));
 const store = useStore();
-
-
 
 const deleteSvg = shallowRef(delete_svg);
 const editSvg = shallowRef(edit_svg);
 const documentSvg = shallowRef(document_svg);
 
-const activeColor = '#4d672c'; // цвет активной сортировки
-const inactiveColor = '#ccc';  // цвет неактивной
+const activeColor = "#4d672c";
+const inactiveColor = "#ccc";
 
 const props = defineProps({
-  headers: {
-    type: Array,
-    default: () => [],
-  },
-  sortByKey: {
-    type: String,
-    default: () => null,
-  },
-  sortByDirection: {
-    type: String,
-    //asc || desc
-    default: () => 'asc',
-  },
-  items: {
-    type: Array,
-    default: () => [],
-  },
+  headers: Array,
+  sortByKey: String,
+  sortByDirection: { type: String, default: "asc" },
+  items: Array,
 });
 
-// Состояние сортировки
 const sortKey = ref(props.sortByKey);
 const sortDirection = ref(props.sortByDirection);
 
-
-// Функция сравнения для нескольких полей
 function compareMultipleFields(a, b) {
-  const fields = ['surname', 'name', 'patronymic'];
-
+  const fields = ["surname", "name", "patronymic"];
   for (const field of fields) {
-    const aVal = a[field];
-    const bVal = b[field];
-
-    // Если оба значения - строки, сравниваем по localeCompare
-    if (typeof aVal === 'string' && typeof bVal === 'string') {
-      const cmp = aVal.localeCompare(bVal);
-      if (cmp !== 0) return cmp;
-    } else {
-      const aStr = String(aVal || '');
-      const bStr = String(bVal || '');
-      const cmp = aStr.localeCompare(bStr);
-      if (cmp !== 0) return cmp;
-    }
+    const cmp = (a[field] || "").localeCompare(b[field] || "");
+    if (cmp !== 0) return cmp;
   }
-  return 0; // если все поля равны
+  return 0;
 }
 
-// Вспомогательная переменная для отсортированных элементов
 const sortedItems = computed(() => {
   if (!sortKey.value) return props.items;
   const sorted = [...props.items].sort((a, b) => {
+    if (sortKey.value === "fio") return compareMultipleFields(a, b);
+    if (sortKey.value === "date") return new Date(b.date) - new Date(a.date);
+    if (sortKey.value === "dateStay")
+      return new Date(b.endDate) - new Date(a.endDate);
     const aVal = a[sortKey.value];
     const bVal = b[sortKey.value];
-
-    if (sortKey.value === 'cars') {
-      if (aVal && !bVal) return -1;
-      if (!aVal && bVal) return 1;
-      if (aVal && bVal) {
-        return aVal.localeCompare(bVal);
-      }
-      return 0;
-    }
-    if (sortKey.value === 'date') {
-      const cVal = a[sortKey.value] ? new Date(a[sortKey.value]) : new Date(0);
-      const dVal = b[sortKey.value] ? new Date(b[sortKey.value]) : new Date(0);
-      return dVal - cVal;
-    }
-    if (typeof aVal === 'string' && typeof bVal === 'string') {
-      return aVal.localeCompare(bVal);
-    } else if (
-      (typeof aVal === 'number' && typeof bVal === 'number') ||
-      (typeof aVal === 'boolean' && typeof bVal === 'boolean')
-    ) {
-      return bVal - aVal;
-    } else if (!aVal && !bVal) {
-      if (sortKey.value === 'dateStay') {
-        const cVal = a.endDate ? new Date(a.endDate) : new Date(0);
-        const dVal = b.endDate ? new Date(b.endDate) : new Date(0);
-        return dVal - cVal;
-      }
-      if (sortKey.value === 'fio') {
-        return compareMultipleFields(a, b);
-      }
-    } else if (aVal || bVal) {
-      return String(aVal).localeCompare(String(bVal));
-    }
-    return 0;
+    return String(aVal || "").localeCompare(String(bVal || ""));
   });
-  return sortDirection.value === 'asc' ? sorted : sorted.reverse();
+  return sortDirection.value === "asc" ? sorted : sorted.reverse();
 });
 
-// Вытягиваем все колонки без заголовков (для данных)
 const flatColumns = computed(() => {
-  const flat = [];
-  props.headers.forEach(row =>
-    row.forEach(col => {
-      if (col.key) flat.push(col);
-    })
-  );
-  return flat;
+  return props.headers.flatMap((row) => row.filter((col) => col.key));
 });
 
-// Проверяем, есть ли кнопки
-const showButtons = computed(() => {
-  return props.headers.some(row => row.some(col => col.key === 'buttons'));
-});
+const showButtons = computed(() =>
+  props.headers.some((row) => row.some((col) => col.key === "buttons"))
+);
 
-// Текущая сортируемая колонка
 function sortByColumn(key) {
   if (sortKey.value === key) {
-    sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc';
+    sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
   } else {
     sortKey.value = key;
-    sortDirection.value = 'asc';
+    sortDirection.value = "asc";
   }
 }
 
-// Форматирование даты
 function formatDate(dateStr) {
-  return dateStr ? dateStr.split('T')[0].split('-').reverse().join('.') : null;
+  return dateStr ? dateStr.split("T")[0].split("-").reverse().join(".") : "—";
 }
 
-/** Вызов Модального окна*/
 async function onModalDocuments(name, object, disable) {
   await callModalWindow(store, {
-    name: 'Information',
+    name: "Information",
     component: Information,
-    props: {
-      name,
-      object,
-      disable
-    },
+    props: { name, object, disable },
   });
 }
 </script>
 
 <style scoped>
-.document_blocks {
-  display: flex;
+.date_line {
+  display: none;
 }
 
-.document_blocks div {
-  margin-right: 8px;
-  margin-top: 2.5px;
+/* --- Базовые стили --- */
+.buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-family-main);
+  position: relative;
+ transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  color: #000;
+  -webkit-text-stroke: .45px #000;
+}
+
+.button-item.documents, .button-item.edit, .button-item.delete {
+  border: .5px solid #4d672c;
+}
+
+.button-item:hover {
+  background: rgba(138, 181, 57, 0.1);
+  transform: scale(1.02);
+}
+
+.button-label {
+  display: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #000;
+  margin-top: 2px;
+}
+
+.fio-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1.3;
+}
+
+.date-range {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.document_blocks {
+  display: flex;
 }
 
 .bg_buttons {
@@ -260,12 +339,8 @@ async function onModalDocuments(name, object, disable) {
   cursor: pointer;
 }
 
-.v-table>.v-table__wrapper>table>tbody>tr>td {
-  font-size: .94rem;
-}
-
-/* Заголовки с сортировкой */
-.v-table>.v-table__wrapper>table>thead>tr>th {
+/* --- Заголовки и таблица --- */
+.v-table > .v-table__wrapper > table > thead > tr > th {
   height: 20px !important;
   background: var(--background-th-table) !important;
   color: var(--color-th-table);
@@ -280,37 +355,24 @@ async function onModalDocuments(name, object, disable) {
   cursor: pointer;
 }
 
-.v-table>.v-table__wrapper>table>tbody>tr:first-child>td {
+.v-table > .v-table__wrapper > table > tbody > tr:first-child > td {
   border-top: none !important;
-
 }
 
-.v-table>.v-table__wrapper>table>tbody>tr>td {
-  padding: 0 8px !important;
-
+.v-table > .v-table__wrapper > table > tbody > tr > td {
+  padding: 0 8px;
 }
 
-.v-table>.v-table__wrapper>table>thead>tr>th:first-child {
-  border-radius: var(--border-radius-table) 0 0 0 !important;
+.v-table .v-table__wrapper > table > tbody > tr > td,
+.v-table .v-table__wrapper > table > tbody > tr > th {
+  border-bottom: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
 }
 
-.v-table>.v-table__wrapper>table>thead>tr>th:last-child {
-  border-radius: 0 var(--border-radius-table) 0 0 !important;
-}
-
-.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:first-child {
-  border-radius: var(--border-radius-table) 0 0 0 !important;
-}
-
-.v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th:last-child {
-  border-radius: 0 var(--border-radius-table) 0 0 !important;
-}
-
-table>tbody>tr:last-child td:last-child {
-  border-radius: 0 0 var(--border-radius-table) 0 !important;
-}
-
-.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even) {
+.v-table.v-table--striped-even
+  > .v-table__wrapper
+  > table
+  > tbody
+  > tr:nth-child(even) {
   background: var(--background-even-tr-table);
 }
 
@@ -324,8 +386,162 @@ table>tbody>tr:last-child td:last-child {
   transition: all 0.25s ease;
 }
 
-.v-table>.v-table__wrapper>table>tbody>tr:hover,
-.v-table.v-table--striped-even>.v-table__wrapper>table>tbody>tr:nth-child(even):hover {
+.v-table > .v-table__wrapper > table > tbody > tr:hover {
   background: var(--background-tr-table-hover);
+}
+
+/* --- Адаптив под карточки --- */
+@media (max-width: 1100px) {
+  
+.v-table {
+  margin: 0;
+}
+
+.block_table {
+    padding: 0;
+    background: transparent !important; 
+    box-shadow: none !important; 
+}
+
+  .date_line {
+    display: block;
+  }
+
+  .buttons-wrapper {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .button-item {
+    flex-direction: row; /* ✅ иконка + текст рядом */
+    border-radius: 8px;
+    padding: 8px;
+    justify-content: center;
+  }
+
+  .button-label {
+    display: inline;
+     margin-left: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .v-table tbody td.bg_buttons {
+    justify-content: center;
+    padding-top: 15px !important;
+    background: transparent;
+    border-bottom: none !important;
+  }
+
+  .fio-wrapper {
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .v-table > .v-table__wrapper {
+    overflow: visible !important;
+  }
+
+  .v-table thead {
+    display: none;
+  }
+
+  .v-table tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 0 20px 20px 0 !important;
+  }
+
+  .v-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1);
+    border-radius: 15px;
+    padding: 16px 18px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .v-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 0;
+  }
+
+  .v-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-th-table, #555);
+  }
+
+  .date-range {
+    justify-content: flex-end;
+    text-align: right;
+    gap: 6px;
+  }
+
+  .v-table > .v-table__wrapper > table > tbody > tr > td {
+    padding: 5px;
+    height: auto !important;
+  }
+}
+
+/* --- Мобильная версия --- */
+@media (max-width: 600px) {
+  .buttons-wrapper {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .button-item {
+    width: 100%;
+    flex: none;
+    flex-direction: row;
+    border-radius: 8px;
+    padding: 6px;
+    justify-content: center;
+  }
+
+  .button-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .fio-wrapper {
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .v-table tbody {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .v-table tbody tr {
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+
+  .v-table tbody td {
+    text-align: left;
+    font-size: 0.8rem;
+    padding: 4px 0;
+  }
+
+  .date-range {
+    font-size: 0.85rem;
+    gap: 4px;
+  }
 }
 </style>

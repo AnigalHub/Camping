@@ -78,7 +78,7 @@ const fieldMappings = {
 };
 
 const names = [
-  {value:'document', name: 'Документы'},
+  {value:'documents', name: 'Документы'},
   {value:'edit', name: 'Изменение данных'},
   {value:'delete', name: 'Удалить запись ?'},
 ]
@@ -90,7 +90,7 @@ const title = computed(() => {
 // Отфильтровать только те поля, которые есть в маппинге
 const filteredObject = computed(() => {
   // Если выключен disable, объединяем оба маппинга, иначе только fieldMappingsDisable
-  const mapping = props.name === 'document'
+  const mapping = props.name === 'documents'
     ? fieldMappingsDisable
     : { ...fieldMappingsDisable, ...fieldMappings };
 
