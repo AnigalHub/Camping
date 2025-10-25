@@ -67,7 +67,7 @@ const menus = [
     name: 'Регистрация отдыхающих',
     descr:
       'Добавляйте новых гостей и быстро и комфортно размещайте их в лагере',
-    route: '',
+    route: 'AddClients',
   },
   {
     icon: ListClientsSvg,

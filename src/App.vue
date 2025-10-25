@@ -199,4 +199,9 @@ function isModalVisible(name) {
 .v-tab__slider {
   background: transparent !important;
 }
+
+.v-form {
+    padding: 10px 10px 0 !important; 
+    margin-top: -20px;
+}
 </style>

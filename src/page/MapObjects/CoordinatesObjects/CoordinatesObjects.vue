@@ -13,7 +13,7 @@
       </div>
       <div class="coords_block" @click="copyCoords(menu.value, i)">
         <span class="coords_value">{{ menu.value }}</span>
-        <v-icon size="16" color="#5F8835">mdi-content-copy</v-icon>
+        <v-icon size="16" color="#5F8835" style="margin-top: -2.5px; margin-left: 2.5px;">mdi-content-copy</v-icon>
       </div>
       <div class="card_footer" @click="openOnMap(menu.value)">
         <v-icon size="18" color="#5F8835">mdi-map-marker</v-icon>
@@ -35,7 +35,7 @@ const items = [
   { name: 'Под Горным Ветром', value: '48.363257, 30.295367', icon: 'mdi-weather-windy', caption: 'Свежесть ветра и свобода простора', color: '#8bb7d2' },
   { name: 'У Ветреного Берега', value: '41.830533, 31.118635', icon: 'mdi-waves', caption: 'Плеск волн и морской бриз', color: '#7cb7c5' },
   { name: 'Между Морем и Горами', value: '49.220335, 46.253733', icon: 'mdi-compass', caption: 'Баланс стихий — море, горы и небо', color: '#9a8cd4' },
-  { name: 'Звёздная Ночь', value: '50.456723, 36.234655', icon: 'mdi-star-shooting', caption: 'Чистое небо, млечный путь и тишина природы', color: '#4a77d4' },
+  { name: 'Звёздная Ночь', value: '50.456723, 36.234655', icon: 'mdi-star-shooting', caption: 'Чистое небо, млечный путь и тишина природы', color: '#6d8bc9' },
   { name: 'У Горного Озера', value: '51.162342, 37.635122', icon: 'mdi-water-outline', caption: 'Хрустальная вода и отражение гор в глади озера', color: '#7db6d4' },
   { name: 'Долина Цветов', value: '52.342156, 38.451212', icon: 'mdi-flower-tulip-outline', caption: 'Ковёр из ароматных трав и цветов под солнцем', color: '#d48ab4' },
   { name: 'Сосновая Тропа', value: '53.152534, 40.126334', icon: 'mdi-nature', caption: 'Шелест хвои и лёгкий аромат смолы на тропинке', color: '#8cc47d' },
@@ -65,7 +65,7 @@ const openOnMap = (coords) => {
   display: flex;
   flex-wrap: wrap;
   gap: 22px;
-  margin-top: -10px;
+  margin-top: -15px;
   padding: 15px 0 15px !important;
 }
 
@@ -98,7 +98,7 @@ const openOnMap = (coords) => {
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  padding: 5px 12px;
+  padding: 7px 12px;
   border-bottom: 1px solid rgba(150, 170, 150, 0.25);
 }
 
@@ -136,10 +136,10 @@ const openOnMap = (coords) => {
 }
 
 .decor_icon {
-  font-size: 36px !important;
+  font-size: 36px;
   transition: transform 0.3s ease;
   padding: 22px 0;
-  opacity: .7;
+  opacity: .85;
 }
 
 .card_menu:hover .decor_icon {
@@ -193,7 +193,6 @@ const openOnMap = (coords) => {
   background: rgba(138, 181, 57, 0.08);
   color: #1f451f;
   transform: translateY(-1px);
-  padding-bottom: 10px;
 }
 
 

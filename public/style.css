@@ -85,7 +85,7 @@
   --color-btn-page: #3A6210;
   --text-stroke-btn-page: .5px #5F8835;
   --letter-spacing-btn-page:-.15px;
-  --background-btn-page: #ffffff;
+  --background-btn-page: #ffffff !important;
   --border-radius-btn-page: 8px;
   --border-btn-page: 1.5px solid;
   --border-color-btn-page: #4d672c;

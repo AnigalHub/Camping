@@ -3,38 +3,7 @@
     <v-container>
       <Title :title="title" />
       <div class="block_table">
-        <v-row dense align="stretch">
-          <!-- Левая часть — форма -->
-          <v-col cols="9">
-            <v-card class="settings-card" elevation="3">
-              <v-card-text>
-                <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-text-field v-model="login" label="E-mail" variant="outlined" rounded="lg" :rules="[rules.required]"
-                    clearable />
-                  <p class="section-title">Изменение пароля:</p>
-                  <v-text-field v-model="currentPassword" label="Текущий пароль" variant="outlined" type="password"
-                    rounded="lg" :rules="[rules.required, rules.min]" clearable />
-                  <v-text-field v-model="newPassword" label="Новый пароль" variant="outlined" type="password"
-                    rounded="lg" :rules="[rules.required, rules.min]" clearable />
-                  <v-text-field v-model="confirmPassword" label="Повторите новый пароль" variant="outlined"
-                    type="password" rounded="lg" :rules="[rules.required, rules.matchPassword]" clearable />
-                  <v-btn class="btn_page">
-                    Сохранить
-                  </v-btn>
-                </v-form>
-              </v-card-text>
-            </v-card>
-          </v-col>
-          <!-- Правая часть — иконка -->
-          <v-col class="icon-col">
-            <div class="icon-wrapper">
-              <div class="block_icon">
-                <img src="./../../../public/1.png" alt="Account security" class="camp-image" />
-              </div>
-              <p class="icon-caption">Безопасность аккаунта</p>
-            </div>
-          </v-col>
-        </v-row>
+
       </div>
     </v-container>
   </div>
@@ -44,33 +13,22 @@
 import { ref } from 'vue'
 
 defineOptions({
-  name: 'Settings'
+  name: 'AddClients'
 })
 
-const title = 'Настройка аккаунта'
-
-const login = ref('')
-const currentPassword = ref('')
-const newPassword = ref('')
-const confirmPassword = ref('')
-const valid = ref(false)
-
-const rules = {
-  required: (v) => !!v || 'Поле обязательно',
-  min: (v) => (v && v.length >= 6) || 'Минимум 6 символов',
-  matchPassword: (v) => v === newPassword.value || 'Пароли не совпадают',
-}
+const title = 'Регистрация отдыхающих';
 </script>
 
 <style scoped>
+/* Общий контейнер */
 .block_table {
   min-height: 82.5vh;
   padding: 15px 25px 15px 15px !important;
   display: flex;
-  margin-top: 12px;
   align-items: center;
 }
 
+/* Заголовки секций */
 .section-title {
   margin-bottom: 10px;
   font-weight: 500;
@@ -80,6 +38,7 @@ const rules = {
   letter-spacing: 0.3px;
 }
 
+/* Левая карточка */
 .settings-card {
   padding: 30px 35px;
   margin: 0 15px;
@@ -99,15 +58,19 @@ const rules = {
     inset 0 0 14px rgba(255, 255, 255, 0.35);
 }
 
+/* Правая колонка */
 .icon-col {
   display: flex;
   justify-content: center;
   align-items: center;
+
   border-radius: 20px;
+
   position: relative;
   overflow: hidden;
 }
 
+/* Мягкое свечение */
 .icon-col::before {
   content: "";
   position: absolute;
@@ -118,29 +81,31 @@ const rules = {
   animation: pulse 6s ease-in-out infinite alternate;
 }
 
+/* Плавная анимация свечения */
 @keyframes pulse {
   0% {
     transform: scale(1);
     opacity: 0.5;
   }
-
   100% {
     transform: scale(1.2);
     opacity: 0.8;
   }
 }
 
+/* Контейнер для иконки */
 .icon-wrapper {
   text-align: center;
   z-index: 2;
   padding: 30px 10px;
 }
 
+/* Обводка вокруг иконки */
 .block_icon {
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, 0.3);
+    border: 1px solid rgba(180, 180, 180, 0.3);
   background: linear-gradient(180deg, #ffffff, #f3f7ef);
   margin: 0 auto;
   display: flex;
@@ -160,18 +125,17 @@ const rules = {
     inset 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
+/* Дыхание */
 @keyframes breathe {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(1.08);
   }
 }
 
+/* Изображение */
 .camp-image {
   width: 68%;
   height: auto;
@@ -184,6 +148,7 @@ const rules = {
   transform: scale(1.1);
 }
 
+/* Подпись */
 .icon-caption {
   margin-top: 1.2rem;
   font-weight: 600;
@@ -198,13 +163,13 @@ const rules = {
 .v-field.v-field--appended {
   background: #fff !important;
 }
-
-/* Уменьшаем вертикальные отступы */
+/* Сжимаем расстояние между инпутами */
 .v-text-field {
-  margin-bottom: 10px !important;
+  margin-bottom: 12px !important; /* раньше было 24px */
 }
 
+/* Последнему инпуту оставим чуть больше воздуха перед кнопкой */
 .v-text-field:last-of-type {
-  margin-bottom: 16px !important;
+  margin-bottom: 18px !important;
 }
 </style>
