@@ -583,27 +583,9 @@ function goRoute(name) {
   }
 }
 
-.logo {
-  transition: transform 1300ms ease;
-  /* плавный переход */
-  transform-origin: 50% 50%;
-  /* центр поворота */
-  will-change: transform;
-  /* подсказка для оптимизации */
-}
-
-.logo:hover {
-  transform: rotate(45deg);
-}
-
-
 /* ====== Элементы поверх анимации ====== */
 .v-card,
-.main_h2,
-.buttons,
-h1,
-.slogan,
-.logo {
+.main_h2{
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
@@ -1086,32 +1068,6 @@ h1,
   justify-content: flex-start;
 }
 
-/* Верхние кнопки */
-.buttons_options {
-  display: flex;
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  transition: all 0.25s ease;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-}
-
-.button:hover {
-  background: rgba(138, 181, 57, 0.22);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(138, 181, 57, 0.25);
-}
-
-.button .icon {
-  width: 25px;
-  color: #61656d;
-}
 
 /* Карточки */
 .v-card {
@@ -1365,30 +1321,6 @@ h1,
   .menu_descr {
     font-size: 0.88rem;
   }
-}
-
-/* Заголовок */
-.title {
-  font-family: "Amatic SC", cursive;
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  display: inline-block;
-  color: #6F9233;
-  text-align: center;
-}
-
-.slogan {
-  -webkit-text-stroke: .04px #dfdfdf;
-  font-family: "Pacifico", cursive;
-  color: #767677;
-  letter-spacing: 1px;
-  font-size: 1rem;
-  font-weight: 100;
-  text-align: center;
-  opacity: 1;
-  margin-top: -8px;
-  margin-left: -10px;
 }
 
 /* Заголовки секций */

@@ -1,141 +1,42 @@
 <template>
-
-
-    <v-app>
-  <v-app-bar style="
-          display: flex; 
-          justify-content: space-between; 
-          position: fixed;
-          border-radius: 0 0 15px 15px;
-          border: 1.5px solid rgba(255, 255, 255, 1);
-          background: #fff !important;
-          padding: 5px 15px 5px !important;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
-        ">
-      <v-app-bar-nav-icon @click="toggleDrawer" />
-      <v-toolbar-title class="d-flex align-center">
-      <div style="display: flex;">
-          <img src="./../../../public/l3.png" style="width: 50px; margin-right: 4px; height: 50px;"
-            class="logo" />
-          <v-toolbar-title class="d-flex align-center">
-            <h1 class="title">Ромашка</h1>
-            <div class="slogan">«Кемпинг у моря — природа, которой хочется делиться!»</div>
-          </v-toolbar-title>
-        </div>
-         
-      </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <div class="buttons_options">
-        <div v-for="menu in menus1" :key="menu" class="buttons">
-          <div @click="goRoute(menu.route)" class="button" v-tooltip:bottom="menu.name">
-            <component v-if="menu.icon" :is="menu.icon" :color="'#104155'" class="icon" />
-          </div>
-        </div>
-      </div>
-    </v-app-bar>
-
+  <v-app>
+    <top-menu :drawer="drawer" @toggle-drawer="drawer = !drawer" />
     <div class="layout-container">
-      <!-- Боковое меню -->
-      <v-navigation-drawer
-        v-model="drawer"
-        v-show="drawer || isWideScreen"
-        class="custom-drawer"
-        :class="{ 'drawer-fixed': drawer || isWideScreen }"
-        :permanent="isWideScreen"
-        :width="drawerWidth"
-      >
-        <v-list>
-          <v-list-item
-            v-for="item in menus"
-            :prepend-icon="item.icon"
-            :key="item.title"
-            @click="router.push({ name: item.route })"
-          >
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-
-      <!-- Контент -->
+      <side-menu v-model:drawer="drawer" />
       <v-main>
-        <router-view  style="margin-top: 53px;"/>
+        <router-view style="margin-top: 53px" />
       </v-main>
     </div>
-    <modal v-for="(modal, index) in modals" v-bind="modal" :key="index" :value="modal.isVisible" />
+    <modal
+      v-for="(modal, index) in modals"
+      v-bind="modal"
+      :key="index"
+      :value="modal.isVisible"
+    />
   </v-app>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
-import { useStore } from 'vuex';
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
+import { loadComponent } from "./utils/loadComponent";
 
-import RegistrationSvg from './svg/registration.vue'
-import ListClientsSvg from './svg/listclients.vue'
-import SettingsSvg from './svg/settings.vue'
-import ExitSvg from './svg/exit.vue'
-import { loadComponent } from './utils/loadComponent';
-const Modal = loadComponent('Modal');
+const Modal = loadComponent("Modal");
 const store = useStore();
-const modals = computed(() => store.getters['Modal/modals']);
+const modals = computed(() => store.getters["Modal/modals"]);
+
+const drawer = ref(false);
 
 /** Проверка видимости модального окна по имени */
 function isModalVisible(name) {
-  const found = modals.value.find(x => x.name === name);
+  const found = modals.value.find((x) => x.name === name);
   return found ? found.isVisible : false;
 }
-
-
-
-const router = useRouter();
-const drawer = ref(false);
-const isWideScreen = ref(window.innerWidth >= 1100);
-
-// ширина бокового меню
-const drawerWidth = computed(() => (isWideScreen.value ? 260 : 240));
-
-const toggleDrawer = () => {
-  drawer.value = !drawer.value;
-};
-
-const handleResize = () => {
-  isWideScreen.value = window.innerWidth >= 1100;
-  drawer.value = isWideScreen.value; // на широком экране меню всегда открыто
-};
-
-onMounted(() => {
-  window.addEventListener("resize", handleResize);
-  handleResize();
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", handleResize);
-});
-
-const menus = [
-  { icon:'mdi-account-plus-outline', title: "Регистрация клиентов", route: "AddClients" },
-  { icon:'mdi-account-group-outline', title: "Список клиентов", route: "ListClients" },
-  { icon:'mdi-calendar-clock-outline', title: "Ближайшие выезды", route: "Trips" },
-  { icon:'mdi-tent', title: "Свободные поляны", route: "MapObjects" },
-  { icon:'mdi-cash-multiple', title: "Учет расходов", route: "AdditionalCosts" },
-  { icon:'mdi-cog-outline', title: "Настройки", route: "AdditionalCosts" },
-];
-
-const menus1= [
-  { icon: SettingsSvg, name: 'Настройки', route: 'Settings' },
-  { icon: ExitSvg, name: 'Выход', route: 'Exit' },
-]
-function goRoute(name) {
-  router.push({ name })
-}
-
 </script>
 
 
 <style>
-@import './../public/style.css';
+@import "./../public/style.css";
 
 /**Фон страниц */
 .content_wrapper {
@@ -157,36 +58,10 @@ function goRoute(name) {
   z-index: 1;
 }
 
-.wrapper>* {
+.wrapper > * {
   position: relative;
   z-index: 2;
 }
-
-
-/* Заголовок */
-.title {
-  font-family: "Amatic SC", cursive;
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  display: inline-block;
-  color: #6F9233;
-  text-align: center;
-}
-
-.slogan {
-  -webkit-text-stroke: .04px #dfdfdf;
-  font-family: "Pacifico", cursive;
-  color: #767677;
-  letter-spacing: 1px;
-  font-size: 1rem;
-  font-weight: 100;
-  text-align: center;
-  opacity: 1;
-  margin-top: -8px;
-  margin-left: -10px;
-}
-
 
 /**Заголовок страниц */
 .page h1 {
@@ -204,8 +79,7 @@ function goRoute(name) {
   width: max-content;
   display: block;
 
-  padding-left: .6rem;
-
+  padding-left: 0.6rem;
 }
 
 /**Скролл */
@@ -235,7 +109,7 @@ function goRoute(name) {
   text-transform: none !important;
   letter-spacing: var(--letter-spacing-btn-page) !important;
   font-family: var(--font-family-main) !important;
-  font-size: .95rem !important;
+  font-size: 0.95rem !important;
   background: var(--background-btn-page) !important;
   border-radius: var(--border-radius-btn-page) !important;
   border: var(--border-btn-page) !important;
@@ -247,7 +121,8 @@ function goRoute(name) {
   margin-top: 5px;
 }
 
-.content, .block_search {
+.content,
+.block_search {
   padding: 15px 10px;
   background: var(--background-content-card) !important;
   box-shadow: var(--box-shadow-content-card) !important;
@@ -274,7 +149,7 @@ function goRoute(name) {
   height: 72vh;
 }
 
-.v-card{
+.v-card {
   padding: 5px 10px;
   transition: all 0.25s ease;
   border-radius: var(--border-radius-content-card) !important;
@@ -307,7 +182,8 @@ function goRoute(name) {
   border: var(--border-active-tab) var(--border-color-active-tab) !important;
 }
 
-.inactive-tab, .active-tab {
+.inactive-tab,
+.active-tab {
   text-transform: var(--text-transform-tabs) !important;
   border-radius: var(--border-radius-tabs) !important;
   margin-right: 8px;
@@ -319,7 +195,7 @@ function goRoute(name) {
 }
 
 .v-form {
-  padding: 10px 10px 0 !important; 
+  padding: 10px 10px 0 !important;
   margin-top: -20px;
 }
 </style>
