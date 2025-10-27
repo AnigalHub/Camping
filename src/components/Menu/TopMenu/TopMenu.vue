@@ -64,7 +64,6 @@ function goRoute(name) {
   border-radius: 0 0 15px 15px;
   border: 1.5px solid rgba(255, 255, 255, 1);
   background: #fff !important;
-  padding: 5px 15px 5px !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
 }
 

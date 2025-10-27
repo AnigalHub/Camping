@@ -93,5 +93,4 @@ function goRoute(name) {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
