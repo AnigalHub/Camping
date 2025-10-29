@@ -1,7 +1,7 @@
 <template>
   <v-app-bar class="d-flex justify-space-between position-fixed navbar">
     <v-app-bar-nav-icon @click="toggleDrawer" />
-    <v-toolbar-title class="d-flex align-center logo_block">
+    <v-toolbar-title class="d-flex align-center logo-block">
       <div class="d-flex cursor-pointer" @click="router.push({ name: 'Home' })">
         <img src="./../../../../public/l3.png" alt="логотип" class="logo" />
         <v-toolbar-title class="d-flex align-center">
@@ -77,7 +77,7 @@ function goRoute(name) {
   will-change: transform;
 }
 
-.logo_block:hover .logo{
+.logo-block:hover .logo{
   transform: rotate(45deg);
 }
 

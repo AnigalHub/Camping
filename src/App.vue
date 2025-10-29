@@ -102,6 +102,41 @@ function isModalVisible(name) {
   border-color: var(--border-color-track-scrollbar);
 }
 
+.btn-home {
+  background: #abadb122;
+  border: 1.5px solid rgb(168 170 176 / 12%);
+  color: #104155;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-weight: 800;
+  font-family: 'El Messiri', sans-serif;
+  font-size: 1.2rem;
+  text-transform: none !important;
+  letter-spacing: -.1px !important;
+  border-radius: 14px;
+  box-shadow: 0 2px 5px rgba(90, 130, 55, 0.08);
+  transition: all 0.3s ease;
+  padding: 11px 22px 11px !important;
+  width: 100%;
+  min-height: 46px;
+}
+
+.v-card:hover .btn-home {
+  background: #abadb139;
+  border-color: #8c8c8c91;
+  color: #2b3d15;
+  transform: translateY(-2px);
+
+}
+
+.v-card{
+  position: relative;
+  z-index: 4;
+  animation: fadeSlide 1.2s ease-in-out;
+}
+
+
+
 /**Кнопки страниц */
 .btn_page {
   color: var(--color-btn-page) !important;
@@ -149,12 +184,7 @@ function isModalVisible(name) {
   height: 72vh;
 }
 
-.v-card {
-  padding: 5px 10px;
-  transition: all 0.25s ease;
-  border-radius: var(--border-radius-content-card) !important;
-  background-color: var(--background-content-inner-card) !important;
-}
+
 
 .v-card .v-card {
   box-shadow: var(--box-shadow-content-inner-card);

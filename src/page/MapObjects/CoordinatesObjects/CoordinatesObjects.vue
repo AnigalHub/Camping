@@ -15,7 +15,7 @@
         <span class="coords_value">{{ menu.value }}</span>
         <v-icon size="16" color="#5F8835" style="margin-top: -2.5px; margin-left: 2.5px;">mdi-content-copy</v-icon>
       </div>
-      <div class="card_footer" @click="openOnMap(menu.value)">
+      <div class="card-footer" @click="openOnMap(menu.value)">
         <v-icon size="18" color="#5F8835">mdi-map-marker</v-icon>
         <span>Открыть на картах</span>
       </div>
@@ -174,7 +174,7 @@ const openOnMap = (coords) => {
   color: #5F8835;
 }
 
-.card_footer {
+.card-footer {
   display: flex;
   cursor: pointer;
   justify-content: center;
@@ -189,7 +189,7 @@ const openOnMap = (coords) => {
   transition: all 0.3s ease;
 }
 
-.card_footer:hover {
+.card-footer:hover {
   background: rgba(138, 181, 57, 0.08);
   color: #1f451f;
   transform: translateY(-1px);
