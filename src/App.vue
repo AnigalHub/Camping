@@ -39,7 +39,7 @@ function isModalVisible(name) {
 @import "./../public/style.css";
 
 /**Фон страниц */
-.content_wrapper {
+.page {
   background: var(--background-color-page);
   min-height: 100vh;
   height: auto;
@@ -129,14 +129,12 @@ function isModalVisible(name) {
 
 }
 
+
 .v-card{
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
 }
-
-
-
 /**Кнопки страниц */
 .btn_page {
   color: var(--color-btn-page) !important;

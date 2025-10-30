@@ -1,7 +1,7 @@
 <template>
   <div class="content_wrapper_home">
     <div class="wrapper">
-      <v-container class="container_home pt-10" min-height="100vh">
+      <v-container class="pt-10" min-height="100vh">
         <MainBlocks />
         <div class="d-flex align-stretch justify-space-between pt-8 ga-8">
           <div style="width: 75%">
@@ -43,17 +43,10 @@ import CampManagement from "./CampManagement/CampManagement.vue";
 </style>
 
 <style scoped>
-/* Общий фон */
 .content_wrapper_home {
   background: #edeef0;
   min-height: 100vh;
   height: auto;
   padding-bottom: 60px;
-}
-
-.container_home {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 }
 </style>
