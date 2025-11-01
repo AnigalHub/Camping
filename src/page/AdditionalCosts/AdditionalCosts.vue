@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <v-container >
-      <Title :title="title"/>
+      <Title :title="title" :icon="'mdi-cash-multiple'"/>
       <v-card :style="!tabs[1].value ? 'height: 100vh;':'height: 87vh;'">
         <v-tabs v-model="tab" >
           <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
@@ -33,7 +33,7 @@ import ListExpenses from './ListExpenses/ListExpenses.vue'
 defineOptions({
   name: 'AdditionalCosts'
 })
-const title = 'Дополнительные расходы';
+const title = 'Учет расходов';
 const tab = shallowRef('Добавить расходы');
 const tabs = [
   {

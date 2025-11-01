@@ -1,12 +1,7 @@
 <template>
   <div class="page">
     <v-container>
-      <div style="display: flex; align-items: center; margin-top: .7rem; margin-bottom: .2rem;">
-        <ButtonBack />
-        <div>
-          <h1 class="text-center">Ближайшие выезды</h1>
-        </div>
-      </div>
+      <Title :title="title" :icon="'mdi-calendar-clock-outline'"/>
       <v-card style="min-height: 85vh;">
         <v-tabs v-model="tab" grow>
           <v-tab v-for="item in tabs" :key="item" :text="item" :value="item"
@@ -36,6 +31,7 @@ import { computed } from 'vue';
 defineOptions({
   name: 'Trips'
 })
+const title = 'Ближайшие выезды';
 
 function get7Days() {
   const result = [];

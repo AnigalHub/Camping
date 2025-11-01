@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <v-container>
-      <Title :title="title"/>
+      <Title :title="title" :icon="'mdi-account-group-outline'"/>
       <Search />
       <Table v-if="items.length" :headers="headers" :items="items" sortByKey="fio" />
       <div v-else class="content">Данные не найдены.</div>

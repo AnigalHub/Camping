@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <v-container>
-      <Title :title="title" />
+      <Title :title="title" :icon="'mdi-account-plus-outline'" />
       <div class="content">
       </div>
     </v-container>

@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <v-container>
-      <Title :title="title"/>
+      <Title :title="title" :icon="'mdi-tent'"/>
       <v-card style="height: 85vh;">
         <v-tabs v-model="tab">
           <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
