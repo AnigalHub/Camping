@@ -9,16 +9,16 @@ const Trips = () => import('@/page/Trips/Trips.vue')
 const Settings = () => import('@/page/Settings/Settings.vue')
 
 const routes = [
-  {
-    path: '/',
-    redirect: () => {
-      if (typeof window !== 'undefined' && window.innerWidth < 1100) {
-        return { name: 'ListClients' }
-      }
-      return { name: 'Home' }
-    }
-  },
-  { name: 'Home', path: '/home', component: Home },
+  // {
+  //   path: '/',
+  //   redirect: () => {
+  //     if (typeof window !== 'undefined' && window.innerWidth < 1100) {
+  //       return { name: 'ListClients' }
+  //     }
+  //     return { name: 'Home' }
+  //   }
+  // },
+  { name: 'Home', path: '/', component: Home },
   { name: 'MapObjects', path: '/mapobjects', component: MapObjects },
   { name: 'AdditionalCosts', path: '/additionalcosts', component: AdditionalCosts },
   { name: 'AddClients', path: '/addclients', component: AddClients },

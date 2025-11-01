@@ -77,3 +77,9 @@ const props = defineProps({
   },
 })
 </script>
+
+<style scoped>
+svg{
+	transform: scaleX(-1);
+}
+</style>
