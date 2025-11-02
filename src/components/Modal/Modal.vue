@@ -133,12 +133,12 @@ export default defineComponent({
 
 <style>
 .v-btn--variant-elevated {
-    box-shadow: none !important;
-    background: transparent !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 .modal_block .v-card{
-  background: #fefefe !important;
-    overflow: hidden !important;
+  background: var(--background-modal) !important;
+  overflow: hidden !important;
 }
 </style>

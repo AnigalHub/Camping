@@ -11,7 +11,7 @@
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item.text" :value="item.value">
             <v-card-text>
-              <div v-if="tab === tabs[0].value" class="block_table">
+              <div v-if="tab === tabs[0].value" class="content">
                 Нету
               </div>
               <div v-if="tab === tabs[1].value">

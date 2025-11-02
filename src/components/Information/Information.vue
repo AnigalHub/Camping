@@ -2,37 +2,16 @@
   <h2 v-html="title"></h2>
   <v-form>
     <v-row dense>
-      <v-col
-        v-for="(label, key) in filteredObject"
-        :key="key"
-        :cols="12"
+      <v-col v-for="(label, key) in filteredObject" :key="key" :cols="12"
         :sm="key === 'issuedDocument' || key === 'cityDocument' ? 12 : 6"
-        :md="key === 'issuedDocument' || key === 'cityDocument' ? 12 : 4"
-      >
-        <v-text-field
-          v-if="isISODate(object[key])"
-          :variant="disable ? 'plain' : 'outlined'"
-          :label="label"
-          :value="formatDate(object[key])"
-          type="date"
-          rounded="lg"
-          class="small-margin"
-          :disabled="disable"
-        />
-        <v-text-field
-          v-else
-          :variant="disable ? 'plain' : 'outlined'"
-          :label="label"
-          :value="object[key]"
-          :active="true"
-          rounded="lg"
-          class="small-margin"
-          :disabled="disable"
-        />
+        :md="key === 'issuedDocument' || key === 'cityDocument' ? 12 : 4">
+        <v-text-field v-if="isISODate(object[key])" :variant="disable ? 'plain' : 'outlined'" :label="label"
+          :value="formatDate(object[key])" type="date" rounded="lg" class="small-margin" :disabled="disable" />
+        <v-text-field v-else :variant="disable ? 'plain' : 'outlined'" :label="label" :value="object[key]"
+          :active="true" rounded="lg" class="small-margin" :disabled="disable" />
       </v-col>
     </v-row>
   </v-form>
-
   <div class="btn_wrapper">
     <div class="btn_block">
       <v-btn v-if="name === 'edit'" class="btn_page">Сохранить</v-btn>
@@ -114,7 +93,7 @@ function formatDate(isoString) {
 </script>
 
 <style scoped>
-.v-form{
+.v-form {
   height: max-content;
   padding: 0 0 20px 0;
 }
@@ -123,12 +102,12 @@ h2 {
   text-align: center;
   margin-top: -11%;
   margin-bottom: 5%;
-  color: var(--color-h1);
-  -webkit-text-stroke: var(--text-stroke-h1);
+  color: var(--color-title-modal);
+  -webkit-text-stroke: var(--text-stroke-title-modal);
   font-family: var(--font-family);
   font-weight: 200;
   font-size: 1.4rem !important;
-  border-bottom: 1px solid #ccc;
+  border-bottom: var(--border-bottom-title-modal);
 }
 
 .v-row {
@@ -142,7 +121,7 @@ h2 {
   transition: all 0.25s ease;
 }
 
-/* ✳️ Если внутри .v-col находятся disabled-поля — делаем их плотнее */
+/* Если внутри .v-col находятся disabled-поля — делаем их плотнее */
 .v-col:has(.v-field--disabled) {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
@@ -171,28 +150,17 @@ h2 {
   line-height: 1.1;
 }
 
-.v-field--variant-outlined:hover {
-  box-shadow: 0 0 0 2px rgba(93, 146, 76, 0.1);
-}
-
 .btn_page {
   display: block;
   margin: 20px auto 0 auto;
-  padding: 8px 22px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #4d672c, #6d9247);
-  color: #fff;
-  font-weight: 500;
   font-size: 0.95rem;
-  text-transform: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 6px rgba(77, 103, 44, 0.25);
 }
 
 .btn_wrapper {
-  border-top: 1px solid #ccc;
+  border-top: var(--border-bottom-content-modal);
   margin: 15px auto 10px;
 }
+
 .btn_block {
   width: 50%;
   margin: 0 auto 10px;
@@ -204,29 +172,10 @@ h2 {
   align-items: center;
   gap: 15px;
 }
+
 .btn_delete .v-btn {
   flex: 1;
   max-width: 47%;
-  padding: 8px 0;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  text-transform: none;
-  transition: all 0.25s ease;
-}
-
-/* Кнопка "Да" — зелёная */
-.btn_delete .v-btn:first-child {
-  background: linear-gradient(135deg, #4d672c, #6d9247);
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(77, 103, 44, 0.25);
-}
-
-/* Кнопка "Нет" — нейтральная */
-.btn_delete .v-btn:last-child {
-  background: #f4f4f4;
-  color: #2f2f2f;
-  border: 1px solid #d6d6d6;
 }
 
 /* --- Адаптив --- */
@@ -235,11 +184,11 @@ h2 {
     width: 70%;
   }
 }
-@media (max-width: 500px) {
 
-  .v-form{
-  margin-top:.2px;
-}
+@media (max-width: 500px) {
+  .v-form {
+    margin-top: .2px;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -247,12 +196,13 @@ h2 {
     max-height: 55vh !important;
     overflow: auto;
   }
+
   .btn_block {
     width: 100%;
   }
 
 
 
-  
+
 }
 </style>

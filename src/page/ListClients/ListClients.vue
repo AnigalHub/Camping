@@ -2,11 +2,9 @@
   <div class="page">
     <v-container>
       <Title :title="title"/>
-      <div class="table_block content">
-        <Search />
-        <Table v-if="items.length" :headers="headers" :items="items" sortByKey="fio" />
-        <div v-else class="block_table">Данные не найдены.</div>
-      </div>
+      <Search />
+      <Table v-if="items.length" :headers="headers" :items="items" sortByKey="fio" />
+      <div v-else class="content">Данные не найдены.</div>
     </v-container>
   </div>
 </template>
@@ -46,8 +44,8 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1971-09-15T00:00:00.000+00:00',
     phone: '+79039004578',
-    startDate: '2025-08-15T00:00:00.000+00:00',
-    endDate: '2025-08-19T00:00:00.000+00:00',
+    startDate: '2025-11-01T00:00:00.000+00:00',
+    endDate: '2025-11-03T00:00:00.000+00:00',
     house: false,
     object: 7,
     cars: 'Х765СС750',
@@ -66,8 +64,8 @@ const items = [
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1980-05-15T00:00:00.000+00:00',
     phone: '+79068124233',
-    startDate: '2025-08-20T00:00:00.000+00:00',
-    endDate: '2025-08-25T00:00:00.000+00:00',
+    startDate: '2025-10-20T00:00:00.000+00:00',
+    endDate: '2025-10-28T00:00:00.000+00:00',
     house: false,
     object: 1,
     cars: null,
@@ -86,8 +84,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Медведково',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '2000-09-21T00:00:00.000+00:00',
-    startDate: '2025-08-22T00:00:00.000+00:00',
-    endDate: '2025-08-23T00:00:00.000+00:00',
+    startDate: '2025-10-22T00:00:00.000+00:00',
+    endDate: '2025-10-29T00:00:00.000+00:00',
     house: false,
     cars: 'Н122АК150',
     object: 3,
@@ -106,8 +104,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Перово',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1999-08-23T00:00:00.000+00:00',
-    startDate: '2025-08-25T00:00:00.000+00:00',
-    endDate: '2025-08-30T00:00:00.000+00:00',
+    startDate: '2025-10-25T00:00:00.000+00:00',
+    endDate: '2025-10-30T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 2,
@@ -126,8 +124,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Бибирево',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1986-06-15T00:00:00.000+00:00',
-    startDate: '2025-07-05T00:00:00.000+00:00',
-    endDate: '2025-07-08T00:00:00.000+00:00',
+    startDate: '2025-10-30T00:00:00.000+00:00',
+    endDate: '2025-10-31T00:00:00.000+00:00',
     cars: 'С521КК77',
     house: false,
     object: 2,
@@ -146,8 +144,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Отрадное',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1995-07-07T00:00:00.000+00:00',
-    startDate: '2025-06-06T00:00:00.000+00:00',
-    endDate: '2025-06-09T00:00:00.000+00:00',
+    startDate: '2025-11-01T00:00:00.000+00:00',
+    endDate: '2025-11-03T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 7,
@@ -166,8 +164,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Бутово',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1993-03-15T00:00:00.000+00:00',
-    startDate: '2025-05-27T00:00:00.000+00:00',
-    endDate: '2025-05-29T00:00:00.000+00:00',
+    startDate: '2025-11-01T00:00:00.000+00:00',
+    endDate: '2025-11-02T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 9,
@@ -186,8 +184,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Вешняки',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1992-08-11T00:00:00.000+00:00',
-    startDate: '2025-07-07T00:00:00.000+00:00',
-    endDate: '2025-07-08T00:00:00.000+00:00',
+    startDate: '2025-11-01T00:00:00.000+00:00',
+    endDate: '2025-11-03T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 4,
@@ -206,8 +204,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Бирюлево-Восточное',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1995-03-115T00:00:00.000+00:00',
-    startDate: '2025-06-13T00:00:00.000+00:00',
-    endDate: '2025-06-24T00:00:00.000+00:00',
+    startDate: '2025-10-30T00:00:00.000+00:00',
+    endDate: '2025-10-31T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 3,
@@ -226,8 +224,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Измайлово',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1986-10-25T00:00:00.000+00:00',
-    startDate: '2025-07-18T00:00:00.000+00:00',
-    endDate: '2025-07-23T00:00:00.000+00:00',
+    startDate: '2025-10-28T00:00:00.000+00:00',
+    endDate: '2025-10-29T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 8,
@@ -246,8 +244,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Новокосино',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1988-05-17T00:00:00.000+00:00',
-    startDate: '2025-08-15T00:00:00.000+00:00',
-    endDate: '2025-08-16T00:00:00.000+00:00',
+    startDate: '2025-10-27T00:00:00.000+00:00',
+    endDate: '2025-10-30T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 1,
@@ -266,8 +264,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Рублево',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1990-04-19T00:00:00.000+00:00',
-    startDate: '2025-05-04T00:00:00.000+00:00',
-    endDate: '2025-05-29T00:00:00.000+00:00',
+    startDate: '2025-11-01T00:00:00.000+00:00',
+    endDate: '2025-11-02T00:00:00.000+00:00',
     cars: null,
     house: true,
     object: 9,
@@ -286,8 +284,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Косино',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1991-05-29T00:00:00.000+00:00',
-    startDate: '2025-05-01T00:00:00.000+00:00',
-    endDate: '2025-05-03T00:00:00.000+00:00',
+    startDate: '2025-10-30T00:00:00.000+00:00',
+    endDate: '2025-11-01T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 8,
@@ -306,8 +304,8 @@ const items = [
     issuedDocument: 'Отделом УФМС России по гор. Москве по району Жулебино',
     cityDocument: 'РОССИЯ, город Москва',
     dateDocument: '1994-03-15T00:00:00.000+00:00',
-    startDate: '2025-05-11T00:00:00.000+00:00',
-    endDate: '2025-05-14T00:00:00.000+00:00',
+    startDate: '2025-11-01T00:00:00.000+00:00',
+    endDate: '2025-11-02T00:00:00.000+00:00',
     cars: null,
     house: false,
     object: 7,
@@ -318,7 +316,7 @@ const items = [
 </script>
 
 <style scoped>
-.block_table {
+.content {
   height: 67.5vh;
 }
 </style>

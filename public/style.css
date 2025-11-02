@@ -22,8 +22,8 @@
   --border-color-slider-scrollbar: transparent;
 
   /* Заголовок Главной страницы */
-  --color-h1-home: #4d672c;
-  --text-stroke-h1-home: .7px #4d672c;
+  --color-h1-home: #72962E;
+  --text-stroke-h1-home: .7px none;
   --font-family-h1-home: "Amatic SC", sans-serif;
   --background-h1-home: transparent;
   --border-radius-h1-home: 0;
@@ -32,8 +32,8 @@
   --box-shadow-h1-home: none;
 
   /* Слоган Главной страницы */
-  --color-slogan-home:#4d672c;
-  --text-stroke-slogan-home: .08px #edeef0;
+  --color-slogan-home:#739730;
+  --text-stroke-slogan-home: .16px #F3F3F5;
   --font-family-slogan-home: "Pacifico", cursive;
   --background-slogan-home: transparent;
   --border-radius-slogan-home: 0;
@@ -42,10 +42,7 @@
   --box-shadow-slogan-home: none;
 
   /* Иконки кнопок Главной страницы */
-  --fill-icon-home: #5F8835;
-
-
-
+  --fill-icon-home: #4d672c;
   
   /** Фон страниц */
   --background-color-page: #edeef0;
@@ -54,11 +51,13 @@
   --filter-background-page: blur(0px);
 
   /** Поиск (инпут) (страниц) */
-  --background-search:none;
+  --background-search: #ffffff;
   --border-color-search: #5F8835;
   --opacity-search: .7;
   --border-color-after-search: #5F8835;
   --border-width-after-search: 0 0 1.8px;
+  --box-shadow-search: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1);
 
    /** Переключатель */
   --background-active-switch: #87bd23;
@@ -70,6 +69,12 @@
   --filter-background-table: blur(10px);
   --background-table: transparent;
   --background-btn-block-table: rgba(217, 217, 217, 0.24);
+  --background-btn-table: transparent;
+  --background-btn-table-hover: rgba(138, 181, 57, 0.1);
+  --border-btn-table: .5px solid;
+  --border-color-btn-table: #4d672c;
+  --color-btn-table: #000000;
+  --text-stroke-btn-table: .45px #000000;
   --background-even-tr-table: rgba(138, 181, 57, 0.08);
   --background-tr-table-hover: rgba(138, 181, 57, .2);
   --background-th-table: #ffffff;
@@ -80,7 +85,6 @@
   --box-shadow-th-table: none;
   --svg-table: 14px;
 
- 
   /** Кнопки страниц */
   --color-btn-page: #3A6210;
   --text-stroke-btn-page: .5px #5F8835;
@@ -90,6 +94,13 @@
   --border-btn-page: 1.5px solid;
   --border-color-btn-page: #4d672c;
   --box-shadow-btn-page:  0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+  /** Модальные окна страниц */
+  --background-modal: #fefefe;
+  --color-title-modal: #4d672c;
+  --text-stroke-title-modal: 0.25px #4d672c;
+  --border-bottom-title-modal: 1px solid #ccc;
+  --border-bottom-content-modal: 1px solid #ccc;
 
   /** Кнопка Назад */
   --fill-icon-btn-back-page: #000000;
@@ -111,12 +122,56 @@
   --box-shadow-btn-back-page-hover: none;
   --filter-btn-back-page-hover: blur(0px);
 
+  /* Табы */
+  --text-transform-tabs: none;
+  --border-radius-tabs: 10px;
+
+  /* Неактивные табы */
+  --background-inactive-tab: rgba(138, 181, 57, 0.08);
+  --color-inactive-tab: #5F8835;
+  --text-stroke-inactive-tab: .05px rgba(138, 181, 57, 0.08);
+  --border-inactive-tab: 1px solid;
+  --border-color-inactive-tab: rgba(138, 181, 57, 1);
+
+
+    /* Активные табы */
+  --background-active-tab: #ffffff;
+  --color-active-tab: #5F8835;
+  --text-stroke-active-tab: .2px #5F8835;
+  --border-active-tab: 1px solid;
+  --border-color-active-tab: #5F8835;
+  /* Отключение подчеркивания у активного таба */
+  --underline-active-tab: transparent;
+
+  /* Карточки под контент*/
+  --background-content-card: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8));
+  --box-shadow-content-card: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 8px rgba(17, 44, 18, 0.1);
+  --border-radius-content-card: 15px;
+
+  /* Карточки внутри контента*/
+  --background-content-inner-card: transparent;
+  --box-shadow-content-inner-card: none;
+
+
  /* Шрифты страниц */
   --font-family-main: "Zen Kaku Gothic New", sans-serif;
   --font-family: "El Messiri", sans-serif;
   --font-family-btn: "Georgia", serif;
+  --font-family-numbers: 'Courier New', monospace;
+
+   --v-layout-left: 0 !important;
 }
 .v-theme--light {
   --v-disabled-opacity: 0.9 !important;
   --v-input-control-height: 35px !important;
+}
+
+
+
+
+    .v-main {
+
+    padding-top: 0 !important; 
+
 }

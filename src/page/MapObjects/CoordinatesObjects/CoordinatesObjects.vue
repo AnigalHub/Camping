@@ -127,7 +127,7 @@ const openOnMap = (coords) => {
   -webkit-text-stroke: 0.1px #4d672c;
   font-size: 1.05rem;
   font-weight: 600;
-  font-family: 'El Messiri', sans-serif;
+  font-family: var(--font-family);
 }
 
 .decor_block {
@@ -150,7 +150,7 @@ const openOnMap = (coords) => {
   color: #3d483d;
   font-size: 0.9rem;
   font-weight: 500;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
   margin-top: 6px;
 }
 
@@ -168,7 +168,7 @@ const openOnMap = (coords) => {
 }
 
 .coords_value {
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-family-numbers);
   font-size: 0.85rem;
   font-weight: 600;
   color: #5F8835;

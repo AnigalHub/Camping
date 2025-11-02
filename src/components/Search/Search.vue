@@ -19,10 +19,6 @@
   padding-right: 0px !important;
 }
 
-.search .v-field--variant-filled .v-field__overlay {
-  background: var(--background-search) !important;
-}
-
 .search .v-field--variant-filled .v-field__outline::before {
   opacity: var(--opacity-search) !important;
   border-color: var(--border-color-search) !important;
@@ -33,11 +29,10 @@
   border-color: var(--border-color-after-search) !important;
 }
 .search .v-field__field {
-    background: white !important;
-      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1) !important;
-    padding: 2.5px 5px;
-    border-radius: 10px !important;
+  background: var(--background-search) !important;
+  box-shadow: var(--box-shadow-search) !important;
+  padding: 2.5px 5px;
+  border-radius: 10px !important;
 }
 .search .v-label.v-field-label {
   padding-left: 8px;
