@@ -98,7 +98,22 @@ function goRoute(name) {
   router.push({ name });
 }
 </script>
+<style>
+.v-list-item-title {
+  font-weight: 800 !important;
+  letter-spacing: 0.009375em;
+  font-size: 1.15rem !important;
+  font-family: var(--font-family-title);
+  color: #455e25;
+  margin-top: 6px;
+}
 
+.v-list-item__prepend {
+  display: block !important;
+  margin-right: 5px;
+  color: #233b06;
+}
+</style>
 <style scoped>
 .active-item {
   background: var(--background-inactive-tab) !important;
@@ -106,7 +121,7 @@ function goRoute(name) {
   -webkit-text-stroke: var(--text-stroke-inactive-tab);
   font-weight: 500 !important;
   border: 1.5px solid var(--border-color-inactive-tab) !important;
-  border-radius: 0  10px 10px 0 !important;
+  border-radius: 0  15px 15px 0 !important;
 }
 .active-item .v-list-item-title {
   color: #6f9233 !important;

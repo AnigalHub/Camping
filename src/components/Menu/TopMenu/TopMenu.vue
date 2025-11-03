@@ -58,6 +58,11 @@ function goRoute(name) {
   router.push({ name });
 }
 </script>
+<style >
+.v-toolbar__content{
+  height: 50px !important;
+}
+</style>
 
 <style scoped>
 .navbar {
@@ -85,18 +90,18 @@ function goRoute(name) {
   font-family: "Amatic SC", cursive;
   font-weight: 700;
   color: #6f9233;
-  font-size: 2.2rem;
+  font-size: 2.15rem;
   letter-spacing: 3px;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .slogan {
-  font-family: "Pacifico", cursive;
+  font-family: var(--font-family-slogan-home);
   color: #767677;
   -webkit-text-stroke: 0.04px #dfdfdf;
-  font-size: 1rem;
+  font-size: .95rem;
   letter-spacing: 1px;
-  margin-top: -10px;
+  margin-top: -12px;
   margin-left: -10px;
 }
 
