@@ -228,6 +228,10 @@ async function onModalDocuments(name, object, disable) {
   transform: scale(1.02);
 }
 
+  .v-table tbody td {
+    font-size: .92rem;
+  }
+
 .button-label {
   display: none;
   font-size: 0.85rem;
@@ -272,17 +276,26 @@ async function onModalDocuments(name, object, disable) {
 /* --- Заголовки и таблица --- */
 .v-table>.v-table__wrapper>table>thead>tr>th {
   height: 20px !important;
-  background: var(--background-th-table) !important;
-  color: var(--color-th-table);
-  -webkit-text-stroke: var(--text-stroke-th-table);
-  border: var(--border-th-table) var(--border-color-th-table) !important;
+  background: #fff !important;
+  color: #104155;
+  -webkit-text-stroke: .2px #104155;
+
   font-size: 1rem;
-  font-family: var(--font-family);
+  letter-spacing: .4px;
+    font-family: "Poppins", sans-serif;
   font-weight: 500;
-  padding: 10px 0 !important;
-  box-shadow: var(--box-shadow-th-table);
+  padding: 16px 0 !important;
+  box-shadow:  inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   user-select: none;
-  cursor: pointer;
+  cursor: pointer; 
+  border-bottom: 1.9px solid #ccc !important
+}
+
+.v-table>.v-table__wrapper>table>thead>tr>th:first-child {
+  border-radius: 15px 0 0 0 !important;
+}
+.v-table>.v-table__wrapper>table>thead>tr>th:last-child {
+  border-radius: 0 15px 0 0 !important;
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr:first-child>td {
@@ -290,7 +303,7 @@ async function onModalDocuments(name, object, disable) {
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr>td {
-  padding: 0 8px;
+  padding: 3px 8px;
 }
 
 .v-table .v-table__wrapper>table>tbody>tr>td,
@@ -308,13 +321,12 @@ async function onModalDocuments(name, object, disable) {
   -webkit-backdrop-filter: var(--filter-background-table);
   background: var(--background-table) !important;
   border-radius: var(--border-radius-table) !important;
-  margin: 0 10px;
   height: 98% !important;
   transition: all 0.25s ease;
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr:hover {
-  background: var(--background-tr-table-hover);
+  background: var(--background-tr-table-hover) !important;
 }
 
 /* --- Адаптив под карточки --- */
