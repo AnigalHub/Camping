@@ -28,7 +28,6 @@ svg{
   align-items: center;
   width: max-content;
   padding: 4px 10px;
-  font-family: var(--font-family-btn);
   background: var(--background-btn-back-page);
   border-radius: var(--border-radius-btn-back-page);
   border: var(--border-btn-back-page); 

@@ -68,22 +68,22 @@
   --border-radius-table: 10px;
   --filter-background-table: blur(10px);
   --background-table: transparent;
-  --background-btn-block-table: rgba(217, 217, 217, 0.24);
+  --background-btn-block-table: rgb(228 231 234 / 20%);
   --background-btn-table: transparent;
-  --background-btn-table-hover: rgba(138, 181, 57, 0.1);
+  --background-btn-table-hover: rgba(215, 245, 161, 0.05);
   --border-btn-table: .5px solid;
   --border-color-btn-table: #4d672c;
   --color-btn-table: #000000;
   --text-stroke-btn-table: .45px #000000;
-  --background-even-tr-table: rgba(138, 181, 57, 0.08);
-  --background-tr-table-hover: rgba(138, 181, 57, .2);
+  --background-even-tr-table: #ecf3ef50;
+  --background-tr-table-hover: rgba(138, 181, 57, 0.08);
   --background-th-table: #ffffff;
   --color-th-table: #3A6210;
   --text-stroke-th-table: .05px #5F8835;
   --border-th-table: .25px solid;
   --border-color-th-table: #ffffff;
   --box-shadow-th-table: none;
-  --svg-table: 14px;
+  --svg-table: 16px;
 
   /** Кнопки страниц */
   --color-btn-page: #3A6210;
@@ -157,10 +157,11 @@
   /* Шрифты страниц */
   --font-family-main: "Zen Kaku Gothic New", sans-serif;
   --font-family: "El Messiri", sans-serif;
-  --font-family-btn: "Georgia", serif;
   --font-family-numbers: 'Courier New', monospace;
+  --font-family-title: "Poiret One", sans-serif;
 
   --v-layout-left: 0 !important;
+  --v-layout-top:50px !important
 }
 
 .v-theme--light {
@@ -169,6 +170,7 @@
 }
 .v-main {
   padding-top: 0 !important;
+  margin-top: -10px;
 }
 
 /*Плавное появление элементов при загрузке страницы*/

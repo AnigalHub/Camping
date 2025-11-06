@@ -38,10 +38,14 @@ function isModalVisible(name) {
 <style>
 @import "./../public/style.css";
 
+.v-card--variant-elevated{
+  background: transparent !important;
+}
+
 /**Фон страниц */
 .page {
   background: var(--background-color-page);
-  min-height: 100vh;
+  min-height: 95.5vh;
   height: auto;
 }
 
@@ -66,7 +70,7 @@ function isModalVisible(name) {
 /**Заголовок страниц */
 .page h1 {
   -webkit-text-stroke: none;
-  font-family: "Poiret One", sans-serif;
+  font-family: var(--font-family-title);
   color: #455e25;
   margin-top: 2px;
   letter-spacing: 0.009375em;
@@ -102,41 +106,39 @@ function isModalVisible(name) {
   border-color: var(--border-color-track-scrollbar);
 }
 
-.btn-home {
-  background: #abadb122;
-  border: 1.5px solid rgb(168 170 176 / 12%);
-  color: #104155;
+.btn-home, .btn_page {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  font-weight: 800;
   font-family: 'El Messiri', sans-serif;
   font-size: 1.2rem;
   text-transform: none !important;
-  letter-spacing: -.1px !important;
   border-radius: 14px;
   box-shadow: 0 2px 5px rgba(90, 130, 55, 0.08);
   transition: all 0.3s ease;
-  padding: 11px 22px 11px !important;
-  width: 100%;
+  padding: 10px 22px !important;
+  background: #f1f6fa;
+  border: 1.5px solid #4170839e;
+  color: #4b707f;
+  font-weight: 800;
+  letter-spacing: 1px !important;
   min-height: 46px;
 }
 
 .v-card:hover .btn-home {
-  background: #abadb139;
-  border-color: #8c8c8c91;
+  background: #fefefe;
   color: #2b3d15;
   transform: translateY(-2px);
 
 }
 
 
-.v-card{
+.v-card, .content, .block_title, .v-list-item{
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
 }
 /**Кнопки страниц */
-.btn_page {
+/* .btn_page {
   color: var(--color-btn-page) !important;
   -webkit-text-stroke: var(--text-stroke-btn-page);
   text-transform: none !important;
@@ -152,11 +154,11 @@ function isModalVisible(name) {
   padding: 10px !important;
   min-height: 42px;
   margin-top: 5px;
-}
+} */
 
 .content,
 .block_search {
-  padding: 15px 10px;
+
   background: var(--background-content-card) !important;
   box-shadow: var(--box-shadow-content-card) !important;
   border-radius: var(--border-radius-content-card) !important;
@@ -196,7 +198,7 @@ function isModalVisible(name) {
 
 /* Неактивные табы */
 .inactive-tab {
-  background: var(--background-inactive-tab) !important;
+  background: rgb(246 249 239) !important;
   color: var(--color-inactive-tab) !important;
   -webkit-text-stroke: var(--text-stroke-inactive-tab);
   border: var(--border-inactive-tab) var(--border-color-inactive-tab) !important;
@@ -226,4 +228,18 @@ function isModalVisible(name) {
   padding: 10px 10px 0 !important;
   margin-top: -20px;
 }
+
+
+/* Сделаем top-menu фиксированным */
+top-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+
+
+
 </style>

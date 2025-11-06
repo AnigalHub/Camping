@@ -83,6 +83,11 @@ const places = [
   padding: 15px !important;
   border-radius: 15px !important;
   border: 1.5px solid #fff;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(255, 255, 255, 0.92)
+  ) !important;
   margin-top: 30px;
 }
 .card-header {
@@ -93,7 +98,7 @@ const places = [
   gap: 6px;
   font-weight: 500;
   font-size: 1.1rem;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
   color: #104155;
   transition: color 0.25s ease;
 }
@@ -105,7 +110,7 @@ const places = [
   color: #006c9a;
 }
 h2 {
-  font-family: "Poiret One", sans-serif;
+  font-family: var(--font-family-title);
   font-size: 1.5rem;
   color: #494c54;
   margin: -5px 0 25px;

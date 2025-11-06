@@ -10,15 +10,15 @@
       <h2>Управление лагерем и тарифами</h2>
     </div>
     <div class="d-flex align-center card-wrapper">
-      <div class="d-flex position-relative justify-center align-center svg-block">
+      <div
+        class="d-flex position-relative justify-center align-center svg-block"
+      >
         <div class="position-absolute dashed-ring"></div>
         <div class="position-absolute pulse-ring"></div>
-        <div class="d-flex align-center justify-center position-relative icon-wrap">
-          <component
-            :is="SettingsSvg"
-            :color="'#93b5c4'"
-            style="width: 45px"
-          />
+        <div
+          class="d-flex align-center justify-center position-relative icon-wrap"
+        >
+          <component :is="SettingsSvg" :color="'#93b5c4'" style="width: 45px" />
         </div>
         <svg
           class="position-absolute decor-line"
@@ -44,7 +44,11 @@
           </p>
         </div>
         <div class="list">
-          <div v-for="(item, i) in list" :key="i" class="d-flex align-center list-item">
+          <div
+            v-for="(item, i) in list"
+            :key="i"
+            class="d-flex align-center list-item"
+          >
             <v-icon size="22" color="#006b99ad">mdi-check</v-icon>
             <span>{{ item.name }}</span>
           </div>
@@ -76,6 +80,11 @@ const list = [
   padding: 15px !important;
   border-radius: 15px !important;
   border: 1.5px solid #fff;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(255, 255, 255, 0.92)
+  ) !important;
   margin-top: 30px;
 }
 .card-wrapper {
@@ -96,7 +105,7 @@ const list = [
   gap: 6px;
   font-weight: 500;
   font-size: 1.1rem;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
   color: #104155;
   transition: color 0.25s ease;
 }
@@ -107,11 +116,11 @@ const list = [
 .card:hover .card-footer {
   color: #006c9a;
 }
-.card:hover .icon-wrap{
+.card:hover .icon-wrap {
   animation: floatAnim 4.5s ease-in-out infinite;
 }
 h2 {
-  font-family: "Poiret One", sans-serif;
+  font-family: var(--font-family-title);
   font-size: 1.5rem;
   color: #494c54;
   margin: -5px 0 20px;
@@ -128,7 +137,7 @@ h2::after {
   background: #f0ad29;
 }
 .icon-wrap {
-  z-index: 3;  
+  z-index: 3;
   animation: spin 10s linear infinite;
 }
 .dashed-ring {

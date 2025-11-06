@@ -85,6 +85,11 @@ function goRoute(name) {
 .card {
   overflow: hidden;
   padding: 15px !important;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(255, 255, 255, 0.92)
+  ) !important;
   border-radius: 15px !important;
   border: 1.5px solid #fff;
   transition: all 0.4s ease;
@@ -108,7 +113,7 @@ function goRoute(name) {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 h2 {
-  font-family: "Poiret One", sans-serif;
+  font-family: var(--font-family-title);
   font-size: 1.5rem;
   color: #494c54;
   margin: -5px 0 10px;
@@ -191,7 +196,7 @@ h2::after {
   gap: 6px;
   font-weight: 500;
   font-size: 1.1rem;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
   color: #104155;
   transition: color 0.25s ease;
 }

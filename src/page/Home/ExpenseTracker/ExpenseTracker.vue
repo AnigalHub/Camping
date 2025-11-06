@@ -30,6 +30,11 @@ function goRoute(name) {
   border-radius: 15px !important;
   padding: 15px !important;
   border: 1.5px solid #fff;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(255, 255, 255, 0.92)
+  ) !important;
 }
 .card-header {
   gap: 12px;
@@ -39,7 +44,7 @@ function goRoute(name) {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 h2 {
-  font-family: "Poiret One", sans-serif;
+  font-family: var(--font-family-title);
   font-size: 1.5rem;
   color: #494c54;
   margin: -5px 0 10px;

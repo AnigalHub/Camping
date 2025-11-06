@@ -69,7 +69,7 @@ function goRoute(name) {
     165deg,
     rgba(255, 255, 255, 0.96),
     rgba(255, 255, 255, 0.92)
-  );
+  ) !important;
   border: 1.5px solid #fff;
   cursor: pointer;
   overflow: hidden;

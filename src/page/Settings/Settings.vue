@@ -74,7 +74,7 @@ const rules = {
 .section-title {
   margin-bottom: 10px;
   font-weight: 500;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
   color: #425e38;
   font-size: 1.05rem;
   letter-spacing: 0.3px;
@@ -189,7 +189,7 @@ const rules = {
   font-weight: 600;
   font-size: 1.05rem;
   color: #4d672c;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
   letter-spacing: 0.2px;
 }
 </style>
@@ -200,9 +200,7 @@ const rules = {
 }
 
 /* Уменьшаем вертикальные отступы */
-.v-text-field {
-  margin-bottom: 10px !important;
-}
+
 
 .v-text-field:last-of-type {
   margin-bottom: 16px !important;
