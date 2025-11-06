@@ -3,13 +3,28 @@
     <v-container>
       <Title :title="title" :icon="'mdi-tent'"/>
       <v-card style="height: 85vh;">
-        <v-tabs v-model="tab">
-          <v-tab v-for="item in tabs" :key="item" :text="item.text" :value="item.value"
-            :class="{ 'active-tab': tab === item.value, 'inactive-tab': tab !== item.value }">
-          </v-tab>
-        </v-tabs>
+        <div class="tabs-container">
+          <div class="tabs-switch">
+            <div class="tabs-slider" :style="sliderStyle"></div>
+
+            <v-tab 
+              v-for="item in tabs" 
+              :key="item.value" 
+              :class="['tabs-switch__tab', { active: tab === item.value }]"
+              @click="tab = item.value"
+              ref="tabRefs"
+            >
+              {{ item.text }}
+            </v-tab>
+          </div>
+        </div>
+
         <v-tabs-window v-model="tab">
-          <v-tabs-window-item v-for="item in tabs" :key="item" :text="item.text" :value="item.value">
+          <v-tabs-window-item 
+            v-for="item in tabs" 
+            :key="item.value" 
+            :value="item.value"
+          >
             <v-card-text>
               <div v-if="tab === tabs[0].value">
                 <FreeSeats />
@@ -26,26 +41,101 @@
 </template>
 
 <script setup>
-import { shallowRef } from 'vue';
+import { shallowRef, ref, computed, onMounted, nextTick, watch } from "vue";
+
 import FreeSeats from './FreeSeats/FreeSeats.vue'
 import CoordinatesObjects from './CoordinatesObjects/CoordinatesObjects.vue'
 
-defineOptions({
-  name: 'MapObjects'
-})
+defineOptions({ name: 'MapObjects' })
 
-const title = 'Карта полянок';
-const tab = shallowRef('Свободные места')
+const title = 'Свободные поляны';
+
+// Данные табов
 const tabs = [
-  {
-    text: 'Свободные места',
-    value: 'Свободные места-1',
-  },
-  {
-    text: 'Координаты объектов',
-    value: 'Координаты объектов-2',
-  },
+  { text: 'Свободные места', value: 'free' },
+  { text: 'Координаты объектов', value: 'coords' },
 ]
+
+// Текущий активный таб (сохраняем value)
+const tab = shallowRef(tabs[0].value);
+
+// Подсветка активного таба
+const tabRefs = ref([]);
+const sliderStyle = ref({});
+
+const updateSlider = () => {
+  nextTick(() => {
+    const activeIndex = tabs.findIndex(t => t.value === tab.value);
+    const el = tabRefs.value[activeIndex]?.$el || tabRefs.value[activeIndex];
+    if (el) {
+      sliderStyle.value = {
+        width: `${el.offsetWidth}px`,
+        transform: `translateX(${el.offsetLeft}px)`,
+      };
+    }
+  });
+};
+onMounted(updateSlider);
+watch(tab, updateSlider);
 </script>
 
-<style scoped></style>
+<style scoped>
+.tabs-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: 800 !important;
+  font-family: var(--font-family-title);
+  margin-bottom: 15px;
+  padding: 0;
+}
+
+.tabs-slider {
+  position: absolute;
+  top: 0;     
+  left: 0;
+  height: 100%; 
+  border-radius: 15px;
+  background-color: #f6f9ef;
+  border: 1.5px solid #8ab539;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.tabs-switch__tab {
+  flex: 1;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 15px 0;
+  cursor: pointer;
+  letter-spacing: 2px;
+  color: #494c54;
+  position: relative;
+  z-index: 1;
+  transition: all 0.25s ease;
+  border-radius: 15px; /* сохраняем закругления */
+  margin: 1px 2px; /* убрали внешний отступ */
+}
+
+.tabs-switch__tab:hover {
+  background-color: rgba(57, 181, 94, 0.05); 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 15px !important;
+}
+
+.tabs-switch__tab.active {
+color: #71964f;
+    font-weight: 900;
+    -webkit-text-stroke: 0.5px #759a6c;
+    box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
+}
+
+</style>
