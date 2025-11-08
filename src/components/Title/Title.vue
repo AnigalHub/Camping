@@ -3,7 +3,6 @@
     <button class="back-btn" @click="goBack" title="Назад">
       <v-icon color="#fff" size="22">mdi-arrow-left</v-icon>
     </button>
-
     <div class="title-wrapper">
       <div class="icon-with-title">
         <div class="icon-wrapper">

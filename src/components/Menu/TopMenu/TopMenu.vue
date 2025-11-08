@@ -115,8 +115,24 @@ h1,
 }
 
 .button {
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   transition: all 0.25s ease;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #fff;
+  border: 1.5px solid #618da2;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background: #ecf9ff;
 }
 </style>

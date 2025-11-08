@@ -22,15 +22,15 @@
         v-model="sort"
         :items="sortOptions"
         label="Сортировать"
-        variant="solo"
         density="comfortable"
         hide-details
         rounded="lg"
+        variant="solo"
         class="filter-select"
       ></v-select>
 
       <!-- Кнопка -->
-      <v-btn class="btn_page" prepend-icon="mdi-magnify" @click="onSearch">
+      <v-btn class="btn-page" prepend-icon="mdi-magnify" @click="onSearch">
         Найти
       </v-btn>
     </div>
@@ -69,13 +69,16 @@ function onSearch() {
     2px 2px 10px rgba(17, 44, 18, 0.1) !important;
   transform: translateY(-1px);
 }
+.search-bar .v-input--density-comfortable .v-field--variant-solo{
+  border-radius: 12px !important;
+}
 </style>
 
 <style scoped>
 .search-bar {
   background: transparent;
   border-radius: 12px;
-  padding-left: 0 !important;
+  padding-left: 2px !important;
   padding-right: 0 !important;
   box-shadow: none;
   gap: 20px;
@@ -108,7 +111,7 @@ function onSearch() {
 }
 
 /* Кнопка поиска */
-.btn_page {
+.btn-page {
   background: #547c8f;
   color: #fff;
   font-weight: 800;
@@ -123,7 +126,7 @@ function onSearch() {
   min-width: 220px;
 }
 
-.btn_page:hover {
+.btn-page:hover {
   transform: translateY(-2px);
   background: #3b5865;
 }

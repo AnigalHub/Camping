@@ -83,16 +83,20 @@ const places = [
   padding: 15px !important;
   border-radius: 15px !important;
   border: 1.5px solid #fff;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(255, 255, 255, 0.92)
-  ) !important;
+  background: linear-gradient(165deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 255, 255, 0.92)) !important;
   margin-top: 30px;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
 }
+
 .card-header {
   gap: 12px;
 }
+
 .card-footer {
   justify-content: flex-end;
   gap: 6px;
@@ -102,14 +106,17 @@ const places = [
   color: #104155;
   transition: color 0.25s ease;
 }
+
 .card:hover {
-   filter: contrast(110%);
-  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+  filter: contrast(110%);
+  transform: scale(1.025);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .card:hover .card-footer {
   color: #006c9a;
 }
+
 h2 {
   font-family: var(--font-family-title);
   font-size: 1.5rem;
@@ -117,6 +124,7 @@ h2 {
   margin: -5px 0 25px;
   position: relative;
 }
+
 h2::after {
   content: "";
   position: absolute;
@@ -127,10 +135,12 @@ h2::after {
   border-radius: 3px;
   background: #f0ad29;
 }
+
 .decor-wave-and-orbits {
   inset: 0;
   overflow: hidden;
 }
+
 .decor-wave {
   bottom: 0;
   left: -20px;
@@ -138,12 +148,14 @@ h2::after {
   height: 120px;
   opacity: 0.5;
 }
+
 .orbit {
   border-radius: 50%;
   border: 1.58px dashed rgba(138, 181, 57, 1);
   animation: orbitRotate 270s linear infinite;
   z-index: 0;
 }
+
 .orbit1 {
   width: 600px;
   height: 600px;
@@ -151,6 +163,7 @@ h2::after {
   right: -300px;
   border: 1.58px dashed rgb(0, 107, 153, 0.6);
 }
+
 .orbit2 {
   width: 400px;
   height: 400px;

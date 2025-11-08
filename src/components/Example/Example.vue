@@ -30,7 +30,7 @@
       ></v-select>
 
       <!-- Кнопка -->
-      <v-btn class="btn_page" prepend-icon="mdi-magnify" @click="onSearch">
+      <v-btn class="btn-page" prepend-icon="mdi-magnify" @click="onSearch">
         Найти
       </v-btn>
     </div>
@@ -108,7 +108,7 @@ function onSearch() {
 }
 
 /* Кнопка поиска */
-.btn_page {
+.btn-page {
   background: #f1f6fa;
   border: 1.5px solid #4170839e;
   color: #4b707f;
@@ -126,7 +126,7 @@ function onSearch() {
   min-width: 250px;
 }
 
-.btn_page:hover {
+.btn-page:hover {
   transform: translateY(-2px);
   background: #fefefe;
 }

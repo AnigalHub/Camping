@@ -14,12 +14,12 @@
   </v-form>
   <div class="btn_wrapper">
     <div class="btn_block">
-      <v-btn v-if="name === 'edit'" class="btn_page">Сохранить</v-btn>
+      <v-btn v-if="name === 'edit'" class="btn-page">Сохранить</v-btn>
       <div v-if="name === 'delete'" class="btn_delete">
-        <v-btn class="btn_page">Да</v-btn>
-        <v-btn class="btn_page">Нет</v-btn>
+        <v-btn class="btn-page">Да</v-btn>
+        <v-btn class="btn-page">Нет</v-btn>
       </div>
-      <v-btn v-if="name === 'documents'" class="btn_page">Ок</v-btn>
+      <v-btn v-if="name === 'documents'" class="btn-page">Ок</v-btn>
     </div>
   </div>
 </template>
@@ -150,7 +150,7 @@ h2 {
   line-height: 1.1;
 }
 
-.btn_page {
+.btn-page {
   display: block;
   margin: 20px auto 0 auto;
   font-size: 0.95rem;

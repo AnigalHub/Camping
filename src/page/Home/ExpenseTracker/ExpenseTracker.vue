@@ -35,14 +35,18 @@ function goRoute(name) {
     rgba(255, 255, 255, 0.96),
     rgba(255, 255, 255, 0.92)
   ) !important;
+   transition: 
+    transform 0.3s ease, 
+    filter 0.3s ease, 
+    box-shadow 0.3s ease;
 }
 .card-header {
   gap: 12px;
 }
 .card:hover {
-   filter: contrast(110%);
-  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+  filter: contrast(110%);
+  transform: scale(1.025);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 h2 {
   font-family: var(--font-family-title);

@@ -65,22 +65,23 @@ function goRoute(name) {
   width: 100%;
   border: 1.5px solid #fff;
   border-radius: 15px !important;
-  background: linear-gradient(
-    165deg,
+  background: linear-gradient(165deg,
     rgba(255, 255, 255, 0.96),
-    rgba(255, 255, 255, 0.92)
-  ) !important;
+    rgba(255, 255, 255, 0.92)) !important;
   border: 1.5px solid #fff;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
   z-index: 1;
 }
 
 .card:hover {
-   filter: contrast(110%);
-  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+  filter: contrast(110%);
+  transform: scale(1.025);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
@@ -161,11 +162,13 @@ function goRoute(name) {
 
 /* Анимации */
 @keyframes pulseAnim {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 0.6;
   }
+
   50% {
     transform: scale(1.2);
     opacity: 1;
@@ -176,6 +179,7 @@ function goRoute(name) {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(-360deg);
   }
@@ -186,10 +190,12 @@ function goRoute(name) {
     transform: translateY(-50%) rotate(0deg);
     opacity: 0.6;
   }
+
   50% {
     transform: translateY(-50%) rotate(180deg);
     opacity: 0.8;
   }
+
   100% {
     transform: translateY(-50%) rotate(360deg);
     opacity: 0.6;
@@ -197,11 +203,13 @@ function goRoute(name) {
 }
 
 @keyframes floatAnim {
+
   0%,
   100% {
     transform: translateY(0) scale(1);
     opacity: 0.7;
   }
+
   50% {
     transform: translateY(-3px) scale(1.15);
     opacity: 1;
@@ -212,9 +220,11 @@ function goRoute(name) {
 .card-1 .orbit-ring {
   border-color: rgba(240, 173, 41, 0.9);
 }
+
 .card-1 .pulse-ring {
   background: radial-gradient(circle, rgba(243, 142, 74, 0.2), transparent);
 }
+
 .card-1 {
   margin-right: 30px;
 }
@@ -222,15 +232,18 @@ function goRoute(name) {
 .card-2 .orbit-ring {
   border-color: rgba(128, 153, 81, 1);
 }
+
 .card-2 .icon-wrap {
   border: 1.7px solid #afd568d3;
   border-radius: 50%;
   padding: 2.5px;
 }
+
 .card-2 .icon-wrap .icon {
   width: 53px;
   height: 53px;
 }
+
 .card-2 .dashed-ring {
   border: 1.58px dashed rgba(240, 173, 41, 0.9);
 }

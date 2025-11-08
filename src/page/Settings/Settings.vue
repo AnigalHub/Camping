@@ -18,7 +18,7 @@
                     rounded="lg" :rules="[rules.required, rules.min]" clearable />
                   <v-text-field v-model="confirmPassword" label="Повторите новый пароль" variant="outlined"
                     type="password" rounded="lg" :rules="[rules.required, rules.matchPassword]" clearable />
-                  <v-btn class="btn_page">
+                  <v-btn class="btn-page">
                     Сохранить
                   </v-btn>
                 </v-form>

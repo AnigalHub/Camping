@@ -85,35 +85,37 @@ function goRoute(name) {
 .card {
   overflow: hidden;
   padding: 15px !important;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(255, 255, 255, 0.92)
-  ) !important;
+  background: linear-gradient(165deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 255, 255, 0.92)) !important;
   border-radius: 15px !important;
   border: 1.5px solid #fff;
-  transition: all 0.4s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
 }
+
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 60% 30%,
-    rgba(138, 181, 57, 0.07),
-    transparent 65%
-  );
+  background: radial-gradient(circle at 60% 30%,
+      rgba(138, 181, 57, 0.07),
+      transparent 65%);
   animation: pulseGlow 6s ease-in-out infinite;
 }
+
 .card-header {
   gap: 12px;
 }
 
 .card:hover {
-   filter: contrast(110%);
-  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+  filter: contrast(110%);
+  transform: scale(1.025);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 h2 {
   font-family: var(--font-family-title);
   font-size: 1.5rem;
@@ -121,6 +123,7 @@ h2 {
   margin: -5px 0 10px;
   position: relative;
 }
+
 h2::after {
   content: "";
   position: absolute;
@@ -131,21 +134,25 @@ h2::after {
   border-radius: 3px;
   background: #f0ad29;
 }
+
 .numbers {
   font-family: "Smooch Sans", sans-serif;
   font-size: 72px;
   color: #4b707f;
   transition: color 0.3s ease;
 }
+
 .card:hover .numbers {
   color: #e28a00;
 }
+
 .numbers-text {
   font-family: "Amatic SC";
   font-size: 33px;
   color: #000;
   margin-top: -20%;
 }
+
 .date-block {
   border-radius: 15px;
   width: 100%;
@@ -155,21 +162,21 @@ h2::after {
   z-index: 5;
   transition: all 0.4s ease;
 }
+
 .date-block::before {
   content: "";
   position: absolute;
   inset: -3px;
   border-radius: 17px;
-  background: conic-gradient(
-    from 0deg,
-    rgba(138, 181, 57, 0.8),
-    rgba(255, 138, 61, 0.6),
-    rgba(0, 107, 153, 0.6),
-    rgba(138, 181, 57, 0.8)
-  );
+  background: conic-gradient(from 0deg,
+      rgba(138, 181, 57, 0.8),
+      rgba(255, 138, 61, 0.6),
+      rgba(0, 107, 153, 0.6),
+      rgba(138, 181, 57, 0.8));
   animation: spinBorder 12s linear infinite;
   z-index: 0;
 }
+
 .date-block::after {
   content: "";
   position: absolute;
@@ -178,14 +185,17 @@ h2::after {
   border-radius: 13px;
   z-index: 1;
 }
-.date-block > * {
+
+.date-block>* {
   position: relative;
   z-index: 2;
 }
+
 .card:hover .date-block {
   transform: translateY(-3px) scale(1.04);
   box-shadow: 0 6px 18px rgba(138, 181, 57, 0.3);
 }
+
 .card-text {
   font-family: "Poppins", sans-serif;
   font-size: 0.93rem;
@@ -193,6 +203,7 @@ h2::after {
   width: 60%;
   line-height: 1.45;
 }
+
 .card-footer {
   justify-content: flex-end;
   gap: 6px;
@@ -202,15 +213,18 @@ h2::after {
   color: #104155;
   transition: color 0.25s ease;
 }
+
 .card:hover .card-footer {
   color: #006c9a;
 }
+
 .geom-circle,
 .geom-circle2 {
   border-radius: 50%;
   filter: blur(0.3px);
   animation: geomSpin 200s linear infinite;
 }
+
 .geom-circle {
   width: 420px;
   height: 420px;
@@ -218,6 +232,7 @@ h2::after {
   left: -150px;
   border: 1.58px dashed rgba(138, 181, 57, 1);
 }
+
 .geom-circle2 {
   width: 260px;
   height: 260px;
@@ -226,12 +241,14 @@ h2::after {
   border: 1.58px dashed rgba(255, 138, 61, 1);
   animation-duration: 35s;
 }
+
 .day {
   font-family: "Amatic SC";
   font-weight: 700;
   font-size: 36px;
   color: #000;
 }
+
 .today {
   font-family: "El Messiri";
   font-size: 18px;
@@ -240,42 +257,51 @@ h2::after {
 
 /* Анимации */
 @keyframes pulseGlow {
+
   0%,
   100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.05);
   }
 }
+
 @keyframes spinBorder {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
+
 @keyframes geomSpin {
   0% {
     transform: rotate(0deg);
     opacity: 0.8;
   }
+
   50% {
     transform: rotate(180deg);
     opacity: 1;
   }
+
   100% {
     transform: rotate(360deg);
     opacity: 0.8;
   }
 }
+
 @media (max-width: 960px) {
   h2 {
     font-size: 1.3rem;
   }
+
   .numbers {
     font-size: 60px;
   }

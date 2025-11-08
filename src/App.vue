@@ -109,7 +109,7 @@ function isModalVisible(name) {
   border-color: var(--border-color-track-scrollbar);
 }
 
-.btn-home, .btn_page {
+.btn-home, .btn-page {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   font-family: 'El Messiri', sans-serif;
@@ -119,8 +119,8 @@ function isModalVisible(name) {
   box-shadow: 0 2px 5px rgba(90, 130, 55, 0.08);
   transition: all 0.3s ease;
   padding: 10px 22px !important;
-  background: #f1f6fa;
-  border: 1.8px solid #4170839e;
+  background: #fff;
+  border: 1.7px solid #4170839e;
   color: #4b707f;
   font-weight: 800;
   letter-spacing: 1px !important;
@@ -128,11 +128,8 @@ function isModalVisible(name) {
 }
 
 .v-card:hover .btn-home {
-
-  color: #fff;
   transform: translateY(-2px);
-  transform: translateY(-2px);
-  background: #547c8f;
+  background: #ecf9ff;
 }
 
 
@@ -142,7 +139,7 @@ function isModalVisible(name) {
   animation: fadeSlide 1.2s ease-in-out;
 }
 /**Кнопки страниц */
-/* .btn_page {
+/* .btn-page {
   color: var(--color-btn-page) !important;
   -webkit-text-stroke: var(--text-stroke-btn-page);
   text-transform: none !important;

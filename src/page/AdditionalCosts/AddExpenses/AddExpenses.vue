@@ -58,7 +58,7 @@
             <div class="mt-6">
               <v-btn 
                 type="submit" 
-                class="btn_page" 
+                class="btn-page" 
                 rounded="lg" 
                 size="large"
               >Сохранить</v-btn>
@@ -166,7 +166,7 @@ function saveForm() {
 }
 
 /* Кнопка */
-.btn_page {
+.btn-page {
   background: #547c8f;
   color: #fff;
   font-weight: 800;
@@ -184,7 +184,7 @@ function saveForm() {
   width: 60%;
 }
 
-.btn_page:hover {
+.btn-page:hover {
   transform: translateY(-2px);
   background: #3b5865;
 }

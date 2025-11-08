@@ -80,19 +80,24 @@ const list = [
   padding: 15px !important;
   border-radius: 15px !important;
   border: 1.5px solid #fff;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(255, 255, 255, 0.92)
-  ) !important;
+  background: linear-gradient(165deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 255, 255, 0.92)) !important;
   margin-top: 30px;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
 }
+
 .card-wrapper {
   gap: 36px;
 }
+
 .card-header {
   gap: 12px;
 }
+
 .card-text {
   font-family: "Poppins", sans-serif;
   font-size: 0.93rem;
@@ -100,6 +105,7 @@ const list = [
   line-height: 1.45;
   width: 90%;
 }
+
 .card-footer {
   justify-content: flex-end;
   gap: 6px;
@@ -109,17 +115,21 @@ const list = [
   color: #104155;
   transition: color 0.25s ease;
 }
+
 .card:hover {
-   filter: contrast(110%);
-  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+  filter: contrast(110%);
+  transform: scale(1.025);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .card:hover .card-footer {
   color: #006c9a;
 }
+
 .card:hover .icon-wrap {
   animation: floatAnim 4.5s ease-in-out infinite;
 }
+
 h2 {
   font-family: var(--font-family-title);
   font-size: 1.5rem;
@@ -127,6 +137,7 @@ h2 {
   margin: -5px 0 20px;
   position: relative;
 }
+
 h2::after {
   content: "";
   position: absolute;
@@ -137,10 +148,12 @@ h2::after {
   border-radius: 3px;
   background: #f0ad29;
 }
+
 .icon-wrap {
   z-index: 3;
   animation: spin 10s linear infinite;
 }
+
 .dashed-ring {
   width: 160px;
   height: 160px;
@@ -152,6 +165,7 @@ h2::after {
   animation: orbit 50s linear infinite;
   filter: blur(0.2px);
 }
+
 .pulse-ring {
   width: 130px;
   height: 130px;
@@ -160,15 +174,18 @@ h2::after {
   filter: blur(15px);
   animation: pulse 3s ease-in-out infinite;
 }
+
 .text-block {
   gap: 18px;
 }
+
 .title {
   color: #2a2a2a;
   margin-bottom: 6px;
   font-family: "Amatic SC";
   font-size: 1.8rem;
 }
+
 .list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -176,6 +193,7 @@ h2::after {
   padding-left: 10px;
   border-left: 3px solid #42899248;
 }
+
 .list-item {
   gap: 8px;
   color: #2e2e2e;
@@ -183,14 +201,17 @@ h2::after {
   font-family: "Poppins", sans-serif;
   transition: transform 0.2s ease;
 }
+
 .list-item:hover {
   color: #104155;
   transform: translateX(4px);
 }
+
 .svg-block {
   width: 200px;
   height: 160px;
 }
+
 .decor-line {
   bottom: 5px;
   left: -20px;
@@ -201,16 +222,19 @@ h2::after {
 
 /* Анимации */
 @keyframes floatAnim {
+
   0%,
   100% {
     transform: translateY(0) scale(1);
     opacity: 0.7;
   }
+
   50% {
     transform: translateY(-3px) scale(1.15);
     opacity: 1;
   }
 }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -220,6 +244,7 @@ h2::after {
     transform: rotate(360deg);
   }
 }
+
 @keyframes orbit {
   0% {
     transform: rotate(0deg);
@@ -229,7 +254,9 @@ h2::after {
     transform: rotate(-360deg);
   }
 }
+
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(1);
