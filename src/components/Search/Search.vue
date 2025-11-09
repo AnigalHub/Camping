@@ -17,6 +17,7 @@
 .search{
   padding-left: 7px !important;
   padding-right: 0px !important;
+  margin-bottom: -10px !important;
 }
 
 .search .v-field--variant-filled .v-field__outline::before {

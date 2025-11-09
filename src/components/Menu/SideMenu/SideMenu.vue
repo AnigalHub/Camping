@@ -14,6 +14,7 @@
         v-for="item in menus"
         :key="item.title"
         :prepend-icon="item.icon"
+        :class="{ 'active-item': isActive(item.route) }"
         @click="goRoute(item.route)"
       >
         <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -24,7 +25,7 @@
 
 <script setup>
 import { ref, watch, computed, onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const props = defineProps({
   drawer: Boolean
@@ -65,6 +66,7 @@ const menus = [
 
 const emit = defineEmits(['update:drawer']);
 const router = useRouter();
+const route = useRoute();
 
 const localDrawer = ref(props.drawer);
 
@@ -78,6 +80,10 @@ const handleResize = () => {
   isWideScreen.value = window.innerWidth >= 1100;
   if(isWideScreen.value) localDrawer.value = true;
 };
+
+function isActive(routeName) {
+  return route.name === routeName;
+}
 
 onMounted(() => {
   window.addEventListener("resize", handleResize);
@@ -93,4 +99,16 @@ function goRoute(name) {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.active-item {
+  background: var(--background-inactive-tab) !important;
+  color: var(--color-inactive-tab) !important;
+  -webkit-text-stroke: var(--text-stroke-inactive-tab);
+  font-weight: 500 !important;
+  border: 1.5px solid var(--border-color-inactive-tab) !important;
+  border-radius: 0  10px 10px 0 !important;
+}
+.active-item .v-list-item-title {
+  color: #6f9233 !important;
+}
+</style>

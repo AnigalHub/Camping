@@ -10,7 +10,7 @@
           <v-icon class="icon">{{ icon }}</v-icon>
         </div>
         <div class="divider"></div>
-        <h1 class="text-center title-animated">{{ title }}</h1>
+        <h3 class="text-center title-animated">{{ title }}</h3>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@ function goBack() {
   align-items: center;
   gap: 14px;
   margin-top: 15px;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 /* Кнопка назад */
@@ -123,19 +123,16 @@ function goBack() {
 .divider {
   width: 1px;
   height: 28px;
-  background: rgba(0, 0, 0, 0.07);
+  background: #548615;
   border-radius: 2px;
 }
 
 /* Заголовок */
 .title-animated {
   font-family: "Poiret One", sans-serif;
-  font-size: 1.6rem;
-  color: #494c54;
+  font-size: 1.35rem;
   margin: 0;
   position: relative;
-  letter-spacing: 0.6px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   background: linear-gradient(90deg, #494c54, #7b6f5e, #494c54);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
