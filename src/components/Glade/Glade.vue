@@ -23,8 +23,9 @@
         <h3 class="card-place-name">{{ place.name }}</h3>
       </div>
     </div>
-    <div class="card-place-text">{{ place.caption }}</div>
-
+    <div class="card-place-text">{{ place.description }}</div>
+    <hr/>
+    <h5>Загруженность:</h5>
     <div class="d-flex align-center mt-2.5 card-place-progress-block">
       <component :is="PeopleSvg" class="progress-svg" :color="'#759930'"/>
       <span class="card-place-name-progress">{{ place.textPerson }}</span>
@@ -48,6 +49,8 @@
         class="flex-grow-1"
       ></v-progress-linear>
     </div>
+    <hr/>
+    <h5>Координаты:</h5>
     <div class="coords-block" @click="copyCoords(place.value, number)">
       <span class="coords-value">{{ place.value }}</span>
       <v-icon size="16" color="#5F8835" style="margin-top: -2.5px; margin-left: 2.5px;">mdi-content-copy</v-icon>
@@ -84,7 +87,7 @@ const openOnMap = (coords) => {
 
 <style scoped>
 .progress-svg{
-  width: 45px;
+  width: 40px;
 }
 
 .card-place {
@@ -104,6 +107,37 @@ const openOnMap = (coords) => {
 .card-place:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.card-place h5 {
+  font-family: "Poiret One", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3a3a3a;
+  margin: 12px 20px 6px;
+  position: relative;
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+}
+
+.card-place h5::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 3px;
+  border-radius: 2px;
+  background: #8AB539;
+  margin-top: 4px;
+  opacity: 0.9;
+}
+
+.card-place hr {
+  width: 92%;
+  border: none;
+  height: 1.5px;
+  background: linear-gradient(to right, #dcdcdc, #e9e9e9, #dcdcdc);
+  border-radius: 10px;
+  opacity: 0.8;
 }
 
 .card-place .card-place-icon {
@@ -152,12 +186,16 @@ const openOnMap = (coords) => {
 .card-place-text {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
+  text-align: center;
   color: #505050;
   line-height: 1.5;
   margin: 0 15px;
   flex: 1 0 auto;
   overflow-wrap: break-word;
   word-break: break-word;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-place-progress-block {
@@ -195,7 +233,7 @@ const openOnMap = (coords) => {
   gap: 6px;
   border-radius: 12px;
   padding: 8px 12px;
-  margin: 8px auto;
+  margin: 0 auto;
   cursor: pointer;
   transition: all 0.3s ease;
 }
