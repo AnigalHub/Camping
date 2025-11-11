@@ -1,7 +1,21 @@
 <template>
-  <div :class="['card-place', `card-place-${number + 1}`]">
-    <div class="d-flex align-center justify-space-between mb-3">
-      <div class="card-place-number">{{ number + 1 }}</div>
+  <div
+    class="card-place"
+    :style="{
+      border: route.name !== 'Home' ? `1.6px solid ${place.color}` : `1.55px solid ${place.color}`,
+      'padding-bottom': route.name === 'Home' ? `10px` : ''
+    }"
+  >
+    <div class="d-flex align-center justify-space-between mb-3 card-place-header">
+      <div
+        class="card-place-number"
+        :style="{
+        border: route.name !== 'Home' ? `1.8px solid ${place.color}` : `1.55px solid ${place.color}`,
+        color: place.color 
+      }"
+      >
+        {{ number + 1 }}
+      </div>
       <div class="d-flex">
         <div class="d-flex align-center justify-center position-relative card-place-icon">
           <v-icon :color="place.color" size="35">{{ place.icon }}</v-icon>
@@ -10,11 +24,9 @@
       </div>
     </div>
     <div class="card-place-text">{{ place.caption }}</div>
+
     <div class="d-flex align-center mt-2.5 card-place-progress-block">
-      <img
-        src="./../../../../public/people.png"
-        style="width: 25px; margin-right: 5px; margin-top: -5px"
-      />
+      <component :is="PeopleSvg" class="progress-svg" :color="'#759930'"/>
       <span class="card-place-name-progress">{{ place.textPerson }}</span>
       <v-progress-linear
         :model-value="place.percentPerson"
@@ -24,11 +36,9 @@
         class="flex-grow-1"
       ></v-progress-linear>
     </div>
-    <div class="d-flex align-center mt-2.5 card-place-progress-block">
-      <img
-        src="./../../../../public/car.png"
-        style="width: 25px; margin-right: 5px; margin-top: -5px"
-      />
+
+    <div class="d-flex align-center mt-2.5 card-place-progress-block mb-2">
+      <component :is="CarSvg" class="progress-svg" :color="'#999999'"/>
       <span class="card-place-name-progress">{{ place.textCar }}</span>
       <v-progress-linear
         :model-value="place.percentCar"
@@ -38,143 +48,213 @@
         class="flex-grow-1"
       ></v-progress-linear>
     </div>
-  </div>
+    <div class="coords-block" @click="copyCoords(place.value, number)">
+      <span class="coords-value">{{ place.value }}</span>
+      <v-icon size="16" color="#5F8835" style="margin-top: -2.5px; margin-left: 2.5px;">mdi-content-copy</v-icon>
+    </div>
+    <div v-if="route.name !== 'Home'" class="card-footer" @click="openOnMap(place.value)">
+      <v-icon size="18" color="#5F8835" class="marker marker-icon">mdi-map-marker</v-icon>
+      <span class="marker">Открыть на картах</span>
+    </div>
+    </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useRoute } from "vue-router";
+import CarSvg from "./../../svg/car.vue";
+import PeopleSvg from "./../../svg/people.vue";
+const route = useRoute();
 const props = defineProps({
   number: Number,
   place: Object,
 });
+const copiedIndex = ref(null);
+const copyCoords = async (coords, index) => {
+  await navigator.clipboard.writeText(coords);
+  copiedIndex.value = index;
+  setTimeout(() => (copiedIndex.value = null), 1500);
+};
+
+const openOnMap = (coords) => {
+  const [lat, lng] = coords.split(',').map((c) => c.trim());
+  window.open(`https://yandex.ru/maps/?ll=${lng},${lat}&pt=${lng},${lat},pm2rdm&z=15&l=map`, '_blank');
+};
 </script>
+
 <style scoped>
+.progress-svg{
+  width: 45px;
+}
+
 .card-place {
   position: relative;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 18px;
-  padding: 10px 15px 30px;
-  margin-right: 5px;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(4px);
-  box-shadow: 1px 1px 1px 1px #edeef0;
-  overflow: hidden;
-  z-index: 0;
+  background: linear-gradient(145deg, #ffffff, #f7f7f7);
+  border-radius: 20px;
+  padding: 10px 0 0;
+  margin: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column; 
+  height: 100%;
 }
+
 .card-place:hover {
-  transform: translateY(-5px);
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
+
 .card-place .card-place-icon {
-  animation: swayIcon 3.5s ease-in-out infinite, rotateY 6s ease-in-out infinite;
+  animation: swayIcon 3s ease-in-out infinite, rotateY 5s ease-in-out infinite;
   transform-origin: center;
-  margin-right: 6px;
+  margin-right: 8px;
+  transition: transform 0.3s ease;
 }
-.card-place:hover .card-place-number {
-  transform: scale(1.15);
-  background-color: #abadb114 !important;
+
+.card-place:hover .card-place-number,
+.card-place:hover svg {
+  transform: scale(1.2);
 }
-.card-place-1 {
-  border: 1.58px solid rgb(240 173 41);
+
+.card-place-header{
+  margin: 0 20px 0 10px;
 }
-.card-place-1 .card-place-number {
-  border: 1.55px solid rgb(240 173 41);
-  color: rgb(151, 105, 15);
-}
-.card-place-2 {
-  border: 1.58px solid rgb(125 172 71);
-}
-.card-place-2 .card-place-number {
-  border: 1.55px solid rgb(125 172 71);
-  color: rgb(84, 116, 24);
-}
-.card-place-3 {
-  border: 1.58px solid rgb(0, 107, 153, 0.68);
-}
-.card-place-3 .card-place-number {
-  border: 1.55px solid rgb(0, 107, 153, 0.68);
-  color: rgb(0, 107, 153, 0.9);
-}
-.card-place-name {
-  font-family: "Amatic SC";
-  font-size: 1.8rem;
-  color: #2a2a2a;
-  text-align: right;
-}
+
 .card-place-number {
   font-family: "El Messiri";
-  font-size: 1.4rem;
-  box-shadow: 1px 1px 1px 1px #edeef0;
-  margin-left: 30px;
-  padding: 0 10px 5px;
-  height: 35px;
-  width: 35px;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-left: 6px;
+  padding: 0 12px;
+  min-height: 38px;
+  min-width: 38px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  opacity: 0.85;
-}
-
-/* Прогресс-блок */
-.progress-block-v2 {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 10px;
-}
-.card-place-progress-block {
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9));
 }
 
-.card-place-name-progress {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #3a3a3a;
+.card-place-name {
+  font-family: "Amatic SC";
+  font-size: 1.9rem;
+  color: #2a2a2a;
   text-align: right;
-  margin-bottom: 6px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .card-place-text {
   font-family: "Poppins", sans-serif;
-  font-size: 0.93rem;
+  font-size: 1rem;
   color: #505050;
-  line-height: 1.45;
-  margin: 20px;
-  width: 90%;
+  line-height: 1.5;
+  margin: 0 15px;
+  flex: 1 0 auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.card-place-progress-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 25px 0;
+  transition: all 0.3s ease;
+}
+
+.card-place-name-progress {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #3a3a3a;
+}
+
+.v-progress-linear {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 8px !important;
+  transition: all 0.4s ease;
+  background: #e0e0e0;
+}
+
+.v-progress-linear .v-progress-linear__bar {
+  transition: width 0.6s ease, background 0.6s ease;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #8AB539, #AEDD62);
+}
+
+.coords-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 8px auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.coords-block:hover {
+  background: rgba(138, 181, 57, 0.08);
+}
+
+.coords-value {
+  font-family: var(--font-family-numbers);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #5F8835;
+}
+
+.card-footer {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 5px;
+  margin-top: 8px;
+  border-radius: 0 0 12px 12px;
+  background: rgba(231, 232, 233, 0.45);
+  transition: all 0.3s ease;
+}
+
+.card-footer:hover {
+  background: rgba(138, 181, 57, 0.12);
+  transform: translateY(-2px);
+}
+
+.marker {
+  display: inline-block;
+  animation: mapBounce 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transition: all 0.3s ease;
+}
+
+.marker-icon {
+  margin-top: -6px;
 }
 
 /* Анимации */
-@keyframes orbitRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
 @keyframes swayIcon {
-  0%,
-  100% {
-    transform: rotate(0deg) translateY(0);
-  }
-
-  25% {
-    transform: rotate(3deg) translateY(-3px);
-  }
-
-  75% {
-    transform: rotate(-3deg) translateY(3px);
-  }
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(4deg) translateY(-2px); }
+  75% { transform: rotate(-4deg) translateY(2px); }
 }
+
 @keyframes rotateY {
-  0%,
-  100% {
-    transform: rotateY(0);
-  }
+  0%, 100% { transform: rotateY(0); }
+  25% { transform: rotateY(90deg); }
+  50% { transform: rotateY(180deg); }
+}
 
-  25% {
-    transform: rotateY(90deg);
-  }
-
-  50% {
-    transform: rotateY(180deg);
-  }
+@keyframes mapBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 </style>
+

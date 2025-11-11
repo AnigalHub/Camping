@@ -45,31 +45,34 @@ function goRoute(name) {
   if (name) router.push({ name });
 }
 const places = [
-  {
+{
     name: "У Песчаного Моря",
     caption: "Тёплый песок, мягкий бриз и спокойные волны",
     icon: "mdi-weather-sunny",
     color: "#f4b740",
-    percentPerson: "13",
-    textPerson: "2/15",
-    percentCar: "50",
-    textCar: "5/10",
-  },
-  {
-    name: "В Тени Сосен",
-    caption: "Аромат хвои, прохлада и шелест леса",
-    icon: "mdi-pine-tree",
-    color: "#8ab45a",
+    value: '43.960635, 39.263933',
     percentPerson: "24",
     textPerson: "7/30",
     percentCar: "10",
     textCar: "2/20",
   },
   {
+    name: "В Тени Сосен",
+    caption: "Аромат хвои, прохлада и шелест леса",
+    icon: "mdi-pine-tree",
+    color: "#8ab45a",
+    value: '44.260545, 37.463974',
+    percentPerson: "30",
+    textPerson: "3/10",
+    percentCar: "12",
+    textCar: "1/8",
+  },
+  {
     name: "У Подножья Гор",
     caption: "Величественные вершины и кристально чистый воздух",
     icon: "mdi-image-filter-hdr",
     color: "#bca37f",
+    value: '46.742464, 35.933421',
     percentPerson: "56",
     textPerson: "14/25",
     percentCar: "45",
