@@ -489,4 +489,8 @@ const items = [
   -webkit-text-stroke: .05px #fff;
   box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
 }
+
+.content{
+  height: 62vh;
+}
 </style>

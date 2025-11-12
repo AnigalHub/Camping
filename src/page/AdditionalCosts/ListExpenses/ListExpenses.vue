@@ -41,4 +41,7 @@ const items = [
 .search{
   margin-top: -1rem;
 }
+.content{
+  height: 62vh;
+}
 </style>

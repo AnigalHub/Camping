@@ -7,14 +7,88 @@
           <v-col cols="9">
             <v-card class="pa-6" elevation="2">
               <v-form>
-               
+                <h3 class="form-subtitle">Организация</h3>
+                <div class="grid-inputs">
+                  <v-text-field
+                    v-model="organization.name"
+                    label="Название"
+                    variant="outlined"
+                    density="comfortable"
+                    rounded="lg"
+                    clearable
+                  />
+                  <v-text-field
+                    v-model="organization.slogan"
+                    label="Слоган"
+                    variant="outlined"
+                    density="comfortable"
+                    rounded="lg"
+                    clearable
+                  />
+                </div>
+                <h3 class="form-subtitle">Цены</h3>
+                <div class="price-grid">
+                  <v-text-field
+                    v-model="prices.person"
+                    label="За человека"
+                    type="number"
+                    variant="outlined"
+                    density="comfortable"
+                    rounded="lg"
+                    clearable
+                  />
+
+                  <v-text-field
+                    v-model="prices.animal"
+                    label="За животное"
+                    type="number"
+                    variant="outlined"
+                    density="comfortable"
+                    rounded="lg"
+                    clearable
+                  />
+
+                  <v-text-field
+                    v-model="prices.house"
+                    label="За аренду домика"
+                    type="number"
+                    variant="outlined"
+                    density="comfortable"
+                    rounded="lg"
+                    clearable
+                  />
+
+                  <v-text-field
+                    v-model="prices.transport"
+                    label="За транспорт"
+                    type="number"
+                    variant="outlined"
+                    density="comfortable"
+                    rounded="lg"
+                    clearable
+                  />
+
+                  <v-text-field
+                    v-model="prices.smallTransport"
+                    label="За мелкий транспорт"
+                    type="number"
+                    variant="outlined"
+                    density="comfortable"
+                    rounded="lg"
+                    clearable
+                  />
+                </div>
               </v-form>
             </v-card>
           </v-col>
           <v-col class="icon-col">
             <div class="icon-wrapper">
               <div class="block-icon">
-                <component :is="CacheSvg" color="#61656d" style="padding: 10px;" />
+                <component
+                  :is="CacheSvg"
+                  color="#61656d"
+                  style="padding: 10px"
+                />
               </div>
               <p class="icon-caption">Управление всеми параметрами кемпинга</p>
             </div>
@@ -26,23 +100,35 @@
 </template>
 
 <script setup>
+import { reactive } from "vue";
 import CacheSvg from "./svg/cache.vue";
 
 defineOptions({
   name: "TariffManagement",
 });
 const title = "Управление лагерем и тарифами";
+const organization = reactive({
+  name: "Ромашка",
+  slogan: "Кемпинг у моря — природа, которой хочется делиться!",
+});
+const prices = reactive({
+  person: 500,
+  animal: 500,
+  house: 4000,
+  transport: 500,
+  smallTransport: 250
+});
 </script>
 
 <style scoped>
-.content{
+.content {
   margin-top: 25px;
 }
 .icon-col {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 7%;
+  margin-top: 3%;
   position: relative;
   overflow: hidden;
 }
@@ -98,7 +184,6 @@ const title = "Управление лагерем и тарифами";
 }
 
 @keyframes breathe {
-
   0%,
   100% {
     transform: scale(1);
@@ -117,6 +202,79 @@ const title = "Управление лагерем и тарифами";
   color: #494c54;
   font-family: "Amatic SC", cursive;
   letter-spacing: 1.2px;
-  -webkit-text-stroke: .05px #494c54;
+  -webkit-text-stroke: 0.05px #494c54;
+}
+.content {
+  min-height: 78vh;
+  padding: 15px 25px 15px 15px !important;
+}
+.form-subtitle {
+  margin-bottom: 15px;
+  color: #104155;
+  -webkit-text-stroke: 0.2px #104155;
+  font-size: 1rem;
+  letter-spacing: 0.4px;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 0 0 30px;
+  position: relative;
+  background: #104155;
+  font-family: "Poiret One", sans-serif;
+  font-size: 1.35rem;
+  position: relative;
+  background: linear-gradient(90deg, #494c54, #7b6f5e, #494c54);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s infinite linear;
+}
+/* Анимации */
+@keyframes shimmer {
+  0% {
+    background-position: -150px 0;
+  }
+  100% {
+    background-position: 150px 0;
+  }
+}
+.form-subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  border-radius: 3px;
+  background: #2d9ac5;
+}
+.grid-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* два столбца */
+  gap: 20px;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 900px) {
+  .grid-inputs {
+    grid-template-columns: 1fr; /* один столбец */
+  }
+}
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* 2 в ряд */
+@media (max-width: 1100px) {
+  .price-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 1 под другим */
+@media (max-width: 700px) {
+  .price-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
