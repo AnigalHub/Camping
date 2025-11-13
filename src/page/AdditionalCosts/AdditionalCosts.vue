@@ -28,7 +28,6 @@
                 <AddExpenses/>
               </div>
               <div v-else-if="tab === tabs[1].value">
-                <search />
                 <ListExpenses class="list" />
               </div>
             </v-card-text>
