@@ -44,7 +44,7 @@ const route = useRoute();
 
 const search = ref("");
 const sort = ref(null);
-const sortOptions = route.name !== 'AdditionalCosts'  ? ["По дате", "По имени"] : ["По наиенованию", "По дате", "По цене"] ;
+const sortOptions = route.name !== 'AdditionalCosts' ? ["По дате", "По имени"] : ["По наиенованию", "По дате", "По цене"];
 
 function onSearch() {
   console.log(
@@ -86,13 +86,13 @@ function onSearch() {
 .search-input {
   flex: 1;
   min-width: 200px;
-  max-width: 100%; /* немного меньше */
+  max-width: 100%;
 }
 
 /* Удлинённые селекты */
 .filter-select {
   min-width: 250px;
-  max-width: 300px; /* чуть длиннее чем раньше */
+  max-width: 300px;
 }
 
 /* Для красивого выравнивания */
@@ -109,26 +109,23 @@ function onSearch() {
 
 /* Кнопка поиска */
 .btn_page {
-  background: #f1f6fa;
-  border: 1.5px solid #4170839e;
-  color: #4b707f;
+  background: #547c8f;
+  color: #fff;
   font-weight: 800;
   font-family: "El Messiri", sans-serif;
-  font-size: 1.1rem;
-  text-transform: none !important;
-  letter-spacing: 1px !important;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
+  font-size: 1.05rem;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
   transition: all 0.3s ease;
   padding: 10px 22px !important;
   min-height: 46px;
-  min-width: 250px;
+  min-width: 220px;
 }
 
 .btn_page:hover {
   transform: translateY(-2px);
-  background: #fefefe;
+  background: #3b5865;
 }
 
 @media (max-width: 768px) {
@@ -136,6 +133,7 @@ function onSearch() {
     flex-direction: column;
     align-items: stretch;
   }
+
   .filter-select {
     width: 100%;
   }

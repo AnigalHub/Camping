@@ -14,7 +14,6 @@
               density="comfortable"
               rounded="lg"
               :rules="[rules.required, rules.date]"
-              prepend-inner-icon="mdi-calendar"
               class="modern-input"
               @input="onDateInput"
             ></v-text-field>
@@ -31,7 +30,6 @@
               max-rows="6"
               rounded="lg"
               :rules="[rules.required]"
-              prepend-inner-icon="mdi-text"
               class="modern-input textarea-large"
             ></v-textarea>
 
@@ -44,17 +42,13 @@
               density="comfortable"
               rounded="lg"
               :rules="[rules.required, rules.numeric]"
-              prepend-inner-icon="mdi-cash"
               class="modern-input"
               @input="onPriceInput"
             ></v-text-field>
 
             <!-- Кнопка -->
             <div class="mt-6">
-              <v-btn type="submit" class="btn_page" rounded="lg" size="large">
-                <v-icon start>mdi-content-save</v-icon>
-                Сохранить
-              </v-btn>
+              <v-btn type="submit" class="btn_page" rounded="lg" size="large">Сохранить</v-btn>
             </div>
           </v-form>
         </v-card>
@@ -133,36 +127,33 @@ function saveForm() {
 
 /* Кнопка */
 .btn_page {
-  background: #f1f6fa;
-  border: 1.5px solid #4170839e;
-  color: #4b707f;
+  background: #547c8f;
+  color: #fff;
   font-weight: 800;
   font-family: "El Messiri", sans-serif;
-  font-size: 1.1rem;
-  text-transform: none !important;
-  letter-spacing: 1px !important;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-    2px 2px 8px rgba(17, 44, 18, 0.1);
+  font-size: 1.05rem;
+  border-radius: 12px !important;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
   transition: all 0.3s ease;
   padding: 10px 22px !important;
   min-height: 46px;
-  min-width: 250px;
-  width: 100%;
+  min-width: 220px;
+  margin: 0 auto;
+  display: block;
+  width: 60%;
 }
 
 .btn_page:hover {
   transform: translateY(-2px);
-  background: #fefefe;
+  background: #3b5865;
 }
 
 .content {
   padding: 30px 10px;
-  background: linear-gradient(
-    to top,
+  background: linear-gradient(to top,
     rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.8)
-  ) !important;
+    rgba(255, 255, 255, 0.8)) !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   border-radius: 15px !important;
@@ -173,7 +164,7 @@ function saveForm() {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  margin-top: -8%;
   position: relative;
   overflow: hidden;
 }
@@ -183,11 +174,7 @@ function saveForm() {
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(
-    circle,
-    rgba(138, 181, 57, 0.18),
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgb(57 131 181 / 50%), transparent 10%);
   filter: blur(40px);
   animation: pulse 6s ease-in-out infinite alternate;
 }
@@ -197,6 +184,7 @@ function saveForm() {
     transform: scale(1);
     opacity: 0.5;
   }
+
   100% {
     transform: scale(1.2);
     opacity: 0.8;
@@ -214,12 +202,12 @@ function saveForm() {
   height: 9rem;
   border-radius: 50%;
   border: 1px solid rgba(180, 180, 180, 0.3);
-  background: linear-gradient(180deg, #ffffff, #f3f7ef);
+  background: linear-gradient(180deg, #ffffff, #eff5f7);
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 6px 15px rgba(85, 139, 47, 0.18),
+  box-shadow: 0 6px 15px rgba(47, 118, 139, 0.18),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
   transition: all 0.5s ease;
   animation: breathe 5s ease-in-out infinite;
@@ -232,6 +220,7 @@ function saveForm() {
 }
 
 @keyframes breathe {
+
   0%,
   100% {
     transform: scale(1);
@@ -255,11 +244,13 @@ function saveForm() {
 }
 
 .icon-caption {
-  margin-top: 1.2rem;
   font-weight: 600;
-  font-size: 1.05rem;
-  color: #4d672c;
-  font-family: var(--font-family);
-  letter-spacing: 0.2px;
+  width: 75%;
+  margin: 1.2rem auto 0;
+  font-size: 1.6rem;
+  color: #494c54;
+  font-family: "Amatic SC", cursive;
+  letter-spacing: 1.2px;
+  -webkit-text-stroke: .05px #494c54;
 }
 </style>

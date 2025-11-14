@@ -47,20 +47,20 @@ const menus = [
     title: "Ближайшие выезды",
     route: "Trips",
   },
-  { 
-    icon: "mdi-tent", 
-    title: "Свободные поляны", 
-    route: "MapObjects" 
+  {
+    icon: "mdi-tent",
+    title: "Свободные поляны",
+    route: "MapObjects"
   },
   {
     icon: "mdi-cash-multiple",
     title: "Учет расходов",
     route: "AdditionalCosts",
   },
-  { 
-    icon: "mdi-cog-outline", 
-    title: "Настройки", 
-    route: "AdditionalCosts" 
+  {
+    icon: "mdi-cog-outline",
+    title: "Настройки",
+    route: "Settings"
   },
 ];
 
@@ -78,7 +78,7 @@ const drawerWidth = computed(() => (isWideScreen.value ? 260 : 240));
 
 const handleResize = () => {
   isWideScreen.value = window.innerWidth >= 1100;
-  if(isWideScreen.value) localDrawer.value = true;
+  if (isWideScreen.value) localDrawer.value = true;
 };
 
 function isActive(routeName) {
@@ -113,17 +113,29 @@ function goRoute(name) {
   margin-right: 5px;
   color: #233b06;
 }
+
+.v-navigation-drawer{
+  top: 50px !important;
+  height: 100% !important;
+}
+.active-item .v-list-item__prepend {
+  color: #4d672c !important;
+}
+
+.active-item .v-list-item__prepend .v-icon {
+  opacity: 1 !important;
+}
 </style>
 <style scoped>
 .active-item {
-  background: var(--background-inactive-tab) !important;
-  color: var(--color-inactive-tab) !important;
-  -webkit-text-stroke: var(--text-stroke-inactive-tab);
-  font-weight: 500 !important;
-  border: 1.5px solid var(--border-color-inactive-tab) !important;
-  border-radius: 0  15px 15px 0 !important;
+  background: #eee !important;
+  color: #4d672c !important;
+  -webkit-text-stroke: .05px #4d672c;
+  border: 1.5px solid #eee !important;
+  border-radius: 0 0 0 0 !important;
 }
-.active-item .v-list-item-title {
-  color: #6f9233 !important;
+
+.active-item .v-list-item__prepend .v-icon {
+  color: #fff !important;
 }
 </style>

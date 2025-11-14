@@ -81,58 +81,65 @@ watch(tab, updateSlider);
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   background: #fff;
   border-radius: 15px;
-  overflow: hidden;
-  width: 100%;
+  width: fit-content;
   box-sizing: border-box;
   font-weight: 800 !important;
   font-family: var(--font-family-title);
   margin-bottom: 15px;
-  padding: 0;
+  padding: 0; /* убираем внутренний отступ */
+  overflow: hidden; /* чтобы скругления выглядели аккуратно */
 }
 
 .tabs-slider {
   position: absolute;
-  top: 0;     
+  top: 0;
   left: 0;
-  height: 100%; 
+  height: 100%;
   border-radius: 15px;
-  background-color: #f6f9ef;
-  border: 1.5px solid #8ab539;
+  background-color: #89ac49d7;
+  border: 1.5px solid var(--border-color-inactive-tab);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
 }
 
 .tabs-switch__tab {
-  flex: 1;
   text-align: center;
   background: transparent;
   border: none;
   font-weight: 600;
   font-size: 14px;
-  padding: 15px 0;
+  padding: 15px 25px;
   cursor: pointer;
   letter-spacing: 2px;
   color: #494c54;
   position: relative;
   z-index: 1;
   transition: all 0.25s ease;
-  border-radius: 15px; /* сохраняем закругления */
-  margin: 1px 2px; /* убрали внешний отступ */
+  border-radius: 0; 
+  margin: 0; 
+}
+
+.tabs-switch__tab:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+.tabs-switch__tab:last-child {
+  border-radius: 0 15px 15px 0;
 }
 
 .tabs-switch__tab:hover {
-  background-color: rgba(57, 181, 94, 0.05); 
+  background-color: rgba(57, 181, 94, 0.05);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  border-radius: 15px !important;
 }
 
 .tabs-switch__tab.active {
-color: #71964f;
-    font-weight: 900;
-    -webkit-text-stroke: 0.5px #759a6c;
-    box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
+  color: #fff;
+  font-weight: 900;
+  -webkit-text-stroke: .05px #fff;
+  box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
 }
 
 .list {

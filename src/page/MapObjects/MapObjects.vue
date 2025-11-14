@@ -2,47 +2,18 @@
   <div class="page">
     <v-container>
       <Title :title="title" :icon="'mdi-tent'"/>
-      <v-card style="height: 85vh;">
-        <div class="tabs-container">
-          <div class="tabs-switch">
-            <div class="tabs-slider" :style="sliderStyle"></div>
-
-            <v-tab 
-              v-for="item in tabs" 
-              :key="item.value" 
-              :class="['tabs-switch__tab', { active: tab === item.value }]"
-              @click="tab = item.value"
-              ref="tabRefs"
-            >
-              {{ item.text }}
-            </v-tab>
-          </div>
-        </div>
-
-        <v-tabs-window v-model="tab">
-          <v-tabs-window-item 
-            v-for="item in tabs" 
-            :key="item.value" 
-            :value="item.value"
-          >
-            <v-card-text>
-              <div v-if="tab === tabs[0].value">
+      <v-card >
                 <FreeSeats />
-              </div>
-              <div v-else>
-                <CoordinatesObjects />
-              </div>
-            </v-card-text>
-          </v-tabs-window-item>
-        </v-tabs-window>
+                <!-- <CoordinatesObjects /> -->
+            <AvailableGlades/>
       </v-card>
-    </v-container>
+    </v-container> 
   </div>
 </template>
 
 <script setup>
 import { shallowRef, ref, computed, onMounted, nextTick, watch } from "vue";
-
+import AvailableGlades from "./../Home/AvailableGlades/AvailableGlades.vue";
 import FreeSeats from './FreeSeats/FreeSeats.vue'
 import CoordinatesObjects from './CoordinatesObjects/CoordinatesObjects.vue'
 
@@ -80,13 +51,13 @@ watch(tab, updateSlider);
 </script>
 
 <style scoped>
+
 .tabs-switch {
   position: relative;
   display: flex;
   align-items: center;
   background: #fff;
   border-radius: 15px;
-  overflow: hidden;
   width: 100%;
   box-sizing: border-box;
   font-weight: 800 !important;
@@ -97,12 +68,12 @@ watch(tab, updateSlider);
 
 .tabs-slider {
   position: absolute;
-  top: 0;     
+  top: 0;
   left: 0;
-  height: 100%; 
+  height: 100%;
   border-radius: 15px;
-  background-color: #f6f9ef;
-  border: 1.5px solid #8ab539;
+  background-color: #89ac49d7;
+  border: 1.5px solid var(--border-color-inactive-tab);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
 }
@@ -126,16 +97,15 @@ watch(tab, updateSlider);
 }
 
 .tabs-switch__tab:hover {
-  background-color: rgba(57, 181, 94, 0.05); 
+  background-color: rgba(57, 181, 94, 0.05);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   border-radius: 15px !important;
 }
 
 .tabs-switch__tab.active {
-color: #71964f;
-    font-weight: 900;
-    -webkit-text-stroke: 0.5px #759a6c;
-    box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
+  color: #fff;
+  font-weight: 900;
+  -webkit-text-stroke: .05px #fff;
+  box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
 }
-
 </style>

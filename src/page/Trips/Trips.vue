@@ -411,7 +411,7 @@ const items = [
   top: -8px;
   left: 88%;
   transform: translateX(-50%);
-  background-color: #71964f; /* сохраняем цвет */
+  background-color: #89ac49d7; /* сохраняем цвет */
   color: #fff;
   padding: 2px 5px 4px;
   border-radius: 12px;
@@ -453,8 +453,8 @@ const items = [
   left: 0;
   height: 100%;
   border-radius: 15px;
-  background-color: #f6f9ef;
-  border: 1.5px solid #8ab539;
+  background-color: #89ac49d7;
+  border: 1.5px solid var(--border-color-inactive-tab);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
 }
@@ -484,9 +484,9 @@ const items = [
 }
 
 .tabs-switch__tab.active {
-  color: #71964f;
+  color: #fff;
   font-weight: 900;
-  -webkit-text-stroke: 0.5px #759a6c;
+  -webkit-text-stroke: .05px #fff;
   box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
 }
 </style>
