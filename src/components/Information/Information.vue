@@ -12,10 +12,10 @@
       </v-col>
     </v-row>
   </v-form>
-  <div class="btn_wrapper">
-    <div class="btn_block">
+  <div class="btn-wrapper">
+    <div class="btn-block">
       <v-btn v-if="name === 'edit'" class="btn-page">Сохранить</v-btn>
-      <div v-if="name === 'delete'" class="btn_delete">
+      <div v-if="name === 'delete'" class="btn-delete">
         <v-btn class="btn-page">Да</v-btn>
         <v-btn class="btn-page">Нет</v-btn>
       </div>
@@ -156,31 +156,31 @@ h2 {
   font-size: 0.95rem;
 }
 
-.btn_wrapper {
+.btn-wrapper {
   border-top: var(--border-bottom-content-modal);
   margin: 15px auto 10px;
 }
 
-.btn_block {
+.btn-block {
   width: 50%;
   margin: 0 auto 10px;
 }
 
-.btn_delete {
+.btn-delete {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
 }
 
-.btn_delete .v-btn {
+.btn-delete .v-btn {
   flex: 1;
   max-width: 47%;
 }
 
 /* --- Адаптив --- */
 @media (max-width: 960px) {
-  .btn_block {
+  .btn-block {
     width: 70%;
   }
 }
@@ -197,7 +197,7 @@ h2 {
     overflow: auto;
   }
 
-  .btn_block {
+  .btn-block {
     width: 100%;
   }
 

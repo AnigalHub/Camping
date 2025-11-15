@@ -133,7 +133,7 @@ function isModalVisible(name) {
 }
 
 
-.v-card, .content, .block_title, .v-list-item{
+.v-card, .content, .block-title, .v-list-item{
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
@@ -158,14 +158,13 @@ function isModalVisible(name) {
 } */
 
 .content,
-.block_search {
-
+.block-search {
   background: var(--background-content-card) !important;
   box-shadow: var(--box-shadow-content-card) !important;
   border-radius: var(--border-radius-content-card) !important;
 }
 
-.block_search {
+.block-search {
   height: 10vh;
   margin-bottom: 3vh;
   padding-top: 0;
@@ -184,8 +183,6 @@ function isModalVisible(name) {
 .content {
   height: 72vh;
 }
-
-
 
 .v-card .v-card {
   box-shadow: var(--box-shadow-content-inner-card);
@@ -230,9 +227,8 @@ function isModalVisible(name) {
   margin-top: -20px;
 }
 
-
 /* Сделаем top-menu фиксированным */
-top-menu {
+.top-menu {
   position: fixed;
   top: 0;
   left: 0;

@@ -3,7 +3,7 @@
     class="d-flex flex-column justify-space-between card"
     elevation="4"
     rounded="xl"
-    @click="goRoute('')"
+    @click="goRoute('TariffManagement')"
   >
     <div class="d-flex align-start text-start card-header">
       <v-icon color="#debe7e" size="33">mdi-cog-outline</v-icon>
@@ -35,7 +35,7 @@
         </svg>
       </div>
       <div class="d-flex flex-column flex-1-1-auto text-block">
-        <div class="title_block">
+        <div class="title-block">
           <h3 class="title">Настройте лагерь под себя</h3>
           <p class="card-text">
             Гибко управляйте всеми параметрами кемпинга: настройками, тарифами и

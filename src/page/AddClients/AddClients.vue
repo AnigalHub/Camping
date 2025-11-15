@@ -20,7 +20,8 @@ const title = 'Регистрация отдыхающих';
 <style scoped>
 /* Общий контейнер */
 .content {
-  min-height: 82.5vh;
+  margin-top: 20px;
+  min-height: 78vh;
   padding: 15px 25px 15px 15px !important;
   display: flex;
   align-items: center;

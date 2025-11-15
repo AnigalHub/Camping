@@ -112,7 +112,7 @@ const props = defineProps({
 }
 
 /* Прогресс-блок */
-.progress_block_v2 {
+.progress-block-v2 {
   display: flex;
   flex-direction: column;
   gap: 12px;

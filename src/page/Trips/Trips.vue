@@ -11,7 +11,7 @@
               v-for="(item, index) in tabs"
               :key="item"
               :value="item"
-              :class="['tabs-switch__tab', { active: tab === item }]"
+              :class="['tabs-switch-tab', { active: tab === item }]"
               @click="tab = item"
               ref="tabRefs"
             >
@@ -425,7 +425,7 @@ const items = [
   transition: all 0.3s ease;
 }
 
-.tabs-switch__tab:hover .tab-label {
+.tabs-switch-tab:hover .tab-label {
   transform: translateX(-50%) translateY(-1px) scale(1.05);
   box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.25),
@@ -459,7 +459,7 @@ const items = [
   z-index: 0;
 }
 
-.tabs-switch__tab {
+.tabs-switch-tab {
   flex: 1;
   text-align: center;
   background: transparent;
@@ -477,13 +477,13 @@ const items = [
   margin: 1px 2px; /* убрали внешний отступ */
 }
 
-.tabs-switch__tab:hover {
+.tabs-switch-tab:hover {
   background-color: rgba(57, 181, 94, 0.05);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   border-radius: 15px !important;
 }
 
-.tabs-switch__tab.active {
+.tabs-switch-tab.active {
   color: #fff;
   font-weight: 900;
   -webkit-text-stroke: .05px #fff;

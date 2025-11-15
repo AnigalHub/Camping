@@ -9,7 +9,7 @@
             <v-tab
               v-for="item in tabs"
               :key="item.value" 
-              :class="['tabs-switch__tab', { active: tab === item.value }]"
+              :class="['tabs-switch-tab', { active: tab === item.value }]"
               @click="tab = item.value"
               ref="tabRefs"
             >
@@ -104,7 +104,7 @@ watch(tab, updateSlider);
   z-index: 0;
 }
 
-.tabs-switch__tab {
+.tabs-switch-tab {
   text-align: center;
   background: transparent;
   border: none;
@@ -121,20 +121,20 @@ watch(tab, updateSlider);
   margin: 0; 
 }
 
-.tabs-switch__tab:first-child {
+.tabs-switch-tab:first-child {
   border-radius: 15px 0 0 15px;
 }
 
-.tabs-switch__tab:last-child {
+.tabs-switch-tab:last-child {
   border-radius: 0 15px 15px 0;
 }
 
-.tabs-switch__tab:hover {
+.tabs-switch-tab:hover {
   background-color: rgba(57, 181, 94, 0.05);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.tabs-switch__tab.active {
+.tabs-switch-tab.active {
   color: #fff;
   font-weight: 900;
   -webkit-text-stroke: .05px #fff;

@@ -1,5 +1,5 @@
 <template>
-  <div class="block_title">
+  <div class="block-title">
     <button class="back-btn" @click="goBack" title="Назад">
       <v-icon color="#fff" size="22">mdi-arrow-left</v-icon>
     </button>
@@ -38,7 +38,7 @@ function goBack() {
 </script>
 
 <style scoped>
-.block_title {
+.block-title {
   display: flex;
   align-items: center;
   gap: 14px;

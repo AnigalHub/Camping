@@ -49,7 +49,7 @@ svg{
   -webkit-backdrop-filter: var(--filter-btn-back-page-hover);
 }
 
-.back_text {
+.back-text {
   color: var(--color-btn-back-page);
   -webkit-text-stroke: var(--text-stroke-btn-back-page);
   font-family: var(--font-family);
@@ -60,7 +60,7 @@ svg{
   padding-top: 8px;
 }
 
-.back:hover .back_text {
+.back:hover .back-text {
   color: var(--color-btn-back-page-hover);
   -webkit-text-stroke: var(--text-stroke-btn-back-page-hover);
 }

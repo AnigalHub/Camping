@@ -78,7 +78,7 @@ watch(tab, updateSlider);
   z-index: 0;
 }
 
-.tabs-switch__tab {
+.tabs-switch-tab {
   flex: 1;
   text-align: center;
   background: transparent;
@@ -96,13 +96,13 @@ watch(tab, updateSlider);
   margin: 1px 2px; /* убрали внешний отступ */
 }
 
-.tabs-switch__tab:hover {
+.tabs-switch-tab:hover {
   background-color: rgba(57, 181, 94, 0.05);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   border-radius: 15px !important;
 }
 
-.tabs-switch__tab.active {
+.tabs-switch-tab.active {
   color: #fff;
   font-weight: 900;
   -webkit-text-stroke: .05px #fff;

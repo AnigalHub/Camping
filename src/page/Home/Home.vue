@@ -1,5 +1,5 @@
 <template>
-  <div class="content_wrapper_home">
+  <div class="content-wrapper-home">
     <div class="wrapper">
       <v-container class="pt-10" min-height="100vh">
         <MainBlocks />
@@ -27,7 +27,7 @@ import CampManagement from "./CampManagement/CampManagement.vue";
 </script>
 
 <style scoped>
-.content_wrapper_home {
+.content-wrapper-home {
   background: var(--background-color-page);
   min-height: 100vh;
   height: auto;

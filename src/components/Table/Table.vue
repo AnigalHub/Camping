@@ -40,7 +40,7 @@
             col.key === 'fio' || col.key === 'document'
               ? 'text-left'
               : 'text-center',
-            col.key === 'buttons' ? 'bg_buttons' : '',
+            col.key === 'buttons' ? 'bg-buttons' : '',
           ]">
             <template v-if="col.key === 'fio'">
               <div class="fio-wrapper">
@@ -55,7 +55,7 @@
             <template v-else-if="col.key === 'dateStay'">
               <div class="date-range">
                 <span>{{ formatDate(item.startDate) }}</span>
-                <span class="date_line">—</span>
+                <span class="date-line">—</span>
                 <span>{{ formatDate(item.endDate) }}</span>
               </div>
             </template>
@@ -71,7 +71,7 @@
               {{ item[col.key].toLocaleString("ru-RU") }}
             </template>
             <template v-else-if="col.key === 'document'">
-              <div class="document_blocks">
+              <div class="document-blocks">
                 <div>{{ item.seriesDocument }}</div>
                 <div>{{ item.numberDocument }}</div>
               </div>
@@ -199,7 +199,7 @@ async function onModalDocuments(name, object, disable) {
 </script>
 
 <style scoped>
-.date_line {
+.date-line {
   display: none;
 }
 
@@ -257,11 +257,11 @@ async function onModalDocuments(name, object, disable) {
   flex-wrap: wrap;
 }
 
-.document_blocks {
+.document-blocks {
   display: flex;
 }
 
-.bg_buttons {
+.bg-buttons {
   background: var(--background-btn-block-table);
   min-width: 88px;
 }
@@ -349,7 +349,7 @@ async function onModalDocuments(name, object, disable) {
     box-shadow: none !important;
   }
 
-  .date_line {
+  .date-line {
     display: block;
   }
 
@@ -372,7 +372,7 @@ async function onModalDocuments(name, object, disable) {
     font-size: 0.9rem;
   }
 
-  .v-table tbody td.bg_buttons {
+  .v-table tbody td.bg-buttons {
     justify-content: center;
     padding-top: 15px !important;
     background: transparent;

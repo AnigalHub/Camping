@@ -59,8 +59,8 @@ const menus = [
   },
   {
     icon: "mdi-cog-outline",
-    title: "Настройки",
-    route: "Settings"
+    title: "Настройки, тарифы",
+    route: "TariffManagement"
   },
 ];
 

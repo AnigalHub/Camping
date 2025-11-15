@@ -2,7 +2,7 @@
   <div class="page">
     <v-container>
       <Title :title="title" />
-      <div class="block_table">
+      <div class="block-table">
         <v-row dense align="stretch">
           <!-- Левая часть — форма -->
           <v-col cols="9">
@@ -28,7 +28,7 @@
           <!-- Правая часть — иконка -->
           <v-col class="icon-col">
             <div class="icon-wrapper">
-              <div class="block_icon">
+              <div class="block-icon">
                 <img src="./../../../public/1.png" alt="Account security" class="camp-image" />
               </div>
               <p class="icon-caption">Безопасность аккаунта</p>
@@ -63,7 +63,7 @@ const rules = {
 </script>
 
 <style scoped>
-.block_table {
+.block-table {
   min-height: 82.5vh;
   padding: 15px 25px 15px 15px !important;
   display: flex;
@@ -136,7 +136,7 @@ const rules = {
   padding: 30px 10px;
 }
 
-.block_icon {
+.block-icon {
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
@@ -153,7 +153,7 @@ const rules = {
   animation: breathe 5s ease-in-out infinite;
 }
 
-.block_icon:hover {
+.block-icon:hover {
   transform: scale(1.06);
   box-shadow:
     0 10px 25px rgba(76, 175, 80, 0.25),
@@ -180,7 +180,7 @@ const rules = {
   transition: transform 0.4s ease;
 }
 
-.block_icon:hover .camp-image {
+.block-icon:hover .camp-image {
   transform: scale(1.1);
 }
 

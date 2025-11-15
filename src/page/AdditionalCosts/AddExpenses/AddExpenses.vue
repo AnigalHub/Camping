@@ -68,13 +68,12 @@
       </v-col>
       <v-col class="icon-col">
         <div class="icon-wrapper">
-          <div class="block_icon">
+          <div class="block-icon">
             <component
             :is="ExpensesSvg"
             color="#61656d"
             style="padding: 20px;"
           />
-          <!-- <img src="./../../../../public/2.png" alt="Account security" class="camp-image" /> -->
           </div>
           <p class="icon-caption">Расходы по содержанию лагеря</p>
         </div>
@@ -237,7 +236,7 @@ function saveForm() {
   padding: 30px 10px;
 }
 
-.block_icon {
+.block-icon {
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
@@ -253,7 +252,7 @@ function saveForm() {
   animation: breathe 5s ease-in-out infinite;
 }
 
-.block_icon:hover {
+.block-icon:hover {
   transform: scale(1.06);
   box-shadow: 0 10px 25px rgba(47, 118, 139, 0.25),
     inset 0 0 15px rgba(255, 255, 255, 0.4);
@@ -269,18 +268,6 @@ function saveForm() {
   50% {
     transform: scale(1.08);
   }
-}
-
-.camp-image {
-  width: 68%;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 10px rgba(85, 139, 47, 0.12));
-  transition: transform 0.4s ease;
-}
-
-.block_icon:hover .camp-image {
-  transform: scale(1.1);
 }
 
 .icon-caption {

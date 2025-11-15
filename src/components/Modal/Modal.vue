@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="isDialogOpen" max-width="600" persistent class="modal_block">
+  <v-dialog v-model="isDialogOpen" max-width="600" persistent class="modal-block">
     <v-card :class="[classCss]">
       <!-- Заголовок -->
       <v-card-title v-if="!hideHeader" class="d-flex justify-space-between align-center">
@@ -137,7 +137,7 @@ export default defineComponent({
   background: transparent !important;
 }
 
-.modal_block .v-card{
+.modal-block .v-card{
   background: var(--background-modal) !important;
   overflow: hidden !important;
 }
