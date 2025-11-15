@@ -108,9 +108,11 @@ function goRoute(name) {
 .card-header {
   gap: 12px;
 }
+
 .card:hover {
-  border: 1.5px solid rgba(95, 136, 53, 0.25);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+   filter: contrast(110%);
+  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
 }
 h2 {
   font-family: var(--font-family-title);
@@ -148,7 +150,7 @@ h2::after {
   border-radius: 15px;
   width: 100%;
   background: #fff;
-  box-shadow: 1px 1px 1px 1px #edeef0 !important;
+  box-shadow: 1px 1px 1px 1px #d9d8d8 !important;
   margin-top: -45%;
   z-index: 5;
   transition: all 0.4s ease;

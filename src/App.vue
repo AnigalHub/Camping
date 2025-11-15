@@ -120,7 +120,7 @@ function isModalVisible(name) {
   transition: all 0.3s ease;
   padding: 10px 22px !important;
   background: #f1f6fa;
-  border: 1.5px solid #4170839e;
+  border: 1.8px solid #4170839e;
   color: #4b707f;
   font-weight: 800;
   letter-spacing: 1px !important;
@@ -128,10 +128,11 @@ function isModalVisible(name) {
 }
 
 .v-card:hover .btn-home {
-  background: #fefefe;
-  color: #2b3d15;
-  transform: translateY(-2px);
 
+  color: #fff;
+  transform: translateY(-2px);
+  transform: translateY(-2px);
+  background: #547c8f;
 }
 
 

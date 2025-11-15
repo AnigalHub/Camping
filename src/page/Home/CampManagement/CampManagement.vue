@@ -18,7 +18,7 @@
         <div
           class="d-flex align-center justify-center position-relative icon-wrap"
         >
-          <component :is="SettingsSvg" :color="'#93b5c4'" style="width: 45px" />
+          <component :is="SettingsSvg" :color="'#547c8f'" style="width: 45px" />
         </div>
         <svg
           class="position-absolute decor-line"
@@ -110,8 +110,9 @@ const list = [
   transition: color 0.25s ease;
 }
 .card:hover {
-  border: 1.5px solid rgba(95, 136, 53, 0.25);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+   filter: contrast(110%);
+  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
 }
 .card:hover .card-footer {
   color: #006c9a;
@@ -144,7 +145,7 @@ h2::after {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  border: 1.58px dashed rgb(0, 107, 153, 0.7);
+  border: 1.58px dashed #547c8f;
   opacity: 0.6;
   pointer-events: none;
   z-index: 0;

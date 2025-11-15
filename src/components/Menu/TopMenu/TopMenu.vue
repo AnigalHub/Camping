@@ -20,11 +20,11 @@
           class="d-flex button"
           v-tooltip:bottom="menu.name"
         >
-          <component
+          <component 
             v-if="menu.icon"
             :is="menu.icon"
-            color="#61656d"
-            width="25px"
+            color="#547c8f"
+            width="30px"
           />
         </div>
       </div>

@@ -103,8 +103,9 @@ const places = [
   transition: color 0.25s ease;
 }
 .card:hover {
-  border: 1.5px solid rgba(95, 136, 53, 0.25);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+   filter: contrast(110%);
+  /* border: 1.5px solid rgba(95, 136, 53, 0.25); */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
 }
 .card:hover .card-footer {
   color: #006c9a;
