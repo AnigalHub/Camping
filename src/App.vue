@@ -37,7 +37,10 @@ function isModalVisible(name) {
 
 <style>
 @import "./../public/style.css";
-
+.v-picker.v-sheet {
+  margin-top: -3.5%;
+  border-radius: 15px !important;
+}
 .v-card--variant-elevated{
   background: transparent !important;
 }

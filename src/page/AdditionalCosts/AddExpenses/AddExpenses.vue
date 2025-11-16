@@ -1,68 +1,80 @@
 <template>
   <div class="content">
     <v-row dense align="stretch">
-      <!-- Левая часть — форма -->
       <v-col cols="9">
         <v-card class="pa-6" elevation="2">
           <v-form v-model="valid" @submit.prevent="saveForm">
-            <!-- Дата -->
-            <v-text-field
-              v-model="date"
-              label="Дата"
-              placeholder="Введите дату (дд.мм.гггг)"
-              variant="outlined"
-              density="comfortable"
-              rounded="lg"
-              :rules="[rules.required, rules.date]"
-              class="modern-input"
-              @input="onDateInput"
-            ></v-text-field>
-
-            <!-- Наименование -->
-            <v-textarea
-              v-model="name"
-              label="Наименование"
+            <v-menu v-model="dateMenu" :close-on-content-click="false" transition="scale-transition" offset-y
+              @click:outside="closeDateMenuOutside">
+              <template #activator="{ props }">
+                <v-text-field 
+                  v-model="date" 
+                  v-bind="props" 
+                  label="Дата" 
+                  placeholder="дд.мм.гггг" 
+                  variant="outlined"
+                  density="comfortable" 
+                  rounded="lg" 
+                  class="modern-input" 
+                  :rules="[rules.required, rules.date]"
+                  clearable 
+                  readonly
+                ></v-text-field>
+              </template>
+              <v-date-picker 
+                v-model="dateInternal" 
+                color="primary" 
+                hide-header 
+                locale="ru"
+                @update:model-value="updateDate" 
+                @click:date="selectDate"
+              ></v-date-picker>
+            </v-menu>
+            <v-textarea 
+              v-model="name" 
+              label="Наименование" 
               placeholder="Введите наименование и причины расходов"
-              variant="outlined"
-              density="comfortable"
-              auto-grow
-              rows="4"
-              max-rows="6"
+              variant="outlined" 
+              density="comfortable" 
+              auto-grow 
+              rows="4" 
+              max-rows="6" 
               rounded="lg"
-              :rules="[rules.required]"
-              class="modern-input textarea-large"
+              :rules="[rules.required]" 
+              class="modern-input textarea-large" 
+              clearable
             ></v-textarea>
-
-            <!-- Стоимость -->
-            <v-text-field
-              v-model="price"
-              label="Стоимость"
-              placeholder="Введите сумму"
+            <v-text-field 
+              v-model="price" 
+              label="Стоимость" 
+              placeholder="Введите сумму" 
               variant="outlined"
-              density="comfortable"
-              rounded="lg"
-              :rules="[rules.required, rules.numeric]"
+              density="comfortable" 
+              rounded="lg" 
+              :rules="[rules.required, rules.numeric]" 
               class="modern-input"
-              @input="onPriceInput"
-            ></v-text-field>
-
-            <!-- Кнопка -->
+              @input="onPriceInput" 
+              clearable></v-text-field>
             <div class="mt-6">
-              <v-btn type="submit" class="btn_page" rounded="lg" size="large">Сохранить</v-btn>
+              <v-btn 
+                type="submit" 
+                class="btn_page" 
+                rounded="lg" 
+                size="large"
+              >Сохранить</v-btn>
             </div>
           </v-form>
         </v-card>
       </v-col>
-
-      <!-- Правая часть — иконка -->
       <v-col class="icon-col">
         <div class="icon-wrapper">
           <div class="block_icon">
-            <img
-              src="./../../../../public/1.png"
-              alt="Account security"
-              class="camp-image"
-            />
+            <component
+            :is="ExpensesSvg"
+            color="#61656d"
+            style="padding: 20px;"
+          />
+          <!-- <img src="./../../../../public/2.png" alt="Account security" class="camp-image" /> -->
           </div>
           <p class="icon-caption">Расходы по содержанию лагеря</p>
         </div>
@@ -72,9 +84,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import ExpensesSvg from "./svg/expenses.vue";
+import { ref, onMounted } from "vue";
 
 const date = ref("");
+const dateMenu = ref(false);
+const dateInternal = ref(null);
+
 const name = ref("");
 const price = ref("");
 const valid = ref(false);
@@ -88,15 +104,38 @@ const rules = {
   numeric: (v) => !v || /^[0-9]+$/.test(v) || "Только цифры",
 };
 
-// Маска для даты (дд.мм.гггг)
-function onDateInput(e) {
-  let value = e.target.value.replace(/\D/g, "");
-  if (value.length > 2) value = value.slice(0, 2) + "." + value.slice(2);
-  if (value.length > 5) value = value.slice(0, 5) + "." + value.slice(5, 9);
-  date.value = value.slice(0, 10);
+onMounted(() => {
+  const today = new Date();
+  // Формируем yyyy-mm-dd вручную в локальном времени
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+  dateInternal.value = `${yyyy}-${mm}-${dd}`;
+  updateDate(dateInternal.value); // выставляем в поле
+});
+
+
+// Форматирование даты для отображения
+function updateDate(val) {
+  if (!val) return;
+  const d = new Date(val);
+  const dd = d.getDate().toString().padStart(2, "0");
+  const mm = (d.getMonth() + 1).toString().padStart(2, "0");
+  const yyyy = d.getFullYear();
+  date.value = `${dd}.${mm}.${yyyy}`;
 }
 
-// Маска для цены (только цифры)
+// Закрытие меню при выборе даты
+function selectDate() {
+  dateMenu.value = false;
+}
+
+// Закрытие меню при клике вне
+function closeDateMenuOutside() {
+  dateMenu.value = false;
+}
+
+// Маска для цены
 function onPriceInput(e) {
   price.value = e.target.value.replace(/[^\d]/g, "");
 }
@@ -112,6 +151,7 @@ function saveForm() {
   }
 }
 </script>
+
 
 <style scoped>
 .modern-input {
@@ -152,8 +192,8 @@ function saveForm() {
 .content {
   padding: 30px 10px;
   background: linear-gradient(to top,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.8)) !important;
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.8)) !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
     2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   border-radius: 15px !important;
@@ -215,7 +255,7 @@ function saveForm() {
 
 .block_icon:hover {
   transform: scale(1.06);
-  box-shadow: 0 10px 25px rgba(76, 175, 80, 0.25),
+  box-shadow: 0 10px 25px rgba(47, 118, 139, 0.25),
     inset 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
@@ -252,5 +292,9 @@ function saveForm() {
   font-family: "Amatic SC", cursive;
   letter-spacing: 1.2px;
   -webkit-text-stroke: .05px #494c54;
+}
+
+.v-card {
+  overflow: initial;
 }
 </style>
