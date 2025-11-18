@@ -6,7 +6,7 @@ const MapObjects = () => import('@/page/MapObjects/MapObjects.vue')
 const AddClients = () => import('@/page/AddClients/AddClients.vue')
 const ListClients = () => import('@/page/ListClients/ListClients.vue')
 const Trips = () => import('@/page/Trips/Trips.vue')
-const TariffManagement = () => import('@/page/TariffManagement/TariffManagement.vue')
+const SettingsCompany = () => import('@/page/SettingsCompany/SettingsCompany.vue')
 const Settings = () => import('@/page/Settings/Settings.vue')
 
 const routes = [
@@ -25,7 +25,7 @@ const routes = [
   { name: 'AddClients', path: '/addclients', component: AddClients },
   { name: 'ListClients', path: '/listclients', component: ListClients },
   { name: 'Trips', path: '/trips', component: Trips },
-  { name: 'TariffManagement', path: '/tariffmanagement', component: TariffManagement },
+  { name: 'SettingsCompany', path: '/settingscompany', component: SettingsCompany },
   { name: 'Settings', path: '/settings', component: Settings },
 ]
 

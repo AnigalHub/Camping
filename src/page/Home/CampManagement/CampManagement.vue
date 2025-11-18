@@ -3,7 +3,7 @@
     class="d-flex flex-column justify-space-between card"
     elevation="4"
     rounded="xl"
-    @click="goRoute('TariffManagement')"
+    @click="goRoute('SettingsCompany')"
   >
     <div class="d-flex align-start text-start card-header">
       <v-icon color="#debe7e" size="33">mdi-cog-outline</v-icon>

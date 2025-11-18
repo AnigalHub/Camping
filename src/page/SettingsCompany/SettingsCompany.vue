@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <v-container>
-      <Title :title="title" :icon="'mdi-cash-multiple'" />
-      <v-card :style="!tabs[1].value ? 'height: 100vh;' : 'height: 87vh;'">
+      <Title :title="title" :icon="'mdi-cog-outline'" />
+      <v-card style="height: 87vh">
         <div class="tabs-container">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
@@ -25,10 +25,13 @@
           >
             <v-card-text>
               <div v-if="tab === tabs[0].value">
-                <AddExpenses/>
+                <Company/>
               </div>
               <div v-else-if="tab === tabs[1].value">
-                <ListExpenses class="list" />
+                <Prices />
+              </div>
+               <div v-else-if="tab === tabs[2].value">
+                <Objects />
               </div>
             </v-card-text>
           </v-tabs-window-item>
@@ -40,17 +43,20 @@
 
 <script setup>
 import { shallowRef, ref, nextTick, onMounted, watch } from "vue";
-import AddExpenses from "./AddExpenses/AddExpenses.vue";
-import ListExpenses from "./ListExpenses/ListExpenses.vue";
+import Company from "./Company/Company.vue";
+import Prices from "./Prices/Prices.vue";
+import Objects from "./Objects/Objects.vue";
+
 
 defineOptions({
-  name: "AdditionalCosts",
+  name: "SettingsCompany",
 });
-const title = "Учет расходов";
+const title = "Управление лагерем и тарифами";
 
 const tabs = [
-  { value: "Добавить расходы" },
-  { value: "Список расходов" },
+  { value: "Описание" },
+  { value: "Тарифы" },
+  { value: "Объекты заселения" },
 ];
 
 const tab = shallowRef(tabs[0].value);

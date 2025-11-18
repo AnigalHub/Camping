@@ -60,7 +60,7 @@ const menus = [
   {
     icon: "mdi-cog-outline",
     title: "Настройки, тарифы",
-    route: "TariffManagement"
+    route: "SettingsCompany"
   },
 ];
 
