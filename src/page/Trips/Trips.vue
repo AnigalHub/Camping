@@ -37,7 +37,7 @@
                 sortByKey="fio"
               />
             </div>
-            <div v-else style="padding: 15px" class="content">
+            <div v-else style="padding: 15px" class="no_data">
               Данных за день нет.
             </div>
           </v-tabs-window-item>
@@ -492,5 +492,13 @@ const items = [
 
 .content{
   height: 62vh;
+}
+
+.no_data{
+  background: var(--background-content-card) !important;
+  box-shadow: var(--box-shadow-content-card) !important;
+  border-radius: var(--border-radius-content-card) !important;
+  height: 71vh;
+  margin-top: 15px;
 }
 </style>

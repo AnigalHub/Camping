@@ -138,24 +138,6 @@ function isModalVisible(name) {
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
 }
-/**Кнопки страниц */
-/* .btn-page {
-  color: var(--color-btn-page) !important;
-  -webkit-text-stroke: var(--text-stroke-btn-page);
-  text-transform: none !important;
-  letter-spacing: var(--letter-spacing-btn-page) !important;
-  font-family: var(--font-family-main) !important;
-  font-size: 0.95rem !important;
-  background: var(--background-btn-page) !important;
-  border-radius: var(--border-radius-btn-page) !important;
-  border: var(--border-btn-page) !important;
-  border-color: var(--border-color-btn-page) !important;
-  box-shadow: var(--box-shadow-btn-page) !important;
-  width: 100%;
-  padding: 10px !important;
-  min-height: 42px;
-  margin-top: 5px;
-} */
 
 .content,
 .block-search {

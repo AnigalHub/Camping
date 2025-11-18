@@ -61,6 +61,8 @@
                 class="btn-page" 
                 rounded="lg" 
                 size="large"
+                :disabled="!isChanged" 
+                :class="{ 'btn-disabled': !isChanged }"
               >Сохранить</v-btn>
             </div>
           </v-form>
@@ -84,7 +86,7 @@
 
 <script setup>
 import ExpensesSvg from "./svg/expenses.vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 const date = ref("");
 const dateMenu = ref(false);
@@ -93,6 +95,14 @@ const dateInternal = ref(null);
 const name = ref("");
 const price = ref("");
 const valid = ref(false);
+
+const isChanged = computed(() => {
+  return (
+    date.value &&
+    name.value &&
+    price.value
+  );
+});
 
 const rules = {
   required: (v) => !!v || "Поле обязательно для заполнения",
@@ -186,6 +196,13 @@ function saveForm() {
 .btn-page:hover {
   transform: translateY(-2px);
   background: #3b5865;
+}
+
+.btn-disabled {
+  background: #393939 !important;
+  border: 1.7px solid #fbf0f09e !important;
+  transform: none !important;
+  cursor: not-allowed !important;
 }
 
 .content {

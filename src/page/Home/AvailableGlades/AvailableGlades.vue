@@ -47,7 +47,7 @@ function goRoute(name) {
 const places = [
 {
     name: "У Песчаного Моря",
-    caption: "Тёплый песок, мягкий бриз и спокойные волны",
+    description: "Тёплый песок, мягкий бриз и спокойные волны",
     icon: "mdi-weather-sunny",
     color: "#f4b740",
     value: '43.960635, 39.263933',
@@ -58,7 +58,7 @@ const places = [
   },
   {
     name: "В Тени Сосен",
-    caption: "Аромат хвои, прохлада и шелест леса",
+    description: "Аромат хвои, прохлада и шелест леса",
     icon: "mdi-pine-tree",
     color: "#8ab45a",
     value: '44.260545, 37.463974',
@@ -69,7 +69,7 @@ const places = [
   },
   {
     name: "У Подножья Гор",
-    caption: "Величественные вершины и кристально чистый воздух",
+    description: "Величественные вершины и кристально чистый воздух",
     icon: "mdi-image-filter-hdr",
     color: "#bca37f",
     value: '46.742464, 35.933421',

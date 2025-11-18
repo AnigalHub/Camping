@@ -4,7 +4,7 @@
       <v-col cols="9" style="overflow: auto;height: 65vh;">
         <v-card class="pa-6" elevation="2">
           <v-form>
-            <h3 class="form-subtitle subtitle-object">Объекты заселения</h3>
+            <h3 class="form-subtitle subtitle-object">Объекты</h3>
             <div v-for="(object, i) in objects" :key="i">
               <div class="object-title">
                 <span>Объект №{{ i + 1 }}</span>
