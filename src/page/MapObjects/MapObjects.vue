@@ -2,7 +2,8 @@
   <div class="page">
     <v-container>
       <Title :title="title" :icon="'mdi-tent'" class="title"/>
-      <div class="content">
+      <Search/>
+      <div class="block">
         <div class="grid-container">
           <Glade v-for="(place, index) in places" :key="index" :place="place" :number="index" />
         </div>
@@ -232,18 +233,17 @@ const places = [
 ];
 </script>
 <style scoped>
-.content {
+.block {
   height: 78vh;
-  padding: 20px 15px;
+  padding: 0 15px 20px;
   overflow: auto;
-  margin-top: 20px;
-  margin-left: -5px;
+  margin-left: -15px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 4px;
   /* Автоматическая высота рядов под контент */
   grid-auto-rows: min-content;
 }

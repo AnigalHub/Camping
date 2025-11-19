@@ -27,7 +27,7 @@
       <div class="position-absolute orbit orbit2"></div>
     </div>
     <v-row dense>
-      <v-col v-for="(place, index) in places" :key="index" cols="12" md="4">
+      <v-col v-for="(place, index) in places" :key="index" cols="12" md="6">
         <Glade :place="place" :number="index" />
       </v-col>
     </v-row>
@@ -67,17 +67,17 @@ const places = [
     percentCar: "12",
     textCar: "1/8",
   },
-  {
-    name: "У Подножья Гор",
-    description: "Величественные вершины и кристально чистый воздух",
-    icon: "mdi-image-filter-hdr",
-    color: "#bca37f",
-    value: '46.742464, 35.933421',
-    percentPerson: "56",
-    textPerson: "14/25",
-    percentCar: "45",
-    textCar: "7/15",
-  },
+  // {
+  //   name: "У Подножья Гор",
+  //   description: "Величественные вершины и кристально чистый воздух",
+  //   icon: "mdi-image-filter-hdr",
+  //   color: "#bca37f",
+  //   value: '46.742464, 35.933421',
+  //   percentPerson: "56",
+  //   textPerson: "14/25",
+  //   percentCar: "45",
+  //   textCar: "7/15",
+  // },
 ];
 </script>
 <style scoped>

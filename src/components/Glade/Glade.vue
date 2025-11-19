@@ -1,19 +1,13 @@
 <template>
-  <div
-    class="card-place"
-    :style="{
-      border: route.name !== 'Home' ? `1.6px solid ${place.color}` : `1.55px solid ${place.color}`,
-      'padding-bottom': route.name === 'Home' ? `10px` : ''
-    }"
-  >
-    <div class="d-flex align-center justify-space-between mb-3 card-place-header">
-      <div
-        class="card-place-number"
-        :style="{
+  <div class="card-place" :style="{
+    border: route.name !== 'Home' ? `` : `1.55px solid ${place.color}`,
+    'padding-bottom': route.name === 'Home' ? `10px` : ''
+  }">
+    <div class="d-flex align-center justify-space-between  card-place-header">
+      <div class="card-place-number" :style="{
         border: route.name !== 'Home' ? `1.8px solid ${place.color}` : `1.55px solid ${place.color}`,
-        color: place.color 
-      }"
-      >
+        color: place.color
+      }">
         {{ number + 1 }}
       </div>
       <div class="d-flex">
@@ -23,44 +17,43 @@
         <h3 class="card-place-name">{{ place.name }}</h3>
       </div>
     </div>
-    <div class="card-place-text">{{ place.description }}</div>
-    <hr/>
-    <h5>Загруженность:</h5>
-    <div class="d-flex align-center mt-2.5 card-place-progress-block">
-      <component :is="PeopleSvg" class="progress-svg" :color="'#759930'"/>
-      <span class="card-place-name-progress">{{ place.textPerson }}</span>
-      <v-progress-linear
-        :model-value="place.percentPerson"
-        color="#8AB539"
-        height="7"
-        rounded
-        class="flex-grow-1"
-      ></v-progress-linear>
+    <div class="card-place-text">
+      {{ place.description }}
     </div>
-
-    <div class="d-flex align-center mt-2.5 card-place-progress-block mb-2">
-      <component :is="CarSvg" class="progress-svg" :color="'#999999'"/>
-      <span class="card-place-name-progress">{{ place.textCar }}</span>
-      <v-progress-linear
-        :model-value="place.percentCar"
-        color="#aeaeae"
-        height="7"
-        rounded
-        class="flex-grow-1"
-      ></v-progress-linear>
+    <div class="three-blocks">
+      <div class="block block-long">
+        <h5>Загруженность:</h5>
+        <div class="d-flex align-center mt-2.5 card-place-progress-block">
+          <component :is="PeopleSvg" class="progress-svg" :color="'#759930'" />
+          <span class="card-place-name-progress">{{ place.textPerson }}</span>
+          <v-progress-linear :model-value="place.percentPerson" color="#8AB539" height="9" rounded
+            class="flex-grow-1" />
+        </div>
+        <div class="d-flex align-center mt-2.5 card-place-progress-block">
+          <component :is="CarSvg" class="progress-svg" :color="'#999999'" />
+          <span class="card-place-name-progress">{{ place.textCar }}</span>
+          <v-progress-linear :model-value="place.percentCar" color="#aeaeae" height="15" rounded class="flex-grow-1" />
+        </div>
+      </div>
+      <div class="vertical-hr"></div>
+      <div class="block block-long">
+        <h5>Координаты:</h5>
+        <div class="coords-block" @click="copyCoords(place.value, number)">
+          <span class="coords-value">{{ place.value }}</span>
+          <v-icon size="16" color="#5F8835" style="margin-top: -2.5px; margin-left: 2.5px;">mdi-content-copy</v-icon>
+        </div>
+        <div class="card-footer" @click="openOnMap(place.value)">
+          <div class="map-icon-wrap">
+            <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
+            <div class="ping"></div>
+          </div>
+          <span class="map-open" :style="{ color: `#759930`, }">Открыть на картах</span>
+        </div>
+      </div>
     </div>
-    <hr/>
-    <h5>Координаты:</h5>
-    <div class="coords-block" @click="copyCoords(place.value, number)">
-      <span class="coords-value">{{ place.value }}</span>
-      <v-icon size="16" color="#5F8835" style="margin-top: -2.5px; margin-left: 2.5px;">mdi-content-copy</v-icon>
-    </div>
-    <div v-if="route.name !== 'Home'" class="card-footer" @click="openOnMap(place.value)">
-      <v-icon size="18" color="#5F8835" class="marker marker-icon">mdi-map-marker</v-icon>
-      <span class="marker">Открыть на картах</span>
-    </div>
-    </div>
+  </div>
 </template>
+
 
 <script setup>
 import { ref } from 'vue';
@@ -86,8 +79,8 @@ const openOnMap = (coords) => {
 </script>
 
 <style scoped>
-.progress-svg{
-  width: 40px;
+.progress-svg {
+  width: 45px;
 }
 
 .card-place {
@@ -98,9 +91,9 @@ const openOnMap = (coords) => {
   margin: 8px;
   transition: all 0.3s ease;
   backdrop-filter: blur(6px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   height: 100%;
 }
 
@@ -114,6 +107,7 @@ const openOnMap = (coords) => {
   font-size: 1rem;
   font-weight: 600;
   color: #3a3a3a;
+  -webkit-text-stroke: .05px #3a3a3a;
   margin: 12px 20px 6px;
   position: relative;
   letter-spacing: 0.3px;
@@ -152,14 +146,14 @@ const openOnMap = (coords) => {
   transform: scale(1.2);
 }
 
-.card-place-header{
+.card-place-header {
   margin: 0 20px 0 10px;
 }
 
 .card-place-number {
   font-family: "El Messiri";
   font-size: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   margin-left: 6px;
   padding: 0 12px;
   min-height: 38px;
@@ -172,7 +166,7 @@ const openOnMap = (coords) => {
   opacity: 0.9;
   text-align: center;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
 }
 
 .card-place-name {
@@ -180,30 +174,29 @@ const openOnMap = (coords) => {
   font-size: 1.9rem;
   color: #2a2a2a;
   text-align: right;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .card-place-text {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
-  text-align: center;
+  text-align: left;
   color: #505050;
   line-height: 1.5;
-  margin: 0 15px;
+  margin: 10px 15px -5px;
   flex: 1 0 auto;
   overflow-wrap: break-word;
   word-break: break-word;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .card-place-progress-block {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 10px;
-  margin: 10px 25px 0;
-  transition: all 0.3s ease;
+  padding: 0 20px;
+  margin: 10px 0 0;
+  box-sizing: border-box;
 }
 
 .card-place-name-progress {
@@ -215,7 +208,7 @@ const openOnMap = (coords) => {
 .v-progress-linear {
   border-radius: 12px;
   overflow: hidden;
-  height: 8px !important;
+  height: 10px !important;
   transition: all 0.4s ease;
   background: #e0e0e0;
 }
@@ -244,27 +237,29 @@ const openOnMap = (coords) => {
 
 .coords-value {
   font-family: var(--font-family-numbers);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #5F8835;
 }
 
 .card-footer {
   display: flex;
-  cursor: pointer;
-  justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 10px 5px;
-  margin-top: 8px;
-  border-radius: 0 0 12px 12px;
-  background: rgba(231, 232, 233, 0.45);
+  justify-content: center;
+  gap: 6px;
+  border-radius: 12px;
+  padding: 5px 8px;
+  margin: 5px auto;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.card-footer:hover {
-  background: rgba(138, 181, 57, 0.12);
-  transform: translateY(-2px);
+.card-place:hover .card-footer {
+  transform: scale(1.1);
+}
+
+.card-place:hover .map-open {
+  text-decoration: underline;
 }
 
 .marker {
@@ -277,22 +272,161 @@ const openOnMap = (coords) => {
   margin-top: -6px;
 }
 
-/* Анимации */
+.three-blocks {
+  display: flex;
+  padding: 0 10px 15px;
+  gap: 1px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.block-long {
+  flex: 2;
+}
+
+.block-small {
+  flex: 1;
+  cursor: pointer;
+  text-align: center;
+}
+
+.vertical-hr {
+  width: 1.5px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #dcdcdc, #e9e9e9, #dcdcdc);
+  opacity: 0.8;
+}
+
+.map-icon {
+  margin-bottom: 6px;
+  transition: transform 0.3s ease;
+}
+
+.block-small:hover .map-icon {
+  transform: scale(1.2);
+}
+
+.map-open {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #3a3a3a;
+}
+
+.map-block {
+  flex: 1;
+  cursor: pointer;
+  text-align: center;
+  padding: 12px 10px;
+  border-radius: 16px;
+  background: rgba(138, 181, 57, 0.12);
+  box-shadow: 0 2px 10px rgba(90, 130, 40, 0.08);
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-block:hover {
+  transform: translateY(-3px);
+  background: rgba(138, 181, 57, 0.18);
+  box-shadow: 0 4px 16px rgba(90, 130, 40, 0.2);
+}
+
+.map-icon-wrap {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-icon-animated {
+  animation: bounce 2s infinite ease-in-out;
+  z-index: 2;
+}
+
+.ping {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgb(130 130 129 / 47%);
+  animation: ping 2s infinite ease-out;
+}
+
 @keyframes swayIcon {
-  0%, 100% { transform: rotate(0deg) translateY(0); }
-  25% { transform: rotate(4deg) translateY(-2px); }
-  75% { transform: rotate(-4deg) translateY(2px); }
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  25% {
+    transform: rotate(4deg) translateY(-2px);
+  }
+
+  75% {
+    transform: rotate(-4deg) translateY(2px);
+  }
 }
 
 @keyframes rotateY {
-  0%, 100% { transform: rotateY(0); }
-  25% { transform: rotateY(90deg); }
-  50% { transform: rotateY(180deg); }
+
+  0%,
+  100% {
+    transform: rotateY(0);
+  }
+
+  25% {
+    transform: rotateY(90deg);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
 }
 
 @keyframes mapBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 </style>
-
