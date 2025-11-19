@@ -1,18 +1,18 @@
 <template>
   <v-card class="menu-grid" style="overflow-y: auto;">
-    <div v-for="(menu, i) in items" :key="i" class="card_menu">
-      <div class="menu_header">
-        <div class="number_circle">{{ i + 1 }}</div>
-        <h3 class="menu_title">{{ menu.name }}</h3>
+    <div v-for="(menu, i) in items" :key="i" class="card-menu">
+      <div class="menu-header">
+        <div class="number-circle">{{ i + 1 }}</div>
+        <h3 class="menu-title">{{ menu.name }}</h3>
       </div>
-      <div class="decor_block">
-        <v-icon class="decor_icon" :style="{ color: menu.color }">
+      <div class="decor-block">
+        <v-icon class="decor-icon" :style="{ color: menu.color }">
           {{ menu.icon }}
         </v-icon>
-        <p class="decor_text">{{ menu.caption }}</p>
+        <p class="decor-text">{{ menu.caption }}</p>
       </div>
-      <div class="coords_block" @click="copyCoords(menu.value, i)">
-        <span class="coords_value">{{ menu.value }}</span>
+      <div class="coords-block" @click="copyCoords(menu.value, i)">
+        <span class="coords-value">{{ menu.value }}</span>
         <v-icon size="16" color="#5F8835" style="margin-top: -2.5px; margin-left: 2.5px;">mdi-content-copy</v-icon>
       </div>
       <div class="card-footer" @click="openOnMap(menu.value)">
@@ -70,7 +70,7 @@ const openOnMap = (coords) => {
 }
 
 /* --- Карточка --- */
-.card_menu {
+.card-menu {
   flex: 1 1 calc(20% - 22px);
   /* 🔹 5 карточек в строке */
   min-width: 200px;
@@ -86,14 +86,14 @@ const openOnMap = (coords) => {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
-.card_menu:hover {
+.card-menu:hover {
   transform: translateY(-5px);
   border: 0.5px solid #8c8c8c91 !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Заголовок */
-.menu_header {
+.menu-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -102,7 +102,7 @@ const openOnMap = (coords) => {
   border-bottom: 1px solid rgba(150, 170, 150, 0.25);
 }
 
-.number_circle {
+.number-circle {
   width: 28px;
   height: 28px;
   background: rgba(138, 181, 57, 0.08);
@@ -117,12 +117,12 @@ const openOnMap = (coords) => {
   transition: all 0.3s ease;
 }
 
-.card_menu:hover .number_circle {
+.card-menu:hover .number-circle {
   background: rgba(138, 181, 57, 0.1);
   transform: scale(1.1);
 }
 
-.menu_title {
+.menu-title {
   color: var(--color-h1, #2f3e2f);
   -webkit-text-stroke: 0.1px #4d672c;
   font-size: 1.05rem;
@@ -130,23 +130,23 @@ const openOnMap = (coords) => {
   font-family: var(--font-family);
 }
 
-.decor_block {
+.decor-block {
   text-align: center;
   padding: 10px 10px 0;
 }
 
-.decor_icon {
+.decor-icon {
   font-size: 36px;
   transition: transform 0.3s ease;
   padding: 22px 0;
   opacity: .85;
 }
 
-.card_menu:hover .decor_icon {
+.card-menu:hover .decor-icon {
   transform: scale(1.18) rotate(7deg);
 }
 
-.decor_text {
+.decor-text {
   color: #3d483d;
   font-size: 0.9rem;
   font-weight: 500;
@@ -154,7 +154,7 @@ const openOnMap = (coords) => {
   margin-top: 6px;
 }
 
-.coords_block {
+.coords-block {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,7 +167,7 @@ const openOnMap = (coords) => {
   cursor: pointer;
 }
 
-.coords_value {
+.coords-value {
   font-family: var(--font-family-numbers);
   font-size: 0.85rem;
   font-weight: 600;
@@ -197,25 +197,25 @@ const openOnMap = (coords) => {
 
 
 @media (max-width: 1600px) {
-  .card_menu {
+  .card-menu {
     flex: 1 1 calc(25% - 22px);
   }
 }
 
 @media (max-width: 1200px) {
-  .card_menu {
+  .card-menu {
     flex: 1 1 calc(33.33% - 22px);
   }
 }
 
 @media (max-width: 800px) {
-  .card_menu {
+  .card-menu {
     flex: 1 1 calc(50% - 22px);
   }
 }
 
 @media (max-width: 500px) {
-  .card_menu {
+  .card-menu {
     flex: 1 1 100%;
   }
 }
