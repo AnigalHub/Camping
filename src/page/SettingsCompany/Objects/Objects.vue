@@ -15,11 +15,11 @@
                 <v-text-field v-model="object.description" label="Описание" variant="outlined" density="comfortable"
                   rounded="lg" clearable />
                 <v-text-field v-model="object.coordinations" label="Координаты объекта" variant="outlined"
-                  density="comfortable" rounded="lg" clearable />
-                <v-text-field v-model="object.maxpeople" label="Количество мест" type="number" variant="outlined"
-                  density="comfortable" rounded="lg" clearable />
-                <v-text-field v-model="object.maxcars" label="Количество парковочных мест" type="number"
-                  variant="outlined" density="comfortable" rounded="lg" clearable />
+                  density="comfortable" rounded="lg" clearable v-mask="['##.######, ##.######']" />
+                <v-text-field v-model="object.maxpeople" label="Количество мест" variant="outlined"
+                  density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
+                <v-text-field v-model="object.maxcars" label="Количество парковочных мест" 
+                  variant="outlined" density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
               </div>
               <hr />
             </div>
@@ -109,7 +109,6 @@ const isChanged = computed(() => {
   height: 70vh;
 }
 
-/* --- БЛОК ПРАВОЙ ИКОНКИ --- */
 .icon-col {
   display: flex;
   justify-content: center;
@@ -192,8 +191,6 @@ const isChanged = computed(() => {
   -webkit-text-stroke: .05px #494c54;
 }
 
-/* --- ПОДЗАГОЛОВКИ ФОРМЫ --- */
-
 .form-subtitle {
   margin: 10px 0 30px;
   padding-left: 4px;
@@ -234,8 +231,6 @@ const isChanged = computed(() => {
   opacity: 0.9;
 }
 
-/* --- СЕТКИ --- */
-
 .grid-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -248,7 +243,6 @@ const isChanged = computed(() => {
   }
 }
 
-/* --- ОБЪЕКТЫ ЗАСЕЛЕНИЯ --- */
 .object-title {
   margin: 20px 0 18px;
   padding: 8px 16px;
@@ -286,14 +280,11 @@ const isChanged = computed(() => {
   }
 }
 
-/* Разделители */
-
 hr {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Кнопка поиска */
 .btn-page {
   background: #547c8f;
   color: #fff;
@@ -305,9 +296,10 @@ hr {
   box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
   transition: all 0.3s ease;
   padding: 10px 22px !important;
-  margin-top: 10px;
   min-height: 46px;
-  width: 100%;
+  margin: 10px auto 0;
+  display: block;
+  width: 60%;
 }
 
 .btn-page:hover {

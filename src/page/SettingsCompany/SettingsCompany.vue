@@ -3,12 +3,12 @@
     <v-container>
       <Title :title="title" :icon="'mdi-cog-outline'" />
       <v-card style="height: 87vh">
-        <div class="tabs-container">
+        <div class="tabs-container desktop-only">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
             <v-tab
               v-for="item in tabs"
-              :key="item.value" 
+              :key="item.value"
               :class="['tabs-switch-tab', { active: tab === item.value }]"
               @click="tab = item.value"
               ref="tabRefs"
@@ -17,20 +17,25 @@
             </v-tab>
           </div>
         </div>
+        <div class="mobile-tabs mobile-only">
+          <button class="arrow" @click="prevTab">‹</button>
+          <div class="mobile-tab-label">{{ tab }}</div>
+          <button class="arrow" @click="nextTab">›</button>
+        </div>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item
             v-for="item in tabs"
-            :key="item.value" 
+            :key="item.value"
             :value="item.value"
           >
             <v-card-text>
               <div v-if="tab === tabs[0].value">
-                <Company/>
+                <Company />
               </div>
               <div v-else-if="tab === tabs[1].value">
                 <Prices />
               </div>
-               <div v-else-if="tab === tabs[2].value">
+              <div v-else-if="tab === tabs[2].value">
                 <Objects />
               </div>
             </v-card-text>
@@ -66,7 +71,7 @@ const sliderStyle = ref({});
 
 const updateSlider = () => {
   nextTick(() => {
-    const activeIndex = tabs.findIndex(t => t.value === tab.value);
+    const activeIndex = tabs.findIndex((t) => t.value === tab.value);
     const el = tabRefs.value[activeIndex]?.$el || tabRefs.value[activeIndex];
     if (el) {
       sliderStyle.value = {
@@ -79,23 +84,37 @@ const updateSlider = () => {
 
 onMounted(updateSlider);
 watch(tab, updateSlider);
+
+// Mobile navigation
+const nextTab = () => {
+  const idx = tabs.findIndex((t) => t.value === tab.value);
+  tab.value = tabs[(idx + 1) % tabs.length].value;
+};
+
+const prevTab = () => {
+  const idx = tabs.findIndex((t) => t.value === tab.value);
+  tab.value = tabs[(idx - 1 + tabs.length) % tabs.length].value;
+};
 </script>
 
 <style scoped>
+/* Desktop Tabs */
+.desktop-only {
+  display: flex;
+}
+.mobile-only {
+  display: none;
+}
+
 .tabs-switch {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
   background: #fff;
   border-radius: 15px;
   width: fit-content;
-  box-sizing: border-box;
-  font-weight: 800 !important;
-  font-family: var(--font-family-title);
+  font-weight: 800;
   margin-bottom: 15px;
-  padding: 0; /* убираем внутренний отступ */
-  overflow: hidden; /* чтобы скругления выглядели аккуратно */
+  overflow: hidden;
 }
 
 .tabs-slider {
@@ -106,38 +125,18 @@ watch(tab, updateSlider);
   border-radius: 15px;
   background-color: #89ac49d7;
   border: 1.5px solid var(--border-color-inactive-tab);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s;
   z-index: 0;
 }
 
 .tabs-switch-tab {
-  text-align: center;
-  background: transparent;
-  border: none;
-  font-weight: 600;
-  font-size: 14px;
   padding: 15px 25px;
   cursor: pointer;
   letter-spacing: 2px;
   color: #494c54;
-  position: relative;
   z-index: 1;
-  transition: all 0.25s ease;
-  border-radius: 0; 
-  margin: 0; 
-}
-
-.tabs-switch-tab:first-child {
-  border-radius: 15px 0 0 15px;
-}
-
-.tabs-switch-tab:last-child {
-  border-radius: 0 15px 15px 0;
-}
-
-.tabs-switch-tab:hover {
-  background-color: rgba(57, 181, 94, 0.05);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: transparent;
+  transition: .25s;
 }
 
 .tabs-switch-tab.active {
@@ -147,7 +146,49 @@ watch(tab, updateSlider);
   box-shadow: 0 4px 10px rgba(138, 181, 57, 0.096);
 }
 
-.list {
-  height: 58vh;
+/* Mobile Arrows */
+.mobile-tabs {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.mobile-tab-label {
+  font-size: 16px;
+  font-weight: 700;
+  min-width: 150px;
+  text-align: center;
+  color: #3e3f45;
+}
+
+.arrow {
+  background: #89ac49d7;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+.arrow:active {
+  transform: scale(0.9);
+}
+
+/* Breakpoint */
+@media (max-width: 700px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: flex;
+  }
 }
 </style>

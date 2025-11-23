@@ -163,6 +163,10 @@ function saveForm() {
 
 
 <style scoped>
+.v-picker.v-sheet {
+  margin-top: -3.5%;
+  border-radius: 15px !important;
+}
 .modern-input {
   margin-bottom: 18px;
 }

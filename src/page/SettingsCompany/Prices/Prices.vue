@@ -6,16 +6,16 @@
           <v-form>
             <h3 class="form-subtitle">Цены</h3>
             <div class="grid-inputs">
-              <v-text-field v-model="prices.person" label="За человека" type="number" variant="outlined"
-                density="comfortable" rounded="lg" clearable />
-              <v-text-field v-model="prices.animal" label="За животное" type="number" variant="outlined"
-                density="comfortable" rounded="lg" clearable />
-              <v-text-field v-model="prices.house" label="За аренду домика" type="number" variant="outlined"
-                density="comfortable" rounded="lg" clearable />
-              <v-text-field v-model="prices.transport" label="За транспорт" type="number" variant="outlined"
-                density="comfortable" rounded="lg" clearable />
-              <v-text-field v-model="prices.smallTransport" label="За мелкий транспорт" type="number" variant="outlined"
-                density="comfortable" rounded="lg" clearable />
+              <v-text-field v-model="prices.person" label="За человека" variant="outlined"
+                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
+              <v-text-field v-model="prices.animal" label="За животное" variant="outlined"
+                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
+              <v-text-field v-model="prices.house" label="За аренду домика" variant="outlined"
+                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
+              <v-text-field v-model="prices.transport" label="За транспорт" variant="outlined"
+                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
+              <v-text-field v-model="prices.smallTransport" label="За мелкий транспорт" variant="outlined"
+                density="comfortable" rounded="lg" clearable v-mask="'#########'"/>
             </div>
             <div class="add-object-btn">
               <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
@@ -61,7 +61,9 @@ const normalize = (obj) => ({
 const isChanged = computed(() => {
   const current = normalize(prices);
   const original = normalize(originalPrices.value);
-  return JSON.stringify(current) !== JSON.stringify(original);
+  const allFilled = Object.values(current).every(v => v !== 0 && v !== "" && !isNaN(v));
+
+  return allFilled && JSON.stringify(current) !== JSON.stringify(original);
 });
 </script>
 
@@ -76,8 +78,6 @@ const isChanged = computed(() => {
   border-radius: 15px !important;
   height: 70vh;
 }
-
-/* --- БЛОК ПРАВОЙ ИКОНКИ --- */
 
 .icon-col {
   display: flex;
@@ -115,6 +115,7 @@ const isChanged = computed(() => {
   z-index: 2;
   padding: 30px 10px;
 }
+
 .block-icon {
   width: 9rem;
   height: 9rem;
@@ -159,7 +160,6 @@ const isChanged = computed(() => {
   letter-spacing: 1.2px;
   -webkit-text-stroke: .05px #494c54;
 }
-/* --- ПОДЗАГОЛОВКИ ФОРМЫ --- */
 
 .form-subtitle {
   margin: 10px 0 30px;
@@ -201,8 +201,6 @@ const isChanged = computed(() => {
   opacity: 0.9;
 }
 
-/* --- СЕТКИ --- */
-
 .grid-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -214,13 +212,6 @@ const isChanged = computed(() => {
     grid-template-columns: 1fr;
   }
 }
-
-
-
-
-
-
-/* --- ОБЪЕКТЫ ЗАСЕЛЕНИЯ --- */
 
 .object-title {
   margin: 20px 0 18px;
@@ -259,14 +250,11 @@ const isChanged = computed(() => {
   }
 }
 
-/* Разделители */
-
 hr {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Кнопка поиска */
 .btn-page {
   background: #547c8f;
   color: #fff;
@@ -278,9 +266,10 @@ hr {
   box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
   transition: all 0.3s ease;
   padding: 10px 22px !important;
-  margin-top: 10px;
   min-height: 46px;
-  width: 100%;
+  margin: 10px auto 0;
+  display: block;
+  width: 60%;
 }
 
 .btn-page:hover {
