@@ -8,12 +8,13 @@
             <!-- Блок с аккордеонами -->
             <v-expansion-panels v-model="openedPanel" multiple>
               <v-expansion-panel class="custom-panel" v-for="(person, index) in persons" :key="index">
-                <v-expansion-panel-title class="custom-title d-flex justify-space-between align-center">
-                  <strong>Отдыхающий №{{ index + 1 }}</strong>
-                  <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn"
-                    @click.stop="removePerson(index)" />
+                <v-expansion-panel-title v-slot="{ }">
+                  <div class="panel-title">
+                    <strong>Отдыхающий №{{ index + 1 }}</strong>
+                    <v-btn icon="mdi-delete" variant="text" size="small" class="action delete-btn"
+                      @click.stop="removePerson(index)" />
+                  </div>
                 </v-expansion-panel-title>
-
                 <v-expansion-panel-text class="custom-text">
                   <!-- Личные данные -->
                   <h3 class="form-subtitle">Личные данные</h3>
@@ -65,11 +66,11 @@
                         <v-date-picker v-model="person.passport.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'passport')" />
                       </v-menu>
+                      <v-text-field v-model="person.passport.code" label="Код подразделения" variant="outlined"
+                        density="comfortable" rounded="lg" clearable />
+                      <v-text-field v-model="person.passport.issuedDocument" label="Кем выдан" variant="outlined"
+                        density="comfortable" rounded="lg" clearable />
                     </div>
-                    <v-text-field v-model="person.passport.code" label="Код подразделения" variant="outlined"
-                      density="comfortable" rounded="lg" clearable />
-                    <v-text-field v-model="person.passport.issuedDocument" label="Кем выдан" variant="outlined"
-                      density="comfortable" rounded="lg" clearable />
                     <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
                       density="comfortable" rounded="lg" clearable />
                   </div>
@@ -90,11 +91,11 @@
                         <v-date-picker v-model="person.birth.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'birth')" />
                       </v-menu>
+                      <v-text-field v-model="person.birth.actNumber" label="Номер акта о рождении" variant="outlined"
+                        density="comfortable" rounded="lg" clearable />
+                      <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
+                        density="comfortable" rounded="lg" clearable />
                     </div>
-                    <v-text-field v-model="person.birth.actNumber" label="Номер акта о рождении" variant="outlined"
-                      density="comfortable" rounded="lg" clearable />
-                    <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
-                      density="comfortable" rounded="lg" clearable />
                     <v-text-field v-model="person.passport.issuedDocument" label="Место государственной регистрации"
                       variant="outlined" density="comfortable" rounded="lg" clearable />
                   </div>
@@ -118,28 +119,28 @@
                       <div class="d-flex align-center rent">
                         <v-label class="me-2" @click="person.car = !person.car">Транспорт:</v-label>
                         <Switch v-model="person.car" :tumbler="person.car" :disable="false" :form="true" />
+                        <v-text-field v-if="person.car" v-model="person.cars" :disabled="!person.car"
+                          :class="{ 'input-disable': !person.car }" label="Номер транспорта" variant="outlined"
+                          density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                       </div>
-                      <v-text-field v-model="person.cars" :disabled="!person.car"
-                        :class="{ 'input-disable': !person.car }" label="Номер транспорта" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
                         <v-label class="me-2" @click="person.animal = !person.animal">Животные:</v-label>
                         <Switch v-model="person.animal" :tumbler="person.animal" :disable="false" :form="true" />
+                        <v-text-field v-if="person.animal" v-model="person.animals" :disabled="!person.animal"
+                          :class="{ 'input-disable': !person.animal }" label="Количество животных" variant="outlined"
+                          density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                       </div>
-                      <v-text-field v-model="person.animals" :disabled="!person.animal"
-                        :class="{ 'input-disable': !person.animal }" label="Количество животных" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
                         <v-label @click="person.house = !person.house" class="me-2">Аренда домика:</v-label>
                         <Switch v-model="person.house" :tumbler="person.house" :disable="false" :form="true" />
+                        <v-text-field v-if="person.house" v-model="person.home" :disabled="!person.house"
+                          :class="{ 'input-disable': !person.house }" label="Номер домика" variant="outlined"
+                          density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                       </div>
-                      <v-text-field v-model="person.home" :disabled="!person.house"
-                        :class="{ 'input-disable': !person.house }" label="Номер домика" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                     </div>
                   </div>
 
@@ -472,7 +473,22 @@ hr {
 }
 
 .rent {
-  margin-top: -5px;
-  height: 40px;
+
+  height: 60px;
+}
+
+.rent .v-switch {
+  margin-right: 10px;
+}
+
+.panel-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.panel-title .action {
+  margin-left: auto;
+  margin-right: 20px;
 }
 </style>
