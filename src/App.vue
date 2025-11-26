@@ -12,9 +12,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, nextTick } from "vue";
 import { useStore } from "vuex";
 import { loadComponent } from "./utils/loadComponent";
+import { loadGoogleFonts } from './utils/fontLoader';
+import { extractUsedFonts } from './utils/fontScanner';
 
 const Modal = loadComponent("Modal");
 const store = useStore();
@@ -27,6 +29,13 @@ function isModalVisible(name) {
   const found = modals.value.find((x) => x.name === name);
   return found ? found.isVisible : false;
 }
+
+onMounted(async () => {
+  await nextTick();
+  const usedFonts = extractUsedFonts();
+  // загрузка найденных шрифтов на https://fonts.google.com/
+  loadGoogleFonts(usedFonts);
+}); 
 </script>
 
 
@@ -37,25 +46,17 @@ function isModalVisible(name) {
   background: transparent !important;
 }
 
+.v-input__details {
+  min-height: 0 !important;
+  padding-top: 0 !important
+}
+
 
 /**Фон страниц */
 .page {
   background: var(--background-color-page);
   min-height: 95.5vh;
   height: auto;
-}
-
-.wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--background-img-page);
-  background-size: var(--background-size-img-page);
-  filter: var(--filter-background-page);
-  z-index: 1;
 }
 
 .wrapper>* {
@@ -100,19 +101,14 @@ function isModalVisible(name) {
 
 .btn-home,
 .btn-page {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   font-family: 'El Messiri', sans-serif;
   font-size: 1.2rem;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  letter-spacing: 1px !important;
   text-transform: none !important;
   border-radius: 14px;
-  box-shadow: 0 2px 5px rgba(90, 130, 55, 0.08);
-  transition: all 0.3s ease;
-  padding: 10px 22px !important;
-  background: #fff;
-  color: #4b707f;
   font-weight: 800;
-  letter-spacing: 1px !important;
   min-height: 46px;
 }
 
@@ -133,25 +129,15 @@ function isModalVisible(name) {
   animation: fadeSlide 1.2s ease-in-out;
 }
 
-.content,
-.block-search {
+.content {
   background: var(--background-content-card) !important;
   box-shadow: var(--box-shadow-content-card) !important;
   border-radius: var(--border-radius-content-card) !important;
-}
-
-.block-search {
-  height: 10vh;
-  margin-bottom: 3vh;
-  padding-top: 0;
+  height: 72vh;
 }
 
 .v-card-text {
   padding: .25rem 5px 0 0 !important;
-}
-
-.content {
-  height: 72vh;
 }
 
 .v-card .v-card {
@@ -193,5 +179,18 @@ function isModalVisible(name) {
 .v-form {
   padding: 10px 10px 0 !important;
   margin-top: -20px;
+}
+
+/*Плавное появление элементов при загрузке страницы*/
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
