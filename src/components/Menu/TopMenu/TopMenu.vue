@@ -3,7 +3,7 @@
     <v-app-bar-nav-icon @click="toggleDrawer" />
     <v-toolbar-title class="d-flex align-center logo-block">
       <div class="d-flex cursor-pointer" @click="router.push({ name: 'Home' })">
-        <img src="./../../../../public/l3.png" alt="логотип" class="logo" />
+        <img src="./../../../../public/favicon.png" alt="логотип" class="logo" />
         <v-toolbar-title class="d-flex align-center">
           <h1 class="d-inline-block text-center title">Ромашка</h1>
           <div class="text-center slogan">

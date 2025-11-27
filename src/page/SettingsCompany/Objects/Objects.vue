@@ -6,10 +6,12 @@
           <v-form v-model="valid" @submit.prevent="saveForm">
             <v-expansion-panels v-model="openedPanel" multiple>
               <v-expansion-panel class="custom-panel" v-for="(obj, i) in objects" :key="i">
-                <v-expansion-panel-title class="custom-title d-flex justify-space-between align-center">
-                  <strong>Объект №{{ i + 1 }}</strong>
-                  <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn"
-                    @click.stop="removeObject(i)" />
+                <v-expansion-panel-title>
+                  <div class="panel-title">
+                    <strong>Объект №{{ i + 1 }}</strong>
+                    <v-btn icon="mdi-delete" variant="text" size="small" class="action delete-btn"
+                      @click.stop="removeObject(i)" />
+                  </div>
                 </v-expansion-panel-title>
                 <v-expansion-panel-text class="custom-text">
                   <div class="grid-inputs">
@@ -34,13 +36,8 @@
           </v-form>
         </v-card>
       </v-col>
-      <v-col class="icon-col">
-        <div class="icon-wrapper">
-          <div class="block-icon">
-            <component :is="TentSvg" color="#61656d" style="padding:20px" />
-          </div>
-          <p class="icon-caption">Описание объектов кемпинга</p>
-        </div>
+      <v-col>
+        <icon-circle :svg="TentSvg" text="Описание объектов кемпинга"/>
       </v-col>
     </v-row>
   </div>
@@ -55,7 +52,6 @@ defineOptions({
 });
 
 const valid = ref(false);
-const openedPanel = ref([0]);
 const objects = reactive([
   {
     name: 'У Песчаного Моря',
@@ -63,8 +59,16 @@ const objects = reactive([
     coordinations: '43.960635, 39.263933',
     maxpeople: 10,
     maxcars: 8
+  },
+    {
+    name: 'У Песчаного Моря',
+    description: 'Тёплый песок, мягкий бриз и спокойные волны',
+    coordinations: '43.960635, 39.263933',
+    maxpeople: 10,
+    maxcars: 8
   }
 ]);
+const openedPanel = ref([objects.length - 1]);
 
 const addObject = () => {
   objects.push({
@@ -103,94 +107,17 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
 .objects .v-expansion-panel-text__wrapper {
   padding: 8px 16px 0 !important;
 }
+.v-expansion-panel-title{
+  padding: 8px 16px !important;
+}
+.v-expansion-panel--active:not(:first-child){
+  margin-top: 0 !important;
+}
 </style>
 <style scoped>
 .content {
   padding: 20px 10px;
-  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important;
-  border-radius: 15px !important;
   height: 70vh;
-}
-
-.icon-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -12% !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.icon-col::before {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgb(57 131 181 / 50%), transparent 10%);
-  filter: blur(40px);
-  animation: pulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: .5;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: .8;
-  }
-}
-
-.icon-wrapper {
-  text-align: center;
-  z-index: 2;
-  padding: 30px 10px;
-}
-
-.block-icon {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, .3);
-  background: linear-gradient(180deg, #fff, #eff5f7);
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px 15px rgba(47, 118, 139, .18), inset 0 0 10px rgba(255, 255, 255, .3);
-  transition: .5s ease;
-  animation: breathe 5s ease-in-out infinite;
-}
-
-.block-icon:hover {
-  transform: scale(1.06);
-  box-shadow: 0 10px 25px rgba(47, 118, 139, .25), inset 0 0 15px rgba(255, 255, 255, .4);
-}
-
-@keyframes breathe {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.08);
-  }
-}
-
-.icon-caption {
-  font-weight: 600;
-  width: 75%;
-  margin: 1.2rem auto 0;
-  font-size: 1.6rem;
-  color: #494c54;
-  font-family: "Amatic SC", cursive;
-  letter-spacing: 1.2px;
-  -webkit-text-stroke: .05px #494c54;
 }
 
 .form-subtitle {
@@ -338,5 +265,15 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
   color: #c0392b;
   border-color: #c0392b;
   transform: scale(1.15);
+}
+.panel-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.panel-title .action {
+  margin-left: auto;
+  margin-right: 20px;
 }
 </style>

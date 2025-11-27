@@ -23,13 +23,8 @@
           </v-form>
         </v-card>
       </v-col>
-      <v-col class="icon-col">
-        <div class="icon-wrapper">
-          <div class="block-icon">
-            <component :is="CacheSvg" class="svg" color="#61656d" />
-          </div>
-          <p class="icon-caption">Действующие тарифы</p>
-        </div>
+      <v-col>
+        <icon-circle :svg="CacheSvg" text="Действующие тарифы" :min="true"/>
       </v-col>
     </v-row>
   </div>
@@ -70,94 +65,7 @@ const isChanged = computed(() => {
 <style scoped>
 .content {
   padding: 20px 10px;
-  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important;
-  border-radius: 15px !important;
   height: 70vh;
-}
-
-.icon-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -12% !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.icon-col::before {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(57, 131, 181, .5), transparent 10%);
-  filter: blur(40px);
-  animation: pulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale(1);
-    opacity: .5;
-  }
-
-  to {
-    transform: scale(1.2);
-    opacity: .8;
-  }
-}
-
-.svg {
-  padding: 10px;
-}
-
-.icon-wrapper {
-  text-align: center;
-  z-index: 2;
-  padding: 30px 10px;
-}
-
-.block-icon {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, .3);
-  background: linear-gradient(180deg, #fff, #eff5f7);
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px 15px rgba(47, 118, 139, .18), inset 0 0 10px rgba(255, 255, 255, .3);
-  transition: .5s ease;
-  animation: breathe 5s ease-in-out infinite;
-}
-
-.block-icon:hover {
-  transform: scale(1.06);
-  box-shadow: 0 10px 25px rgba(47, 118, 139, .25), inset 0 0 15px rgba(255, 255, 255, .4);
-}
-
-@keyframes breathe {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.08);
-  }
-}
-
-.icon-caption {
-  font-weight: 600;
-  width: 75%;
-  margin: 1.2rem auto 0;
-  font-size: 1.6rem;
-  color: #494c54;
-  font-family: "Amatic SC", cursive;
-  letter-spacing: 1.2px;
-  -webkit-text-stroke: .05px #494c54;
 }
 
 .form-subtitle {

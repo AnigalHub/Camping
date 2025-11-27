@@ -1,9 +1,10 @@
 <template>
   <div class="content">
     <v-row dense align="stretch">
-      <v-col cols="9">
+      <v-col cols="9" style="overflow: auto;height: 65vh;">
         <v-card class="pa-6" elevation="2">
-          <v-form v-model="valid" @submit.prevent="saveForm">
+          <v-form>
+            <h3 class="form-subtitle">Траты по лагерю</h3>
             <v-menu v-model="dateMenu" :close-on-content-click="false" transition="scale-transition" offset-y
               @click:outside="closeDateMenuOutside">
               <template #activator="{ props }">
@@ -56,29 +57,13 @@
               @input="onPriceInput" 
               clearable></v-text-field>
             <div class="mt-6">
-              <v-btn 
-                type="submit" 
-                class="btn-page" 
-                rounded="lg" 
-                size="large"
-                :disabled="!isChanged" 
-                :class="{ 'btn-disabled': !isChanged }"
-              >Сохранить</v-btn>
+              <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
             </div>
           </v-form>
         </v-card>
       </v-col>
-      <v-col class="icon-col">
-        <div class="icon-wrapper">
-          <div class="block-icon">
-            <component
-            :is="ExpensesSvg"
-            color="#61656d"
-            class="svg"
-          />
-          </div>
-          <p class="icon-caption">Расходы по содержанию лагеря</p>
-        </div>
+       <v-col>
+        <icon-circle :svg="ExpensesSvg" text="Расходы по содержанию лагеря"/>
       </v-col>
     </v-row>
   </div>
@@ -161,25 +146,52 @@ function saveForm() {
 }
 </script>
 
-
 <style scoped>
-.v-picker.v-sheet {
-  margin-top: -3.5%;
-  border-radius: 15px !important;
+.content {
+  padding: 20px 10px;
+  height: 70vh;
 }
 
-.modern-input {
-  margin-bottom: 18px;
+
+
+.form-subtitle {
+  margin: 10px 0 30px;
+  padding-left: 4px;
+  font-family: "Poiret One", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: .7px;
+  background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 7s linear infinite;
+  position: relative;
 }
 
-.textarea-large textarea {
-  min-height: 120px !important;
-  font-size: 15px;
-  line-height: 1.5;
+.form-subtitle:first-of-type {
+  margin-top: 0;
 }
 
-.svg {
-  padding: 20px;
+@keyframes shimmer {
+  from {
+    background-position: -160px 0;
+  }
+
+  to {
+    background-position: 160px 0;
+  }
+}
+
+.form-subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 70px;
+  height: 3px;
+  border-radius: 3px;
+  background: #2d9ac5;
+  opacity: .9;
 }
 
 .btn-page {
@@ -211,98 +223,20 @@ function saveForm() {
   cursor: not-allowed !important;
 }
 
-.content {
-  padding: 20px 10px;
-  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
-  box-shadow:
-    inset 0 0 10px rgba(255, 255, 255, .3),
-    2px 2px 8px rgba(17, 44, 18, .1) !important;
+
+/* .v-picker.v-sheet {
+  margin-top: -3.5%;
   border-radius: 15px !important;
-  height: 70vh;
+} */
+
+.modern-input {
+  margin-bottom: 18px;
 }
 
-.icon-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -8%;
-  position: relative;
-  overflow: hidden;
-}
-
-.icon-col::before {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(57, 131, 181, .5), transparent 10%);
-  filter: blur(40px);
-  animation: pulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: .5;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: .8;
-  }
-}
-
-.icon-wrapper {
-  text-align: center;
-  z-index: 2;
-  padding: 30px 10px;
-}
-
-.block-icon {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, .3);
-  background: linear-gradient(180deg, #fff, #eff5f7);
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow:
-    0 6px 15px rgba(47, 118, 139, .18),
-    inset 0 0 10px rgba(255, 255, 255, .3);
-  transition: .5s;
-  animation: breathe 5s ease-in-out infinite;
-}
-
-.block-icon:hover {
-  transform: scale(1.06);
-  box-shadow:
-    0 10px 25px rgba(47, 118, 139, .25),
-    inset 0 0 15px rgba(255, 255, 255, .4);
-}
-
-@keyframes breathe {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.08);
-  }
-}
-
-.icon-caption {
-  font-weight: 600;
-  width: 75%;
-  margin: 1.2rem auto 0;
-  font-size: 1.6rem;
-  color: #494c54;
-  font-family: "Amatic SC", cursive;
-  letter-spacing: 1.2px;
-  -webkit-text-stroke: .05px #494c54;
+.textarea-large textarea {
+  min-height: 120px !important;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .v-card {

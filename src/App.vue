@@ -89,7 +89,8 @@ onMounted(async () => {
   border-color: var(--border-color-track-scrollbar);
 }
 
-.v-expansion-panel--active>.v-expansion-panel-title:not(.v-expansion-panel-title--static) {
+.v-expansion-panel--active > 
+.v-expansion-panel-title:not(.v-expansion-panel-title--static) {
   min-height: 50px;
   padding: 10px 20px;
 }
@@ -130,9 +131,9 @@ onMounted(async () => {
 }
 
 .content {
-  background: var(--background-content-card) !important;
-  box-shadow: var(--box-shadow-content-card) !important;
-  border-radius: var(--border-radius-content-card) !important;
+  background: var(--background-content-card);
+  box-shadow: var(--box-shadow-content-card);
+  border-radius: var(--border-radius-content-card);
   height: 72vh;
 }
 

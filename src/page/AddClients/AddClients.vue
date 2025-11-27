@@ -7,7 +7,7 @@
           <v-form v-model="valid" @submit.prevent="saveForm">
             <v-expansion-panels v-model="openedPanel" multiple>
               <v-expansion-panel class="custom-panel" v-for="(person, index) in persons" :key="index">
-                <v-expansion-panel-title v-slot="{ }">
+                <v-expansion-panel-title>
                   <div class="panel-title">
                     <strong>Отдыхающий №{{ index + 1 }}</strong>
                     <v-btn icon="mdi-delete" variant="text" size="small" class="action delete-btn"
@@ -267,6 +267,12 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .client .v-expansion-panel-text__wrapper {
   padding: 0 15px 16px !important;
 }
+.v-expansion-panel-title{
+  padding: 8px 16px !important;
+}
+.v-expansion-panel--active:not(:first-child){
+  margin-top: 0 !important;
+}
 </style>
 
 <style scoped>
@@ -302,9 +308,9 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .content {
   margin-top: 20px;
   padding: 20px 10px;
-  background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important;
-  border-radius: 15px !important;
+  /* background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important; */
+  /* box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important; */
+  /* border-radius: 15px !important; */
   height: 78vh;
 }
 

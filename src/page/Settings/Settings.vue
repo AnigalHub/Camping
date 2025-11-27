@@ -60,6 +60,15 @@ const rules = {
 }
 </script>
 
+<style>
+.v-field.v-field--appended {
+  background: #fff !important;
+}
+
+.v-text-field:last-of-type {
+  margin-bottom: 16px !important;
+}
+</style>
 <style scoped>
 .block-table {
   min-height: 82.5vh;
@@ -97,79 +106,6 @@ const rules = {
     inset 0 0 14px rgba(255, 255, 255, 0.35);
 }
 
-.icon-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.icon-col::before {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(138, 181, 57, 0.18), transparent 70%);
-  filter: blur(40px);
-  animation: pulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
-}
-
-.icon-wrapper {
-  text-align: center;
-  z-index: 2;
-  padding: 30px 10px;
-}
-
-.block-icon {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, 0.3);
-  background: linear-gradient(180deg, #ffffff, #f3f7ef);
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow:
-    0 6px 15px rgba(85, 139, 47, 0.18),
-    inset 0 0 10px rgba(255, 255, 255, 0.3);
-  transition: all 0.5s ease;
-  animation: breathe 5s ease-in-out infinite;
-}
-
-.block-icon:hover {
-  transform: scale(1.06);
-  box-shadow:
-    0 10px 25px rgba(76, 175, 80, 0.25),
-    inset 0 0 15px rgba(255, 255, 255, 0.4);
-}
-
-@keyframes breathe {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.08);
-  }
-}
-
 .camp-image {
   width: 68%;
   height: auto;
@@ -181,26 +117,5 @@ const rules = {
 .block-icon:hover .camp-image {
   transform: scale(1.1);
 }
-
-.icon-caption {
-  margin-top: 1.2rem;
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: #4d672c;
-  font-family: var(--font-family);
-  letter-spacing: 0.2px;
-}
 </style>
 
-<style>
-.v-field.v-field--appended {
-  background: #fff !important;
-}
-
-/* Уменьшаем вертикальные отступы */
-
-
-.v-text-field:last-of-type {
-  margin-bottom: 16px !important;
-}
-</style>

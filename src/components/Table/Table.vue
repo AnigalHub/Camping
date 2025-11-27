@@ -247,7 +247,6 @@ async function onModalDocuments(name, object, disable) {
   background: #fff !important;
   color: #104155;
   -webkit-text-stroke: .2px #104155;
-
   font-size: 1rem;
   letter-spacing: .4px;
   font-family: "Poppins", sans-serif;
