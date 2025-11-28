@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div>
     <v-container>
       <Title :title="title" :icon="'mdi-account-group-outline'" />
       <search />

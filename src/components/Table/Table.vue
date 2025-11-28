@@ -249,7 +249,7 @@ async function onModalDocuments(name, object, disable) {
   -webkit-text-stroke: .2px #104155;
   font-size: 1rem;
   letter-spacing: .4px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-text);
   font-weight: 500;
   padding: 16px 0 !important;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1) !important;

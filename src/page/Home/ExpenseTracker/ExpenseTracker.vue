@@ -48,7 +48,7 @@ h2 {
   width: 90%;
   margin: -5px 0 10px;
   font-family: var(--font-family-title);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   color: #494c54;
   position: relative;
 }
@@ -65,7 +65,7 @@ h2::after {
 }
 
 .card-text {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-text);
   font-size: 0.93rem;
   color: #505050;
   line-height: 1.45;

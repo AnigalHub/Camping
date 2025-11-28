@@ -66,13 +66,12 @@
   --border-radius-content-card: 15px;
 
   /* Карточки внутри контента*/
-  --background-content-inner-card: transparent;
   --box-shadow-content-inner-card: none;
 
   /* Шрифты страниц */
   --font-family: "El Messiri", sans-serif;
-  --font-family-numbers: 'Courier New', monospace;
   --font-family-title: "Poiret One", sans-serif;
+  --font-family-text: "Poppins", sans-serif;
   --v-layout-left: 0 !important;
   --v-layout-top:50px !important
 }

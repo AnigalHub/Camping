@@ -31,12 +31,7 @@ const props = defineProps({
 
 <style scoped>
 .icon-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: -12%;
-  position: relative;
-  overflow: hidden;
 }
 
 .icon-col::before {
@@ -62,8 +57,6 @@ const props = defineProps({
 }
 
 .icon-wrapper {
-  text-align: center;
-  z-index: 2;
   padding: 30px 10px;
   margin-top: 60px;
 }
@@ -75,9 +68,6 @@ const props = defineProps({
   border-radius: 50%;
   border: 1px solid rgba(180, 180, 180, .3);
   background: linear-gradient(180deg, #fff, #eff5f7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0 6px 15px rgba(47, 118, 139, .18), inset 0 0 10px rgba(255, 255, 255, .3);
   transition: .5s ease;
   animation: breathe 5s ease-in-out infinite;

@@ -152,34 +152,20 @@ function saveForm() {
   height: 70vh;
 }
 
-
-
 .form-subtitle {
   margin: 10px 0 30px;
-  padding-left: 4px;
-  font-family: "Poiret One", sans-serif;
-  font-size: 1.45rem;
+  font-family: var(--font-family-title);
+  font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: .7px;
   background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 7s linear infinite;
   position: relative;
 }
 
 .form-subtitle:first-of-type {
   margin-top: 0;
-}
-
-@keyframes shimmer {
-  from {
-    background-position: -160px 0;
-  }
-
-  to {
-    background-position: 160px 0;
-  }
 }
 
 .form-subtitle::after {

@@ -107,7 +107,7 @@ const places = [
 
 h2 {
   font-family: var(--font-family-title);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   color: #494c54;
   margin: -5px 0 25px;
   position: relative;

@@ -141,7 +141,7 @@ function goRoute(name) {
 }
 
 .card-text {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-text);
   font-size: .93rem;
   color: #505050;
   line-height: 1.45;

@@ -1,5 +1,5 @@
 <template>
-  <div class="page client">
+  <div class="client">
     <v-container>
       <Title :title="title" :icon="'mdi-account-plus-outline'" />
       <div class="content">
@@ -123,7 +123,7 @@
                     </v-menu>
                   </div>
                   <hr />
-                    <!-- Дополнительные данные -->
+                  <!-- Дополнительные данные -->
                   <h3 class="form-subtitle">Дополнительные данные</h3>
                   <div class="grid-inputs">
                     <v-text-field v-model="person.object" label="Номер поляны" variant="outlined" density="comfortable"
@@ -264,25 +264,29 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .v-selection-control-group {
   flex-direction: row !important;
 }
+
 .client .v-expansion-panel-text__wrapper {
   padding: 0 15px !important;
 }
-.v-expansion-panel-title{
+
+.v-expansion-panel-title {
   padding: 8px 16px !important;
 }
-.v-expansion-panel--active:not(:first-child){
+
+.v-expansion-panel--active:not(:first-child) {
   margin-top: 0 !important;
 }
 </style>
 
 <style scoped>
-.result_block{
-  padding: 10px 15px; 
+.result_block {
+  padding: 10px 15px;
   border: 1.5px solid #4a90e2;
-  margin: 5px auto 20px; 
-  width: 60%; 
+  margin: 5px auto 20px;
+  width: 60%;
   border-radius: 12px;
 }
+
 .v-field--disabled {
   background-color: rgba(204, 204, 204, .2);
 }
@@ -308,24 +312,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 .content {
   margin-top: 20px;
   padding: 20px 10px;
-  /* background: linear-gradient(to top, rgba(255, 255, 255, .7), rgba(255, 255, 255, .8)) !important; */
-  /* box-shadow: inset 0 0 10px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .1) !important; */
-  /* border-radius: 15px !important; */
   height: 78vh;
-}
-
-.form-subtitle {
-  margin: 10px 0 25px;
-  padding-left: 4px;
-  font-family: "Poiret One", sans-serif;
-  font-size: 1.45rem;
-  font-weight: 600;
-  letter-spacing: .7px;
-  background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 7s infinite linear;
-  position: relative;
 }
 
 .result {
@@ -335,11 +322,23 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 
 span {
   color: #2d9ac5 !important;
-  font-family: "El Messiri", sans-serif !important;
+  font-family: var(--font-family) !important;
   font-size: 2rem;
   margin: 7px auto 0;
   display: block;
   font-weight: 500;
+}
+
+.form-subtitle {
+  margin: 10px 0 25px;
+  font-family: var(--font-family-title);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: .7px;
+  background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
 }
 
 .form-subtitle::after {
@@ -352,16 +351,6 @@ span {
   border-radius: 3px;
   background: #2d9ac5;
   opacity: .9;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -160px 0;
-  }
-
-  100% {
-    background-position: 160px 0;
-  }
 }
 
 hr {
@@ -418,7 +407,7 @@ hr {
   font-size: 1.15rem;
   padding: 10px 12px;
   color: #39424e;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
 }
 
 .custom-text {

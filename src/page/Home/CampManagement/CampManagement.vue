@@ -83,7 +83,7 @@ const list = [
 }
 
 .card-text {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-text);
   font-size: 0.93rem;
   color: #505050;
   line-height: 1.45;
@@ -118,7 +118,7 @@ const list = [
 h2 {
   margin: -5px 0 20px;
   font-family: var(--font-family-title);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   color: #494c54;
   position: relative;
 }
@@ -169,7 +169,7 @@ h2::after {
 .title {
   color: #2a2a2a;
   margin-bottom: 6px;
-  font-family: "Amatic SC";
+  font-family: "Amatic SC", cursive;
   font-size: 1.8rem;
 }
 
@@ -186,7 +186,7 @@ h2::after {
   align-items: center;
   gap: 8px;
   font-size: 0.95rem;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-text);
   transition: transform .2s ease, color .2s ease;
 }
 

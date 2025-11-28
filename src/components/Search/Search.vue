@@ -71,18 +71,13 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
 
 <style scoped>
 .search-bar {
-  background: transparent;
   border-radius: 12px;
   padding-left: 2px !important;
   padding-right: 0 !important;
-  box-shadow: none;
-  gap: 0 20px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 
 .search-input {
-  flex: 1;
   min-width: 200px;
 }
 
@@ -91,10 +86,8 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
   max-width: 300px;
 }
 
-.search-controls {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.search-controls, .search-bar {
+  gap: 0 20px;
 }
 
 .search-input input::placeholder {
@@ -116,7 +109,7 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
 
   .search-controls {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
 }
 </style>

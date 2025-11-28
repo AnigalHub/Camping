@@ -102,7 +102,7 @@ const status = [
 
 h2 {
   font-family: var(--font-family-title);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   color: #494c54;
   margin: -5px 0 10px;
   position: relative;
@@ -120,7 +120,7 @@ h2::after {
 }
 
 .card-text {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-text);
   font-size: .93rem;
   color: #505050;
   width: 60%;
@@ -139,7 +139,7 @@ h2::after {
 }
 
 .numbers-text {
-  font-family: "Amatic SC";
+  font-family: "Amatic SC", cursive;
   font-size: 33px;
   color: #000;
   margin-top: -20%;
@@ -232,14 +232,14 @@ h2::after {
 }
 
 .day {
-  font-family: "Amatic SC";
+  font-family: "Amatic SC", cursive;
   font-weight: 700;
   font-size: 36px;
   color: #000;
 }
 
 .today {
-  font-family: "El Messiri";
+  font-family: var(--font-family);
   font-size: 18px;
   color: #8ab539;
 }

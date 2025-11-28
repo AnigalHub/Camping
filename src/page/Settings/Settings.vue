@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div>
     <v-container>
       <Title :title="title" />
       <div class="block-table">

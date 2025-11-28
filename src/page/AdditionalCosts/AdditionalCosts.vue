@@ -1,8 +1,8 @@
 <template>
-  <div class="page">
+  <div>
     <v-container>
       <Title :title="title" icon="mdi-cash-multiple" />
-      <v-card :style="cardHeight">
+      <v-card style="min-height:85vh;position:relative;z-index:2">
         <div class="tabs-container">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
@@ -23,10 +23,8 @@
             :key="i"
             :value="item.value"
           >
-            <v-card-text>
-              <AddExpenses v-if="tab === tabs[0].value" />
-              <ListExpenses v-else class="list" />
-            </v-card-text>
+            <AddExpenses v-if="tab === tabs[0].value" />
+            <ListExpenses v-else/>
           </v-tabs-window-item>
         </v-tabs-window>
       </v-card>
@@ -53,9 +51,9 @@ const tab = shallowRef(tabs[0].value);
 const tabRefs = ref([]);
 const sliderStyle = ref({});
 
-const cardHeight = computed(() =>
-  tab === tabs[1].value ? "height: 87vh;" : "height: 100vh;"
-);
+// const cardHeight = computed(() =>
+//   tab === tabs[1].value ? "height: 87vh;" : "height: 100vh;"
+// );
 
 const updateSlider = () => {
   nextTick(() => {
@@ -134,9 +132,5 @@ watch(tab, updateSlider);
   font-weight: 900;
   -webkit-text-stroke: .05px #fff;
   box-shadow: 0 4px 10px rgba(138, 181, 57, .096);
-}
-
-.list {
-  height: 58vh;
 }
 </style>

@@ -51,12 +51,9 @@ onMounted(async () => {
   padding-top: 0 !important
 }
 
-
 /**Фон страниц */
-.page {
-  background: var(--background-color-page);
-  min-height: 95.5vh;
-  height: auto;
+.v-application__wrap{
+  background: var(--background-color-page) !important;
 }
 
 .wrapper>* {
@@ -128,7 +125,7 @@ onMounted(async () => {
 
 .btn-home,
 .btn-page {
-  font-family: 'El Messiri', sans-serif;
+  font-family: var(--font-family);
   font-size: 1.1rem;
   font-weight: 800;
   border-radius: 12px;
@@ -144,7 +141,8 @@ onMounted(async () => {
 .v-card,
 .content,
 .block-title,
-.v-list-item {
+.v-list-item, 
+.place-card {
   position: relative;
   z-index: 4;
   animation: fadeSlide 1.2s ease-in-out;
@@ -160,11 +158,6 @@ onMounted(async () => {
 .v-card-text {
   padding: .25rem 5px 0 0 !important;
 }
-
-/* .v-card .v-card {
-  box-shadow: var(--box-shadow-content-inner-card);
-  background-color: var(--background-content-inner-card) !important;
-} */
 
 .v-card--variant-elevated {
   padding: 10px !important;

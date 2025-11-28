@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div>
     <v-container>
       <Title :title="title" icon="mdi-calendar-clock-outline" />
       <v-card style="min-height:85vh;position:relative;z-index:2">

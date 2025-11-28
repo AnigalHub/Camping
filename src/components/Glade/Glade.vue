@@ -95,7 +95,7 @@ const openOnMap = coords => {
 }
 
 .number-badge {
-  font-family: "El Messiri";
+  font-family: var(--font-family);
   font-size: 1.35rem;
   width: 42px;
   height: 42px;
@@ -123,7 +123,7 @@ const openOnMap = coords => {
 }
 
 .title {
-  font-family: "Amatic SC";
+  font-family: "Amatic SC", cursive;
   font-size: 1.9rem;
   color: #2a2a2a;
 }
@@ -131,7 +131,7 @@ const openOnMap = coords => {
 .description {
   margin-top: 8px;
   color: #4b4b4b;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-text);
   font-size: 0.93rem;
   line-height: 1.45;
 }

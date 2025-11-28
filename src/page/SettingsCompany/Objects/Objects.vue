@@ -37,7 +37,7 @@
         </v-card>
       </v-col>
       <v-col>
-        <icon-circle :svg="TentSvg" text="Описание объектов кемпинга"/>
+        <icon-circle :svg="TentSvg" text="Описание объектов кемпинга" />
       </v-col>
     </v-row>
   </div>
@@ -60,7 +60,7 @@ const objects = reactive([
     maxpeople: 10,
     maxcars: 8
   },
-    {
+  {
     name: 'У Песчаного Моря',
     description: 'Тёплый песок, мягкий бриз и спокойные волны',
     coordinations: '43.960635, 39.263933',
@@ -107,10 +107,12 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
 .objects .v-expansion-panel-text__wrapper {
   padding: 8px 16px 0 !important;
 }
-.v-expansion-panel-title{
+
+.v-expansion-panel-title {
   padding: 8px 16px !important;
 }
-.v-expansion-panel--active:not(:first-child){
+
+.v-expansion-panel--active:not(:first-child) {
   margin-top: 0 !important;
 }
 </style>
@@ -118,46 +120,6 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
 .content {
   padding: 20px 10px;
   height: 70vh;
-}
-
-.form-subtitle {
-  margin: 10px 0 30px;
-  padding-left: 4px;
-  font-family: "Poiret One", sans-serif;
-  font-size: 1.45rem;
-  font-weight: 600;
-  letter-spacing: .7px;
-  background: linear-gradient(90deg, #3f4a52, #7b6f5e, #3f4a52);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 7s infinite linear;
-  position: relative;
-}
-
-.form-subtitle:first-of-type {
-  margin-top: 0;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -160px 0;
-  }
-
-  100% {
-    background-position: 160px 0;
-  }
-}
-
-.form-subtitle::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 70px;
-  height: 3px;
-  border-radius: 3px;
-  background: #2d9ac5;
-  opacity: .9;
 }
 
 .grid-inputs {
@@ -203,7 +165,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
   font-size: 1.15rem;
   padding: 10px 12px;
   color: #39424e;
-  font-family: "El Messiri", sans-serif;
+  font-family: var(--font-family);
 }
 
 .custom-text {
@@ -243,6 +205,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
   border-color: #c0392b;
   transform: scale(1.15);
 }
+
 .panel-title {
   width: 100%;
   display: flex;
