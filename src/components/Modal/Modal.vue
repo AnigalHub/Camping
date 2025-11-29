@@ -126,13 +126,14 @@ export default defineComponent({
 </script>
 
 <style>
-.v-btn--variant-elevated {
+ .v-btn--icon {
   box-shadow: none !important;
   background: transparent !important;
-}
+} 
 
 .modal-block .v-card{
   background: var(--background-modal) !important;
   overflow: hidden !important;
+  border-radius: 12px !important;
 }
 </style>

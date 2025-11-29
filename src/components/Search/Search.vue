@@ -102,23 +102,7 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
 }
 
 .btn-page {
-  background: #547c8f;
-  color: #fff;
-  font-weight: 800;
-  font-family: "El Messiri", sans-serif;
-  font-size: 1.05rem;
-  border-radius: 12px;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
-  transition: all 0.3s ease;
-  padding: 10px 22px !important;
-  min-height: 46px;
-  min-width: 220px;
-}
-
-.btn-page:hover {
-  transform: translateY(-2px);
-  background: #3b5865;
+  display: flex;
 }
 
 @media (max-width: 768px) {

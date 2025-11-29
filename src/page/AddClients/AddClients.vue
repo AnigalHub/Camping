@@ -370,20 +370,8 @@ hr {
 }
 
 .btn-page {
-  background: #547c8f;
-  color: #fff;
-  font-weight: 800;
-  font-family: "El Messiri", sans-serif;
   width: 60%;
-  display: block;
   margin: 10px auto 0;
-  border-radius: 12px;
-  transition: .3s;
-}
-
-.btn-disabled {
-  background: #393939 !important;
-  cursor: not-allowed !important;
 }
 
 .grid-inputs {

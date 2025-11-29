@@ -85,30 +85,9 @@ const isChanged = computed(() => JSON.stringify(organization) !== JSON.stringify
 }
 
 .btn-page {
-  display: block;
   width: 60%;
   margin: 10px auto 0;
-  padding: 10px 22px !important;
-  min-height: 46px;
-  border-radius: 12px;
-  background: #547c8f;
-  color: #fff;
-  font-weight: 800;
-  font-family: "El Messiri", sans-serif;
-  font-size: 1.05rem;
-  letter-spacing: .5px;
-  box-shadow: 0 4px 12px rgba(50, 70, 90, .08);
-  transition: .3s ease;
 }
 
-.btn-page:hover {
-  transform: translateY(-2px);
-  background: #3b5865;
-}
 
-.btn-disabled {
-  background: #393939 !important;
-  transform: none !important;
-  cursor: not-allowed !important;
-}
 </style>

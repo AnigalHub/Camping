@@ -100,7 +100,7 @@ function formatDate(isoString) {
 
 h2 {
   text-align: center;
-  margin-top: -11%;
+  margin-top: -5%;
   margin-bottom: 5%;
   color: var(--color-title-modal);
   -webkit-text-stroke: var(--text-stroke-title-modal);
@@ -140,7 +140,7 @@ h2 {
 }
 
 .small-margin {
-  margin-bottom: -20px;
+  margin-bottom: -10px;
 }
 
 .v-field__input {
@@ -151,9 +151,8 @@ h2 {
 }
 
 .btn-page {
-  display: block;
-  margin: 20px auto 0 auto;
-  font-size: 0.95rem;
+  margin: 20px auto 0;
+
 }
 
 .btn-wrapper {
@@ -200,9 +199,5 @@ h2 {
   .btn-block {
     width: 100%;
   }
-
-
-
-
 }
 </style>

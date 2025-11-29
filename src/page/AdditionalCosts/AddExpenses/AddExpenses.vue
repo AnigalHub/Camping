@@ -195,34 +195,9 @@ function saveForm() {
 }
 
 .btn-page {
-  background: #547c8f;
-  color: #fff;
-  font-weight: 800;
-  font-family: "El Messiri", sans-serif;
-  font-size: 1.05rem;
-  border-radius: 12px !important;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
-  transition: .3s;
-  padding: 10px 22px !important;
-  min-height: 46px;
-  min-width: 220px;
   margin: 0 auto;
-  display: block;
   width: 60%;
 }
-
-.btn-page:hover {
-  transform: translateY(-2px);
-  background: #3b5865;
-}
-
-.btn-disabled {
-  background: #393939 !important;
-  transform: none !important;
-  cursor: not-allowed !important;
-}
-
 
 /* .v-picker.v-sheet {
   margin-top: -3.5%;

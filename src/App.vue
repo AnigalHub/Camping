@@ -98,19 +98,7 @@ onMounted(async () => {
 .btn-home {
   border: 1.5px solid #547c8f;
   opacity: .75;
-}
-
-.btn-home,
-.btn-page {
-  font-family: 'El Messiri', sans-serif;
-  font-size: 1.2rem;
   box-shadow: none;
-  transition: all 0.3s ease;
-  letter-spacing: 1px !important;
-  text-transform: none !important;
-  border-radius: 14px;
-  font-weight: 800;
-  min-height: 46px;
 }
 
 .v-card:hover .btn-home {
@@ -119,6 +107,38 @@ onMounted(async () => {
   box-shadow: none;
   background: #e9eff9;
   opacity: 1;
+}
+
+.btn-page{
+  background: #547c8f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(50, 70, 90, 0.08);
+}
+
+.btn-page:hover {
+  transform: translateY(-2px);
+  background: #3b5865;
+}
+
+.btn-disabled {
+  color: #fff !important;
+  background: #393939 !important;
+  cursor: not-allowed;
+}
+
+.btn-home,
+.btn-page {
+  font-family: 'El Messiri', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-radius: 12px;
+  letter-spacing: 1px;
+  transition: all .3s ease;
+  padding: 10px 22px;
+  text-transform: none !important;
+  min-height: 46px;
+  min-width: 220px;
+  display: block;
 }
 
 .v-card,
@@ -141,10 +161,10 @@ onMounted(async () => {
   padding: .25rem 5px 0 0 !important;
 }
 
-.v-card .v-card {
+/* .v-card .v-card {
   box-shadow: var(--box-shadow-content-inner-card);
   background-color: var(--background-content-inner-card) !important;
-}
+} */
 
 .v-card--variant-elevated {
   padding: 10px !important;
