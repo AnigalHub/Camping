@@ -265,7 +265,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   flex-direction: row !important;
 }
 .client .v-expansion-panel-text__wrapper {
-  padding: 0 15px 16px !important;
+  padding: 0 15px !important;
 }
 .v-expansion-panel-title{
   padding: 8px 16px !important;

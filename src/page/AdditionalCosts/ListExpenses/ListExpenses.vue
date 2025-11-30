@@ -41,7 +41,7 @@ const items = [
 </script>
 <style scoped>
 .search {
-  margin-top: -1rem;
+  margin-top: -.5rem;
 }
 
 .content {

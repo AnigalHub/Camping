@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex flex-wrap align-center justify-space-between search-bar">
+  <v-card class="search-bar d-flex flex-wrap align-center justify-space-between">
     <v-text-field
       v-model="search"
       density="comfortable"
@@ -11,7 +11,7 @@
       class="search-input"
     />
 
-    <div class="d-flex align-center gap-3 flex-wrap mt-2 mt-md-0 search-controls">
+    <div class="search-controls d-flex align-center gap-3 flex-wrap mt-2 mt-md-0">
       <v-select
         v-model="sort"
         :items="sortOptions"
@@ -23,8 +23,8 @@
         class="filter-select"
       />
       <v-btn 
-        class="btn-page" 
-        prepend-icon="mdi-magnify" 
+        class="btn-page"
+        prepend-icon="mdi-magnify"
         @click="onSearch"
       >
         Найти
@@ -46,7 +46,7 @@ const sort = ref(null);
 const sortOptions =
   route.name !== "AdditionalCosts"
     ? ["По дате", "По имени"]
-    : ["По наиенованию", "По дате", "По цене"];
+    : ["По наименованию", "По дате", "По цене"];
 
 const onSearch = () => console.log("Поиск:", search.value, "Сортировка:", sort.value);
 </script>
@@ -76,7 +76,7 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
   padding-left: 2px !important;
   padding-right: 0 !important;
   box-shadow: none;
-  gap: 20px;
+  gap: 0 20px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
@@ -84,28 +84,23 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
 .search-input {
   flex: 1;
   min-width: 200px;
-  max-width: 100%;
 }
 
-/* Удлинённые селекты */
 .filter-select {
   min-width: 250px;
   max-width: 300px;
 }
 
-/* Для красивого выравнивания */
 .search-controls {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-/* Placeholder серый */
 .search-input input::placeholder {
   color: #9c9c9c !important;
 }
 
-/* Кнопка поиска */
 .btn-page {
   background: #547c8f;
   color: #fff;
@@ -127,13 +122,17 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
 }
 
 @media (max-width: 768px) {
-  .search-bar {
-    flex-direction: column;
-    align-items: stretch;
+  .search-input,
+  .filter-select,
+  .btn-page,
+  .search-controls {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
-  .filter-select {
-    width: 100%;
+  .search-controls {
+    flex-direction: column;
+    gap: 15px;
   }
 }
 </style>
