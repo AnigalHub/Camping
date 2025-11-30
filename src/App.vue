@@ -156,7 +156,7 @@ onMounted(async () => {
 }
 
 .v-card-text {
-  padding: .25rem 5px 0 0 !important;
+  padding: 0 5px 0 0 !important;
 }
 
 .v-card--variant-elevated {

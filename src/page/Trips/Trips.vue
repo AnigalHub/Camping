@@ -21,7 +21,7 @@
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
             <div v-if="filteredItems.length">
-              <search />
+              <search style="margin-top: -10px;"/>
               <Table :headers="headers" :items="filteredItems" sortByKey="fio" />
             </div>
             <div v-else class="no_data">Данных за день нет.</div>

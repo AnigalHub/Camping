@@ -77,7 +77,7 @@ const openOnMap = coords => {
   background: #ffffff;
   border-radius: 18px;
   padding: 18px 20px 22px;
-  margin: 10px 8px;
+  margin: 5px 8px 10px;
   box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.08);
   transition: 0.35s;
   position: relative;

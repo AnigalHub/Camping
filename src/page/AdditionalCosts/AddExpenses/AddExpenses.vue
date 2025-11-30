@@ -62,7 +62,7 @@
           </v-form>
         </v-card>
       </v-col>
-       <v-col>
+       <v-col class="content-icons">
         <icon-circle :svg="ExpensesSvg" text="Расходы по содержанию лагеря"/>
       </v-col>
     </v-row>
@@ -202,5 +202,15 @@ function saveForm() {
 
 .v-card {
   overflow: initial;
+}
+
+@media (max-width:780px) {
+  .v-col-9{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .content-icons{
+    display: none;
+  }
 }
 </style>

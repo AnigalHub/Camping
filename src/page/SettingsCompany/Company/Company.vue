@@ -15,7 +15,7 @@
           </v-form>
         </v-card>
       </v-col>
-      <v-col>
+      <v-col class="content-icons">
         <icon-circle :svg="HouseSvg" text="Основные параметры организации"/>
       </v-col>
     </v-row>
@@ -74,5 +74,15 @@ const isChanged = computed(() => JSON.stringify(organization) !== JSON.stringify
 .btn-page {
   width: 60%;
   margin: 10px auto 0;
+}
+
+@media (max-width:780px) {
+  .v-col-9{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .content-icons{
+    display: none;
+  }
 }
 </style>

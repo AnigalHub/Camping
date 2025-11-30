@@ -23,7 +23,7 @@
           </v-form>
         </v-card>
       </v-col>
-      <v-col>
+      <v-col class="content-icons">
         <icon-circle :svg="CacheSvg" text="Действующие тарифы" :min="true"/>
       </v-col>
     </v-row>
@@ -148,5 +148,15 @@ const isChanged = computed(() => {
 .btn-page {
   width: 60%;
   margin: 10px auto 0;
+}
+
+@media (max-width:780px) {
+  .v-col-9{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .content-icons{
+    display: none;
+  }
 }
 </style>

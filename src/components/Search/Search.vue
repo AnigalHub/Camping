@@ -74,7 +74,7 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
   border-radius: 12px;
   padding-left: 2px !important;
   padding-right: 0 !important;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .search-input {

@@ -36,7 +36,7 @@
           </v-form>
         </v-card>
       </v-col>
-      <v-col>
+      <v-col class="content-icons">
         <icon-circle :svg="TentSvg" text="Описание объектов кемпинга" />
       </v-col>
     </v-row>
@@ -215,5 +215,15 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
 .panel-title .action {
   margin-left: auto;
   margin-right: 20px;
+}
+
+@media (max-width:780px) {
+  .v-col-9{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .content-icons{
+    display: none;
+  }
 }
 </style>

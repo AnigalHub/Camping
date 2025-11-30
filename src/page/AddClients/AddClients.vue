@@ -310,7 +310,7 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
 }
 
 .content {
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 20px 10px;
   height: 78vh;
 }

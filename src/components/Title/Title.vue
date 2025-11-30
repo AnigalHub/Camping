@@ -41,7 +41,7 @@ function goBack() {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin: 15px 0 10px;
+  margin: 15px 0 5px;
 }
 
 .back-btn {
