@@ -1,0 +1,134 @@
+[
+  {
+    "name": "У Песчаного Моря",
+    "description": "Тёплый песок, мягкий бриз и спокойные волны",
+    "icon": "mdi-weather-sunny",
+    "color": "#f4b740",
+    "value": "43.960635, 39.263933",
+    "person":7,
+    "maxperson":30,
+    "car":2,
+    "maxcar":20
+  },
+  {
+    "name": "В Тени Сосен",
+    "description": "Аромат хвои, прохлада и шелест леса",
+    "icon": "mdi-pine-tree",
+    "color": "#8ab45a",
+    "value": "44.260545, 37.463974",
+    "person":3,
+    "maxperson":10,
+    "car":1,
+    "maxcar":8
+  },
+  {
+    "name": "У Подножья Гор",
+    "description": "Величественные вершины и кристально чистый воздух",
+    "icon": "mdi-image-filter-hdr",
+    "color": "#bca37f",
+    "value": "46.742464, 35.933421",
+    "person":14,
+    "maxperson":25,
+    "car":7,
+    "maxcar":15
+  },
+  {
+    "name": "Звёздная Ночь",
+    "description": "Чистое небо, млечный путь и тишина природы",
+    "icon": "mdi-star-shooting",
+    "color": "#6d8bc9",
+    "value": "45.126335, 34.393356",
+    "person":2,
+    "maxperson":15,
+    "car":5,
+    "maxcar":10
+  },
+  {
+    "name": "Закат у Моря",
+    "description": "Нежное сияние заката над морской гладью",
+    "icon": "mdi-weather-sunset",
+    "color": "#ff9c6a",
+    "value": "47.256335, 32.372356",
+    "person":4,
+    "maxperson":10,
+    "car":3,
+    "maxcar":5
+  },
+  {
+    "name": "У Ветреного Берега",
+    "description": "Плеск волн и морской бриз",
+    "icon": "mdi-waves",
+    "color": "#7cb7c5",
+    "value": "48.363257, 30.295367",
+    "person":7,
+    "maxperson":25,
+    "car":13,
+    "maxcar":20
+  },
+  {
+    "name": "Лесная Опушка",
+    "description": "Солнечная поляна, пение птиц и мягкий свет",
+    "icon": "mdi-flower",
+    "color": "#d7a77b",
+    "value": "41.830533, 31.118635",
+    "person":10,
+    "maxperson":25,
+    "car":9,
+    "maxcar":10
+  },
+  {
+    "name": "Между Морем и Горами",
+    "description": "Баланс стихий — море, горы и небо",
+    "icon": "mdi-compass",
+    "color": "#9a8cd4",
+    "value": "49.220335, 46.253733",
+    "person":4,
+    "maxperson":15,
+    "car":2,
+    "maxcar":7
+  },
+  {
+    "name": "Под Горным Ветром",
+    "description": "Свежесть ветра и свобода простора",
+    "icon": "mdi-weather-windy",
+    "color": "#8bb7d2",
+    "value": "50.456723, 36.234655",
+    "person":3,
+    "maxperson":10,
+    "car":4,
+    "maxcar":5
+  },
+  {
+    "name": "У Горного Озера",
+    "description": "Хрустальная вода и отражение гор в глади озера",
+    "icon": "mdi-water-outline",
+    "color": "#7db6d4",
+    "value": "51.162342, 37.635122",
+    "person":8,
+    "maxperson":20,
+    "car":6,
+    "maxcar":12
+  },
+  {
+    "name": "Долина Цветов",
+    "description": "Ковёр из ароматных трав и цветов под солнцем",
+    "icon": "mdi-flower-tulip-outline",
+    "color": "#d48ab4",
+    "value": "52.342156, 38.451212",
+    "person":1,
+    "maxperson":20,
+    "car":8,
+    "maxcar":9
+  },
+  {
+    "name": "Сосновая Тропа",
+    "description": "Шелест хвои и лёгкий аромат смолы на тропинке",
+    "icon": "mdi-nature",
+    "color": "#8cc47d",
+    "value": "53.152534, 40.126334",
+    "person":11,
+    "maxperson":15,
+    "car":5,
+    "maxcar":6
+  }
+]

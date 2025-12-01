@@ -24,7 +24,7 @@
     </div>
     <v-row dense>
       <v-col
-        v-for="(place, i) in places"
+        v-for="(place, i) in topTwo"
         :key="i"
         cols="12"
         md="6"
@@ -44,31 +44,20 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const goRoute = () => router.push({ name: "MapObjects" });
+import places from './../../../../public/places.json';
 
-const places = [
-  {
-    name: "У Песчаного Моря",
-    description: "Тёплый песок, мягкий бриз и спокойные волны",
-    icon: "mdi-weather-sunny",
-    color: "#f4b740",
-    value: "43.960635, 39.263933",
-    percentPerson: "24",
-    textPerson: "7/30",
-    percentCar: "10",
-    textCar: "2/20",
-  },
-  {
-    name: "В Тени Сосен",
-    description: "Аромат хвои, прохлада и шелест леса",
-    icon: "mdi-pine-tree",
-    color: "#8ab45a",
-    value: "44.260545, 37.463974",
-    percentPerson: "30",
-    textPerson: "3/10",
-    percentCar: "12",
-    textCar: "1/8",
-  },
-];
+function sortPlacesByOccupancy(places) {
+  return places
+    .slice()
+    .sort((a, b) => {
+      const aRate = (a.person / a.maxperson) + (a.car / a.maxcar);
+      const bRate = (b.person / b.maxperson) + (b.car / b.maxcar);
+      return bRate - aRate; 
+    });
+}
+const sortedPlaces = sortPlacesByOccupancy(places);
+const topTwo = sortedPlaces.slice(0, 2);
+
 </script>
 <style scoped>
 .card {

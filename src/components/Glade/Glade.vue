@@ -37,13 +37,13 @@
         <div class="progress-section">
           <div class="progress-item">
             <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
-            <span>{{ place.textPerson }}</span>
-            <v-progress-linear :model-value="place.percentPerson" color="#8AB539" height="9" rounded />
+            <span>{{ place.person }}/{{ place.maxperson  }}</span>
+            <v-progress-linear :model-value="showPercent(place.person,place.maxperson)" color="#8AB539" height="9" rounded />
           </div>
           <div class="progress-item">
             <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
-            <span>{{ place.textCar }}</span>
-            <v-progress-linear :model-value="place.percentCar" color="#B5B5B5" height="9" rounded />
+            <span>{{ place.car }}/{{ place.maxcar  }}</span>
+            <v-progress-linear :model-value="showPercent(place.car,place.maxcar)" color="#B5B5B5" height="9" rounded />
           </div>
         </div>
         <div v-if="!rightLayout" class="coords" @click="copyCoords(place.value, number)">
@@ -82,6 +82,10 @@ const copyCoords = async (coords, index) => {
   copiedIndex.value = index;
   setTimeout(() => (copiedIndex.value = null), 1500);
 };
+
+const showPercent = (value, max) => {
+  return Math.round((value / max) * 100);
+}
 
 const openOnMap = coords => {
   const [lat, lng] = coords.split(',').map(c => c.trim());
