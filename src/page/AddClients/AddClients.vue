@@ -159,12 +159,12 @@
                     </div>
                   </div>
                   <hr />
-                  <h3 class="form-subtitle result">Итоговая стоимость: </h3><span>0</span>
+                  <h3 class="form-subtitle result">Стоимость: </h3><span>0</span>
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
             <div class="result_block">
-              <h3 class="form-subtitle result">Итоговая стоимость за всех отдыхающих: </h3><span>0</span>
+              <h3 class="form-subtitle result">Итоговая стоимость: </h3><span>0</span>
             </div>
             <div class="add-object-btn">
               <v-btn class="btn-page" @click="addPerson">Добавить отдыхающего</v-btn>
@@ -312,6 +312,9 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(persons)));
   float: left;
   margin-right: 5px;
 }
+.result_block .result:first-of-type {
+  margin-top: 10px;
+}
 
 span {
   color: #2d9ac5 !important;
@@ -321,7 +324,6 @@ span {
   display: block;
   font-weight: 500;
 }
-
 
 .grid-inputs {
   grid-template-columns: repeat(3, 1fr);

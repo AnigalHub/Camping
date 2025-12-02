@@ -96,7 +96,6 @@ const places = [
 }
 
 .card:hover {
-  filter: contrast(110%);
   transform: scale(1.025);
   box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }

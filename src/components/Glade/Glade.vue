@@ -1,48 +1,67 @@
 <template>
-  <div class="place-card" :style="{ border: route.name === 'Home' ? `1.6px solid ${place.color}` : '' }">
-    <div class="header">
-      <div class="number-badge" :style="{
-        border: `1.8px solid ${place.color}`,
-        color: place.color
-      }">
-        {{ number + 1 }}
+  <div 
+    class="place-card" 
+    :class="{ 'card-layout': rightLayout }"
+    :style="{ border: route.name === 'Home' ? `1.6px solid ${place.color}` : '' }"
+  >
+    <div class="layout" :class="{ 'right-layout': rightLayout }">
+      <div class="left-content">
+        <div class="header">
+          <div 
+            class="number-badge" 
+            :style="{ border: `1.8px solid ${place.color}`, color: place.color }"
+          >
+            {{ number + 1 }}
+          </div>
+          <div class="title-wrap">
+            <v-icon :color="place.color" size="35" class="title-icon">{{ place.icon }}</v-icon>
+            <h3 class="title">{{ place.name }}</h3>
+          </div>
+          <div v-if="rightLayout" class="right-tools">
+            <div class="map-button map-button-right" @click="openOnMap(place.value)">
+              <div class="map-icon-wrap icon-block">
+                <v-icon size="30" color="#6d8f3c" class="map-icon-animated">mdi-map-marker</v-icon>
+                <div class="ping"></div>
+              </div>
+              <span>Открыть</span>
+            </div>
+          </div>
+        </div>
+        <div class="desc-wrap">
+          <p class="description">{{ place.description }}</p>
+          <div v-if="rightLayout" class="coords coords-inline" @click="copyCoords(place.value, number)">
+            <span>{{ place.value }}</span>
+            <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
+          </div>
+        </div>
+        <div class="progress-section">
+          <div class="progress-item">
+            <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
+            <span>{{ place.textPerson }}</span>
+            <v-progress-linear :model-value="place.percentPerson" color="#8AB539" height="9" rounded />
+          </div>
+          <div class="progress-item">
+            <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
+            <span>{{ place.textCar }}</span>
+            <v-progress-linear :model-value="place.percentCar" color="#B5B5B5" height="9" rounded />
+          </div>
+        </div>
+        <div v-if="!rightLayout" class="coords" @click="copyCoords(place.value, number)">
+          <span>{{ place.value }}</span>
+          <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
+        </div>
+        <div v-if="!rightLayout" class="map-button" @click="openOnMap(place.value)">
+          <div class="map-icon-wrap">
+            <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
+            <div class="ping"></div>
+          </div>
+          <span>Открыть на картах</span>
+        </div>
       </div>
-
-      <div class="title-wrap">
-        <v-icon :color="place.color" size="35" class="title-icon">
-          {{ place.icon }}
-        </v-icon>
-        <h3 class="title">{{ place.name }}</h3>
-      </div>
-    </div>
-    <p class="description">{{ place.description }}</p>
-    <div class="progress-section">
-      <div class="progress-item">
-        <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
-        <span>{{ place.textPerson }}</span>
-        <v-progress-linear :model-value="place.percentPerson" color="#8AB539" height="13" rounded />
-      </div>
-      <div class="progress-item">
-        <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
-        <span>{{ place.textCar }}</span>
-        <v-progress-linear :model-value="place.percentCar" color="#B5B5B5" height="13" rounded />
-      </div>
-    </div>
-    <div class="coords" @click="copyCoords(place.value, number)">
-      <span>{{ place.value }}</span>
-      <v-icon size="20" color="#5F8835" class="copy-icon">
-        mdi-content-copy
-      </v-icon>
-    </div>
-    <div class="map-button" @click="openOnMap(place.value)">
-      <div class="map-icon-wrap">
-        <v-icon size="30" color="#759930" class="map-icon-animated">mdi-map-marker</v-icon>
-        <div class="ping"></div>
-      </div>
-      <span>Открыть на картах</span>
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref } from 'vue';
@@ -53,6 +72,7 @@ const route = useRoute();
 const props = defineProps({
   number: Number,
   place: Object,
+  rightLayout: { type: Boolean, default: false }
 });
 
 const copiedIndex = ref(null);
@@ -72,26 +92,41 @@ const openOnMap = coords => {
 };
 </script>
 
+
 <style scoped>
+.card-layout {
+  padding: 15px !important;
+}
+
 .place-card {
-  background: #ffffff;
+  background: #fff;
   border-radius: 18px;
-  padding: 18px 20px 22px;
+  padding: 18px 20px;
   margin: 5px 8px 10px;
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.08);
-  transition: 0.35s;
   position: relative;
+  transition: .35s;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .08);
 }
 
 .place-card:hover {
   transform: translateY(-4px);
-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(17, 44, 18, 0.2);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, .8), 2px 2px 8px rgba(17, 44, 18, .2);
+}
+
+.header,
+.progress-item,
+.title-wrap,
+.map-icon-wrap {
+  display: flex;
+  align-items: center;
 }
 
 .header {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
+}
+
+.right-layout .header {
+  justify-content: flex-start;
 }
 
 .number-badge {
@@ -105,17 +140,11 @@ box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(17, 44, 18,
   align-items: center;
   background: #ffffffc6;
   backdrop-filter: blur(4px);
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .place-card:hover .number-badge {
   transform: scale(1.12);
-}
-
-.title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .title-icon {
@@ -129,28 +158,31 @@ box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(17, 44, 18,
 }
 
 .description {
-  margin-top: 8px;
   color: #4b4b4b;
   font-family: var(--font-family-text);
-  font-size: 0.93rem;
+  font-size: .93rem;
   line-height: 1.45;
+  padding: 8px 0;
 }
 
 .progress-section {
-  margin-top: 16px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
+.right-layout .progress-section {
+  margin-top: 0;
+  gap: 8px;
+}
+
 .progress-item {
-  display: flex;
-  align-items: center;
   gap: 10px;
 }
 
 .progress-item span {
-  font-size: 0.92rem;
+  font-size: .92rem;
   color: #3a3a3a;
   font-weight: 600;
 }
@@ -159,30 +191,34 @@ box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(17, 44, 18,
   animation: float 3s ease-in-out infinite;
 }
 
+.coords,
+.map-button {
+  background: rgba(117, 153, 48, .08);
+  border-radius: 12px;
+  transition: .3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .coords {
   margin-top: 18px;
   padding: 8px 12px;
-  border-radius: 12px;
-  background: rgba(117, 153, 48, 0.08);
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
-  cursor: pointer;
-  transition: 0.3s;
   float: left;
   margin-right: 10px;
   min-height: 50px;
   width: 50%;
-  justify-content: center;
 }
 
 .coords:hover {
-  background: rgba(117, 153, 48, 0.16);
+  background: rgba(117, 153, 48, .16);
   transform: translateX(-3px);
 }
 
 .coords span {
-  font-size: 0.92rem;
+  font-size: .92rem;
   font-weight: 500;
   color: #3a3a3a;
 }
@@ -190,28 +226,11 @@ box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(17, 44, 18,
 .map-button {
   margin-top: 20px;
   padding: 8px 10px;
-  border-radius: 14px;
-  background: rgba(117, 153, 48, 0.08);
-  display: flex;
-  align-items: center;
   gap: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-  justify-content: center;
 }
 
 .map-button:hover {
-  background: rgba(117, 153, 48, 0.16);
-  transform: translateX(3px);
-}
-
-.map-icon-wrap {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: rgba(117, 153, 48, .16);
 }
 
 .map-icon-animated {
@@ -228,67 +247,108 @@ box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8), 2px 2px 8px rgba(17, 44, 18,
   animation: ping 2s infinite ease-out;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.layout.right-layout {
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 14px;
+}
+
+.desc-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.coords-inline {
+  margin: 0;
+  min-width: 170px;
+  min-height: 20px;
+  background: transparent;
+  color: #6f9233;
+  border: 1.5px solid #6f9233;
+  width: auto;
+}
+
+.right-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+}
+
+.map-button-right {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  display: flex;
+  min-width: 200px;
+  height: 40px;
+  padding: 10px 14px;
+  border-radius: 0 18px 0 0;
+  box-shadow: inset 0 3px 7px rgba(32, 33, 31, .15);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .35s ease;
+  z-index: 5;
+}
+
+.map-button-right:hover {
+  background: linear-gradient(135deg, rgba(117, 153, 48, .18), rgba(117, 153, 48, .28));
+  transform: scale(1.05);
+  transform: translateX(0px);
+}
+
+.map-button-right span {
+  margin-top: 6px;
+  font-size: .95rem;
+  font-weight: 600;
+  color: #6d8f3c;
+}
+
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0)
-  }
-
   50% {
-    transform: translateY(-4px)
+    transform: translateY(-4px);
   }
 }
 
 @keyframes sway {
-
-  0%,
-  100% {
-    transform: rotate(0)
-  }
-
   25% {
-    transform: rotate(4deg)
+    transform: rotate(4deg);
   }
 
   75% {
-    transform: rotate(-4deg)
+    transform: rotate(-4deg);
   }
 }
 
 @keyframes rotY {
-
-  0%,
-  100% {
-    transform: rotateY(0)
-  }
-
   50% {
-    transform: rotateY(180deg)
+    transform: rotateY(180deg);
   }
 }
 
 @keyframes bounce {
-
-  0%,
-  100% {
-    transform: translateY(0)
-  }
-
   50% {
-    transform: translateY(-6px)
+    transform: translateY(-6px);
   }
 }
 
 @keyframes ping {
   0% {
     transform: scale(.5);
-    opacity: .7
+    opacity: .7;
   }
 
   100% {
     transform: scale(1.8);
-    opacity: 0
+    opacity: 0;
   }
 }
 </style>

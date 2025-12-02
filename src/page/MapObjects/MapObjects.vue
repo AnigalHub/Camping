@@ -5,7 +5,7 @@
       <Search />
       <div class="block">
         <div class="grid-container">
-          <Glade v-for="(place, index) in places" :key="index" :place="place" :number="index" />
+          <Glade v-for="(place, index) in places" :key="index" :place="place" :number="index" :rightLayout="true"/>
         </div>
       </div>
     </v-container>
@@ -163,7 +163,7 @@ const places = [
 <style scoped>
 .block {
   height: 78vh;
-  padding: 0 15px 20px;
+  padding: 0 5px 20px 15px;
   overflow: auto;
   margin-left: -18px;
   margin-top: -5px;
@@ -171,7 +171,7 @@ const places = [
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 4px;
   grid-auto-rows: min-content;
 }
@@ -181,4 +181,5 @@ const places = [
     grid-template-columns: 1fr;
   }
 }
+
 </style>

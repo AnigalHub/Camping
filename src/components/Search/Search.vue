@@ -44,9 +44,11 @@ const search = ref("");
 const sort = ref(null);
 
 const sortOptions =
-  route.name !== "AdditionalCosts"
-    ? ["По дате", "По имени"]
-    : ["По наименованию", "По дате", "По цене"];
+  route.name === "AdditionalCosts"
+    ? ["По наименованию", "По дате", "По цене"]
+    : route.name === "MapObjects"
+      ? ["По местам", "По парковке"]
+      : ["По дате", "По имени"];
 
 const onSearch = () => console.log("Поиск:", search.value, "Сортировка:", sort.value);
 </script>
@@ -86,7 +88,8 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
   max-width: 300px;
 }
 
-.search-controls, .search-bar {
+.search-controls,
+.search-bar {
   gap: 0 20px;
 }
 
@@ -99,6 +102,7 @@ const onSearch = () => console.log("Поиск:", search.value, "Сортиро�
 }
 
 @media (max-width: 768px) {
+
   .search-input,
   .filter-select,
   .btn-page,

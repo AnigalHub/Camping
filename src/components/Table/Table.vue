@@ -255,7 +255,6 @@ async function onModalDocuments(name, object, disable) {
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3), 2px 2px 8px rgba(17, 44, 18, 0.1) !important;
   user-select: none;
   cursor: pointer;
-  border-bottom: 1.9px solid #ccc !important
 }
 
 .v-table>.v-table__wrapper>table>thead>tr>th:first-child {
