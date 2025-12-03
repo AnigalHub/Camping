@@ -4,27 +4,35 @@
       <thead>
         <template v-for="(headerRow, rowIndex) in headers" :key="rowIndex">
           <tr>
-            <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
-              :rowspan="col.rowspan || 1" class="text-center" :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
-              @click="col.sortable && sortByColumn(col.key)">
-              <div style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  width: 100%;
-                ">
+            <th
+              v-for="(col, colIndex) in headerRow"
+              :key="colIndex"
+              :colspan="col.colspan || 1"
+              :rowspan="col.rowspan || 1"
+              class="text-center"
+              :style="{ cursor: col.sortable ? 'pointer' : 'default' }"
+              @click="col.sortable && toggleSort(col.key)"
+            >
+              <div style="display:flex;align-items:center;justify-content:center;width:100%;">
                 <span>{{ col.label }}</span>
-                <div v-if="col.sortable" style="display: flex; flex-direction: column">
-                  <svg :fill="sortKey === col.key && sortDirection === 'asc'
-                    ? activeColor
-                    : inactiveColor
-                    " width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                <!-- arrows -->
+                <div v-if="col.sortable" style="display:flex;flex-direction:column">
+                  <svg
+                    :fill="isAsc(col.key) ? activeColor : inactiveColor"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M12 8l-6 6h12l-6-6z" />
                   </svg>
-                  <svg style="margin-top: -9px" :fill="sortKey === col.key && sortDirection === 'desc'
-                    ? activeColor
-                    : inactiveColor
-                    " width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    style="margin-top:-9px"
+                    :fill="isDesc(col.key) ? activeColor : inactiveColor"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M12 16l6-6H6l6 6z" />
                   </svg>
                 </div>
@@ -33,14 +41,19 @@
           </tr>
         </template>
       </thead>
+
       <tbody>
         <tr v-for="(item, index) in sortedItems" :key="index">
-          <td v-for="(col, colIndex) in flatColumns" :key="colIndex" :data-label="col.label" :class="[
-            col.key === 'fio' || col.key === 'document'
-              ? 'text-left'
-              : 'text-center',
-            col.key === 'buttons' ? 'bg-buttons' : '',
-          ]">
+          <td
+            v-for="(col, colIndex) in flatColumns"
+            :key="colIndex"
+            :data-label="col.label"
+            :class="[
+              col.key === 'fio' || col.key === 'document' ? 'text-left' : 'text-center',
+              col.key === 'buttons' ? 'bg-buttons' : ''
+            ]"
+          >
+            <!-- content -->
             <template v-if="col.key === 'fio'">
               <div class="fio-wrapper">
                 <span>{{ item.surname }}</span>
@@ -48,9 +61,11 @@
                 <span>{{ item.patronymic }}</span>
               </div>
             </template>
-            <template v-else-if="col.key === 'date' && item[col.key]">
-              {{ formatDate(item[col.key]) }}
+
+            <template v-else-if="col.key === 'date'">
+              {{ formatDate(item.date) }}
             </template>
+
             <template v-else-if="col.key === 'dateStay'">
               <div class="date-range">
                 <span>{{ formatDate(item.startDate) }}</span>
@@ -58,17 +73,20 @@
                 <span>{{ formatDate(item.endDate) }}</span>
               </div>
             </template>
-            <template v-else-if="col.key === 'phone' && item[col.key]">
+
+            <template v-else-if="col.key === 'phone'">
               {{
-                item[col.key].replace(
+                item.phone?.replace(
                   /^(\+7)(\d{3})(\d{3})(\d{2})(\d{2})$/,
                   "$1($2)$3-$4-$5"
-                )
+                ) || "—"
               }}
             </template>
-            <template v-else-if="col.key === 'price' && item[col.key]">
-              {{ item[col.key].toLocaleString("ru-RU") }}
+
+            <template v-else-if="col.key === 'price'">
+              {{ item.price?.toLocaleString("ru-RU") || "—" }}
             </template>
+
             <template v-else-if="col.key === 'document'">
               <div class="document-blocks">
                 <div>{{ item.seriesDocument }}</div>
@@ -78,26 +96,32 @@
               <div>{{ formatDate(item.dateDocument) }}</div>
               <div>
                 {{
-                  item.issuedDocument.length > 20
+                  item.issuedDocument?.length > 20
                     ? item.issuedDocument.slice(0, 20) + "..."
                     : item.issuedDocument
                 }}
               </div>
               <div>{{ item.cityDocument }}</div>
             </template>
-            <template v-else-if="item[col.key] === true || item[col.key] === false">
+
+            <template v-else-if="typeof item[col.key] === 'boolean'">
               <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
             </template>
+
             <template v-else-if="showButtons && col.key === 'buttons'">
               <div class="buttons-wrapper">
-                <v-btn icon=" mdi-file-document" variant="text" size="small" class="document-btn btn"
-                  v-tooltip:top="'Документы'" @click="onModalDocuments('documents', item, true)" />
-                <v-btn icon="mdi-pencil" variant="text" size="small" class="edit-btn btn" v-tooltip:top="'Изменить'"
+                <v-btn icon="mdi-file-document" variant="text" size="small"
+                  class="document-btn btn" v-tooltip:top="'Документы'"
+                  @click="onModalDocuments('documents', item, true)" />
+                <v-btn icon="mdi-pencil" variant="text" size="small"
+                  class="edit-btn btn" v-tooltip:top="'Изменить'"
                   @click="onModalDocuments('edit', item)" />
-                <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
+                <v-btn icon="mdi-delete" variant="text" size="small"
+                  class="delete-btn btn" v-tooltip:top="'Удалить'"
                   @click="onModalDocuments('delete', item, true)" />
               </div>
             </template>
+
             <template v-else>
               {{ item[col.key] ?? "—" }}
             </template>
@@ -109,60 +133,64 @@
 </template>
 
 <script setup>
-import { computed, ref, shallowRef } from "vue";
+import { computed, ref, shallowRef, watch } from "vue";
 import Switch from "../Switch/Switch.vue";
 import { callModalWindow } from "./../../utils/callModalWindow";
 import { loadComponent } from "./../../utils/loadComponent";
 import { useStore } from "vuex";
 
-const Information = shallowRef(loadComponent("Information"));
-const store = useStore();
-
-const activeColor = "#4d672c";
-const inactiveColor = "#ccc";
+//////////////////////////////////////////////////////////////////////////////////
+// PROPS
+//////////////////////////////////////////////////////////////////////////////////
 
 const props = defineProps({
   headers: Array,
   sortByKey: String,
   sortByDirection: { type: String, default: "asc" },
-  items: Array,
+  items: Array
 });
 
-const sortKey = ref(props.sortByKey);
+const store = useStore();
+const Information = shallowRef(loadComponent("Information"));
+
+const activeColor = "#4d672c";
+const inactiveColor = "#ccc";
+
+//////////////////////////////////////////////////////////////////////////////////
+// SORT STATE
+//////////////////////////////////////////////////////////////////////////////////
+
+const sortKey = ref(props.sortByKey || null);
 const sortDirection = ref(props.sortByDirection);
 
-function compareMultipleFields(a, b) {
-  const fields = ["surname", "name", "patronymic"];
-  for (const field of fields) {
-    const cmp = (a[field] || "").localeCompare(b[field] || "");
-    if (cmp !== 0) return cmp;
-  }
-  return 0;
-}
+// реагировать на внешние изменения сортировки
+watch(
+  () => props.sortByKey,
+  (v) => v && (sortKey.value = v)
+);
 
-const sortedItems = computed(() => {
-  if (!sortKey.value) return props.items;
-  const sorted = [...props.items].sort((a, b) => {
-    if (sortKey.value === "fio") return compareMultipleFields(a, b);
-    if (sortKey.value === "date") return new Date(b.date) - new Date(a.date);
-    if (sortKey.value === "dateStay")
-      return new Date(b.endDate) - new Date(a.endDate);
-    const aVal = a[sortKey.value];
-    const bVal = b[sortKey.value];
-    return String(aVal || "").localeCompare(String(bVal || ""));
-  });
-  return sortDirection.value === "asc" ? sorted : sorted.reverse();
-});
+watch(
+  () => props.sortByDirection,
+  (v) => (sortDirection.value = v)
+);
 
-const flatColumns = computed(() => {
-  return props.headers.flatMap((row) => row.filter((col) => col.key));
-});
+//////////////////////////////////////////////////////////////////////////////////
+// COLUMNS
+//////////////////////////////////////////////////////////////////////////////////
+
+const flatColumns = computed(() =>
+  props.headers.flatMap((row) => row.filter((col) => col.key))
+);
 
 const showButtons = computed(() =>
   props.headers.some((row) => row.some((col) => col.key === "buttons"))
 );
 
-function sortByColumn(key) {
+//////////////////////////////////////////////////////////////////////////////////
+// SORT LOGIC
+/////////////////////////////////////////////////////////////////////////////////
+
+function toggleSort(key) {
   if (sortKey.value === key) {
     sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
   } else {
@@ -171,18 +199,65 @@ function sortByColumn(key) {
   }
 }
 
-function formatDate(dateStr) {
-  return dateStr ? dateStr.split("T")[0].split("-").reverse().join(".") : "—";
+function isAsc(key) {
+  return sortKey.value === key && sortDirection.value === "asc";
+}
+
+function isDesc(key) {
+  return sortKey.value === key && sortDirection.value === "desc";
+}
+
+function compareFio(a, b) {
+  const fields = ["surname", "name", "patronymic"];
+  for (const f of fields) {
+    const res = (a[f] || "").localeCompare(b[f] || "");
+    if (res !== 0) return res;
+  }
+  return 0;
+}
+
+// ——— главный вычисляемый массив ————
+const sortedItems = computed(() => {
+  const arr = [...props.items];
+
+  if (!sortKey.value) return arr;
+
+  return arr.sort((a, b) => {
+    if (sortKey.value === "fio") return compareFio(a, b);
+
+    if (sortKey.value === "date")
+      return new Date(a.date) - new Date(b.date);
+
+    if (sortKey.value === "dateStay")
+      return new Date(a.endDate) - new Date(b.endDate);
+
+    const av = a[sortKey.value];
+    const bv = b[sortKey.value];
+
+    return String(av || "").localeCompare(String(bv || ""));
+  })
+    [sortDirection.value === "asc" ? "slice" : "reverse"]();
+});
+
+//////////////////////////////////////////////////////////////////////////////////
+// HELPERS
+//////////////////////////////////////////////////////////////////////////////////
+
+function formatDate(date) {
+  return date ? date.split("T")[0].split("-").reverse().join(".") : "—";
 }
 
 async function onModalDocuments(name, object, disable) {
   await callModalWindow(store, {
     name: "Information",
     component: Information,
-    props: { name, object, disable },
+    props: { name, object, disable }
   });
 }
 </script>
+
+
+
 
 <style scoped>
 .date-line {

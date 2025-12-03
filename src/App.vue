@@ -42,6 +42,10 @@ onMounted(async () => {
 <style>
 @import "./../public/style.css";
 
+.v-input__details {
+  padding: 3px !important;
+}
+
 .v-card--variant-elevated {
   background: transparent !important;
 }

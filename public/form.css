@@ -63,10 +63,6 @@ hr {
   margin-right: 20px;
 }
 
-.v-input__details {
-  min-height: 10px !important;
-}
-
 .v-field--disabled {
   background-color: rgba(204, 204, 204, .2);
 }

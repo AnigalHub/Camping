@@ -13,6 +13,7 @@
         rounded="lg"
         variant="solo"
         class="filter-select"
+        @update:modelValue="onSearch"   
       />
       <v-btn 
         class="btn-page"
@@ -40,9 +41,13 @@ const sortOptions =
     ? ["По наименованию", "По дате", "По цене"]
     : route.name === "MapObjects"
       ? ["По местам", "По парковке"]
-      : ["По дате", "По имени"];
+      : ["По дате", "По фио"];
 
-const onSearch = () => console.log("Поиск:", search.value, "Сортировка:", sort.value);
+const emit = defineEmits(["search"]);
+
+const onSearch = () => {
+  emit("search", { search: search.value, sort: sort.value });
+};
 </script>
 
 <style>
