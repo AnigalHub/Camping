@@ -1,13 +1,15 @@
 <template>
   <div>
     <v-container>
-      <Title :title="title" :icon="'mdi-account-group-outline'" />
-      <search @search="onSearchChanged"/>
-<Table
-  v-if="items.length"
-  :headers="headers"
-  :items="sortedItems"
-/>
+      <Title :title="title" icon="mdi-account-group-outline" />
+
+      <search @search="onSearchChanged" />
+
+      <Table
+        v-if="items.length"
+        :headers="headers"
+        :items="sortedItems"
+      />
 
       <div v-else class="content">Данные не найдены.</div>
     </v-container>
@@ -15,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from "vue";
+import { ref, computed } from "vue";
 defineOptions({
   name: "ListClients",
 });
@@ -35,62 +37,60 @@ const headers = [
   ],
 ];
 
-const searchValue = ref("");
-const sortValue = ref(null);
 
-function onSearchChanged({ search, sort }) {
-  searchValue.value = search;
-  sortValue.value = sort;
-}
-
-const sortKey = ref("fio");
+const sortKey = ref(null);
 const sortDirection = ref("asc");
 
+function toggleSort(key) {
+  if (sortKey.value === key) {
+    sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
+  } else {
+    sortKey.value = key;
+    sortDirection.value = "asc";
+  }
+}
+
+function compareFio(a, b) {
+  const fields = ["surname", "name", "patronymic"];
+  for (const f of fields) {
+    const res = (a[f] || "").localeCompare(b[f] || "");
+    if (res !== 0) return res;
+  }
+  return 0;
+}
+
 const sortedItems = computed(() => {
-  let arr = [...items];
+  if (!sortKey.value) return items;
 
-  if (searchValue.value) {
-    const q = searchValue.value.toLowerCase();
-    arr = arr.filter(i =>
-      `${i.surname} ${i.name} ${i.patronymic}`.toLowerCase().includes(q)
+  const arr = [...items];
+
+  arr.sort((a, b) => {
+    if (sortKey.value === "fio") return compareFio(a, b);
+
+    if (sortKey.value === "dateStay")
+      return new Date(a.endDate) - new Date(b.endDate);
+
+    return String(a[sortKey.value] || "").localeCompare(
+      String(b[sortKey.value] || "")
     );
-  }
-
-  return arr.sort((a, b) => {
-    switch (sortValue.value) {
-      case "По имени":
-        return `${a.surname}${a.name}${a.patronymic}`.localeCompare(
-          `${b.surname}${b.name}${b.patronymic}`
-        );
-
-      case "По дате":
-        return new Date(a.endDate) - new Date(b.endDate);
-
-      default:
-        return 0;
-    }
   });
+
+  return sortDirection.value === "asc" ? arr : arr.reverse();
 });
 
 
-watch(sortValue, (value) => {
-  switch (value) {
-    case "По имени":
-      sortKey.value = "fio";
-      sortDirection.value = "asc";
+function onSearchChanged({ sort }) {
+  switch (sort) {
+    case "По фио":
+      toggleSort("fio");
       break;
-
     case "По дате":
-      sortKey.value = "dateStay";
-      sortDirection.value = "asc";
+      toggleSort("dateStay");
       break;
-
     default:
-      sortKey.value = "fio";
-      sortDirection.value = "asc";
+      sortKey.value = null;
   }
-});
-
+}
 </script>
 
 <style scoped>
