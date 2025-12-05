@@ -86,49 +86,5 @@
     "people":15,
     "car":2,
     "cars":7
-  },
-  {
-    "name": "Под Горным Ветром",
-    "description": "Свежесть ветра и свобода простора",
-    "icon": "mdi-weather-windy",
-    "color": "#8bb7d2",
-    "coordinations": "50.456723, 36.234655",
-    "person":3,
-    "people":10,
-    "car":4,
-    "cars":5
-  },
-  {
-    "name": "У Горного Озера",
-    "description": "Хрустальная вода и отражение гор в глади озера",
-    "icon": "mdi-water-outline",
-    "color": "#7db6d4",
-    "coordinations": "51.162342, 37.635122",
-    "person":8,
-    "people":20,
-    "car":6,
-    "cars":12
-  },
-  {
-    "name": "Долина Цветов",
-    "description": "Ковёр из ароматных трав и цветов под солнцем",
-    "icon": "mdi-flower-tulip-outline",
-    "color": "#d48ab4",
-    "coordinations": "52.342156, 38.451212",
-    "person":1,
-    "people":20,
-    "car":8,
-    "cars":9
-  },
-  {
-    "name": "Сосновая Тропа",
-    "description": "Шелест хвои и лёгкий аромат смолы на тропинке",
-    "icon": "mdi-nature",
-    "color": "#8cc47d",
-    "coordinations": "53.152534, 40.126334",
-    "person":11,
-    "people":15,
-    "car":5,
-    "cars":6
   }
 ]

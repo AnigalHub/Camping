@@ -1,18 +1,19 @@
 <template>
   <v-app>
-    <top-menu :drawer="drawer" @toggle-drawer="drawer = !drawer" />
+    <top-menu v-if="isDesktop" :drawer="drawer" @toggle-drawer="drawer = !drawer" />
     <div class="layout-container">
-      <side-menu v-model:drawer="drawer" />
+      <side-menu v-if="isDesktop" v-model:drawer="drawer" />
       <v-main>
-        <router-view style="margin-top: 53px" />
+        <router-view :style="routerViewStyle" />
       </v-main>
     </div>
+    <mobile-menu v-if="!isDesktop"/>
     <modal v-for="(modal, index) in modals" v-bind="modal" :key="index" :value="modal.isVisible" />
   </v-app>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { useStore } from "vuex";
 import { loadComponent } from "./utils/loadComponent";
 import { loadGoogleFonts } from './utils/fontLoader';
@@ -24,6 +25,18 @@ const modals = computed(() => store.getters["Modal/modals"]);
 
 const drawer = ref(false);
 
+const windowWidth = ref(window.innerWidth);
+const isDesktop = computed(() => windowWidth.value >= 1100);
+
+function onResize() {
+  windowWidth.value = window.innerWidth;
+}
+
+const routerViewStyle = computed(() => ({
+  marginTop: isDesktop.value ? "53px" : "0",
+  marginBottom: !isDesktop.value ? "53px" : "0",
+}));
+
 /** Проверка видимости модального окна по имени */
 function isModalVisible(name) {
   const found = modals.value.find((x) => x.name === name);
@@ -31,11 +44,16 @@ function isModalVisible(name) {
 }
 
 onMounted(async () => {
+    window.addEventListener("resize", onResize);
   await nextTick();
   const usedFonts = extractUsedFonts();
   // загрузка найденных шрифтов на https://fonts.google.com/
   loadGoogleFonts(usedFonts);
 }); 
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", onResize);
+});
 </script>
 
 

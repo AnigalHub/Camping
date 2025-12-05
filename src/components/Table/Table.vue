@@ -345,12 +345,9 @@ async function onModalDocuments(name, object, disable) {
 
 @media (max-width: 600px) {
   .buttons-wrapper {
-    flex-direction: column;
     width: 100%;
     gap: 8px;
   }
-
-
 
   .button-label {
     font-weight: 500;
