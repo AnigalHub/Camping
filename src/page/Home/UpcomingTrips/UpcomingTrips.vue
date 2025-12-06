@@ -387,7 +387,6 @@ h2::after {
   }
 
   .day {
-    font-size: 22px;
     width: 130%;
   }
 

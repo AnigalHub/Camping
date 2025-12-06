@@ -154,7 +154,7 @@ async function onModalDocuments(name, object, disable) {
 }
 
 .v-table tbody td {
-  font-size: .92rem;
+  font-size: 1rem;
 }
 
 .button-label {
@@ -299,7 +299,7 @@ async function onModalDocuments(name, object, disable) {
 
   .v-table tbody {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
     gap: 20px;
     padding: 0 5px 20px 0 !important;
   }
@@ -375,7 +375,7 @@ async function onModalDocuments(name, object, disable) {
 
   .v-table tbody td {
     text-align: left;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     padding: 4px 0;
   }
 

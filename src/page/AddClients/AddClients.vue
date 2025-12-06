@@ -332,6 +332,18 @@ span {
 }
 
 @media (max-width: 600px) {
+  .result_block{
+    padding: 5px 10px;
+  }
+
+  .result_block {
+    width: 100%;
+  }
+  
+  .content {
+    padding: 15px 10px;
+  }
+
   .grid-inputs {
     grid-template-columns: 1fr;
   }

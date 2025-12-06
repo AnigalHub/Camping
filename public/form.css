@@ -129,6 +129,12 @@ hr {
   gap: 0 16px;
 }
 
+@media (max-width: 600px) {
+  .btn-page{
+    width: 90%;
+  }
+}
+
 @media (max-width: 780px) {
   .grid-inputs {
     grid-template-columns: 1fr;
@@ -136,11 +142,19 @@ hr {
 }
 
 @media (max-width:780px) {
+  .custom-text{
+    padding: 10px 0;
+  }
   .v-col-9{
     flex: 0 0 100%;
     max-width: 100%;
   }
   .content-icons{
     display: none;
+  }
+}
+@media (max-width: 900px) {
+  .form-subtitle {
+    font-size: 1.3rem;
   }
 }

@@ -87,8 +87,8 @@
 .mobile-tabs {
   display: none;
   align-items: center;
-  margin-left: -8px;
   gap: 20px;
+  margin-left: 1px;
   margin-bottom: 15px;
 }
 

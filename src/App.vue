@@ -58,10 +58,6 @@ onBeforeUnmount(() => {
   padding: 3px !important;
 }
 
-.v-card--variant-elevated {
-  background: transparent !important;
-}
-
 /**Фон страниц */
 .v-application__wrap{
   background: var(--background-color-page) !important;
@@ -171,6 +167,7 @@ onBeforeUnmount(() => {
 }
 
 .v-card--variant-elevated {
+  background: transparent !important;
   padding: 10px !important;
   box-shadow: var(--box-shadow-content-inner-card) !important;
 }

@@ -30,6 +30,15 @@ const props = defineProps({
   background-color: #78a0b2 !important;
 }
 
+.v-selection-control__wrapper {
+  height: auto !important;
+}
+
+.v-switch .v-selection-control{
+  min-height: max-content !important;
+  margin-right: -10px;
+}
+
 .v-switch__track,
 .v-switch__thumb {
   border: var(--border-switch) var(--border-color-switch) !important;

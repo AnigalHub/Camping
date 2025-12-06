@@ -48,7 +48,6 @@ function goBack() {
   margin: 15px 0 5px;
 }
 
-/* --- КНОПКА НАЗАД --- */
 .back-btn {
   width: 38px;
   height: 38px;
@@ -69,7 +68,6 @@ function goBack() {
   transform: scale(.95);
 }
 
-/* --- ОБЁРТКА ЗАГОЛОВКА --- */
 .title-wrapper {
   padding: 6px 18px;
   border-radius: 12px;
@@ -92,7 +90,6 @@ function goBack() {
   background: #fff8ec;
 }
 
-/* --- ИКОНКА + ТЕКСТ --- */
 .icon-with-title {
   display: flex;
   align-items: center;
@@ -145,15 +142,9 @@ function goBack() {
   background: #f0ad29;
 }
 
-
-/* ============================
-    А Д А П Т И В Н О С Т Ь
-=============================== */
-
-/* --- Планшеты --- */
 @media (max-width: 900px) {
   .title-animated {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
   }
   .icon-wrapper {
     width: 38px;
@@ -162,13 +153,8 @@ function goBack() {
   .icon {
     font-size: 22px;
   }
-  .back-btn {
-    width: 34px;
-    height: 34px;
-  }
 }
 
-/* --- Телефоны --- */
 @media (max-width: 600px) {
   .block-title {
     gap: 10px;
@@ -193,26 +179,12 @@ function goBack() {
     font-size: 20px;
   }
 
-  .title-animated {
-    font-size: 1rem;
-  }
-
   .title-animated::after {
     width: 45px;
   }
-
-  .back-btn {
-    width: 30px;
-    height: 30px;
-  }
 }
 
-/* --- Маленькие телефоны 360px --- */
 @media (max-width: 400px) {
-  .title-animated {
-    font-size: 0.9rem;
-  }
-
   .icon-wrapper {
     width: 30px;
     height: 30px;

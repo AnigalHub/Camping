@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <Title :title="title" icon="mdi-calendar-clock-outline" />
-      <v-card style="min-height:85vh;position:relative;z-index:2">
+      <v-card style="min-height:85vh;position:relative;z-index:2; padding: 10px 0 !important;">
         <div class="tabs-container desktop-only">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>

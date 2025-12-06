@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <Title :title="title" :icon="'mdi-cog-outline'" />
-      <v-card style="height: 87vh">
+      <v-card style="height: 87vh; padding: 10px 0 !important;">
         <div class="tabs-container desktop-only">
           <div class="tabs-switch">
             <div class="tabs-slider" :style="sliderStyle"></div>
@@ -56,7 +56,7 @@ import Objects from "./Objects/Objects.vue";
 defineOptions({
   name: "SettingsCompany",
 });
-const title = "Управление лагерем и тарифами";
+const title = "Настройки, тарифы";
 
 const tabs = [
   { value: "Описание" },
