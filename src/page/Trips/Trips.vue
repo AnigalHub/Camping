@@ -4,7 +4,7 @@
       <Title :title="title" icon="mdi-calendar-clock-outline" />
       <v-card style="min-height:85vh;position:relative;z-index:2; padding: 10px 0 !important;">
         <div class="tabs-container desktop-only">
-          <div class="tabs-switch">
+          <div class="tabs-switch tabs-custom">
             <div class="tabs-slider" :style="sliderStyle"></div>
             <v-tab v-for="(item, i) in tabs" :key="item" :value="item"
               :class="['tabs-switch-tab', { active: tab === item }]" @click="tab = item" ref="tabRefs">
@@ -21,7 +21,7 @@
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="item in tabs" :key="item" :text="item" :value="item">
             <div v-if="filteredSortedItems.length">
-              <Search v-model:sort="searchSort" @search="onSearchChanged" style="margin-top:-10px;" />
+              <Search v-model:sort="searchSort" @search="onSearchChanged" />
               <Table :headers="headers" :items="filteredSortedItems" />
             </div>
             <div v-else class="no_data">Данных за день нет.</div>
@@ -157,6 +157,7 @@ const filteredSortedItems = computed(() => {
   box-shadow: var(--box-shadow-content-card) !important;
   border-radius: var(--border-radius-content-card) !important;
   height: 71vh;
-  padding: 15px
+  padding: 15px;
+  margin-top: 10px;
 }
 </style>

@@ -69,7 +69,7 @@ const list = [
   border: 1.5px solid #fff;
   border-radius: 15px !important;
   background: linear-gradient(165deg, #fffffff5, #ffffffeb) !important;
-  margin-top: 30px;
+  margin-top: 32px;
   transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
 }
 
@@ -258,6 +258,13 @@ h2::after {
     opacity: 1
   }
 }
+
+@media screen and (max-width: 850px) {
+  .card {
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 960px) {
   h2 {
     font-size: 1.3rem;

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-between responsive-blocks">
+  <div class="d-flex justify-space-between blocks">
     <v-card
       v-for="(button, index) in buttons"
       :key="index"
@@ -240,7 +240,7 @@ function goRoute(name) {
 
 @media screen and (max-width: 1200px) {
 
-  .responsive-blocks {
+  .blocks {
     flex-direction: column;
   }
 
@@ -258,6 +258,12 @@ function goRoute(name) {
 
   .btn-home {
     margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .card-1 {
+    margin-bottom: 20px;
   }
 }
 

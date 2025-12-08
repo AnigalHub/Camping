@@ -1,8 +1,7 @@
 <template>
   <nav class="mobile-menu" role="navigation" aria-label="Mobile bottom menu">
-    <button v-for="(btn, i) in allButtons" :key="i" class="menu-btn" @click="goRoute(btn.route)"
-      :aria-label="btn.label">
-      <!-- если есть изображение — показываем картинку -->
+    <button v-for="(btn, i) in allButtons" :key="i" class="menu-btn" :class="{ active: isActive(btn.route) }"
+      @click="goRoute(btn.route)" :aria-label="btn.label">
       <img v-if="btn.img" :src="btn.img" alt="home icon" class="img-icon" />
       <div v-else class="icons">
         <v-icon>{{ btn.icon }}</v-icon>
@@ -12,15 +11,15 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
+const route = useRoute();
+function isActive(name) { return route.name === name; }
 
 const allButtons = [
   { icon: "mdi-account-plus-outline", label: "Регистрация", route: "AddClients" },
   { icon: "mdi-account-group-outline", label: "Список клиентов", route: "ListClients" },
-
   { img: "/favicon.png", route: "Home" },
-
   { icon: "mdi-calendar-clock-outline", label: "Ближайшие выезды", route: "Trips" },
   { icon: "mdi-dots-grid", label: "Прочее", route: "Other" },
 ];
@@ -41,49 +40,69 @@ function goRoute(name) {
   margin: 0 15px;
   justify-content: space-around;
   align-items: center;
-  background: white;
-  padding: 8px 5px;
-  border-radius: 30px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: rgba(245, 250, 255, 0.8);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgb(52 113 206 / 50%);
+  border-radius: 28px;
+  padding: 10px 8px;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.15), 2px 2px 8px rgba(17, 44, 18, 0.14);
 }
 
 .menu-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
-  color: #455e25;
+  transition: 0.25s ease;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 .icons {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #edeef070;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 14%), inset 0 1px 1px rgb(255 255 255 / 46%);
-  color: #f0ad29;
+  backdrop-filter: blur(14px);
+  transition: 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icons:hover,
+.menu-btn.active .icons {
+  background: #fff;
+  border: 1px solid rgb(240 173 41);
+  transform: scale(1.25);
+}
+
+.menu-btn.active .icons i {
+  filter: drop-shadow(0 3px 8px rgba(200, 220, 240, 0.85));
+  color: rgb(240 173 41);
+}
+
+.menu-btn.active img {
+  filter: drop-shadow(0 3px 15px rgba(241, 221, 167, 0.65));
+  transform: scale(1.65);
 }
 
 i {
-  margin-top: 8px;
-  padding: 10px;
   font-size: 30px;
-  height: 35px;
-  width: 35px;
-  -webkit-text-stroke: .45px #9a6f1b;
+  color: rgba(60, 95, 150, 0.65);
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .img-icon {
-  width: 50px;
-  height: 50px;
-  transform: scale(1.6);
+  width: 52px;
+  height: 52px;
+  transform: scale(1.45);
   object-fit: contain;
+  transition: transform 0.32s ease;
 }
 
-.img-icon:hover{
-  transform: scale(1.6) rotate(45deg);
+.img-icon:hover {
+  transform: scale(1.52) rotate(45deg);
 }
 </style>

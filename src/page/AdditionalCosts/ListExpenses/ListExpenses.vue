@@ -49,7 +49,6 @@ const sortedItems = computed(() => {
 </script>
 
 <style scoped>
-.search { margin-top: -.5rem; }
 .content { height: 60vh; }
 .list { min-height: 58vh; }
 </style>

@@ -2,8 +2,9 @@
   <div class="content-wrapper-home">
     <div class="wrapper">
       <v-container class="pt-8" min-height="100vh">
+        <PersonCard v-if="!isDesktop"/>
         <MainBlocks />
-        <div class="d-flex align-stretch justify-space-between pt-8 ga-8 responsive-blocks">
+        <div class="d-flex align-stretch justify-space-between responsive-blocks">
           <div class="trips-block">
             <UpcomingTrips class="h-100" />
           </div>
@@ -19,11 +20,29 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted, onBeforeUnmount} from "vue";
+
+import PersonCard from "./PersonCard/PersonCard.vue";
 import MainBlocks from "./MainBlocks/MainBlocks.vue";
 import UpcomingTrips from "./UpcomingTrips/UpcomingTrips.vue";
 import ExpenseTracker from "./ExpenseTracker/ExpenseTracker.vue";
 import AvailableGlades from "./AvailableGlades/AvailableGlades.vue";
 import CampManagement from "./CampManagement/CampManagement.vue";
+
+const windowWidth = ref(window.innerWidth);
+const isDesktop = computed(() => windowWidth.value >= 1100);
+
+function onResize() {
+  windowWidth.value = window.innerWidth;
+}
+
+onMounted(async () => {
+    window.addEventListener("resize", onResize);
+}); 
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", onResize);
+});
 </script>
 
 <style scoped>
@@ -34,11 +53,15 @@ import CampManagement from "./CampManagement/CampManagement.vue";
   padding-bottom: 20px;
 }
 
-
-
 .trips-block {
   width: 75%;
 }
+
+.responsive-blocks{
+  gap: 32px;
+  padding-top: 32px;
+}
+
 
 .expense-block {
   width: 25%;
@@ -57,7 +80,10 @@ import CampManagement from "./CampManagement/CampManagement.vue";
 @media screen and (max-width: 850px) {
   .responsive-blocks{
     flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
   }
+
   .trips-block {
     width: 100%;
   }

@@ -45,6 +45,10 @@
   padding: 0;
 }
 
+.tabs-custom{
+    margin-bottom: 5px;
+}
+
 .tabs-slider {
   position: absolute;
   top: 0;

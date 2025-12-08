@@ -150,6 +150,7 @@ function saveForm() {
 .content {
   padding: 20px 10px;
   height: 70vh;
+  margin-top: 10px;
 }
 
 .textarea-large textarea {

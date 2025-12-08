@@ -373,8 +373,6 @@ const openOnMap = coords => {
 }
 
 @media screen and (max-width: 900px) {
-
-
   .coords_home {
     margin-bottom: 10px;
   }
@@ -386,6 +384,10 @@ const openOnMap = coords => {
 
   .block_buttons {
     flex-direction: column;
+  }
+
+  .place-card{
+    margin: 0 0 10px;
   }
 }
 </style>

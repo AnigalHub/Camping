@@ -347,7 +347,7 @@ h2::after {
 
   .day {
     font-size: 24px;
-    width: 110%;
+    width: 115%;
   }
 
   .date-block {

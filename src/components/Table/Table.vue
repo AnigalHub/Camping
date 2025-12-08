@@ -301,7 +301,7 @@ async function onModalDocuments(name, object, disable) {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 5px 20px 0 !important;
+    padding: 0 0 20px 0 !important;
   }
 
   /** добавить переменные */
@@ -309,8 +309,6 @@ async function onModalDocuments(name, object, disable) {
     display: flex;
     flex-direction: column;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
-      2px 2px 8px rgba(17, 44, 18, 0.1);
     border-radius: 15px;
     padding: 16px 18px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -325,7 +323,7 @@ async function onModalDocuments(name, object, disable) {
 
   .v-table tbody td::before {
     content: attr(data-label);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-th-table);
   }
 

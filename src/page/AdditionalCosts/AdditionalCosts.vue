@@ -4,7 +4,7 @@
       <Title :title="title" icon="mdi-cash-multiple" />
       <v-card style="min-height:85vh; position:relative; z-index:2; padding: 10px 0 !important;">
         <div class="tabs-container desktop-only">
-          <div class="tabs-switch">
+          <div class="tabs-switch tabs-custom">
             <div class="tabs-slider" :style="sliderStyle"></div>
             <v-tab v-for="(item, i) in tabs" :key="i" :class="['tabs-switch-tab', { active: tab === item.value }]"
               @click="tab = item.value" ref="tabRefs">

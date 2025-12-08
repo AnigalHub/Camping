@@ -70,7 +70,7 @@ const topTwo = sortedPlaces.slice(0, 2);
   border: 1.5px solid #fff;
   border-radius: 15px !important;
   background: linear-gradient(165deg, #fffffff5, #ffffffeb) !important;
-  margin-top: 30px;
+  margin-top: 32px;
   transition: transform .3s ease, filter .3s ease, box-shadow .3s ease;
 }
 
@@ -149,6 +149,12 @@ h2::after {
   bottom: -150px;
   left: -200px;
   animation-duration: 16s;
+}
+
+@media screen and (max-width: 850px) {
+  .card {
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 960px) {
