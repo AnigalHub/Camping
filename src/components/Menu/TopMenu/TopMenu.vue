@@ -87,7 +87,7 @@ function goRoute(name) {
   -webkit-text-stroke: .04px #dfdfdf;
   font-size: .95rem;
   letter-spacing: 1px;
-  margin: -12px 0 0 -10px;
+  margin: -12px 0 0 -4px;
 }
 
 h1,

@@ -1,8 +1,8 @@
 <template>
   <div class="content objects">
     <v-row dense align="stretch">
-     <v-col cols="9">
-        <div class="wrapper_content" ref="scrollContainer" >
+      <v-col cols="9">
+        <div class="wrapper_content" ref="scrollContainer">
           <v-card class="pa-6" elevation="2">
             <v-form v-model="valid" @submit.prevent="saveForm">
               <v-expansion-panels v-model="openedPanel" multiple>
@@ -56,7 +56,6 @@ defineOptions({
 const valid = ref(false);
 const objects = reactive(places);
 const openedPanel = ref([objects.length - 1]);
-
 const scrollContainer = ref(null);
 
 const scrollToBottom = () => {
@@ -109,6 +108,7 @@ const isChanged = computed(() => {
 
 const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
 </script>
+
 <style>
 .objects .v-expansion-panel-text__wrapper {
   padding: 8px 16px 0 !important;
@@ -123,8 +123,10 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
   margin-top: 0 !important;
 }
 </style>
+
 <style scoped>
 @import "../../../../public/form.css";
+
 .content {
   padding: 20px 10px;
   height: 70vh;

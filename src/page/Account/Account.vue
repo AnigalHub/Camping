@@ -29,11 +29,6 @@
             </button>
           </div>
         </div>
-        <!-- <div class="mobile-tabs mobile-only">
-          <button class="arrow" @click="prevTab">‹</button>
-          <div class="mobile-tab-label">{{ tab }}</div>
-          <button class="arrow" @click="nextTab">›</button>
-        </div> -->
         <v-tabs-window v-model="tab">
           <v-tabs-window-item
             v-for="item in tabs"
@@ -90,17 +85,6 @@ const updateSlider = () => {
 
 onMounted(updateSlider);
 watch(tab, updateSlider);
-
-// Mobile navigation
-const nextTab = () => {
-  const idx = tabs.findIndex((t) => t.value === tab.value);
-  tab.value = tabs[(idx + 1) % tabs.length].value;
-};
-
-const prevTab = () => {
-  const idx = tabs.findIndex((t) => t.value === tab.value);
-  tab.value = tabs[(idx - 1 + tabs.length) % tabs.length].value;
-};
 </script>
 <style scoped>
 @import "./../../../public/tabs.css";

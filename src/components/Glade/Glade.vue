@@ -1,9 +1,6 @@
 <template>
-  <div 
-    class="place-card" 
-    :class="cardClasses"
-    :style="{ border: route.name === 'Home' ? `1.5px solid ${place.color}` : '' }"
-  >
+  <div class="place-card" :class="cardClasses"
+    :style="{ border: route.name === 'Home' ? `1.5px solid ${place.color}` : '' }">
     <div class="layout" :class="{ 'right-layout': useRightLayout }">
       <div class="left-content">
         <div class="header">
@@ -14,15 +11,6 @@
             <v-icon :color="place.color" size="35" class="title-icon">{{ place.icon }}</v-icon>
             <h3 class="title">{{ place.name }}</h3>
           </div>
-          <div v-if="showRightTools" class="right-tools">
-            <div class="map-button map-button-right" @click="openOnMap(place.coordinations)">
-              <div class="map-icon-wrap icon-block">
-                <v-icon size="30" color="#6d8f3c" class="map-icon-animated">mdi-map-marker</v-icon>
-                <div class="ping"></div>
-              </div>
-              <span>Открыть</span>
-            </div>
-          </div>
         </div>
         <div class="desc-wrap">
           <p class="description">{{ place.description }}</p>
@@ -31,16 +19,24 @@
             <v-icon size="20" color="#5F8835">mdi-content-copy</v-icon>
           </div>
         </div>
-        <div class="progress-section">
-          <div class="progress-item">
-            <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
-            <span>{{ place.person }}/{{ place.people }}</span>
-            <v-progress-linear :model-value="showPercent(place.person, place.people)" color="#8AB539" height="9" rounded />
+        <div class="progress-layout">
+          <div class="progress-column">
+            <div class="progress-item">
+              <v-icon size="26" color="#6d8f3c" class="icon-float">mdi-human-female-female-child</v-icon>
+              <span>{{ place.person }}/{{ place.people }}</span>
+              <v-progress-linear :model-value="showPercent(place.person, place.people)" color="#8AB539" height="9" rounded />
+            </div>
+            <div class="progress-item">
+              <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
+              <span>{{ place.car }}/{{ place.cars }}</span>
+              <v-progress-linear :model-value="showPercent(place.car, place.cars)" color="#B5B5B5" height="9" rounded />
+            </div>
           </div>
-          <div class="progress-item">
-            <v-icon size="26" color="#7a7a7a" class="icon-float">mdi-car</v-icon>
-            <span>{{ place.car }}/{{ place.cars }}</span>
-            <v-progress-linear :model-value="showPercent(place.car, place.cars)" color="#B5B5B5" height="9" rounded />
+          <div v-if="showRightTools" class="coords coords_page" @click="openOnMap(place.coordinations)">
+            <span>Открыть на картах</span>
+            <div class="map-icon-wrap icon-block">
+              <v-icon size="20" color="#6d8f3c" class="map-icon-animated">mdi-map-marker</v-icon>
+            </div>
           </div>
         </div>
         <div v-if="showBottomButtons" class="d-flex mt-2 block_buttons">
@@ -115,6 +111,19 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
   padding: 15px !important;
 }
 
+.progress-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.progress-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .place-card {
   background: #fff;
   border-radius: 15px;
@@ -122,7 +131,6 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
   margin: 5px 8px 10px;
   position: relative;
   transition: .35s;
-  /* box-shadow: inset 0 0 6px rgba(255, 255, 255, .3), 2px 2px 8px rgba(17, 44, 18, .08); */
 }
 
 .place-card:hover {
@@ -222,7 +230,7 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
 
 .coords_page {
   margin: 0;
-  min-width: 170px;
+  min-width: 200px;
   min-height: 20px !important;
   background: transparent;
   color: #6f9233;
@@ -369,7 +377,7 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
 
 @keyframes bounce {
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
   }
 }
 
@@ -399,7 +407,7 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
     flex-direction: column;
   }
 
-  .place-card{
+  .place-card {
     margin: 0 0 10px;
   }
 }

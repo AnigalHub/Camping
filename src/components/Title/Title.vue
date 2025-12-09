@@ -32,7 +32,6 @@ function goBack() {
   margin: 15px 0 12px;
 }
 
-/* Кнопка назад */
 .back-btn {
   width: 40px;
   height: 40px;
@@ -80,12 +79,16 @@ function goBack() {
   opacity: .9;
 }
 
-/* Адаптивность */
 @media (max-width: 900px) {
-  .form-subtitle { font-size: 1.3rem; }
+  .form-subtitle {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 400px) {
-  .back-btn { width: 35px; height: 35px; }
+  .back-btn {
+    width: 35px;
+    height: 35px;
+  }
 }
 </style>

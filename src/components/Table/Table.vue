@@ -34,11 +34,9 @@
                 <span>{{ item.patronymic }}</span>
               </div>
             </template>
-
             <template v-else-if="col.key === 'date'">
               {{ formatDate(item.date) }}
             </template>
-
             <template v-else-if="col.key === 'dateStay'">
               <div class="date-range">
                 <span>{{ formatDate(item.startDate) }}</span>
@@ -46,7 +44,6 @@
                 <span>{{ formatDate(item.endDate) }}</span>
               </div>
             </template>
-
             <template v-else-if="col.key === 'phone'">
               {{
                 item.phone?.replace(
@@ -55,11 +52,9 @@
                 ) || "—"
               }}
             </template>
-
             <template v-else-if="col.key === 'price'">
               {{ item.price?.toLocaleString("ru-RU") || "—" }}
             </template>
-
             <template v-else-if="col.key === 'document'">
               <div class="document-blocks">
                 <div>{{ item.seriesDocument }}</div>
@@ -76,11 +71,9 @@
               </div>
               <div>{{ item.cityDocument }}</div>
             </template>
-
             <template v-else-if="typeof item[col.key] === 'boolean'">
               <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
             </template>
-
             <template v-else-if="showButtons && col.key === 'buttons'">
               <div class="buttons-wrapper">
                 <v-btn icon="mdi-file-document" variant="text" size="small"
@@ -94,7 +87,6 @@
                   @click="onModalDocuments('delete', item, true)" />
               </div>
             </template>
-
             <template v-else>
               {{ item[col.key] ?? "—" }}
             </template>
@@ -254,7 +246,7 @@ async function onModalDocuments(name, object, disable) {
 }
 
 /* --- Адаптив под карточки --- */
-@media (max-width: 1280px) {
+@media (max-width: 1200px) {
   .v-table {
     margin: 0;
   }

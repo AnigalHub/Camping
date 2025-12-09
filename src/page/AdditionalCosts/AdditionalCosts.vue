@@ -69,17 +69,6 @@ const updateSlider = () => {
 
 onMounted(updateSlider);
 watch(tab, updateSlider);
-
-// Mobile navigation
-const nextTab = () => {
-  const idx = tabs.findIndex((t) => t.value === tab.value);
-  tab.value = tabs[(idx + 1) % tabs.length].value;
-};
-
-const prevTab = () => {
-  const idx = tabs.findIndex((t) => t.value === tab.value);
-  tab.value = tabs[(idx - 1 + tabs.length) % tabs.length].value;
-};
 </script>
 
 

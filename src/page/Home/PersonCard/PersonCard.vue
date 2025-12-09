@@ -6,13 +6,13 @@
       <div class="orbit orbit2"></div>
     </div>
     <div class="d-flex align-center justify-space-between">
-      <div class="d-flex align-center" @click="goRoute">
+      <div class="d-flex align-center profile" @click="goRoute">
         <v-avatar size="60" class="mr-5 icon-main">
           <v-icon size="30">mdi-account-outline</v-icon>
         </v-avatar>
         <div>
           <div class="text">{{ admin.name }} {{ admin.surname[0] }}.</div>
-          <div class="text-caption text-medium-emphasis">Настройки</div>
+          <div class="text-caption">Настройки</div>
         </div>
       </div>
       <v-btn class="icon-exit">
@@ -42,6 +42,10 @@ function goRoute() {
   background: linear-gradient(165deg, rgb(245 248 238), rgb(237 242 248 / 87%)) !important;
   backdrop-filter: blur(8px);
   border: 1px solid #006c9a3b;
+}
+
+.profile:hover .text-caption{
+  color: #dc9c1b !important;
 }
 
 .decor-layer {
@@ -105,9 +109,19 @@ function goRoute() {
   border: 1.7px solid #cde0ac;
   animation: floatAnim-84d4b824 4.5s ease-in-out infinite;
 }
+.profile{
+  width: 99%;
+}
 
 .icon-main i {
   color: rgb(174 191 142);
+}
+.profile:hover .icon-main i{
+ color: #afda66;
+}
+.profile:hover .icon-main {
+  border: 1.7px solid #afda66;
+  background: #ffffffee;
 }
 
 .icon-exit {

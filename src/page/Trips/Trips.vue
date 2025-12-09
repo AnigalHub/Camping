@@ -77,15 +77,6 @@ const updateSlider = () => {
 onMounted(updateSlider);
 watch(tab, updateSlider);
 
-const nextTab = () => {
-  const idx = tabs.indexOf(tab.value);
-  tab.value = tabs[(idx + 1) % tabs.length];
-};
-const prevTab = () => {
-  const idx = tabs.indexOf(tab.value);
-  tab.value = tabs[(idx - 1 + tabs.length) % tabs.length];
-};
-
 const headers = [[
   { label: "ФИО", key: "fio" },
   { label: "Телефон", key: "phone" },
