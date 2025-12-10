@@ -38,7 +38,7 @@ const toggleDrawer = () => {
 };
 
 const menus = [
-  { icon: "mdi-account-outline", name: "Учетная запись", route: "Account" },
+  { icon: "mdi-account", name: "Учетная запись", route: "Account" },
   { icon: "mdi-logout", name: "Выход", route: "Exit" },
 ];
 
@@ -108,7 +108,7 @@ h1,
   height: 38px;
   margin: -2px 10px 0 0;
   opacity: .65;
-  border-radius: 10px;
+  border-radius: 50%;
   color: #547c8f;
   border: 1.8px solid #547c8f;
   transition: .2s;
@@ -117,6 +117,7 @@ h1,
 .btn:hover {
   opacity: 1;
   transform: scale(1.15);
-  background: #e9eff9;
+  color: #fff;
+  background: #547c8f;
 }
 </style>

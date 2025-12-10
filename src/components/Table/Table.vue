@@ -492,12 +492,13 @@ onBeforeUnmount(() => window.removeEventListener("resize", onResize));
   opacity: 0.65;
   transition: 0.2s;
   margin-top: -2px;
-  border-radius: 10px;
+  border-radius: 50%;
 }
 
 .btn:hover {
   opacity: 1;
   transform: scale(1.15);
+  color: #fff;
 }
 
 .delete-btn {
@@ -506,7 +507,7 @@ onBeforeUnmount(() => window.removeEventListener("resize", onResize));
 }
 
 .delete-btn:hover {
-  background-color: #f7f2f1;
+  background-color: #c0392b;
 }
 
 .edit-btn {
@@ -515,7 +516,7 @@ onBeforeUnmount(() => window.removeEventListener("resize", onResize));
 }
 
 .edit-btn:hover {
-  background-color: #e9eff9;
+  background-color: #547c8f;
 }
 
 .document-btn {
@@ -524,6 +525,6 @@ onBeforeUnmount(() => window.removeEventListener("resize", onResize));
 }
 
 .document-btn:hover {
-  background-color: #ebfbe9;
+  background-color: #6f9233;
 }
 </style>

@@ -128,7 +128,7 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
   background: #fff;
   border-radius: 15px;
   padding: 18px 20px;
-  margin: 5px 8px 10px;
+  margin: 5px 0 10px 2px;
   position: relative;
   transition: .35s;
 }
