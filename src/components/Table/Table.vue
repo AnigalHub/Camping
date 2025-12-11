@@ -85,7 +85,7 @@
     </v-table>
     <div v-if="isDesktop" class="pagination">
       <v-btn icon="mdi-chevron-left" variant="text" size="small" class="pagination-btn" v-tooltip:top="'Предыдущие'"
-        :disabled="currentPage === 1" @click="prevPage"  >
+        :disabled="currentPage === 1" @click="prevPage">
       </v-btn>
       <v-text-field v-model.number="inputPage" @keyup.enter="goToPage" type="number" :min="1" :max="totalPages"
         class="page-input" hide-details density="compact" />
@@ -140,8 +140,28 @@ const goToPage = () => {
 };
 
 // Модальное окно
-const onModalDocuments = async (name, object, disable) => {
-  await callModalWindow(store, { name: "Information", component: Information, props: { name, object, disable } });
+const onModalDocuments = async (name, item, disable) => {
+  const copy = JSON.parse(JSON.stringify(item));
+
+  const onSubmit = async (resolve, updated) => {
+    console.log('onSubmit', updated);
+    //обновление объекта (строки таблицы)
+
+    //ниже временное не серверное решение
+    const index = props.items.findIndex(i => i.name === updated.name);
+    if (index !== -1) {
+      props.items[index] = { ...updated };
+    }
+    
+    resolve();
+  };
+
+  await callModalWindow(store, {
+    name: "Information",
+    component: Information,
+    props: { name, object: copy, disable },
+    params: { onSubmit },
+  });
 };
 
 // Ширина колонок

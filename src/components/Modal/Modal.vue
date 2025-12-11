@@ -19,7 +19,7 @@
       <v-card-actions v-if="!hideFooter" class="justify-end">
         <v-spacer></v-spacer>
         <v-btn v-if="!okOnly" text @click="handleCancel">Cancel</v-btn>
-        <v-btn color="primary" @click="handleSubmit">Submit</v-btn>
+        <v-btn color="primary" @click="payload => handleSubmit(payload)">Submit</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -110,8 +110,8 @@ export default defineComponent({
       if (props.cancelHandler) props.cancelHandler();
     };
 
-    const handleSubmit = () => {
-      if (props.submitHandler) props.submitHandler();
+    const handleSubmit = (payload) => {
+      if (props.submitHandler) props.submitHandler(payload);
       isDialogOpen.value = false;
     };
 

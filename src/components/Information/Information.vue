@@ -80,7 +80,7 @@
     <!-- Кнопки -->
     <div class="btn-wrapper">
       <div class="btn-block">
-        <v-btn v-if="name === 'edit'" class="btn-page" @click="emit('close')">Сохранить</v-btn>
+        <v-btn v-if="name === 'edit'" class="btn-page" @click="$emit('submit', object)">Сохранить</v-btn>
         <div v-if="name === 'delete'" class="btn-delete">
           <v-btn class="btn-page" @click="emit('close')">Да</v-btn>
           <v-btn class="btn-page" @click="emit('close')">Нет</v-btn>
@@ -102,7 +102,7 @@ const props = defineProps({
     default: false,
   }
 });
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "submit"]);
 
 const title = computed(() => {
   if (props.name === "documents") return "Документы";
