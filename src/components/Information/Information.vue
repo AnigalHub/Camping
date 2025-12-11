@@ -1,37 +1,43 @@
 <template>
   <h2 v-html="title"></h2>
+
   <v-form>
     <v-row dense>
-      <v-col v-for="(label, key) in filteredObject" :key="key" :cols="12"
-        :sm="key === 'issuedDocument' || key === 'cityDocument' ? 12 : 6"
-        :md="key === 'issuedDocument' || key === 'cityDocument' ? 12 : 4">
-        <v-text-field v-if="isISODate(object[key])" :variant="disable ? 'plain' : 'outlined'" :label="label"
-          :value="formatDate(object[key])" type="date" rounded="lg" class="small-margin" :disabled="disable" />
-        <v-text-field v-else :variant="disable ? 'plain' : 'outlined'" :label="label" :value="object[key]"
-          :active="true" rounded="lg" class="small-margin" :disabled="disable" />
+      <v-col v-for="(label, key) in filteredObject" :key="key" :cols="12" 
+        :md="isWideField(key) ? 12 : 4">
+        <v-text-field v-if="isISODate(model[key])" v-model="model[key]" type="date" variant="outlined"
+          :label="label" rounded="lg" class="small-margin" :disabled="disable" />
+        <v-text-field v-else-if="maskForField(key)" v-model="model[key]" :label="label" variant="outlined" rounded="lg"
+          class="small-margin" :disabled="disable" v-mask="maskForField(key)" @input="onInput(key)" />
+        <v-text-field v-else v-model="model[key]" :label="label" variant="outlined" rounded="lg" class="small-margin"
+          :disabled="disable" />
       </v-col>
     </v-row>
   </v-form>
   <div class="btn-wrapper">
     <div class="btn-block">
-      <v-btn v-if="name === 'edit'" class="btn-page">Сохранить</v-btn>
+      <v-btn v-if="name === 'edit'" class="btn-page" @click="emit('close')">Сохранить</v-btn>
       <div v-if="name === 'delete'" class="btn-delete">
-        <v-btn class="btn-page">Да</v-btn>
-        <v-btn class="btn-page">Нет</v-btn>
+        <v-btn class="btn-page" @click="emit('close')">Да</v-btn>
+        <v-btn class="btn-page" @click="emit('close')">Нет</v-btn>
       </div>
-      <v-btn v-if="name === 'documents'" class="btn-page">Ок</v-btn>
+      <v-btn v-if="name === 'documents'" class="btn-page" @click="emit('close')">Ок</v-btn>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { reactive, computed, watch } from "vue";
 
 const props = defineProps({
   name: { type: String, default: "" },
   object: { type: Object, default: () => ({}) },
   disable: { type: Boolean, default: false },
 });
+
+const emit = defineEmits(["close"]);
+
+/* -------------------- ПЕРЕВОД ИМЕН ПОЛЕЙ -------------------- */
 
 const fieldMappingsDisable = {
   surname: "Фамилия",
@@ -42,8 +48,8 @@ const fieldMappingsDisable = {
   numberDocument: "Номер",
   codeDocument: "Код подразделения",
   dateDocument: "Дата выдачи",
-  issuedDocument: "Кем выдан",
   cityDocument: "Место жительства",
+  issuedDocument: "Кем выдан",
 };
 const fieldMappings = {
   phone: "Телефон",
@@ -65,6 +71,7 @@ const names = [
 const title = computed(() => {
   return names.find((el) => el.value === props.name)?.name;
 });
+/* -------------------- ФИЛЬТРАЦИЯ -------------------- */
 
 const filteredObject = computed(() => {
   const mapping =
@@ -78,19 +85,107 @@ const filteredObject = computed(() => {
   }, {});
 });
 
+/* -------------------- ЛОКАЛЬНАЯ МОДЕЛЬ -------------------- */
+const model = reactive({});
+
+for (const key in props.object) {
+  const value = props.object[key];
+
+  if (["date", "dateDocument", "startDate", "endDate"].includes(key)) {
+    // преобразуем ISO → DD.MM.YYYY
+    if (isISODate(value)) {
+      const [y, m, d] = value.substring(0, 10).split("-");
+      model[key] = `${d}.${m}.${y}`;
+    } else {
+      model[key] = value;
+    }
+  } else if (isISODate(value)) {
+    model[key] = value.substring(0, 10);
+  } else {
+    model[key] = value;
+  }
+}
+
+/* -------------------- СИНХРОНИЗАЦИЯ -------------------- */
+
+watch(
+  () => model,
+  (val) => {
+    for (const key in val) {
+      if (["date", "dateDocument", "startDate", "endDate"].includes(key)) {
+        const v = val[key];
+        if (v && /^\d{2}\.\d{2}\.\d{4}$/.test(v)) {
+          const [d, m, y] = v.split(".");
+          props.object[key] = `${y}-${m}-${d}T00:00:00`;
+        }
+        continue;
+      }
+
+      if (isISODate(props.object[key])) {
+        props.object[key] = val[key] ? val[key] + "T00:00:00" : null;
+      } else {
+        props.object[key] = val[key];
+      }
+    }
+  },
+  { deep: true }
+);
+
+/* -------------------- МАСКИ -------------------- */
+
+function maskForField(key) {
+  switch (key) {
+    case "phone":
+      return "+7 (###) ###-##-##";
+    case "seriesDocument":
+      return "####";
+    case "numberDocument":
+      return "######";
+    case "codeDocument":
+      return "###-###";
+    case "price":
+      return "################";
+    case "object":
+    case "animals":
+      return "############";
+    case "cars":
+      return ["####SS##", "S###SS###"];
+    case "startDate":
+    case "endDate":
+      return "##.##.####";
+    default:
+      return null;
+  }
+}
+
+
+function onInput(key) {
+  if (key === "cars" && model[key]) {
+    model[key] = model[key].toUpperCase();
+  }
+}
+
+/* -------------------- Проверка ISO -------------------- */
+
 function isISODate(value) {
   return (
     typeof value === "string" &&
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{2}:\d{2}|Z)?$/.test(
-      value
-    )
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value)
   );
 }
 
-function formatDate(isoString) {
-  return isoString ? isoString.substr(0, 10) : "";
+/* -------------------- Широкие поля -------------------- */
+
+function isWideField(key) {
+  return key === "issuedDocument" ;
 }
 </script>
+
+<style>
+.v-field--disabled {
+  opacity: 0.65 !important;
+}
+</style>
 
 <style scoped>
 .v-form {
@@ -121,13 +216,11 @@ h2 {
   transition: all 0.25s ease;
 }
 
-/* Если внутри .v-col находятся disabled-поля — делаем их плотнее */
 .v-col:has(.v-field--disabled) {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
 }
 
-/* Для самих полей тоже уменьшаем внутренние отступы */
 .v-field--disabled .v-field__input {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
@@ -152,7 +245,6 @@ h2 {
 
 .btn-page {
   margin: 20px auto 0;
-
 }
 
 .btn-wrapper {
@@ -177,7 +269,6 @@ h2 {
   max-width: 47%;
 }
 
-/* --- Адаптив --- */
 @media (max-width: 960px) {
   .btn-block {
     width: 70%;
@@ -186,16 +277,11 @@ h2 {
 
 @media (max-width: 500px) {
   .v-form {
-    margin-top: .2px;
+    margin-top: 0.2px;
   }
 }
 
 @media (max-width: 1100px) {
-  .v-form {
-    max-height: 55vh !important;
-    overflow: auto;
-  }
-
   .btn-block {
     width: 100%;
   }

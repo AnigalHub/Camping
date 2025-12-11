@@ -43,7 +43,7 @@ const goRoute = name => router.push({ name });
   align-items: center;
   background: rgba(245,250,255,.8);
   backdrop-filter: blur(6px);
-  border: 1px solid rgb(52 113 206 / 35%);
+  border: 1px solid rgb(52 113 206 / 25%);
   border-radius: 28px;
   box-shadow: inset 0 0 10px rgba(255,255,255,.15),
               2px 2px 8px rgba(17,44,18,.14);
