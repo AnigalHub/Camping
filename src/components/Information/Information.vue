@@ -28,28 +28,68 @@
       </div>
       <!-- Документы -->
       <h3 v-if="name !== 'documents'" class="form-subtitle">Документы</h3>
-      <div class="grid-inputs">
-        <v-text-field v-model="object.seriesDocument" label="Серия" v-mask="'####'" variant="outlined"
+      <v-radio-group v-if="name === 'edit'" v-model="object.selectedDoc" class="docs-radio" row>
+        <v-radio label="Паспорт" value="passport" class="radio-small" />
+        <v-radio label="Свидетельство о рождении" value="birth" class="radio-large" />
+        <v-radio label="Иное" value="other" class="radio-small" />
+      </v-radio-group>
+      <!-- Паспорт -->
+      <div v-if="object.selectedDoc === 'passport'">
+        <div class="grid-inputs">
+          <v-text-field v-model="object.passport.seriesDocument" label="Серия" v-mask="'####'" variant="outlined"
+            density="comfortable" rounded="lg" clearable :disabled="disable" />
+          <v-text-field v-model="object.passport.numberDocument" label="Номер" v-mask="'######'" variant="outlined"
+            density="comfortable" rounded="lg" clearable :disabled="disable" />
+          <!-- Дата выдачи документа -->
+          <v-menu v-model="object.dateMenuDocument" :close-on-content-click="false" transition="scale-transition"
+            offset-y>
+            <template #activator="{ props }">
+              <v-text-field v-model="object.passport.dateDocument" v-bind="props" label="Дата выдачи" readonly
+                variant="outlined" prepend-inner-icon="mdi-calendar" density="comfortable" rounded="lg" clearable
+                :disabled="disable" />
+            </template>
+            <v-date-picker v-model="object.dateDocumentInternal" locale="ru" hide-header
+              @update:model-value="onPassportDateSelect" />
+          </v-menu>
+          <v-text-field v-model="object.passport.codeDocument" label="Код подразделения" v-mask="'###-###'"
+            variant="outlined" density="comfortable" rounded="lg" clearable :disabled="disable" />
+          <v-text-field v-model="object.passport.cityDocument" label="Место рождения" variant="outlined"
+            density="comfortable" rounded="lg" clearable :disabled="disable" />
+        </div>
+        <v-text-field v-model="object.passport.issuedDocument" label="Кем выдан" variant="outlined"
           density="comfortable" rounded="lg" clearable :disabled="disable" />
-        <v-text-field v-model="object.numberDocument" label="Номер" v-mask="'######'" variant="outlined"
-          density="comfortable" rounded="lg" clearable :disabled="disable" />
-        <!-- Дата выдачи документа -->
-        <v-menu v-model="object.dateMenuDocument" :close-on-content-click="false" transition="scale-transition"
-          offset-y>
-          <template #activator="{ props }">
-            <v-text-field v-model="object.dateDocument" v-bind="props" label="Дата выдачи" readonly variant="outlined"
-              prepend-inner-icon="mdi-calendar" density="comfortable" rounded="lg" clearable :disabled="disable" />
-          </template>
-          <v-date-picker v-model="object.dateDocumentInternal" locale="ru" hide-header
-            @update:model-value="val => onDateSelect(val, 'dateDocument')" />
-        </v-menu>
-        <v-text-field v-model="object.codeDocument" label="Код подразделения" v-mask="'###-###'" variant="outlined"
-          density="comfortable" rounded="lg" clearable :disabled="disable" />
-        <v-text-field v-model="object.cityDocument" label="Место рождения" variant="outlined" density="comfortable"
-          rounded="lg" clearable :disabled="disable" />
       </div>
-      <v-text-field v-model="object.issuedDocument" label="Кем выдан" variant="outlined" density="comfortable"
-        rounded="lg" clearable :disabled="disable" />
+      <!-- Свидетельство о рождении -->
+      <div v-if="object.selectedDoc === 'birth'">
+        <div class="grid-inputs">
+          <v-text-field v-model="object.birth.seriesDocument" label="Серия" variant="outlined" density="comfortable"
+            rounded="lg" clearable />
+          <v-text-field v-model="object.birth.numberDocument" label="Номер" variant="outlined" density="comfortable"
+            rounded="lg" clearable />
+          <v-menu v-model="object.birth.dateMenu" :close-on-content-click="false" transition="scale-transition"
+            offset-y>
+            <template #activator="{ props }">
+              <v-text-field v-model="object.birth.dateDocument" v-bind="props" label="Дата выдачи" readonly
+                variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable />
+            </template>
+            <v-date-picker v-model="object.birth.dateInternal" locale="ru" hide-header
+              @update:model-value="onBirthDateSelect" />
+          </v-menu>
+          <v-text-field v-model="object.birth.actNumberDocument" label="Номер акта о рождении" variant="outlined"
+            density="comfortable" rounded="lg" clearable />
+          <v-text-field v-model="object.birth.cityDocument" label="Место рождения" variant="outlined"
+            density="comfortable" rounded="lg" clearable />
+        </div>
+        <v-text-field v-model="object.birth.issuedDocument" label="Место государственной регистрации" variant="outlined"
+          density="comfortable" rounded="lg" clearable />
+      </div>
+      <!-- Иное -->
+      <div v-if="object.selectedDoc === 'other'">
+        <v-text-field v-model="object.other.typeDocument" label="Название документа" variant="outlined"
+          density="comfortable" rounded="lg" clearable />
+        <v-textarea v-model="object.other.dataDocument" label="Данные документа" variant="outlined"
+          density="comfortable" rounded="lg" clearable />
+      </div>
       <!-- Даты проживания -->
       <div v-if="name !== 'documents'">
         <hr />
@@ -64,7 +104,6 @@
             <v-date-picker v-model="object.startDateInternal" locale="ru" hide-header
               @update:model-value="val => onDateSelect(val, 'startDate')" />
           </v-menu>
-
           <!-- Дата выезда -->
           <v-menu v-model="object.endDateMenu" :close-on-content-click="false" transition="scale-transition" offset-y>
             <template #activator="{ props }">
@@ -102,78 +141,128 @@ const props = defineProps({
     default: false,
   }
 });
+
 const emit = defineEmits(["close", "submit"]);
 
+// ==== Форматирование dd.mm.yyyy ====
+function formatDate(val) {
+  if (!val) return "";
+  let d;
+
+  if (val instanceof Date) d = val;
+  else if (typeof val === "string" && /^\d{4}-\d{2}-\d{2}/.test(val)) d = new Date(val);
+  else if (typeof val === "string" && /^\d{2}\.\d{2}\.\d{4}$/.test(val)) return val;
+  else return "";
+
+  return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
+}
+
+// ==== Парсинг dd.mm.yyyy -> Date ====
+function parseDate(val) {
+  if (!val) return null;
+  if (val instanceof Date) return val;
+
+  if (typeof val === "string") {
+    if (/^\d{2}\.\d{2}\.\d{4}$/.test(val)) {
+      const [dd, mm, yyyy] = val.split(".");
+      return new Date(`${yyyy}-${mm}-${dd}`);
+    }
+    if (/^\d{4}-\d{2}-\d{2}/.test(val)) return new Date(val);
+  }
+  return null;
+}
+
+// ==== ИНИЦИАЛИЗАЦИЯ ДАТ ВНЕШНЕГО ОБЪЕКТА ====
+["date", "dateDocument", "startDate", "endDate"].forEach(field => {
+  const original = props.object[field];
+  props.object[field + "Internal"] = parseDate(original);
+  props.object[field] = formatDate(original);
+});
+
+// ==== ИНИЦИАЛИЗАЦИЯ ДАТ ПАСПОРТА ====
+props.object.passport.dateInternal = parseDate(props.object.passport.dateDocument);
+props.object.passport.dateDocument = formatDate(props.object.passport.dateDocument);
+
+// ==== ИНИЦИАЛИЗАЦИЯ ДАТ СВИДЕТЕЛЬСТВА О РОЖДЕНИИ ====
+props.object.birth.dateInternal = parseDate(props.object.birth.dateDocument);
+props.object.birth.dateDocument = formatDate(props.object.birth.dateDocument);
+
+// ==== ОБРАБОТЧИКИ ====
+function onDateSelect(val, field) {
+  props.object[field + "Internal"] = val;
+  props.object[field] = formatDate(val);
+}
+
+function onPassportDateSelect(val) {
+  props.object.passport.dateInternal = val;
+  props.object.passport.dateDocument = formatDate(val);
+}
+
+function onBirthDateSelect(val) {
+  props.object.birth.dateInternal = val;
+  props.object.birth.dateDocument = formatDate(val);
+}
+
+// ==== WATCH — ОБНОВЛЕНИЕ ПРИ РУЧНОМ ВВОДЕ ====
+["date", "dateDocument", "startDate", "endDate"].forEach(field => {
+  watch(() => props.object[field], val => {
+    props.object[field + "Internal"] = parseDate(val);
+  });
+});
+
+watch(() => props.object.passport.dateDocument, val => {
+  props.object.passport.dateInternal = parseDate(val);
+});
+
+watch(() => props.object.birth.dateDocument, val => {
+  props.object.birth.dateInternal = parseDate(val);
+});
+
+// ==== Заголовок ====
 const title = computed(() => {
   if (props.name === "documents") return "Документы";
   if (props.name === "edit") return "Изменение данных";
   if (props.name === "delete") return "Удалить запись ?";
   return "";
 });
-
-// Форматирование dd.mm.yyyy
-function formatDate(val) {
-  if (!val) return "";
-  let d;
-  if (val instanceof Date) {
-    d = val;
-  } else if (typeof val === "string" && /^\d{4}-\d{2}-\d{2}/.test(val)) {
-    // ISO формат
-    d = new Date(val);
-  } else if (typeof val === "string" && /^\d{2}\.\d{2}\.\d{4}$/.test(val)) {
-    // Уже форматированная дата
-    return val;
-  } else {
-    return "";
-  }
-  return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
-}
-
-// Парсинг из dd.mm.yyyy или Date
-function parseDate(val) {
-  if (!val) return null;
-  if (val instanceof Date) return val;
-  if (typeof val === "string") {
-    if (/^\d{2}\.\d{2}\.\d{4}$/.test(val)) {
-      const [dd, mm, yyyy] = val.split(".");
-      return new Date(`${yyyy}-${mm}-${dd}`);
-    } else if (/^\d{4}-\d{2}-\d{2}/.test(val)) {
-      return new Date(val);
-    }
-  }
-  return null;
-}
-
-// Инициализация внутренних дат
-["date", "dateDocument", "startDate", "endDate"].forEach(field => {
-  const original = props.object[field];
-  props.object[`${field}Internal`] = parseDate(original);
-  props.object[field] = formatDate(original);
-});
-
-// Обновление даты при выборе
-function onDateSelect(val, field) {
-  props.object[`${field}Internal`] = val;
-  props.object[field] = formatDate(val);
-}
-
-// Слежение за изменением даты извне
-["date", "dateDocument", "startDate", "endDate"].forEach(field => {
-  watch(() => props.object[field], val => {
-    props.object[`${field}Internal`] = parseDate(val);
-  });
-});
 </script>
+
+
 
 <style>
 .v-field--disabled {
   opacity: 0.65 !important;
   background: #a1a1a30d;
 }
+
+.v-selection-control-group {
+  flex-direction: row;
+}
+
+@media (max-width: 610px) {
+  .v-selection-control-group {
+    flex-direction: column;
+  }
+}
 </style>
 
 <style scoped>
 @import "./../../../public/form.css";
+
+
+.docs-radio .radio-small {
+  flex: 1;
+}
+
+.docs-radio .radio-large {
+  flex: 2;
+}
+
+.docs-radio .v-radio .v-label,
+.docs-radio .v-radio .v-input--selection-controls__ripple {
+  white-space: nowrap;
+}
+
 
 .grid-inputs {
   grid-template-columns: repeat(3, 1fr);

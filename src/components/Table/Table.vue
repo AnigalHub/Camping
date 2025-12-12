@@ -63,12 +63,9 @@
               </div>
               <div>{{ item.cityDocument }}</div>
             </template>
-            <template v-else-if="typeof item[col.key] === 'boolean'">
-              <Switch v-model="item[col.key]" :tumbler="item[col.key]" />
-            </template>
             <template v-else-if="showButtons && col.key === 'buttons'">
               <div class="buttons-wrapper">
-                <v-btn icon="mdi-file-document" variant="text" size="small" class="document-btn btn"
+                <v-btn v-if="route.name !== 'AdditionalCosts'" icon="mdi-file-document" variant="text" size="small" class="document-btn btn"
                   v-tooltip:top="'Документы'" @click="onModalDocuments('documents', item, true)" />
                 <v-btn icon="mdi-pencil" variant="text" size="small" class="edit-btn btn" v-tooltip:top="'Изменить'"
                   @click="onModalDocuments('edit', item)" />
@@ -99,10 +96,12 @@
 
 <script setup>
 import { shallowRef, ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from "vue";
-import Switch from "../Switch/Switch.vue";
 import { callModalWindow } from "../../utils/callModalWindow";
 import { loadComponent } from "../../utils/loadComponent";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 const props = defineProps({ headers: Array, items: Array });
 const store = useStore();

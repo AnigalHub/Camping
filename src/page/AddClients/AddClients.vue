@@ -47,20 +47,20 @@
                   <!-- Паспорт -->
                   <div v-if="person.selectedDoc === 'passport'">
                     <div class="grid-inputs">
-                      <v-text-field v-model="person.passport.series" label="Серия" variant="outlined"
+                      <v-text-field v-model="person.passport.seriesDocument" label="Серия" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
-                      <v-text-field v-model="person.passport.number" label="Номер" variant="outlined"
+                      <v-text-field v-model="person.passport.numberDocument" label="Номер" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
                       <v-menu v-model="person.passport.dateMenu" :close-on-content-click="false"
                         transition="scale-transition" offset-y>
                         <template #activator="{ props }">
-                          <v-text-field v-model="person.passport.date" v-bind="props" label="Дата выдачи" readonly
+                          <v-text-field v-model="person.passport.dateDocument" v-bind="props" label="Дата выдачи" readonly
                             variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable />
                         </template>
                         <v-date-picker v-model="person.passport.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'passport')" />
                       </v-menu>
-                      <v-text-field v-model="person.passport.code" label="Код подразделения" variant="outlined"
+                      <v-text-field v-model="person.passport.codeDocument" label="Код подразделения" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
                       <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
@@ -71,32 +71,32 @@
                   <!-- Свидетельство о рождении -->
                   <div v-if="person.selectedDoc === 'birth'">
                     <div class="grid-inputs">
-                      <v-text-field v-model="person.birth.series" label="Серия" variant="outlined" density="comfortable"
+                      <v-text-field v-model="person.birth.seriesDocument" label="Серия" variant="outlined" density="comfortable"
                         rounded="lg" clearable />
-                      <v-text-field v-model="person.birth.number" label="Номер" variant="outlined" density="comfortable"
+                      <v-text-field v-model="person.birth.numberDocument" label="Номер" variant="outlined" density="comfortable"
                         rounded="lg" clearable />
                       <v-menu v-model="person.birth.dateMenu" :close-on-content-click="false"
                         transition="scale-transition" offset-y>
                         <template #activator="{ props }">
-                          <v-text-field v-model="person.birth.date" v-bind="props" label="Дата выдачи" readonly
-                            variant="outlined" density="comfortable" rounded="lg" clearable />
+                          <v-text-field v-model="person.birth.dateDocument" v-bind="props" label="Дата выдачи" readonly
+                            variant="outlined" density="comfortable" prepend-inner-icon="mdi-calendar" rounded="lg" clearable />
                         </template>
                         <v-date-picker v-model="person.birth.dateInternal" locale="ru" hide-header
                           @update:model-value="val => onDocDateSelect(val, index, 'birth')" />
                       </v-menu>
-                      <v-text-field v-model="person.birth.actNumber" label="Номер акта о рождении" variant="outlined"
+                      <v-text-field v-model="person.birth.actNumberDocument" label="Номер акта о рождении" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
-                      <v-text-field v-model="person.passport.cityDocument" label="Место рождения" variant="outlined"
+                      <v-text-field v-model="person.birth.cityDocument" label="Место рождения" variant="outlined"
                         density="comfortable" rounded="lg" clearable />
                     </div>
-                    <v-text-field v-model="person.passport.issuedDocument" label="Место государственной регистрации"
+                    <v-text-field v-model="person.birth.issuedDocument" label="Место государственной регистрации"
                       variant="outlined" density="comfortable" rounded="lg" clearable />
                   </div>
                   <!-- Иное -->
                   <div v-if="person.selectedDoc === 'other'">
-                    <v-text-field v-model="person.other.type" label="Название документа" variant="outlined"
+                    <v-text-field v-model="person.other.typeDocument" label="Название документа" variant="outlined"
                       density="comfortable" rounded="lg" clearable />
-                    <v-textarea v-model="person.other.data" label="Данные документа" variant="outlined"
+                    <v-textarea v-model="person.other.dataDocument" label="Данные документа" variant="outlined"
                       density="comfortable" rounded="lg" clearable />
                   </div>
                   <hr />
@@ -150,10 +150,10 @@
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
-                        <v-label @click="person.house = !person.house" class="me-2">Аренда домика:</v-label>
-                        <Switch v-model="person.house" :tumbler="person.house" :disable="false" :form="true" />
-                        <v-text-field v-if="person.house" v-model="person.home" :disabled="!person.house"
-                          :class="{ 'input-disable': !person.house }" label="Номер домика" variant="outlined"
+                        <v-label @click="person.home = !person.home" class="me-2">Аренда домика:</v-label>
+                        <Switch v-model="person.home" :tumbler="person.house" :disable="false" :form="true" />
+                        <v-text-field v-if="person.home" v-model="person.house" :disabled="!person.home"
+                          :class="{ 'input-disable': !person.home }" label="Номер домика" variant="outlined"
                           density="comfortable" rounded="lg" clearable v-mask="'#########'" />
                       </div>
                     </div>
@@ -190,7 +190,7 @@ const persons = reactive([createPerson()]);
 const price = ref(null);
 
 function createPerson() {
-  const emptyDoc = { series: "", number: "", issuedDocument: "", cityDocument: "", date: "", dateInternal: null, dateMenu: false };
+  const emptyDoc = { seriesDocument: "", numberDocument: "", issuedDocument: "", cityDocument: "", dateDocument: "", dateInternal: null, dateMenu: false };
   return {
     surname: "", name: "", patronymic: "", date: "", phone: "", object: null,
     car: false, cars: null, animal: false, animals: null, house: false, home: null,
@@ -198,9 +198,9 @@ function createPerson() {
     dateMenu: false, startDateMenu: false, endDateMenu: false,
     dateInternal: null, startDateInternal: null, endDateInternal: null,
     selectedDoc: "passport",
-    passport: { ...emptyDoc, code: "" },
-    birth: { ...emptyDoc, actNumber: "" },
-    other: { type: "", data: "" },
+    passport: { ...emptyDoc, codeDocument: "" },
+    birth: { ...emptyDoc, actNumberDocument: "" },
+    other: { typeDocument: "", dataDocument: "" },
   };
 }
 
