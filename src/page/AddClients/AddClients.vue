@@ -352,7 +352,7 @@ span {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1125px) {
 
   .content,
   .wrapper_content {
@@ -373,7 +373,7 @@ span {
     padding: 10px 0;
   }
 
-  .grid-inputs {
+  .grid-inputs, .grid-boolean {
     grid-template-columns: 1fr;
   }
 }

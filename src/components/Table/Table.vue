@@ -6,7 +6,7 @@
           <tr>
             <th v-for="(col, colIndex) in headerRow" :key="colIndex" :colspan="col.colspan || 1"
               :rowspan="col.rowspan || 1" class="text-center" :style="col.key === 'buttons' ?
-                { width: '40px' } :
+                { width: '20px' } :
                 { width: columnWidths[colIndex] + 'px' }">
               {{ col.label }}
             </th>
@@ -69,12 +69,13 @@
                   v-tooltip:top="'Документы'" @click="onModalDocuments('documents', item, true)" />
                 <v-btn icon="mdi-pencil" variant="text" size="small" class="edit-btn btn" v-tooltip:top="'Изменить'"
                   @click="onModalDocuments('edit', item)" />
-                <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
+                <v-btn v-if="route.name === 'ListClients' || route.name === 'AdditionalCosts'" icon="mdi-delete" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Удалить'"
                   @click="onModalDocuments('delete', item, true)" />
+                <v-btn v-if="route.name === 'Trips'" icon="mdi-truck-fast" variant="text" size="small" class="delete-btn btn" v-tooltip:top="'Выехал'"/>
               </div>
             </template>
             <template v-else>
-              {{ item[col.key] ?? "—" }}
+              {{ item[col.key] === 0 || item[col.key] === null || item[col.key] === "" ? "—" : item[col.key] }}
             </template>
           </td>
         </tr>
@@ -188,7 +189,7 @@ const updateColumnWidths = () => {
 
 // Отслеживаем ресайз и обновление данных
 const windowWidth = ref(window.innerWidth);
-const isDesktop = computed(() => windowWidth.value >= 1200);
+const isDesktop = computed(() => windowWidth.value >= 1125);
 
 const handleResize = () => windowWidth.value = window.innerWidth;
 
@@ -347,7 +348,7 @@ watch(() => props.items, updateColumnWidths, { deep: true });
 }
 
 .v-table>.v-table__wrapper>table>tbody>tr>td {
-  padding: 3px 8px;
+  padding: 3px 5px;
 }
 
 .v-table .v-table__wrapper>table>tbody>tr>td,
@@ -376,7 +377,12 @@ watch(() => props.items, updateColumnWidths, { deep: true });
 }
 
 /* --- Адаптив под карточки --- */
-@media (max-width: 1200px) {
+@media (max-width: 1125px) {
+  .v-table>.v-table__wrapper>table>tbody>tr:hover {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .1);  transform: scale(1.025);
+  }
+
   .v-table {
     margin: 0;
   }
@@ -421,9 +427,10 @@ watch(() => props.items, updateColumnWidths, { deep: true });
 
   .v-table tbody {
     display: grid;
+    overflow-x: hidden;
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 0 20px 0 !important;
+    padding: 0 8px 5px 8px !important;
   }
 
   /** добавить переменные */

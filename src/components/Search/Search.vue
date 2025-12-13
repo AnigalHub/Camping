@@ -2,7 +2,7 @@
   <v-card class="search-bar d-flex flex-wrap align-center justify-space-between">
     <v-text-field v-model="search" placeholder="Поиск" prepend-inner-icon="mdi-magnify" variant="solo"
       density="comfortable" rounded="lg" hide-details class="search-input" />
-    <div class="search-controls d-flex align-center gap-3 flex-wrap mt-2 mt-md-0">
+    <div class="search-controls d-flex align-center gap-3 flex-wrap mt-md-0">
       <v-select v-model="sort" :items="sortOptions" item-title="title" item-value="value" return-object
         label="Сортировать по:" variant="solo" density="comfortable" rounded="lg" hide-details
         class="filter-select sort-select" @update:modelValue="onSelectChanged" prepend-inner-icon="mdi-sort" />

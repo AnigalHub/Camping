@@ -127,7 +127,7 @@
             <div class="d-flex align-center rent">
               <v-label class="me-2" @click="!disable && (object.car = !object.car)">Транспорт:</v-label>
               <Switch v-model="object.car" :tumbler="object.car" :disable="disable" :form="true" />
-              <v-text-field v-if="object.car" v-model="object.cars" :disable="disable"
+              <v-text-field v-if="object.car" v-model="object.cars" :disabled="disable"
                 :class="{ 'input-disable': !object.car }" label="Номер транспорта" variant="outlined"
                 density="comfortable" rounded="lg" clearable />
             </div>
@@ -135,8 +135,8 @@
           <div>
             <div class="d-flex align-center rent">
               <v-label @click="!disable && (object.home = !object.home)" class="me-2">Аренда домика:</v-label>
-              <Switch v-model="object.home" :tumbler="object.home" :disabled="disable" :form="true" />
-              <v-text-field v-if="object.home" v-model="object.house" :disable="disable"
+              <Switch v-model="object.home" :tumbler="object.home" :disable="disable" :form="true" />
+              <v-text-field v-if="object.home" v-model="object.house" :disabled="disable"
                 :class="{ 'input-disable': !object.home }" label="Номер домика" variant="outlined" density="comfortable"
                 rounded="lg" clearable v-mask="'#########'" />
             </div>
@@ -427,5 +427,18 @@ h2 {
 
 .btn-delete .v-btn {
   flex: 1;
+}
+@media (max-width: 600px) {
+  .result_block {
+    padding: 5px 10px;
+  }
+
+  .result_block {
+    width: 100%;
+  }
+  
+  .grid-inputs, .grid-boolean {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -24,7 +24,7 @@ const modals = computed(() => store.getters["Modal/modals"]);
 const drawer = ref(false);
 
 const windowWidth = ref(window.innerWidth);
-const isDesktop = computed(() => windowWidth.value >= 1100);
+const isDesktop = computed(() => windowWidth.value >= 1125);
 
 function onResize() {
   windowWidth.value = window.innerWidth;
@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
 html, body, #app {
   height: 100%;
 }
-@media (max-width: 1100px) {
+@media (max-width: 1125px) {
   .content, .wrapper_content, .v-table, .block{
     height: auto !important;
     min-height: 75vh;
