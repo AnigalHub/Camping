@@ -115,7 +115,7 @@ function updateDate(val) {
   const dd = d.getDate().toString().padStart(2, "0");
   const mm = (d.getMonth() + 1).toString().padStart(2, "0");
   const yyyy = d.getFullYear();
-  object.date.value = `${dd}.${mm}.${yyyy}`;
+  object.value.date = `${dd}.${mm}.${yyyy}`;
 }
 
 // Закрытие меню при выборе даты

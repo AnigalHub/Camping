@@ -9,8 +9,8 @@
             density="comfortable" rounded="lg" class="modern-input" :rules="[rules.required, rules.date]" clearable
             readonly></v-text-field>
         </template>
-        <v-date-picker v-model="dateInternal" color="primary" hide-header locale="ru" @update:model-value="updateDate"
-          @click:date="selectDate"></v-date-picker>
+        <v-date-picker v-model="object.dateInternal" color="primary" hide-header locale="ru" 
+          @update:model-value="updateDate"></v-date-picker>
       </v-menu>
       <v-textarea v-model="object.text" label="Наименование" :disabled="disable" placeholder="Введите наименование и причины расходов"
         variant="outlined" density="comfortable" auto-grow rows="4" max-rows="6" rounded="lg" :rules="[rules.required]"
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, watch, onMounted, ref } from "vue";
 
 const props = defineProps({
   name: String,
@@ -46,6 +46,8 @@ const props = defineProps({
 
 const emit = defineEmits(["close", "submit"]);
 
+const dateMenu = ref(false);
+
 const rules = {
   required: (v) => !!v || "Поле обязательно для заполнения",
   date: (v) =>
@@ -55,14 +57,49 @@ const rules = {
   numeric: (v) => !v || /^[0-9]+$/.test(v) || "Только цифры",
 };
 
+// ====================
 // Форматирование даты
+// ====================
+function formatDate(val) {
+  if (!val) return "";
+  let d;
+
+  if (val instanceof Date) d = val;
+  else if (typeof val === "string" && /^\d{4}-\d{2}-\d{2}/.test(val)) d = new Date(val);
+  else if (typeof val === "string" && /^\d{2}\.\d{2}\.\d{4}$/.test(val)) return val;
+  else return "";
+
+  return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
+}
+
+function parseDate(val) {
+  if (!val) return null;
+  if (val instanceof Date) return val;
+
+  if (typeof val === "string") {
+    if (/^\d{2}\.\d{2}\.\d{4}$/.test(val)) {
+      const [dd, mm, yyyy] = val.split(".");
+      return new Date(`${yyyy}-${mm}-${dd}`);
+    }
+    if (/^\d{4}-\d{2}-\d{2}/.test(val)) return new Date(val);
+  }
+  return null;
+}
+
+// ====================
+// Инициализация даты
+// ====================
+onMounted(() => {
+  props.object.dateInternal = parseDate(props.object.date);
+  props.object.date = formatDate(props.object.date);
+});
+
+// ====================
+// Обработчики
+// ====================
 function updateDate(val) {
-  if (!val) return;
-  const d = new Date(val);
-  const dd = String(d.getDate()).padStart(2, "0");
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const yyyy = d.getFullYear();
-  object.value.date = `${dd}.${mm}.${yyyy}`;
+  props.object.dateInternal = val;
+  props.object.date = formatDate(val);
 }
 
 function selectDate() {
@@ -73,26 +110,32 @@ function closeDateMenuOutside() {
   dateMenu.value = false;
 }
 
-// Маска для цены
+// ====================
+// Синхронизация ручного ввода
+// ====================
+watch(
+  () => props.object.date,
+  (val) => {
+    props.object.dateInternal = parseDate(val);
+  }
+);
+
+// ====================
+// Цена
+// ====================
 function onPriceInput(e) {
-  object.value.price = e.target.value.replace(/[^\d]/g, "");
+  props.object.price = e.target.value.replace(/[^\d]/g, "");
 }
 
-function saveForm() {
-  if (!isChanged.value) return;
-
-  console.log(object.value);
-  alert("Форма успешно сохранена!");
-}
-
+// ====================
+// Заголовок
+// ====================
 const title = computed(() => {
   if (props.name === "edit") return "Изменение данных";
   if (props.name === "delete") return "Удалить запись ?";
   return "";
 });
 </script>
-
-
 
 <style>
 .v-field--disabled {
@@ -103,20 +146,6 @@ const title = computed(() => {
 
 <style scoped>
 @import "./../../../public/form.css";
-
-.grid-inputs {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid-boolean {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (max-width: 992px) {
-  .grid-inputs {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
 .v-form {
   padding: 0 0 0 5px !important;
@@ -132,37 +161,6 @@ h2 {
   font-weight: 200;
   font-size: 1.4rem !important;
   border-bottom: var(--border-bottom-title-modal);
-}
-
-.v-row {
-  margin-top: -8px;
-  margin-bottom: -8px;
-}
-
-.v-col {
-  padding-top: 6px !important;
-  padding-bottom: 6px !important;
-  transition: all 0.25s ease;
-}
-
-.v-col:has(.v-field--disabled) {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-}
-
-.v-field--disabled .v-field__input {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-  font-size: 0.9rem;
-}
-
-.v-col,
-.v-field__input {
-  transition: all 0.25s ease;
-}
-
-.small-margin {
-  margin-bottom: -10px;
 }
 
 .v-field__input {
