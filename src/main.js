@@ -12,8 +12,7 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
-
-import VueTheMask from 'vue-the-mask'
+import 'maska'
 
 // Styles
 import 'unfonts.css'
@@ -23,11 +22,13 @@ import { store } from './store'
 
 const app = createApp(App)
 
+// Vue.use(VueTheMask)
+
 
 registerPlugins(app)
 
 app
   .use(router)
-  .use(VueTheMask)
+  // .use(VueTheMask)
   .use(store)
   .mount('#app')
