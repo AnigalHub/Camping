@@ -120,8 +120,7 @@
         <h3 class="form-subtitle">Дополнительные данные</h3>
         <div class="grid-inputs">
           <v-text-field v-model="object.object" label="Поляна" variant="outlined" density="comfortable" rounded="lg"
-            clearable v-maska="'#########'" />
-
+            clearable v-maska="'#########'" type="number"/>
           <v-select v-model="object.tentType" :items="tentTypes" item-title="title" item-value="value" label="Палатка"
             variant="outlined" density="comfortable" rounded="lg" />
         </div>
@@ -133,7 +132,7 @@
             </div>
             <v-text-field v-model="object.animals" :disabled="!object.isAnimals"
               :class="{ 'input-disable': !object.isAnimals }" label="Количество животных" variant="outlined"
-              density="comfortable" rounded="lg" clearable v-maska="'#########'" />
+              density="comfortable" rounded="lg" clearable v-maska="'#########'" type="number"/>
           </div>
           <div>
             <div class="d-flex align-center rent">
@@ -305,6 +304,7 @@ const title = computed(() => {
 
 .rent {
   height: 60px;
+  margin-top: -20px;
 }
 
 .rent .v-switch {

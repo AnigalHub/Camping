@@ -17,7 +17,7 @@
         class="modern-input textarea-large" clearable></v-textarea>
       <v-text-field v-model="object.price" label="Стоимость" :disabled="disable" placeholder="Введите сумму" variant="outlined"
         density="comfortable" rounded="lg" :rules="[rules.required, rules.numeric]" class="modern-input"
-        @input="onPriceInput" clearable />
+        @input="onPriceInput" clearable type="number"/>
     </v-form>
     <!-- Кнопки -->
     <div class="btn-wrapper">

@@ -54,15 +54,16 @@
               rounded="lg" 
               :rules="[rules.required, rules.numeric]" 
               class="modern-input"
+              type="number"
               @input="onPriceInput" 
               clearable
             />
-            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
+            <v-btn class="btn-page" :disabled="!isChanged">Сохранить</v-btn>
           </v-form>
         </v-card>
       </v-col>
        <v-col class="content-icons">
-        <icon-circle :svg="ExpensesSvg" text="Расходы по содержанию лагеря"/>
+        <icon-circle :svg="ExpensesSvg" text="Расходы по содержанию лагеря" :animated="true"/>
       </v-col>
     </v-row>
   </div>
@@ -152,5 +153,10 @@ function onPriceInput(e) {
 
 .v-card {
   overflow: initial;
+}
+
+.btn-page{
+  width: auto;
+  margin: 0;
 }
 </style>

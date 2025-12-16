@@ -129,8 +129,7 @@
                   <h3 class="form-subtitle">Дополнительные данные</h3>
                   <div class="grid-inputs">
                     <v-text-field v-model="person.object" label="Поляна" variant="outlined" density="comfortable"
-                      rounded="lg" clearable v-maska="'#########'" />
-
+                      rounded="lg" clearable v-maska="'#########'" type="number"/>
                     <v-select v-model="person.tentType" :items="tentTypes" item-title="title" item-value="value"
                       label="Глэмпинг" variant="outlined" density="comfortable" rounded="lg" />
                   </div>
@@ -142,7 +141,7 @@
                       </div>
                       <v-text-field v-model="person.animals" :disabled="!person.isAnimals"
                         :class="{ 'input-disable': !person.isAnimals }" label="Количество животных" variant="outlined"
-                        density="comfortable" rounded="lg" clearable v-maska="'#########'" />
+                        density="comfortable" rounded="lg" clearable v-maska="'#########'" type="number"/>
                     </div>
                     <div>
                       <div class="d-flex align-center rent">
@@ -158,13 +157,17 @@
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
-            <div class="result_block">
+            <!-- <div class="result_block">
               <h3 class="form-subtitle result">Итоговая стоимость: </h3><span>0</span>
-            </div>
-            <v-btn class="btn-page" @click="addPerson">Добавить отдыхающего</v-btn>
-            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">
-              Сохранить
-            </v-btn>
+            </div> -->
+               <div class="actions">
+                <v-btn class="btn-page" variant="outlined" @click="addPerson">
+                  Добавить отдыхающего
+                </v-btn>
+                <v-btn class="btn-page" :disabled="!isChanged" type="submit">
+                  Сохранить
+                </v-btn>
+              </div>
           </v-form>
         </v-card>
       </div>
@@ -403,9 +406,23 @@ span {
 
 .rent {
   height: 60px;
+  margin-top: -20px;
 }
 
 .rent .v-switch {
   margin-right: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.btn-page{
+  width: auto;
+  margin: -10px 0;
 }
 </style>
