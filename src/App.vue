@@ -65,6 +65,7 @@ html, body, #app {
 
 .v-input__details {
   padding: 3px !important;
+  min-height: 2px !important;
 }
 
 /**Фон страниц */
@@ -133,12 +134,6 @@ html, body, #app {
 .btn-page:hover {
   transform: translateY(-2px);
   background: #3b5865;
-}
-
-.btn-disabled {
-  color: #fff !important;
-  background: #393939 !important;
-  cursor: not-allowed;
 }
 
 .btn-home,

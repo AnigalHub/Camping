@@ -48,14 +48,14 @@
               :append-inner-icon="showPassword.password3 ? 'mdi-eye-off' : 'mdi-eye'"
               @click:append-inner="togglePassword('password3')"
             />
-            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">
+            <v-btn class="btn-page" :disabled="!isChanged">
               Сохранить
             </v-btn>
           </v-form>
         </v-card>
       </v-col>
       <v-col class="content-icons">
-        <icon-circle :svg="PasswordSvg" text="Обновление пароля" />
+        <icon-circle :svg="PasswordSvg" text="Обновление пароля" :animated="true"/>
       </v-col>
     </v-row>
   </div>

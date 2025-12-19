@@ -19,12 +19,12 @@
                 <v-btn icon="mdi-delete" variant="text" size="small" class="delete-btn" @click="removeImage" />
               </div>
             </div>
-            <v-btn class="btn-page" :disabled="!isChanged" :class="{ 'btn-disabled': !isChanged }">Сохранить</v-btn>
+            <v-btn class="btn-page" :disabled="!isChanged" type="submit">Сохранить</v-btn>
           </v-form>
         </v-card>
       </v-col>
       <v-col class="content-icons">
-        <icon-circle :svg="HouseSvg" text="Основные параметры организации" />
+        <icon-circle :svg="HouseSvg" text="Основные параметры организации" :animated="true"/>
       </v-col>
     </v-row>
   </div>
@@ -137,5 +137,10 @@ const removeImage = () => {
   object-fit: cover;
   border-radius: 6px;
   border: 1.5px solid rgba(70, 120, 170, .35);
+}
+
+.btn-page{
+  width: auto;
+  margin: 0;
 }
 </style>

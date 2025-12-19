@@ -50,7 +50,6 @@
             <v-btn
               class="btn-page"
               :disabled="!isChanged"
-              :class="{ 'btn-disabled': !isChanged }"
             >
               Сохранить
             </v-btn>
@@ -58,7 +57,7 @@
         </v-card>
       </v-col>
       <v-col class="content-icons">
-        <icon-circle :svg="PersonSvg" text="Личная информация" />
+        <icon-circle :svg="PersonSvg" text="Личная информация" :animated="true"/>
       </v-col>
     </v-row>
   </div>
