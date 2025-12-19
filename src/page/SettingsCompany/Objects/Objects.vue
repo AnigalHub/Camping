@@ -67,6 +67,7 @@
                         type="number"
                         variant="outlined"
                         rounded="lg"
+                        density="comfortable"
                       />
 
                       <v-text-field
@@ -75,6 +76,7 @@
                         type="number"
                         variant="outlined"
                         rounded="lg"
+                        density="comfortable"
                       />
                     </div>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="icon-col">
+  <div class="icon-col" :class="{ 'is-animated': animated }">
     <div class="icon-wrapper">
-      <div class="block-icon">
+      <div class="block-icon" :class="{ 'is-animated': animated }">
         <component :is="svg" color="#61656d" :style="{ padding: min ? '10px' : '20px' }" />
       </div>
       <p class="icon-caption">{{ text }}</p>
@@ -14,24 +14,27 @@ defineOptions({
   name: "IconCircle",
 });
 const props = defineProps({
-  text: {
-    type: String,
-    default: '',
-  },
-  svg: {
-    type: Object,
-    default: () => ({}),
-  },
-  min: {
-    type: Boolean,
-    default: false,
-  }
+  text: { type: String, default: '' },
+  svg: { type: Object, default: () => ({}) },
+  min: { type: Boolean, default: false },
+  animated: { type: Boolean, default: false }
 });
 </script>
 
 <style scoped>
+.icon-col.is-animated::before {
+  animation: pulse 6s ease-in-out infinite alternate;
+  transition: opacity .3s;
+}
+
+.block-icon.is-animated {
+  animation: breathe 5s ease-in-out infinite;
+  transition: transform .3s;
+}
+
 .icon-col {
   margin-top: -12%;
+  position: relative;
 }
 
 .icon-col::before {
@@ -41,19 +44,17 @@ const props = defineProps({
   height: 400px;
   background: radial-gradient(circle, rgba(57, 131, 181, .5), transparent 10%);
   filter: blur(40px);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.icon-col.is-animated::before {
+  opacity: 1;
   animation: pulse 6s ease-in-out infinite alternate;
 }
 
-@keyframes pulse {
-  from {
-    transform: scale(1);
-    opacity: .5;
-  }
-
-  to {
-    transform: scale(1.2);
-    opacity: .8;
-  }
+.block-icon.is-animated {
+  animation: breathe 5s ease-in-out infinite;
 }
 
 .icon-wrapper {
@@ -70,7 +71,6 @@ const props = defineProps({
   background: linear-gradient(180deg, #fff, #eff5f7);
   box-shadow: 0 6px 15px rgba(47, 118, 139, .18), inset 0 0 10px rgba(255, 255, 255, .3);
   transition: .5s ease;
-  animation: breathe 5s ease-in-out infinite;
 }
 
 .block-icon:hover {
@@ -87,6 +87,18 @@ const props = defineProps({
 
   50% {
     transform: scale(1.08);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: .5;
+  }
+
+  to {
+    transform: scale(1.2);
+    opacity: .8;
   }
 }
 
