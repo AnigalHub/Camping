@@ -9,7 +9,7 @@
             v-for="(place, index) in sortedPlaces" 
             :key="index" 
             :place="place" 
-            :number="index" 
+            :number="place.number" 
           />
         </div>
       </div>
@@ -25,7 +25,7 @@ defineOptions({ name: 'MapObjects' });
 const title = 'Свободные поляны';
 
 /** Состояние сортировки */
-const sortOption = ref({ key: "combined", dir: "asc" });
+const sortOption = ref({ key: "number", dir: "asc" });
 /** Массив мест */
 const places = ref([...placesData]);
 

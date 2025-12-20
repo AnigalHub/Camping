@@ -5,7 +5,7 @@
       <div class="left-content">
         <div class="header">
           <div class="number-badge" :style="{ border: `1.8px solid ${place.color}`, color: place.color }">
-            {{ number + 1 }}
+            {{ number }}
           </div>
           <div class="title-wrap">
             <v-icon :color="place.color" size="35" class="title-icon">{{ place.icon }}</v-icon>
