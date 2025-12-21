@@ -45,6 +45,9 @@
               <div v-else-if="tab === tabs[2].value">
                 <Objects />
               </div>
+              <div v-else-if="tab === tabs[3].value">
+                <Houses />
+              </div>
             </v-card-text>
           </v-tabs-window-item>
         </v-tabs-window>
@@ -59,6 +62,7 @@ import { useTabsSlider } from "./../../utils/useTabsSlider.js";
 import Company from "./Company/Company.vue";
 import Prices from "./Prices/Prices.vue";
 import Objects from "./Objects/Objects.vue";
+import Houses from "./Houses/Houses.vue";
 
 defineOptions({
   name: "SettingsCompany",
@@ -69,7 +73,8 @@ const title = "Настройки, тарифы";
 const tabs = [
   { value: "Описание" },
   { value: "Тарифы" },
-  { value: "Объекты заселения" },
+  { value: "Поляны" },
+  { value: "Глэмпинг" },
 ];
 
 const tab = shallowRef(tabs[0].value);

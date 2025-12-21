@@ -155,10 +155,11 @@ html, body, #app {
 .content,
 .block-title,
 .v-list-item, 
-.place-card, .block, .profile-card {
+.place-card, .block, 
+.profile-card, .no_data, .glamping{
   position: relative;
   z-index: 4;
-  animation: fadeSlide 1.2s ease-in-out;
+  animation: fadeSlide 0.9s ease-in-out;
 }
 
 .content {
