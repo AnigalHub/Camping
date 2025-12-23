@@ -128,10 +128,27 @@
                   <!-- Дополнительные данные -->
                   <h3 class="form-subtitle">Дополнительные данные</h3>
                   <div class="grid-inputs">
-                    <v-text-field v-model="person.object" label="Поляна" variant="outlined" density="comfortable"
-                      rounded="lg" clearable v-maska="'#########'" type="number"/>
-                    <v-select v-model="person.tentType" :items="tentTypes" item-title="title" item-value="value"
-                      label="Глэмпинг" variant="outlined" density="comfortable" rounded="lg" />
+                    <v-select 
+                      v-model="person.tentType" 
+                      :items="tentTypes" 
+                      item-title="title" 
+                      item-value="value"
+                      label="Глэмпинг" 
+                      variant="outlined" 
+                      density="comfortable" 
+                      rounded="lg"
+                      @update:model-value="val => onTentTypeChange(person, val)"
+                    />
+                    <v-select
+                      v-model="person.object"
+                      :items="availableObjects(person)"
+                      item-title="label"
+                      item-value="number"
+                      label="Поляна"
+                      variant="outlined"
+                      density="comfortable"
+                      rounded="lg"
+                    />
                   </div>
                   <div class="grid-inputs">
                     <div>
@@ -178,6 +195,8 @@
 <script setup>
 import { ref, reactive, computed } from "vue";
 import Switch from "@/components/Switch/Switch.vue";
+import glampingData from './../../../public/data/glamping.json';
+import places from './../../../public/data/places.json';
 
 defineOptions({ name: "AddClients" });
 
@@ -206,6 +225,51 @@ const carMask = {
     A: { pattern: /[А-ЯЁ]/i, transform: v => v.toUpperCase() },
     '#': { pattern: /\d/ }
   }
+}
+function onTentTypeChange(person, val) {
+  person.tentType = val;
+  // Если поляна недоступна — сброс
+  if (!availableObjects(person).some(p => p.number === person.object)) {
+    person.object = null;
+  }
+}
+
+function availableObjects(person) {
+  const type = person.tentType;
+  const sortedPlaces = [...places].sort((a, b) => a.number - b.number);
+
+  // Без аренды — все поляны доступны
+  if (type === "own") {
+    return sortedPlaces.map(p => ({
+      number: p.number,
+      label: `${p.number}. ${p.name}`
+    }));
+  }
+
+  const today = new Date();
+  return sortedPlaces
+    .filter(place => {
+      const totalTents = place[type] || 0;
+      if (!totalTents) return false;
+
+      // Считаем занятые палатки данного типа на этой поляне
+      const occupied = persons.reduce((sum, client) => {
+        if (!client.startDate || !client.endDate) return sum;
+        const start = parseDate(client.startDate);
+        const end = parseDate(client.endDate);
+        // Проверяем пересечение дат проживания
+        const overlap = !(end < today || start > today);
+        if (overlap && client.tentType === type && client.object === place.number) {
+          return sum + 1;
+        }
+        return sum;
+      }, 0);
+      return totalTents - occupied > 0;
+    })
+    .map(p => ({
+      number: p.number,
+      label: `${p.number}. ${p.name}`
+    }));
 }
 
 function createPerson() {
