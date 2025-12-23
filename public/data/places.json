@@ -8,7 +8,10 @@
     "person":7,
     "people":30,
     "car":2,
-    "cars":20
+    "cars":20,
+    "standard":2,
+    "family":1,
+    "premium":0
   },
   {
     "name": "В Тени Сосен",
@@ -19,7 +22,10 @@
     "person":3,
     "people":10,
     "car":1,
-    "cars":8
+    "cars":8,
+    "standard":1,
+    "family":0,
+    "premium":0
   },
   {
     "name": "У Подножья Гор",
@@ -30,7 +36,10 @@
     "person":14,
     "people":25,
     "car":7,
-    "cars":15
+    "cars":15,
+    "standard":0,
+    "family":0,
+    "premium":0
   },
   {
     "name": "Звёздная Ночь",
@@ -41,7 +50,10 @@
     "person":2,
     "people":15,
     "car":5,
-    "cars":10
+    "cars":10,
+    "standard":0,
+    "family":0,
+    "premium":3
   },
   {
     "name": "Закат у Моря",
@@ -52,7 +64,10 @@
     "person":4,
     "people":10,
     "car":3,
-    "cars":5
+    "cars":5,
+    "standard":0,
+    "family":0,
+    "premium":1
   },
   {
     "name": "У Ветреного Берега",
@@ -63,7 +78,10 @@
     "person":7,
     "people":25,
     "car":13,
-    "cars":20
+    "cars":20,
+    "standard":1,
+    "family":1,
+    "premium":1
   },
   {
     "name": "Лесная Опушка",
@@ -74,7 +92,10 @@
     "person":10,
     "people":25,
     "car":9,
-    "cars":10
+    "cars":10,
+    "standard":1,
+    "family":0,
+    "premium":1
   },
   {
     "name": "Между Морем и Горами",
@@ -85,6 +106,9 @@
     "person":4,
     "people":15,
     "car":2,
-    "cars":7
+    "cars":7,
+    "standard":0,
+    "family":1,
+    "premium":1
   }
 ]
