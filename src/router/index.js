@@ -6,6 +6,7 @@ const MapObjects = () => import('@/page/MapObjects/MapObjects.vue')
 const AddClients = () => import('@/page/AddClients/AddClients.vue')
 const ListClients = () => import('@/page/ListClients/ListClients.vue')
 const Trips = () => import('@/page/Trips/Trips.vue')
+const Glamping = () => import('@/page/Glamping/Glamping.vue')
 const SettingsCompany = () => import('@/page/SettingsCompany/SettingsCompany.vue')
 const Account = () => import('@/page/Account/Account.vue')
 const Other = () => import('@/page/Other/Other.vue')
@@ -26,6 +27,7 @@ const routes = [
   { name: 'AddClients', path: '/addclients', component: AddClients },
   { name: 'ListClients', path: '/listclients', component: ListClients },
   { name: 'Trips', path: '/trips', component: Trips },
+  { name: 'Glamping', path: '/glamping', component: Glamping },
   { name: 'SettingsCompany', path: '/settingscompany', component: SettingsCompany },
   { name: 'Account', path: '/account', component: Account },
   { name: 'Other', path: '/other', component: Other}

@@ -2,6 +2,7 @@
   {
     "name": "У Песчаного Моря",
     "description": "Тёплый песок, мягкий бриз и спокойные волны",
+    "number":2,
     "icon": "mdi-weather-sunny",
     "color": "#f4b740",
     "coordinations": "43.960635, 39.263933",
@@ -16,6 +17,7 @@
   {
     "name": "В Тени Сосен",
     "description": "Аромат хвои, прохлада и шелест леса",
+    "number":1,
     "icon": "mdi-pine-tree",
     "color": "#8ab45a",
     "coordinations": "44.260545, 37.463974",
@@ -30,6 +32,7 @@
   {
     "name": "У Подножья Гор",
     "description": "Величественные вершины и кристально чистый воздух",
+    "number":3,
     "icon": "mdi-image-filter-hdr",
     "color": "#bca37f",
     "coordinations": "46.742464, 35.933421",
@@ -44,6 +47,7 @@
   {
     "name": "Звёздная Ночь",
     "description": "Чистое небо, млечный путь и тишина природы",
+    "number":4,
     "icon": "mdi-star-shooting",
     "color": "#6d8bc9",
     "coordinations": "45.126335, 34.393356",
@@ -58,6 +62,7 @@
   {
     "name": "Закат у Моря",
     "description": "Нежное сияние заката над морской гладью",
+    "number":5,
     "icon": "mdi-weather-sunset",
     "color": "#ff9c6a",
     "coordinations": "47.256335, 32.372356",
@@ -72,6 +77,7 @@
   {
     "name": "У Ветреного Берега",
     "description": "Плеск волн и морской бриз",
+    "number":6,
     "icon": "mdi-waves",
     "color": "#7cb7c5",
     "coordinations": "48.363257, 30.295367",
@@ -86,6 +92,7 @@
   {
     "name": "Лесная Опушка",
     "description": "Солнечная поляна, пение птиц и мягкий свет",
+    "number":7,
     "icon": "mdi-flower",
     "color": "#d7a77b",
     "coordinations": "41.830533, 31.118635",
@@ -100,6 +107,7 @@
   {
     "name": "Между Морем и Горами",
     "description": "Баланс стихий — море, горы и небо",
+    "number":8,
     "icon": "mdi-compass",
     "color": "#9a8cd4",
     "coordinations": "49.220335, 46.253733",

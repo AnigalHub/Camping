@@ -135,7 +135,7 @@ hr {
 .v-col-9{
   overflow: auto;
   max-height: none;
-  height: 65vh;
+  height: 69vh;
 }
 
 @media (max-width: 600px) {
