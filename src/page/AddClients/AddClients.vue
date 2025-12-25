@@ -9,7 +9,7 @@
               <v-expansion-panel class="custom-panel" v-for="(person, index) in persons" :key="index">
                 <v-expansion-panel-title>
                   <div class="panel-title">
-                    <strong>Отдыхающий №{{ index + 1 }}</strong>
+                    <strong>{{ personTitle(person) }}</strong>
                     <v-btn icon="mdi-delete" variant="text" size="small" class="action delete-btn"
                       @click.stop="removePerson(index)" />
                   </div>
@@ -206,12 +206,16 @@ const openedPanel = ref([0]);
 const persons = reactive([createPerson()]);
 const price = ref(null);
 
-const tentTypes = [
-  { title: "Без аренды", value: "own" },
-  { title: "Стандарт", value: "standard" },
-  { title: "Семейная", value: "family" },
-  { title: "Премиум", value: "premium" },
-];
+const tentTypes = computed(() => [
+  {
+    title: "Без аренды",
+    value: "own",
+  },
+  ...glampingData.map(item => ({
+    title: item.name,
+    value: item.type,
+  }))
+]);
 
 const carMask = {
   mask: value => {
@@ -226,6 +230,19 @@ const carMask = {
     '#': { pattern: /\d/ }
   }
 }
+
+function personTitle(person) {
+  const parts = [
+    person.surname,
+    person.name,
+    person.patronymic,
+    person.date,
+
+  ].filter(Boolean);
+
+  return parts.length ? parts.join(" ") : "Отдыхающий";
+}
+
 function onTentTypeChange(person, val) {
   person.tentType = val;
   // Если поляна недоступна — сброс
