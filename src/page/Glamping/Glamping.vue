@@ -1,49 +1,35 @@
 <template>
   <v-container>
     <Title :title="title" />
-    <div class="grid-block glamping">
-      <div 
-        v-for="house in glampingWithSvg" 
-        :key="house.name" 
-        class="home-card"
-        @mouseenter="house.hovered = true" 
-        @mouseleave="house.hovered = false"
-      >
+    <div class="grid-block glamping block">
+      <div v-for="house in glampingWithSvg" :key="house.name" class="home-card" @mouseenter="house.hovered = true"
+        @mouseleave="house.hovered = false">
         <div class="card-row">
-          <v-progress-circular 
-            :model-value="(house.progress.current / house.progress.total) * 100" 
-            :size="70"
-            :rotate="5" 
-            :width="5" 
-            :color="house.color" 
-            class="progress-circle"
-          >
+          <v-progress-circular :model-value="(house.progress.current / house.progress.total) * 100" :size="70"
+            :rotate="5" :width="4" :color="house.color" class="progress-circle">
             {{ house.progress.current }}/{{ house.progress.total }}
-            
           </v-progress-circular>
 
           <div class="text-column">
             <v-icon :color="house.color" class="icon">{{ house.icon }}</v-icon>
-            <div class="title">{{ house.name }}</div>
+            <div class="name-desc">
+              <div class="title">{{ house.name }}</div>
+              <div class="sub-description">{{ house.description }}</div>
+            </div>
           </div>
         </div>
-
-        <p class="description">{{ house.description }}</p>
-
-        <!-- Горизонтальный список мест в виде карточек -->
+       
         <div class="places-container">
-          <div 
-            v-for="place in filteredPlaces(house)" 
-            :key="place.name" 
-            class="place"
-            :style="{ borderColor: house.color }"
-          >
+           <!-- <div class="availability-banner" :style="{ borderColor: house.color, backgroundColor: house.color + '20' }">
+          <strong>Достпуность по полянам:</strong>
+        </div> -->
+          <div v-for="place in filteredPlaces(house)" :key="place.name" class="place"
+            :style="{ borderColor: house.color }">
             <div class="dot" :style="{ backgroundColor: house.color }"></div>
             <div class="place-name">
-              <b><span>{{ place.number }}.</span></b>
-              {{ place.name }} 
-              <b>
-                <span :style="{ color: house.color }">({{ place[house.type] }})</span>
+              <b>{{ place.number }}.</b> {{ place.name }}
+              <b :style="{ color: house.color }">
+                ({{ availableTents(house, place) }}/{{ place[house.type] }})
               </b>
             </div>
           </div>
@@ -59,50 +45,54 @@ import places from './../../../public/data/places.json';
 import clients from './../../../public/data/clients.json';
 import { ref, reactive } from 'vue';
 
-const title = 'Аренда глэмпинга';
-
-// Текущая дата для фильтрации активных клиентов
+const title = 'Доступный глэмпинг';
 const today = new Date().toISOString().split('T')[0];
 
 // Создаем данные для карточек с вычисленным progress
 const glampingWithSvg = ref(
   glampingData.map(item => {
-    const type = item.type; // standart / family / premium
-
-    // Считаем количество занятых палаток этого типа среди активных клиентов
-    let occupied = clients.reduce((sum, client) => {
-      if (!client.endDate || client.endDate < today) return sum;
-
-      if (Array.isArray(client.tentType)) {
-        return sum + client.tentType.filter(t => t === type).length;
-      } else if (client.tentType === type) {
-        return sum + 1;
+    const type = item.type;
+    const occupied = clients.reduce((sum, c) => {
+      if (!c.startDate || !c.endDate) return sum;
+      const start = new Date(c.startDate);
+      const end = new Date(c.endDate);
+      const todayDate = new Date(today);
+      if (todayDate >= start && todayDate <= end) {
+        if (Array.isArray(c.tentType)) return sum + c.tentType.filter(t => t === type).length;
+        return c.tentType === type ? sum + 1 : sum;
       }
       return sum;
     }, 0);
 
-    // Общая доступность палаток этого типа (сумма по всем местам)
-    const total = places.reduce((sum, place) => sum + (place[type] || 0), 0);
-
-    // Свободные палатки = total - занятые
-    const current = total - occupied;
-
-    return reactive({
-      ...item,
-      hovered: false,
-      progress: { current, total }
-    });
+    const total = places.reduce((sum, p) => sum + (p[type] || 0), 0);
+    return reactive({ ...item, hovered: false, progress: { current: total - occupied, total } });
   })
 );
 
+
+const availableTents = (house, place) => {
+  const type = house.type;
+  const todayDate = new Date(today);
+
+  const occupied = clients.reduce((sum, c) => {
+    if (!c.startDate || !c.endDate) return sum;
+    if (c.object !== place.number) return sum;
+    const start = new Date(c.startDate);
+    const end = new Date(c.endDate);
+    if (todayDate >= start && todayDate <= end) {
+      if (Array.isArray(c.tentType)) return sum + c.tentType.filter(t => t === type).length;
+      return c.tentType === type ? sum + 1 : sum;
+    }
+
+    return sum;
+  }, 0);
+
+  return (place[type] || 0) - occupied;
+};
+
 // Фильтруем места по типу
-function filteredPlaces(house) {
-  const type = house.type; // standart / family / premium
-  return places.filter(place => place[type] && place[type] > 0);
-}
+const filteredPlaces = house => places.filter(p => p[house.type] > 0);
 </script>
-
-
 
 <style scoped>
 .grid-block {
@@ -134,6 +124,7 @@ function filteredPlaces(house) {
 
 .progress-circle {
   flex-shrink: 0;
+  font-size: 1.1rem;
 }
 
 .v-progress-circular__content {
@@ -147,13 +138,13 @@ function filteredPlaces(house) {
 
 .text-column {
   display: flex;
-  align-items: center; 
-  gap: 6px;      
+  align-items: flex-start;
+  gap: 6px;
 }
 
 .icon {
-  font-size: 1.8rem; 
-  padding: 6px;
+  font-size: 1.8rem;
+  padding: 20px 6px 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,40 +153,32 @@ function filteredPlaces(house) {
 
 .title {
   font-family: "Amatic SC", cursive;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: bold;
   color: #2a2a2a;
 }
 
-.description {
-  margin-top: 6px;
-  font-size: 0.95rem;
-  color: #555;
-}
-
-/* Горизонтальный контейнер для мест */
 .places-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 12px;
+  margin-top: 18px;
 }
 
-/* Каждое место как мини-карточка */
 .place {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   border: 1px solid;
   border-radius: 12px;
-  padding: 6px 10px;
+  padding: 8px 10px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: default;
 }
 
 .place:hover {
   transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .dot {
@@ -205,8 +188,43 @@ function filteredPlaces(house) {
 }
 
 .place-name {
-  font-size: 0.85rem;
+  font-size: 0.93rem;
   color: #555;
   white-space: nowrap;
 }
+
+.name-desc {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.sub-description {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #555;
+  margin-top: 2px;
+  line-height: 1.3;
+  margin-left: -40px;
+}
+
+.availability-banner {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-left: 4px solid;
+  width: max-content;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #2a2a2a;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.block {
+  height: 78vh;
+  padding: 0 5px 0 15px;
+  overflow: auto;
+  margin-left: -18px;
+}
+
 </style>

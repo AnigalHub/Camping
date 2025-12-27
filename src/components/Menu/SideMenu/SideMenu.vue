@@ -36,7 +36,7 @@ const menus = [
   { icon: "mdi-human-male-female-child", title: "Список клиентов", route: "ListClients" },
   { icon: "mdi-calendar-clock-outline", title: "Ближайшие выезды", route: "Trips" },
   { icon: "mdi-grass", title: "Свободные поляны", route: "MapObjects" },
-  { icon: "mdi-tent", title: "Аренда глэмпинга", route: "Glamping" },
+  { icon: "mdi-tent", title: "Доступный глэмпинг", route: "Glamping" },
   { icon: "mdi-cash-multiple", title: "Учет расходов", route: "AdditionalCosts" },
   { icon: "mdi-cog", title: "Настройки, тарифы", route: "SettingsCompany" },
 ];
