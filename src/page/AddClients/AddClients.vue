@@ -340,7 +340,8 @@ const onDateSelect = (val, index, field) => {
 
 const onDocDateSelect = (val, index, docType) => {
   const doc = persons[index][docType];
-  doc.date = formatDate(val);
+  doc.dateInternal = val;
+  doc.dateDocument = formatDate(val);
   doc.dateMenu = false;
 };
 

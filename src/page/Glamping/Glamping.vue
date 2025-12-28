@@ -18,14 +18,10 @@
             </div>
           </div>
         </div>
-       
         <div class="places-container">
-           <!-- <div class="availability-banner" :style="{ borderColor: house.color, backgroundColor: house.color + '20' }">
-          <strong>Достпуность по полянам:</strong>
-        </div> -->
           <div v-for="place in filteredPlaces(house)" :key="place.name" class="place"
             :style="{ borderColor: house.color }">
-            <div class="dot" :style="{ backgroundColor: house.color }"></div>
+            <v-icon :color="house.color" size="22">{{ place.icon }}</v-icon>
             <div class="place-name">
               <b>{{ place.number }}.</b> {{ place.name }}
               <b :style="{ color: house.color }">
@@ -168,7 +164,7 @@ const filteredPlaces = house => places.filter(p => p[house.type] > 0);
 .place {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
   border: 1px solid;
   border-radius: 12px;
   padding: 8px 10px;
