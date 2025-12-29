@@ -31,16 +31,45 @@
                     </div>
                   </v-expansion-panel-title>
 
-                  <!-- Контент -->
                   <v-expansion-panel-text>
-                    <v-text-field
-                      v-model="obj.name"
-                      label="Название"
-                      variant="outlined"
-                      rounded="lg"
-                      density="comfortable"
-                    />
-
+                    <div class="grid-icons">
+                      <v-select
+                        v-model="obj.icon"
+                        :items="[{}]"     
+                        label="Иконка"
+                        variant="outlined"
+                        rounded="lg"
+                        density="comfortable"  
+                        class="select"
+                        hide-selected
+                        hide-details
+                      >
+                        <template #selection="{ item }">
+                          <v-icon :color="obj.color">{{ obj.icon }}</v-icon>
+                          <span class="ml-2">{{ getIconLabel(obj.icon) }}</span>
+                        </template>
+                        <template #prepend-item>
+                          <div class="icon-grid">
+                            <div
+                              v-for="item in iconsPlaces"
+                              :key="item.icon"
+                              class="icon-tile"
+                              @click="selectIcon(obj, item)"
+                            >
+                              <v-icon :color="item.color">{{ item.icon }}</v-icon>
+                            </div>
+                          </div>
+                        </template>
+                        <template #item="{ item }"></template>
+                      </v-select>
+                      <v-text-field
+                        v-model="obj.name"
+                        label="Название"
+                        variant="outlined"
+                        rounded="lg"
+                        density="comfortable"
+                      />
+                    </div>
                     <v-textarea
                       v-model="obj.description"
                       label="Описание"
@@ -137,6 +166,7 @@ import { ref, reactive, computed, onMounted, nextTick } from 'vue'
 import TentSvg from "./svg/tent.vue";
 import places from '../../../../public/data/places.json'
 import glampingData from '../../../../public/data/glamping.json'
+import iconsPlaces from '../../../../public/data/iconsPlaces.json'
 
 defineOptions({
   name: "Objects",
@@ -187,6 +217,16 @@ const addObject = async () => {
 
 const removeObject = (i) => {
   if (objects.length > 1) objects.splice(i, 1)
+}
+
+const getIconLabel = (iconName) => {
+  const item = iconsPlaces.find(i => i.icon === iconName)
+  return item ? item.label : ''
+}
+
+const selectIcon = (obj, item) => {
+  obj.icon = item.icon
+  obj.color = item.color
 }
 
 onMounted(async () => {
@@ -242,6 +282,12 @@ const saveForm = () => {
   gap: 12px;
 }
 
+.grid-icons{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
 .glamping-section {
   margin-top: 20px;
 }
@@ -288,5 +334,33 @@ const saveForm = () => {
 .btn-page {
   width: auto;
   margin: -10px 0;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+  padding: 8px 5px;
+}
+
+.icon-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-tile:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.select{
+  margin-bottom: 20px;
 }
 </style>
