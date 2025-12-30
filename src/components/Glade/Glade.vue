@@ -301,12 +301,6 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
   grid-template-columns: 1fr;
 }
 
-.layout.right-layout {
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 14px;
-}
-
 .desc-wrap {
   display: flex;
   align-items: center;

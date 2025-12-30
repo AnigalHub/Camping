@@ -43,11 +43,14 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import CalendarSvg from "./../../../svg/calendar.vue";
+import { computed } from "vue"
+import CalendarSvg from "./../../../svg/calendar.vue"
+import clients from "./../../../../public/data/clients.json"
 
-const today = new Date().toLocaleDateString("ru-RU").split(".");
+const router = useRouter();
 
-const goRoute = () => router.push({ name: "Trips" });
+const todayISO = new Date().toISOString().slice(0, 10)
+const today = new Date().toLocaleDateString("ru-RU").split(".")
 
 const months = {
   "01": "января",
@@ -62,14 +65,30 @@ const months = {
   10: "октября",
   11: "ноября",
   12: "декабря",
-};
+}
 
-const status = [
-  { label: "Человек", value: 15 },
-  { label: "Машин", value: 4 },
-  { label: "Глэмпинг", value: 0 },
-];
+const goRoute = () => router.push({ name: "Trips" });
 
+const todayClients = computed(() =>
+  clients.filter(client =>
+    client.endDate?.slice(0, 10) === todayISO
+  )
+)
+
+const status = computed(() => [
+  {
+    label: "Человек",
+    value: todayClients.value.length
+  },
+  {
+    label: "Машин",
+    value: todayClients.value.filter(c => c.isCars === true).length
+  },
+  {
+    label: "Глэмпинг",
+    value: todayClients.value.filter(c => c.tentType !== "own").length
+  }
+])
 </script>
 
 <style scoped>
