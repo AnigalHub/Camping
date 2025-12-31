@@ -190,6 +190,7 @@ h2::after {
   box-shadow: 1px 1px 1px 1px #d9d8d8 !important;
   padding: 16px !important;
   transition: transform .4s ease, box-shadow .4s ease;
+  z-index: 2;
 }
 
 .date-block::before,

@@ -29,7 +29,7 @@
         cols="12"
         md="6"
       >
-        <Glade :place="place" :number="i" class="glade"/>
+        <Glade :place="place" :number="place.number" class="glade"/>
       </v-col>
     </v-row>
     <div class="d-flex align-center card-footer mt-4">
@@ -47,19 +47,15 @@ const router = useRouter();
 const goRoute = () => router.push({ name: "MapObjects" });
 import places from './../../../../public/data/places.json';
 
-const sortOption = ref({ key: "places", dir: "asc" }); // сортировка по умолчанию
+const sortOption = ref({ key: "places", dir: "asc" }); 
 const dir = sortOption.value.dir === "asc" ? 1 : -1;
 
-function sortPlacesByOccupancy(places) {
+function sortPlacesByNumber(places) {
   return places
     .slice()
-    .sort((a, b) => {
-     const freeA = (a.maxperson - a.person) + (a.maxcar - a.car);
-      const freeB = (b.maxperson - b.person) + (b.maxcar - b.car);
-      return (freeA - freeB) * dir;
-    });
+    .sort((a, b) => a.number - b.number);
 }
-const sortedPlaces = sortPlacesByOccupancy(places);
+const sortedPlaces = sortPlacesByNumber(places);
 const topTwo = sortedPlaces.slice(0, 2);
 
 </script>
