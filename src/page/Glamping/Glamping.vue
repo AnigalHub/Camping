@@ -39,12 +39,11 @@
 import glampingData from './../../../public/data/glamping.json';
 import places from './../../../public/data/places.json';
 import clients from './../../../public/data/clients.json';
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 
 const title = 'Доступный глэмпинг';
 const today = new Date().toISOString().split('T')[0];
 
-// Создаем данные для карточек с вычисленным progress
 const glampingWithSvg = ref(
   glampingData.map(item => {
     const type = item.type;
@@ -61,9 +60,34 @@ const glampingWithSvg = ref(
     }, 0);
 
     const total = places.reduce((sum, p) => sum + (p[type] || 0), 0);
-    return reactive({ ...item, hovered: false, progress: { current: total - occupied, total } });
+
+    return reactive({
+      ...item,
+      hovered: false,
+      progress: {
+        current: 0,
+        target: total - occupied,
+        total
+      }
+    });
   })
 );
+
+onMounted(() => {
+  glampingWithSvg.value.forEach(house => {
+    const step = house.progress.target / 50; 
+    let current = 0;
+    const interval = setInterval(() => {
+      current += step;
+      if (current >= house.progress.target) {
+        house.progress.current = house.progress.target;
+        clearInterval(interval);
+      } else {
+        house.progress.current = Math.round(current);
+      }
+    }, 16);
+  });
+});
 
 
 const availableTents = (house, place) => {
@@ -145,6 +169,7 @@ const filteredPlaces = house => places.filter(p => p[house.type] > 0);
   align-items: center;
   justify-content: center;
   transition: transform 0.3s;
+  animation: sway 3s ease-in-out infinite, rotY 5s ease-in-out infinite;
 }
 
 .title {
@@ -223,4 +248,22 @@ const filteredPlaces = house => places.filter(p => p[house.type] > 0);
   margin-left: -18px;
 }
 
+.v-progress-circular__content {
+  transition: all 0.3s ease;
+}
+
+@keyframes sway {
+  25% {
+    transform: rotate(4deg);
+  }
+
+  75% {
+    transform: rotate(-4deg);
+  }
+}
+@keyframes rotY {
+  50% {
+    transform: rotateY(180deg);
+  }
+}
 </style>
