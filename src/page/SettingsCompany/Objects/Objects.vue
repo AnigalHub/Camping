@@ -174,11 +174,10 @@ defineOptions({
 
 const valid = ref(false)
 
-const glampingKeyMap = {
-  'Стандарт (2+1)': 'standard',
-  'Семейная (2+1)': 'family',
-  'Премиум (тент-хаус)': 'premium',
-}
+const glampingKeyMap = {};
+glampingData.forEach(item => {
+  glampingKeyMap[item.name] = item.type;
+});
 
 const glampingTypes = glampingData.map(item => ({
   key: glampingKeyMap[item.name],

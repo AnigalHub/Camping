@@ -105,6 +105,7 @@
 
 <script setup>
 import { shallowRef, ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from "vue";
+import glampingData from './../../../public/data/glamping.json'
 import { callModalWindow } from "../../utils/callModalWindow";
 import { loadComponent } from "../../utils/loadComponent";
 import { useStore } from "vuex";
@@ -128,15 +129,21 @@ const showButtons = computed(() => props.headers.some(row => row.some(col => col
 // Форматирование даты
 const formatDate = date => date ? date.split("T")[0].split("-").reverse().join(".") : "—";
 
+const tentTypes = computed(() => [
+  {
+    title: "Без аренды",
+    value: "own",
+  },
+  ...glampingData.map(item => ({
+    title: item.name,
+    value: item.type,
+  }))
+]);
 const isTent = value => {
-  const tentTypes = [
-    { title: "Без аренды", value: "own" },
-    { title: "Стандарт", value: "standard" },
-    { title: "Семейная", value: "family" },
-    { title: "Премиум", value: "premium" },
-  ];
-  return tentTypes.find(item => item.value === value)?.title || "—";
-}
+  const tent = tentTypes.value.find(item => item.value === value);
+  if (!tent) return "—";
+  return tent.title.split(" (")[0];
+};
 
 // Пагинация
 const currentPage = ref(1);

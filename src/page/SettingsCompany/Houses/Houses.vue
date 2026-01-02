@@ -9,7 +9,7 @@
                 <v-expansion-panel class="custom-panel" v-for="(obj, i) in objects" :key="i">
                   <v-expansion-panel-title>
                     <div class="panel-title">
-                      <strong>Глэмпинг №{{ i + 1 }}</strong>
+                      <strong>{{ obj.name || 'Новый глэмпинг' }}</strong>
                       <v-btn icon="mdi-delete" variant="text" size="small" class="action delete-btn"
                         @click.stop="removeObject(i)" />
                     </div>

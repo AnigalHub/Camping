@@ -30,7 +30,7 @@
               <div class="grid-inputs">
                 <v-text-field v-model="prices.tent" label="Стандарт (2+1)" variant="outlined" density="comfortable"
                   rounded="lg" clearable v-maska="'#########'" type="number"/>
-                <v-text-field v-model="prices.familyTent" label="Семейная (2+1)" variant="outlined" density="comfortable"
+                <v-text-field v-model="prices.familyTent" label="Семейная (2+2)" variant="outlined" density="comfortable"
                   rounded="lg" clearable v-maska="'#########'" type="number"/>
                 <v-text-field v-model="prices.premiumTent" label="Премиум (тент-хаус)" variant="outlined"
                   density="comfortable" rounded="lg" clearable v-maska="'#########'" type="number"/>

@@ -163,6 +163,7 @@
 
 <script setup>
 import { computed, watch } from "vue";
+import glampingData from './../../../public/data/glamping.json'
 
 const props = defineProps({
   name: String,
@@ -263,12 +264,16 @@ watch(() => props.object.birth.dateDocument, val => {
   props.object.birth.dateInternal = parseDate(val);
 });
 
-const tentTypes = [
-  { title: "Своя", value: "own" },
-  { title: "Стандарт", value: "standard" },
-  { title: "Семейная", value: "family" },
-  { title: "Премиум", value: "premium" },
-];
+const tentTypes = computed(() => [
+  {
+    title: "Без аренды",
+    value: "own",
+  },
+  ...glampingData.map(item => ({
+    title: item.name,
+    value: item.type,
+  }))
+]);
 
 // ==== Заголовок ====
 const title = computed(() => {
