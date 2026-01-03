@@ -74,19 +74,27 @@ const todayClients = computed(() =>
     client.endDate?.slice(0, 10) === todayISO
   )
 )
+function pluralize(number, one, few, many) {
+  const n = Math.abs(number) % 100;
+  const n1 = n % 10;
+  if (n > 10 && n < 20) return many;
+  if (n1 > 1 && n1 < 5) return few;
+  if (n1 === 1) return one;
+  return many;
+}
 
 const status = computed(() => [
   {
-    label: "Человек",
-    value: todayClients.value.length
+    value: todayClients.value.length,
+    label: pluralize(todayClients.value.length, "Человек", "Человека", "Человек")
   },
   {
-    label: "Машин",
-    value: todayClients.value.filter(c => c.isCars === true).length
+    value: todayClients.value.filter(c => c.isCars === true).length,
+    label: pluralize(todayClients.value.filter(c => c.isCars === true).length, "Машина", "Машины", "Машин")
   },
   {
-    label: "Глэмпинг",
-    value: todayClients.value.filter(c => c.tentType !== "own").length
+    value: todayClients.value.filter(c => c.tentType !== "own").length,
+    label: pluralize(todayClients.value.filter(c => c.tentType !== "own").length, "Глэмпинг", "Глэмпинга", "Глэмпингов")
   }
 ])
 </script>
