@@ -98,4 +98,9 @@ hr {
 .v-card {
   overflow: initial;
 }
+
+.btn-page{
+  width: auto;
+  margin: 0;
+}
 </style>

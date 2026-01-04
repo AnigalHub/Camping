@@ -110,8 +110,11 @@ const availableTents = (house, place) => {
   return (place[type] || 0) - occupied;
 };
 
-// Фильтруем места по типу
-const filteredPlaces = house => places.filter(p => p[house.type] > 0);
+// Фильтруем места по type и сортируем по number
+const filteredPlaces = house => 
+  places
+    .filter(p => p[house.type] > 0)
+    .sort((a, b) => a.number - b.number);
 </script>
 
 <style scoped>

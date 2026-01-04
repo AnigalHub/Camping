@@ -90,4 +90,9 @@ const isChanged = computed(() => JSON.stringify(person) !== JSON.stringify(origi
 .v-card {
   overflow: initial;
 }
+
+.btn-page{
+  width: auto;
+  margin: 0;
+}
 </style>
