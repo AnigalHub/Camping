@@ -73,7 +73,7 @@ function goRoute(name) {
 }
 
 .title {
-  font-family: "Amatic SC", cursive;
+  font-family: var(--font-family-description);
   font-weight: 700;
   color: #6f9233;
   font-size: 2.15rem;

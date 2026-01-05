@@ -169,7 +169,7 @@ h2::after {
 .title {
   color: #2a2a2a;
   margin-bottom: 6px;
-  font-family: "Amatic SC", cursive;
+  font-family: var(--font-family-description);
   font-size: 1.8rem;
 }
 

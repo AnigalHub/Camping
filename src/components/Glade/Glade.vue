@@ -177,7 +177,7 @@ const bottomMapClass = computed(() => (route.name === 'Home' || isMobile.value) 
 }
 
 .title {
-  font-family: "Amatic SC", cursive;
+  font-family: var(--font-family-description);
   font-size: 1.9rem;
   color: #2a2a2a;
 }

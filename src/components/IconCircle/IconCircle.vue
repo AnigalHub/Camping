@@ -109,7 +109,7 @@ const props = defineProps({
   text-align: center;
   font-size: 1.6rem;
   color: #494c54;
-  font-family: "Amatic SC", cursive;
+  font-family: var(--font-family-description);
   letter-spacing: 1.2px;
   -webkit-text-stroke: .05px #494c54;
 }

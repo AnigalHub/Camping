@@ -266,13 +266,18 @@ const saveForm = () => {
   height: 70vh;
 }
 
-.grid-inputs {
-  grid-template-columns: repeat(3, 1fr);
-}
-
 .wrapper_content {
   height: 100%;
   overflow-y: auto;
+}
+
+.v-expansion-panel-title {
+  padding: 8px 16px !important;
+  background: #edeef050;
+}
+
+.v-expansion-panel--active:not(:first-child) {
+  margin-top: 0 !important;
 }
 
 .grid-inputs {
@@ -281,7 +286,7 @@ const saveForm = () => {
   gap: 12px;
 }
 
-.grid-icons{
+.grid-icons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
@@ -314,7 +319,7 @@ const saveForm = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #777777;
+  color: #777;
 }
 
 .tile-input {
@@ -322,12 +327,9 @@ const saveForm = () => {
 }
 
 .actions {
-  margin-top: 16px;
   display: flex;
-  justify-content: flex-start;
   gap: 16px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin: 10px 0 5px 0;
 }
 
 .btn-page {
@@ -359,7 +361,7 @@ const saveForm = () => {
   transform: scale(1.05);
 }
 
-.select{
+.select {
   margin-bottom: 20px;
 }
 </style>

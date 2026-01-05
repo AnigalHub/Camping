@@ -157,6 +157,7 @@ const filteredPlaces = house =>
   justify-content: center;
   font-size: 1rem;
   color: #000 !important;
+  transition: all 0.3s ease;
 }
 
 .text-column {
@@ -205,12 +206,6 @@ const filteredPlaces = house =>
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
 .place-name {
   font-size: 0.93rem;
   color: #555;
@@ -222,26 +217,12 @@ const filteredPlaces = house =>
   flex-direction: column;
 }
 
-
 .sub-description {
   font-size: 0.95rem;
   font-style: italic;
   color: #555;
-  margin-top: 2px;
-  line-height: 1.3;
   margin-left: -40px;
-}
-
-.availability-banner {
-  margin-top: 10px;
-  padding: 8px 12px;
-  border-left: 4px solid;
-  width: max-content;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: #2a2a2a;
-  background-color: #f0f0f0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  line-height: 1.3;
 }
 
 .block {
@@ -251,22 +232,13 @@ const filteredPlaces = house =>
   margin-left: -18px;
 }
 
-.v-progress-circular__content {
-  transition: all 0.3s ease;
-}
-
+/* Анимации */
 @keyframes sway {
-  25% {
-    transform: rotate(4deg);
-  }
-
-  75% {
-    transform: rotate(-4deg);
-  }
+  25% { transform: rotate(4deg); }
+  75% { transform: rotate(-4deg); }
 }
+
 @keyframes rotY {
-  50% {
-    transform: rotateY(180deg);
-  }
+  50% { transform: rotateY(180deg); }
 }
 </style>

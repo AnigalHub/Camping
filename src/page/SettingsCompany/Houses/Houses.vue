@@ -138,4 +138,9 @@ const saveForm = () => console.log(JSON.parse(JSON.stringify(objects)));
   width: auto;
   margin: -10px 0;
 }
+
+.wrapper_content {
+  height: 65vh;
+  overflow-y: auto;
+}
 </style>

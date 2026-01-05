@@ -158,7 +158,7 @@ h2::after {
 }
 
 .numbers {
-  font-family: "Smooch Sans", sans-serif;
+  font-family: var(--font-family-number);
   font-size: 72px;
   color: #4b707f;
   transition: color .3s ease;
@@ -169,7 +169,7 @@ h2::after {
 }
 
 .numbers-text {
-  font-family: "Amatic SC", cursive;
+  font-family: var(--font-family-description);
   font-size: 33px;
   color: #000;
   margin-top: -20%;
@@ -262,7 +262,7 @@ h2::after {
 }
 
 .day {
-  font-family: "Amatic SC", cursive;
+  font-family: var(--font-family-description);
   font-weight: 700;
   font-size: 36px;
   color: #000;
